@@ -1,3 +1,11 @@
+# Capstone-2023-2
+
+
+## Rules 🤝
+
+**All Rules are [here](./Rules.md).** Check it out carefully :)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
