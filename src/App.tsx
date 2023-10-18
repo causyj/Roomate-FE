@@ -8,31 +8,50 @@ const Router = createBrowserRouter([
   {
     path: '/login',
     element: <></>,
+  },
+{
+    path: '/register',
+    element: <></>,
+},
+{
+    path: '/testpage',
+    element: <></>,
+},
+{
+    path: '/testresult',
+    element: <></>,
+},
+{
+    path: '/animaldict',
+    element: <></>,
+},
+{
+    path: '/verify',
+    element: <></>,
 },
   {
       path: '/chat',
       element: <></>,
   },
   {
-      path: '/roomate',
+      path: '/roomateoption',
       element: <></>,
   },
+  {
+    path: '/roomatelist',
+    element: <></>,
+},
   {
       path: '/group',
       element: <></>,
   },
+  
   {
     path: '/notice',
     element: <></>,
 },
-{
-    path: '/testpage',
-    element: <></>,
-},
-{
-    path: '/testpage',
-    element: <></>,
-},
+
+
 ])
 
 export const ProjectRouter = () => <RouterProvider router={Router} />
