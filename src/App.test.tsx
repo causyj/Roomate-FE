@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import {ProjectRouter} from './App';
+import {ProjectRouter} from './router';
 
 test('renders learn react link', () => {
   render(<ProjectRouter />);
