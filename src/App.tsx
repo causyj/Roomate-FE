@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Home } from './pages/home/Home'
+import "./App.css"
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -55,3 +56,4 @@ const Router = createBrowserRouter([
 ])
 
 export const ProjectRouter = () => <RouterProvider router={Router} />
+
