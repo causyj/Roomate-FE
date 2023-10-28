@@ -14,7 +14,7 @@ import { Notice } from './pages/notice/Notice'
 const Router = createBrowserRouter([
   {
       path: '/',
-      element: <Home />,
+      element:<Home/>
   },
   {
     path: '/login',
