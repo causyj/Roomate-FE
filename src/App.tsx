@@ -1,6 +1,16 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Home } from './pages/home/Home'
-import "./App.css"
+import { Login } from './pages/login/Login'
+import { Register } from './pages/register/Register'
+import { TestPage } from './pages/testpage/TestPage'
+import { TestResult } from './pages/testresult/TestResult'
+import { AnimalDictionary } from './pages/animaldict/AnimalDictionary'
+import { Verify } from './pages/verify/Verify'
+import { Chat } from './pages/chat/Chat'
+import { RoomateOption } from './pages/roomateoption/RoomateOption'
+import { RoomateRecommend } from './pages/roomatelist/RoomateRecommend'
+import { GroupList } from './pages/group/GroupList'
+import { Notice } from './pages/notice/Notice'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -8,48 +18,49 @@ const Router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <></>,
+    element: <Login/>,
   },
 {
     path: '/register',
-    element: <></>,
+    element: <Register/>,
 },
 {
     path: '/testpage',
-    element: <></>,
+    element: <TestPage/>,
 },
 {
     path: '/testresult',
-    element: <></>,
+    element: <TestResult/>,
 },
 {
     path: '/animaldict',
-    element: <></>,
+    element: <AnimalDictionary/>,
+            
 },
 {
     path: '/verify',
-    element: <></>,
+    element: <Verify/>,
 },
   {
       path: '/chat',
-      element: <></>,
+      element: <Chat/>,
   },
   {
       path: '/roomateoption',
-      element: <></>,
+      element: <RoomateOption/>,
   },
   {
     path: '/roomatelist',
-    element: <></>,
+    element: <RoomateRecommend/>,
 },
   {
       path: '/group',
-      element: <></>,
+      element: <GroupList/>,
   },
   
   {
     path: '/notice',
-    element: <></>,
+    element: <Notice/>,
 },
 
 
