@@ -15,7 +15,7 @@ import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 const Router = createBrowserRouter([
   {
       path: '/',
-      element:<><BottomNavbar/><Home/></>
+      element:<Home/>
   },
   {
     path: '/login',
@@ -44,7 +44,7 @@ const Router = createBrowserRouter([
 },
   {
       path: '/chat',
-      element: <Chat/>,
+      element: <><BottomNavbar/><Chat/></>,
   },
   {
       path: '/roomateoption',
@@ -67,5 +67,5 @@ const Router = createBrowserRouter([
 
 ])
 
-export const ProjectRouter = () => <RouterProvider router={Router} />
+export const ProjectRouter = () => <><BottomNavbar/><RouterProvider router={Router} /></>
 
