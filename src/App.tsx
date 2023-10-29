@@ -11,7 +11,7 @@ import { RoomateOption } from './pages/roomateoption/RoomateOption'
 import { RoomateRecommend } from './pages/roomatelist/RoomateRecommend'
 import { GroupList } from './pages/group/GroupList'
 import { Notice } from './pages/notice/Notice'
-import BottomNavbar from './components/BottomNavBar/BottomNavBar'
+import BottomNavbar from './components/bottomnavbar/BottomNavBar'
 const Router = createBrowserRouter([
   {
       path: '/',

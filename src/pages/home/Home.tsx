@@ -27,7 +27,7 @@ export function Home() {
                 <div className="font-['300'] ">300-register</div>
             </Link>
             <Link to='/TestPage'>
-                <div className="font-['400'] ">400-textpage</div>
+                <div className="font-['400'] text-3xl ">400-textpage</div>
             </Link>
             <Link to='/TestResult'>
                 <div className="font-['500'] ">500-textresult</div>

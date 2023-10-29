@@ -19,7 +19,7 @@ module.exports = {
         colors: {
           theme: {
               background: '#18181B',
-              font: '#D92929',
+              font: '#474747',
           },
           primary: {
               yellow: '#FFE247',
@@ -29,7 +29,7 @@ module.exports = {
               purple: '#946AFE',
               darkgray: '#18181B',
               whitegray: '#D9D9D9',
-              logo: '#656C73',
+              logo: '#27334B',
           },
       },
     },
