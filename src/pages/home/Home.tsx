@@ -15,6 +15,7 @@ export function Home() {
             <div className="font-['700']">안녕 서비스임7</div>
             <div className="font-['800']">안녕 서비스임7</div>
             <div className="font-['900']">안녕 서비스임7</div>
+            
             <div className='flex flex-col'>
             <Link to='/'>
                 <div className="font-['100'] ">100-home</div>
@@ -52,6 +53,7 @@ export function Home() {
             <Link to='/notice'>
                 <div className="font-['900'] ">900-Notice</div>
             </Link>
+            
             </div>
         </div>
     )
