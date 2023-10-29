@@ -11,10 +11,11 @@ import { RoomateOption } from './pages/roomateoption/RoomateOption'
 import { RoomateRecommend } from './pages/roomatelist/RoomateRecommend'
 import { GroupList } from './pages/group/GroupList'
 import { Notice } from './pages/notice/Notice'
+import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 const Router = createBrowserRouter([
   {
       path: '/',
-      element: <Home />,
+      element:<Home/>
   },
   {
     path: '/login',
@@ -43,7 +44,7 @@ const Router = createBrowserRouter([
 },
   {
       path: '/chat',
-      element: <Chat/>,
+      element: <><BottomNavbar/><Chat/></>,
   },
   {
       path: '/roomateoption',
@@ -66,5 +67,5 @@ const Router = createBrowserRouter([
 
 ])
 
-export const ProjectRouter = () => <RouterProvider router={Router} />
+export const ProjectRouter = () => <><BottomNavbar/><RouterProvider router={Router} /></>
 
