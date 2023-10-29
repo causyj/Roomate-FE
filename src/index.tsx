@@ -6,8 +6,8 @@ import { ProjectRouter } from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <html className='base-font-color'>
+    <div className='base-font-color'>
         <ProjectRouter />
-    </html>
+    </div>
    </React.StrictMode>
 );
