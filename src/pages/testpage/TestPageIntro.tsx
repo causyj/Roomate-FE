@@ -22,8 +22,7 @@ const GoToTest = () => {
             <div>
                 <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="Roomie" style={{width : '180px'}} />
             </div>
-            <div className="flex items-center justify-center mt-8"><Button/></div>
-        
+            <div className="flex items-center justify-center mt-8"><Button buttonText="생활유형 테스트 하러 가기"/></div>
         </div>
     )
 }
@@ -35,11 +34,3 @@ export default function TestPageIntro() {
     )
 }
 
-
-// <div className="flex flex-col p-12 h-full">
-// {/* 이전 내용은 생략 */}
-
-// <div className="flex justify-center mt-auto mb-4">
-//     <Button />
-// </div>
-// </div>

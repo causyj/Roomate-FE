@@ -1,4 +1,4 @@
-import TestPageIntro from "./TestPageIntro";
+import TestPageIntro from "./TestPageIntro"
 
 export function TestPage() {
     return (
