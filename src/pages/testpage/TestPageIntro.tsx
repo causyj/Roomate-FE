@@ -2,8 +2,8 @@ import { Button } from "../../components/common"
 
 const GoToTest = () => {
     return(
-        <div className="flex flex-col ">
-            <div className=" text-3xl mt-12 mb-6">
+        <div className="flex flex-col">
+            <div className="font-['700'] text-3xl mb-6">
                 <div>어서오세요!</div>
                 <div>처음이신가요?</div>
             </div>
@@ -34,12 +34,3 @@ export default function TestPageIntro() {
         </div>
     )
 }
-
-
-// <div className="flex flex-col p-12 h-full">
-// {/* 이전 내용은 생략 */}
-
-// <div className="flex justify-center mt-auto mb-4">
-//     <Button />
-// </div>
-// </div>
