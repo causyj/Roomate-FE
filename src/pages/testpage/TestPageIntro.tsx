@@ -1,8 +1,9 @@
 import { Button } from "../../components/common"
+
 const GoToTest = () => {
     return(
-        <div className="flex flex-col p-12 h-full">
-            <div className="font-['700'] text-3xl mt-12 mb-6">
+        <div className="flex flex-col ">
+            <div className=" text-3xl mt-12 mb-6">
                 <div>어서오세요!</div>
                 <div>처음이신가요?</div>
             </div>
@@ -22,6 +23,7 @@ const GoToTest = () => {
                 <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="Roomie" style={{width : '180px'}} />
             </div>
             <div className="flex items-center justify-center mt-8"><Button/></div>
+        
         </div>
     )
 }

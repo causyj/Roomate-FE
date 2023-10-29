@@ -1,16 +1,11 @@
+import styled from "styled-components";
 
-const BaseLayout = () => {
+export function BaseLayout({ children }: React.PropsWithChildren<{}>): React.ReactElement {
     return (
-        <div></div>
+        <main className="min-h-screen max-h-screen h-screen w-full p-12 bg-white flex items-center justify-center base-font-color">
+             {children}
+        </main>
     )
 };
 
-// export const Layout = ({ children }: React.PropsWithChildren) => {
-//     return (
-//         <main className="min-h-screen max-h-screen h-screen w-full bg-white flex items-center justify-center">
-//             {children}
-//         </main>
-//     )
-// }
 
-export default BaseLayout;
