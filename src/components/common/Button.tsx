@@ -4,20 +4,17 @@ import { styled } from '@mui/material/styles';
 const ColorButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText('#27334B'),
     backgroundColor: '#27334B',
-    fontSize: 24,
+    fontSize: 22,
     '&:hover': {
-      backgroundColor: '#354565',
+      backgroundColor: '#27334B',
     },
-    padding: '8px 120px',
-    
-    fontFamily: 'Roboto',
+    padding: '8px',
+    width: '300px',  
+    fontFamily: 'Pretendard',
     borderRadius : '10px'
-    
   }));
-export function Button() {
+export function Button({ buttonText }: { buttonText: string }) {
     return (
-       <div>
-            <ColorButton variant="contained">Text</ColorButton>
-       </div>
+        <ColorButton variant="contained">{buttonText}</ColorButton>
     )
 }
