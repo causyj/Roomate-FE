@@ -1,6 +1,6 @@
-
-export function AnswerCard() {
+import { AnswerCard } from "../components/testpage/AnswerCard"
+export function ForPractice() {
     return (
-        <div>여기서 컴포넌트들 연습을 할 것입니다.</div>
+       <AnswerCard />
     )
 }

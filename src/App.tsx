@@ -12,6 +12,7 @@ import { RoomateRecommend } from './pages/roomatelist/RoomateRecommend'
 import { GroupList } from './pages/group/GroupList'
 import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/bottomnavbar/BottomNavBar'
+import { ForPractice } from './forpractice/ForPractice'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -62,6 +63,10 @@ const Router = createBrowserRouter([
   {
     path: '/notice',
     element: <Notice/>,
+},
+{
+    path: '/forpractice',
+    element: <ForPractice/>,
 },
 
 
