@@ -9,7 +9,7 @@ const ColorButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
       backgroundColor: '#27334B',
     },
     padding: '8px',
-    width: '300px',  
+    width: '95%',  
     fontFamily: 'Pretendard',
     borderRadius : '10px'
   }));

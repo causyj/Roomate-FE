@@ -30,6 +30,7 @@ module.exports = {
               darkgray: '#18181B',
               whitegray: '#D9D9D9',
               logo: '#27334B',
+              bg: '#474747',
           },
       },
     },
