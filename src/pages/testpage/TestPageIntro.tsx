@@ -1,6 +1,36 @@
+import { useState } from "react"
 import { Button } from "../../components/common"
-
-const GoToTest = () => {
+import { Link } from "react-router-dom"
+const GoToTest2 = () => {
+    return(
+        <div>
+            <div className="mt-16 text-xl">
+            <div>
+                <span className="font-bold">5분정도</span> 소요되는
+            </div>
+            생활유형 테스트를 통해 
+            <div>
+                <span className="font-bold">모글리님</span>에게 딱 맞는 
+            </div>
+            콘텐츠를 제공해드릴게요! 
+            <div className="mt-4">
+                테스트는 <span className="font-bold">한 번만 </span>제공되니, 
+            </div>
+            <span className="font-bold">꼭! 솔직하게 대답해주세요 :) </span>
+            </div>
+            <div className="p-12 mt-8">
+                <img src={process.env.PUBLIC_URL + '/test.png'} alt="testpaper"/>
+            </div>
+            <Link to='/testpage'>
+                <div className="flex items-center justify-center mt-8">
+                    <Button buttonText="시작하기" />
+                </div>
+            </Link>
+        </div>
+        
+    )
+}
+const GoToTest = ({ onClick }: { onClick: () => void }) => {
     return(
         <div className="flex flex-col ">
             <div className=" text-3xl mt-12 mb-6">
@@ -22,15 +52,26 @@ const GoToTest = () => {
             <div>
                 <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="Roomie" style={{width : '180px'}} />
             </div>
-            <div className="flex items-center justify-center mt-8"><Button buttonText="생활유형 테스트 하러 가기"/></div>
-        </div>
+            <div onClick={onClick} className="flex items-center justify-center mt-8">
+                <Button buttonText="생활유형 테스트 하러 가기" />
+            </div>
+        </div>         
     )
 }
 export default function TestPageIntro() {
+    const [value, setValue] = useState(false);
+    const onClicked = () =>{
+        setValue(true);
+    }
     return (
         <div>
-            <GoToTest/>
+            {value ? <GoToTest2 /> : <GoToTest onClick={onClicked} />}        
         </div>
     )
 }
 
+
+
+
+
+   
