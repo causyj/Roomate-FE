@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button } from "../../components/common"
-import { Link } from "react-router-dom"
+import { TestPageLayout } from "../../components/testpage/TestPageLayout"
+
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
       <div className="flex flex-col ">
@@ -59,7 +60,7 @@ const Intro2 = ({ onClick }: { onClick: () => void }) => {
 const Test = () => {
   return (
     <div>
-      dsdfs
+      <TestPageLayout />
     </div>
   )
 }
