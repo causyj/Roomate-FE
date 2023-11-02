@@ -11,7 +11,7 @@ import { RoomateOption } from './pages/roomateoption/RoomateOption'
 import { RoomateRecommend } from './pages/roomatelist/RoomateRecommend'
 import { GroupList } from './pages/group/GroupList'
 import { Notice } from './pages/notice/Notice'
-import BottomNavbar from './components/bottomnavbar/BottomNavBar'
+import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 import { ForPractice } from './forpractice/ForPractice'
 const Router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ const Router = createBrowserRouter([
 },
 {
     path: '/testpage',
-    element: <TestPage/>,
+    element: <><BottomNavbar/><TestPage/>,</>
 },
 {
     path: '/testresult',
