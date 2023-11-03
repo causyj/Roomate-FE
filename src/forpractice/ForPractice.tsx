@@ -1,6 +1,6 @@
-import { TestPageLayout } from "../components/testpage/TestPageLayout"
+import { TestResultLoading } from "../pages/testresult/TestResultLoading"
 export function ForPractice() {
     return (
-       <TestPageLayout />
+       <TestResultLoading />
     )
 }
