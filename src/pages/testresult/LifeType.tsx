@@ -2,6 +2,7 @@ import { AnimalDescription } from "./components/AnimalDescription"
 import { TitleBox } from "./components/TitleBox"
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
+import { TypeEmoji } from "./components/TypeEmoji"
 const TypeAtAGlance = () =>{
     return (
       <div className="flex flex-col p-8">
@@ -64,6 +65,7 @@ export const LifeType =() => {
         <TypeAtAGlance />
         <TitleBox title={'모글리님 생활 유형 결과'}/>
         <ResultDetail />
+        <TypeEmoji />
         </div>
     )
 } 
