@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { Button } from "../../components/common"
-import { TestPageLayout } from "../../components/testpage/TestPageLayout"
+import { TestPageLayout } from "./TestPageLayout"
 
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
       <div className="flex flex-col ">
-          <div className=" text-3xl mt-12 mb-6">
+          <div className=" text-3xl mb-6">
               <div>어서오세요!</div>
               <div>처음이신가요?</div>
           </div>

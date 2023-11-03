@@ -31,6 +31,8 @@ module.exports = {
               whitegray: '#D9D9D9',
               logo: '#27334B',
               bg: '#474747',
+              orange: '#E3834D',
+              gray:'#747474'
           },
       },
     },
