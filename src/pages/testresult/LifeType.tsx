@@ -1,4 +1,5 @@
 import { AnimalDescription } from "./components/AnimalDescription"
+import { TitleBox } from "./components/TitleBox"
 
 export const LifeType =() => {
     return (
@@ -11,6 +12,7 @@ export const LifeType =() => {
         <div className=" flex justify-center ">
             <img src={process.env.PUBLIC_URL + '/scroll.png'} alt="scroll"  />
         </div>
+        <TitleBox title={'나의 생활 유형 한 눈에 보기'}/>
         </div>
     )
 } 

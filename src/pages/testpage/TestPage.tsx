@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "../../components/common"
-import { TestPageLayout } from "../../components/testpage/TestPageLayout"
+import { TestPageLayout } from "./TestPageLayout"
 
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
