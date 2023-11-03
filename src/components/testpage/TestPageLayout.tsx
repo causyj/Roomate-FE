@@ -2,7 +2,7 @@ import { AnswerCard } from "./components/AnswerCard";
 export function TestPageLayout() {
     return (
         <div>
-            <div className="flex flex-col items-center justify-center mt-4">
+            <div className="flex flex-col items-center justify-center">
                 <img src={process.env.PUBLIC_URL + '/logo.png'}alt="logo"style={{width : '50%', position:'relative' }}/>
             </div>
             <div className="font-['500'] mt-4 text-center">해당하는 대답을 선택해 주세요!</div>
