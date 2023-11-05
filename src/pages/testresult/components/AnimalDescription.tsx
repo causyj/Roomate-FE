@@ -2,7 +2,7 @@ export const AnimalDescription = () =>{
     return (
         <div>
             <div className="mt-6 flex justify-center ">
-            <img src={process.env.PUBLIC_URL + '/monkey.png'} alt="monkey" className="w-1/2" />
+            <img src={process.env.PUBLIC_URL + '/monkey.png'} alt="monkey" style={{width : '200px'}}/>
             </div>
         <div className=" font-['600'] p-8 text-l text-primary-gray">
         꼼꼼하고 규칙적인 아침형인간으로, 룸메이트와 친밀한 관계를 얻길 원하고 학습에 집중하는 모습을 보이는 성향이 있다

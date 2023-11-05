@@ -58,11 +58,12 @@ export const LifeType =() => {
                 <span className='text-4xl text-primary-orange'>둔감한 원숭이</span> 
             </div>
          <AnimalDescription />
-        <div className="mt-8"> <TitleBox title={'모글리님의 생활 유형 한 눈에 보기'}/></div>
-        <TypeAtAGlance />
-        <TitleBox title={'모글리님 생활 유형 결과'}/>
-        <ResultDetail />
-        <TypeEmoji />
+    
+            <TitleBox title={'모글리님의 생활 유형 한 눈에 보기'}/>
+            <TypeAtAGlance />
+            <TitleBox title={'모글리님 생활 유형 결과'}/>
+            <ResultDetail />
+            <TypeEmoji />
         </div>
     )
 } 
