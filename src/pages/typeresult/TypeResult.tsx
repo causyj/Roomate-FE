@@ -50,7 +50,7 @@ const ResultDetail = () => {
     )
 }
 
-export const LifeType =() => {
+export const TypeResult =() => {
     return (
         <div>
             <div className="text-center text-2xl font-['800'] items-center justify-center">

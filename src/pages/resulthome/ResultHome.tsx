@@ -3,10 +3,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { LifeType } from './LifeType';
 import { AnimalDictionary } from '../animaldict/AnimalDictionary';
-
-
+import { TypeResult } from '../typeresult/TypeResult';
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -37,21 +35,18 @@ function CustomTabPanel(props: TabPanelProps) {
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
-  
-export function TestResult() {
+
+export const ResultHome = () =>{
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
     };
-  
     return (
-       
-      <div>
+    <div>
         <div className="flex items-center justify-center mb-4">
                 <img src={process.env.PUBLIC_URL + '/logo.png'}alt="logo"style={{width : '150px'}}/>
         </div>
-        
         <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider',}}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="나의 생활 유형" {...a11yProps(0)} sx={{marginRight:'50px' ,fontSize: '17px', fontWeight:'bold', }}/>
@@ -60,13 +55,12 @@ export function TestResult() {
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-          <LifeType />
+          <TypeResult />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <AnimalDictionary />
         </CustomTabPanel>
         
-     
-      </div>
-  );
+    </div>
+    )
 }

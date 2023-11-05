@@ -29,8 +29,11 @@ export function Home() {
             <Link to='/TestPage'>
                 <div className="font-['400']">400-textpage</div>
             </Link>
-            <Link to='/TestResult'>
-                <div className="font-['500'] ">500-textresult</div>
+            <Link to='/ResultHome'>
+                <div className="font-['500'] ">500-resulthome</div>
+            </Link>
+            <Link to='/TypeResult'>
+                <div className="font-['500'] ">500-typeresult</div>
             </Link>
             <Link to='/animaldict'>
                 <div className="font-['600'] ">600-animaldic</div>

@@ -3,7 +3,7 @@ import { Home } from './pages/home/Home'
 import { Login } from './pages/login/Login'
 import { Register } from './pages/register/Register'
 import { TestPage } from './pages/testpage/TestPage'
-import { TestResult } from './pages/testresult/TestResult'
+import { TypeResult } from './pages/typeresult/TypeResult'
 import { AnimalDictionary } from './pages/animaldict/AnimalDictionary'
 import { Verify } from './pages/verify/Verify'
 import { Chat } from './pages/chat/Chat'
@@ -13,6 +13,7 @@ import { GroupList } from './pages/group/GroupList'
 import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 import { ForPractice } from './forpractice/ForPractice'
+import { ResultHome } from './pages/resulthome/ResultHome'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -31,8 +32,12 @@ const Router = createBrowserRouter([
     element: <><BottomNavbar/><TestPage/>,</>
 },
 {
-    path: '/testresult',
-    element: <TestResult/>,
+    path: '/resulthome',
+    element: <ResultHome/>,
+},
+{
+    path: '/typeresult',
+    element: <TypeResult/>,
 },
 {
     path: '/animaldict',
