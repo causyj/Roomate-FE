@@ -1,5 +1,5 @@
-import { AnimalDescription } from "./components/AnimalDescription"
 import { TitleBox } from "./components/TitleBox"
+import { AnimalDescription } from "./components/AnimalDescription"
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import { TypeEmoji } from "./components/TypeEmoji"
