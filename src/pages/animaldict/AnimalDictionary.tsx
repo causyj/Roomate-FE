@@ -1,6 +1,6 @@
 import { ANIMAL_LIST } from "../../constants";
 import { tw } from '../../styles'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GetVariants } from "tailwindest";
 const animalLinkCard = tw.style({
     display: 'flex',
@@ -94,9 +94,10 @@ interface AnimalLinkCardProps {
 }
 
 const AnimalLinkCard = ({ color, picture, type }: AnimalLinkCardProps) => {
+    const {animalType} = useParams<{animalType : string}>();
     return (
         <div>
-            <Link to='/login' className={`${animalLinkCard.class}`}>
+            <Link to='/animaldict/:animalType' className={`${animalLinkCard.class}`}>
                 <div className={animalIcon.class(color)}>{picture}</div>
                 <div className="font-['700']">{type}</div>
             </Link>
