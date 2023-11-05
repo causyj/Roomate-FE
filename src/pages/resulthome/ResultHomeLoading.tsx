@@ -1,5 +1,5 @@
 import ProgressIndLinear from "../../components/common/ProgressIndLinear"
-export function TestResultLoading() {
+export function ResultHomeLoading() {
     return (
       <div className="">
             <div className="font-['800'] text-2xl mt-16 ">

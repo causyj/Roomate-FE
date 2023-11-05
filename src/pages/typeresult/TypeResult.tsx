@@ -1,5 +1,5 @@
-import { AnimalDescription } from "./components/AnimalDescription"
 import { TitleBox } from "./components/TitleBox"
+import { AnimalDescription } from "./components/AnimalDescription"
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import { TypeEmoji } from "./components/TypeEmoji"
@@ -50,7 +50,7 @@ const ResultDetail = () => {
     )
 }
 
-export const LifeType =() => {
+export const TypeResult =() => {
     return (
         <div>
             <div className="text-center text-2xl font-['800'] items-center justify-center">

@@ -1,6 +1,6 @@
-import { TestResultLoading } from "../pages/testresult/TestResultLoading"
+import { ResultHomeLoading } from "../pages/resulthome/ResultHomeLoading"
 export function ForPractice() {
     return (
-       <TestResultLoading />
+       <ResultHomeLoading />
     )
 }
