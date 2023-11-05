@@ -57,13 +57,6 @@ const Intro2 = ({ onClick }: { onClick: () => void }) => {
       
   )
 }
-const Test = () => {
-  return (
-    <div>
-      <TestPageLayout />
-    </div>
-  )
-}
 
 export function TestPage() {
   const [step, setStep] = useState(0);
@@ -71,11 +64,10 @@ export function TestPage() {
     setStep(step+1);
   }
     return (
-       <div>
+    <div>
          {step === 0 && <Intro1 onClick={handleButtonClick} />}
          {step === 1 && <Intro2 onClick={handleButtonClick}/>}
-         {step === 2 && <Test />}
-         
-       </div>
+         {step === 2 && <TestPageLayout />}
+    </div>
     )
 }
