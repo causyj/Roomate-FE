@@ -1,6 +1,6 @@
-import { ResultHomeLoading } from "../pages/resulthome/ResultHomeLoading"
+import { GoToGroup } from "../pages/roomatelist/components/GoToGroup"
 export function ForPractice() {
     return (
-       <ResultHomeLoading />
+       <GoToGroup />
     )
 }
