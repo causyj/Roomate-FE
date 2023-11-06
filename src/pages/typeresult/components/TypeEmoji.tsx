@@ -4,7 +4,7 @@ import { TitleBox } from "./TitleBox"
 export const TypeEmoji=() => {
     return(
         <div>
-            <TitleBox title={'모글리님의 라이프 스타일'}/>
+            <TitleBox title={'이모티콘으로 보는 라이프 스타일'}/>
             <div className="flex flex-row p-4 text-center items-center justify-center">
                 <div className="flex flex-col text-center mr-8 ">
                     <img src={process.env.PUBLIC_URL + '/morning.png'} alt="morning"  />

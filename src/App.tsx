@@ -14,6 +14,7 @@ import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 import { ForPractice } from './forpractice/ForPractice'
 import { ResultHome } from './pages/resulthome/ResultHome'
+import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -42,6 +43,11 @@ const Router = createBrowserRouter([
 {
     path: '/animaldict',
     element: <AnimalDictionary/>,
+            
+},
+{
+    path: '/animaldictdetail/:animal',
+    element: <AnimalDictDetail/>,
             
 },
 {

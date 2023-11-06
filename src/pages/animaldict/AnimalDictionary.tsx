@@ -92,17 +92,20 @@ interface AnimalLinkCardProps {
     color: GetVariants<typeof animalIcon>
     picture:JSX.Element;
 }
-
+const here = () => {
+   return (
+    <div>
+        
+    </div>
+   )
+}
 const AnimalLinkCard = ({ color, picture, type }: AnimalLinkCardProps) => {
-    const {animalType} = useParams<{animalType : string}>();
     return (
         <div>
-            <Link to='/login' className={`${animalLinkCard.class}`}>
+            <Link to={`/animaldictdetail/${type}`}className={`${animalLinkCard.class}`}>
                 <div className={animalIcon.class(color)}>{picture}</div>
                 <div className="font-['700']">{type}</div>
             </Link>
-
-
         </div>
     )
 }
