@@ -88,21 +88,26 @@ const animalIcon = tw.rotary({
         },
 })
 interface AnimalLinkCardProps {
+    animal : string
     type : string
     color: GetVariants<typeof animalIcon>
     picture:JSX.Element;
+    
 }
-
-const AnimalLinkCard = ({ color, picture, type }: AnimalLinkCardProps) => {
-    const {animalType} = useParams<{animalType : string}>();
+const here = () => {
+   return (
+    <div>
+        
+    </div>
+   )
+}
+const AnimalLinkCard = ({ color, picture, type, animal }: AnimalLinkCardProps) => {
     return (
         <div>
-            <Link to='/login' className={`${animalLinkCard.class}`}>
+            <Link to={`/animaldictdetail/${animal}`}className={`${animalLinkCard.class}`}>
                 <div className={animalIcon.class(color)}>{picture}</div>
                 <div className="font-['700']">{type}</div>
             </Link>
-
-
         </div>
     )
 }
@@ -117,7 +122,7 @@ export function AnimalDictionary() {
             </div>
             <div  className="grid grid-cols-2 grid-rows-4 gap-5 items-center justify-center mt-4">
                 {ANIMAL_LIST.map((animal) => (
-                    <AnimalLinkCard key={animal.animal} color={animal.color} picture={animal.picture} type={animal.type} />
+                    <AnimalLinkCard key={animal.animal} color={animal.color} picture={animal.picture} type={animal.type} animal={animal.animal}/>
                 ))}
             </div>
         </div>
