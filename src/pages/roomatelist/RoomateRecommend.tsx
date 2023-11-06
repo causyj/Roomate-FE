@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Tab1 } from './Tab1';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -57,7 +58,7 @@ export function RoomateRecommend() {
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-         dfs
+            <Tab1 />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           sdfsdf
