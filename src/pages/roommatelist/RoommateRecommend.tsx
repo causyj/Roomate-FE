@@ -35,7 +35,7 @@ function a11yProps(index: number) {
       'aria-controls': `simple-tabpanel-${index}`,
     };
   }
-export function RoomateRecommend() {
+export function RoommateRecommend() {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {

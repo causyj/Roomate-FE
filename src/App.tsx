@@ -7,8 +7,8 @@ import { TypeResult } from './pages/typeresult/TypeResult'
 import { AnimalDictionary } from './pages/animaldict/AnimalDictionary'
 import { Verify } from './pages/verify/Verify'
 import { Chat } from './pages/chat/Chat'
-import { RoomateOption } from './pages/roomateoption/RoomateOption'
-import { RoomateRecommend } from './pages/roomatelist/RoomateRecommend'
+import { RoommateRecommend } from './pages/roommatelist/RoommateRecommend'
+import { RoommateOption } from './pages/roommateoption/RoommateOption'
 import { GroupList } from './pages/group/GroupList'
 import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
@@ -59,12 +59,12 @@ const Router = createBrowserRouter([
       element: <><BottomNavbar/><Chat/></>,
   },
   {
-      path: '/roomateoption',
-      element: <RoomateOption/>,
+      path: '/roommateoption',
+      element: <RoommateOption/>,
   },
   {
-    path: '/roomatelist',
-    element: <RoomateRecommend/>,
+    path: '/roommatelist',
+    element: <RoommateRecommend/>,
 },
   {
       path: '/group',

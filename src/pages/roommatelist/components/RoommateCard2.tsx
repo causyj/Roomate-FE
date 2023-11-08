@@ -38,7 +38,7 @@ const CardBack = ({isFrontView} : CardFrontBackProps) => {
         </div>
     )
 }
-export const RoomateCard2 = ({disableFlip=false} : RoomateCardProps) => {
+export const RoommateCard2 = ({disableFlip=false} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
 
     const toggleCardView = () => {
