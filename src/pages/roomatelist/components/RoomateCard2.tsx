@@ -13,13 +13,20 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
         }`}
     >
             <div
-            className="absolute bottom-0 left-0 flex h-20 w-full flex-col items-end justify-between rounded-b-xl rounded-tl-[3.5rem] rounded-tr-none bg-slate-800 p-3"
+            className="absolute bottom-0 left-0 flex h-20 w-full flex-col items-center justify-between rounded-b-xl rounded-tl-[3.5rem] rounded-tr-none bg-slate-800 p-3"
             style={{
                 boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
             }}
         >
-            <h1 className="mt-1 text-sm text-black md:text-lg">sdfsdf</h1>
-            <p className="font-eng text-3xs font-light text-black md:text-xxs">sfds</p>
+            <div className="ml-2 mt-2 text-xs text-white font-['700']">
+                <h1 className="">학과 : 간호학부 </h1> 
+                <h1 className="">학번 : 21학번 </h1> 
+                <h1 className="">MBTI : ENFJ </h1> 
+
+            </div>
+           
+            
+            
         </div>
     </section>
     )
@@ -27,11 +34,11 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
 const CardBack = ({isFrontView} : CardFrontBackProps) => {
     return (
         <div>
-            Is back here
+            
         </div>
     )
 }
-export const RoomateCard = ({disableFlip=false} : RoomateCardProps) => {
+export const RoomateCard2 = ({disableFlip=false} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
 
     const toggleCardView = () => {

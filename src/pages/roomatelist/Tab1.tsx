@@ -3,7 +3,7 @@ import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
-import { RoomateCard } from "./components/RoomateCard";
+import { RoomateCard2 } from "./components/RoomateCard2";
 const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText('#27334B'),
     display : 'flex',
@@ -27,8 +27,8 @@ export const Tab1 = () => {
                 </ColorFab>
             </div>
             <div className="grid grid-cols-2 mt-4 ">
-                <RoomateCard />
-                <RoomateCard />
+                <RoomateCard2 />
+                <RoomateCard2 />
             </div>
         </div>
     )
