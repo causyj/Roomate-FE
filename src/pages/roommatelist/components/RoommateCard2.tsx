@@ -1,9 +1,30 @@
 import { useState } from "react"
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { blue, yellow } from "@mui/material/colors";
+import Star from '@mui/icons-material/StarRounded';
+
 interface RoomateCardProps {
     disableFlip?: boolean
 }
 interface CardFrontBackProps {
     isFrontView: boolean
+}
+const FrontDetail = () => {
+    return (
+        <div className="flex flex-col items-center p-2 ">
+        <Stack direction="row" spacing={2}>
+      <Avatar alt="Remy Sharp" sx={{bgcolor: blue[500],width: 35, height: 35}} src={process.env.PUBLIC_URL + '/littlemonkey.png'} />
+    </Stack>
+    <div className="flex flex-row ml-2">
+        <div className="font-['700'] text-bold text-xl">모글리님</div>
+        <div className="mt-0.5">
+        <Star sx={{color : yellow[500]}} />
+        </div>
+    </div>
+    <div className="font-['700'] text-primary-gray text-xxs">블루미르홀 308관/4인실</div>
+        </div>
+    )
 }
 const CardFront = ({isFrontView} : CardFrontBackProps) => {
     return (
@@ -12,6 +33,8 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
             isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
         }`}
     >
+        <FrontDetail />
+        
             <div
             className="absolute bottom-0 left-0 flex h-20 w-full flex-col items-center justify-between rounded-b-xl rounded-tl-[3.5rem] rounded-tr-none bg-slate-800 p-3"
             style={{
@@ -47,7 +70,7 @@ export const RoommateCard2 = ({disableFlip=false} : RoomateCardProps) => {
     return (
         <div
         onClick={toggleCardView}
-        className={`relative h-[10rem] w-[8rem] min-w-[8rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl`}
+        className={`relative h-[11rem] w-[9rem] min-w-[9rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl`}
     >
         <CardFront isFrontView={isFrontView} />
         {disableFlip === false && <CardBack isFrontView={isFrontView} />}

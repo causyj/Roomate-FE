@@ -45,7 +45,7 @@ const BottomNavbar = (): React.ReactElement => {
         />
         <BottomNavigationAction 
             label={<div className="font-['700']">Roomate</div>}
-            href='/roomatelist' 
+            href='/roommatelist' 
             icon={<People />}
         />
         <BottomNavigationAction 
