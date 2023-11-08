@@ -8,12 +8,12 @@ interface CardFrontBackProps {
 const CardFront = ({isFrontView} : CardFrontBackProps) => {
     return (
         <section
-        className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out ${
+        className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out mt-0 ${
             isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
         }`}
     >
             <div
-            className="absolute bottom-0 left-0 flex h-20 w-full flex-col items-end justify-between rounded-b-xl rounded-tl-[3.5rem] rounded-tr-none bg-sky-600 p-3 "
+            className="absolute bottom-0 left-0 flex h-20 w-full flex-col items-end justify-between rounded-b-xl rounded-tl-[3.5rem] rounded-tr-none bg-slate-800 p-3"
             style={{
                 boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
             }}
@@ -27,7 +27,7 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
 const CardBack = ({isFrontView} : CardFrontBackProps) => {
     return (
         <div>
-            sdf
+            Is back here
         </div>
     )
 }
@@ -40,7 +40,7 @@ export const RoomateCard = ({disableFlip=false} : RoomateCardProps) => {
     return (
         <div
         onClick={toggleCardView}
-        className={`relative h-[12rem] w-[8rem] min-w-[8rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu `}
+        className={`relative h-[10rem] w-[8rem] min-w-[8rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl`}
     >
         <CardFront isFrontView={isFrontView} />
         {disableFlip === false && <CardBack isFrontView={isFrontView} />}

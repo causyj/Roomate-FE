@@ -26,7 +26,10 @@ export const Tab1 = () => {
                  <ResetIcon />
                 </ColorFab>
             </div>
-            <RoomateCard />
+            <div className="grid grid-cols-2 mt-4 ">
+                <RoomateCard />
+                <RoomateCard />
+            </div>
         </div>
     )
 }
