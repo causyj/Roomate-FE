@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { blue, yellow } from "@mui/material/colors";
 import Star from '@mui/icons-material/StarRounded';
-
+import Chat from '@mui/icons-material/StarRounded';
 interface RoomateCardProps {
     disableFlip?: boolean
 }
@@ -56,9 +56,26 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
 }
 const CardBack = ({isFrontView} : CardFrontBackProps) => {
     return (
-        <div>
-            
+        <section
+        className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-3 transition duration-300 ease-in-out ${
+            isFrontView === false ? 'opacity-0 rotate-y-180' : 'z-10 opacity-100 rotate-y-0'
+        }`}
+    >
+       <div className="flex flex-col">
+            <div className="flex flex-row">
+                <div className="flex flex-col">
+                    <div className="font-['700'] text-bold text-xl">모글리님</div>
+                    <div className="font-['700'] text-primary-gray text-xxs">블루미르홀 308관/4인실</div>
+                </div>
+                <div className="flex flex-row">
+                     <div className="">
+                        <Star sx={{color : yellow[500]}} />
+                    </div>
+
+                </div>
+            </div>
         </div>
+        </section>
     )
 }
 export const RoommateCard2 = ({disableFlip=false} : RoomateCardProps) => {
