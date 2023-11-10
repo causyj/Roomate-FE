@@ -52,7 +52,7 @@ export function RoommateRecommend() {
             </div>
             <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider',}}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="추천 룸메이트" {...a11yProps(0)} sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard' }}/>
+            <Tab label="추천 룸메이트" {...a11yProps(0)} sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}}/>
             <Tab label="전체 목록" {...a11yProps(1)}sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}} />
             <Tab label="찜 목록" {...a11yProps(2)}sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}} />
             
