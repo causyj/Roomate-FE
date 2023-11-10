@@ -1,5 +1,3 @@
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 
 export function Home() {
@@ -44,10 +42,10 @@ export function Home() {
             <Link to='/chat'>
                 <div className="font-['800'] ">800-chat</div>
             </Link>
-            <Link to='/roomateOption'>
+            <Link to='/roommateOption'>
                 <div className="font-['900'] ">900-roomateOption</div>
             </Link>
-            <Link to='/roomateList'>
+            <Link to='/roommatelist'>
                 <div className="font-['900'] ">900-roomatelist</div>
             </Link>
             <Link to='/group'>

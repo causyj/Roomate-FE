@@ -47,13 +47,15 @@ export const ResultHome = () =>{
         <div className="flex items-center justify-center mb-4">
                 <img src={process.env.PUBLIC_URL + '/logo.png'}alt="logo"style={{width : '150px'}}/>
         </div>
-        <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider',}}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="나의 생활 유형" {...a11yProps(0)} sx={{marginRight:'50px' ,fontSize: '17px', fontWeight:'bold', }}/>
-            <Tab label="동물 사전" {...a11yProps(1)}sx={{fontSize: '17px', fontWeight:'bold',}} />
-            
-          </Tabs>
-        </Box>
+        <div className="font-['700']">
+          <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider',}}>
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+              <Tab label="나의 생활 유형" {...a11yProps(0)} sx={{marginRight:'50px' ,fontSize: '17px', fontWeight:'bold',fontFamily:'Pretendard'}}/>
+              <Tab label="동물 사전" {...a11yProps(1)}sx={{fontSize: '17px', fontWeight:'bold',fontFamily:'Pretendard'}} />
+              
+            </Tabs>
+          </Box>
+        </div>
         <CustomTabPanel value={value} index={0}>
           <TypeResult />
         </CustomTabPanel>
