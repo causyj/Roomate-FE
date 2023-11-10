@@ -64,7 +64,7 @@ export function RoommateRecommend() {
         <CustomTabPanel value={value} index={1}>
           <Tab2 />
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
+        <CustomTabPanel value={value} index={2}>
           sdfsdf
         </CustomTabPanel>
         </div>
