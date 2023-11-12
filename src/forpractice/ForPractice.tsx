@@ -1,6 +1,6 @@
-import { Intro2 } from "../pages/roommatelist/Intro2"
+import { Intro3 } from "../pages/roommatelist/Intro3"
 export function ForPractice() {
     return (
-       <Intro2 />
+       <Intro3 />
     )
 }
