@@ -1,6 +1,6 @@
-import { Optional } from "../pages/roommateoption/Optional"
+import { Intro2 } from "../pages/roommatelist/Intro2"
 export function ForPractice() {
     return (
-       <Optional />
+       <Intro2 />
     )
 }
