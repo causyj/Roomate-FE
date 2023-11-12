@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { Button } from '../../components/common';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -29,7 +30,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       },
     },
   }));
-export function RoommateOption() {
+export function Optional() {
     const [age, setAge] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -38,13 +39,12 @@ export function RoommateOption() {
     return (
         <div className="flex flex-col font-['700']">
             <div className=" text-2xl items-center justify-start mt-12">
-                <div>보다 정확한 추천을 위해,</div>
-                <div>아래의 내용을 입력해주세요!</div>
+                <div>추가로 표시되고 싶은 항목을 선택해주세요 (선택사항) </div>
             </div>
 
-            <div className="mt-24">
+            <div className="mt-4 p-4">
                 <div>
-                    <div className='mb-4'>거주하게 될 기숙사 *</div>
+                    <div>학과</div>
                     <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
                         <Select
@@ -55,15 +55,15 @@ export function RoommateOption() {
                         onChange={handleChange}
                         input={<BootstrapInput />}
                         >
-                        <MenuItem value={10}>블루미르홀 308관</MenuItem>
-                        <MenuItem value={20}>블루미르홀 309관</MenuItem>
-                        <MenuItem value={30}>퓨처하우스</MenuItem>
+                        <MenuItem value={10}>소프트웨어학부</MenuItem>
+                        <MenuItem value={20}>간호학부</MenuItem>
+                        <MenuItem value={30}>미디어학부</MenuItem>
                         </Select>
                     </FormControl>
                     </Box>
                 </div>
                 <div className='mt-8'>
-                    <div className='mb-4'>호실 인원 *</div>
+                    <div>학번</div>
                     <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
                         <Select
@@ -74,13 +74,60 @@ export function RoommateOption() {
                         onChange={handleChange}
                         input={<BootstrapInput />}
                         >
-                        <MenuItem value={10}>2인실</MenuItem>
-                        <MenuItem value={20}>4인실</MenuItem>
+                        <MenuItem value={10}>21학번</MenuItem>
+                        <MenuItem value={20}>22학번</MenuItem>
                         </Select>
                     </FormControl>
                     </Box>
                 </div>
+                <div className='flex flex-row justify-between'>
+                <div className='mt-8 flex flex-col'>
+                    <div>나이</div>
+                    <div>
+                    <FormControl sx={{ minWidth: 120 }} >
+                        <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        label="Age"
+                        onChange={handleChange}
+                        input={<BootstrapInput />}
+                        >
+                        <MenuItem value={10}>21학번</MenuItem>
+                        <MenuItem value={20}>22학번</MenuItem>
+                        </Select>
+                    </FormControl>
 
+
+                    </div>
+                </div>
+                <div className='mt-8 flex flex-col'>
+                    <div>MBTI</div>
+                    <div>
+                    <FormControl sx={{ minWidth: 120 }} >
+                        <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        label="Age"
+                        onChange={handleChange}
+                        input={<BootstrapInput />}
+                        >
+                        <MenuItem value={10}>21학번</MenuItem>
+                        <MenuItem value={20}>22학번</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    
+                    </div>
+                    
+                
+                </div>
+                </div>
+                
+            </div>
+            <div className='text-center mt-4'>
+                <Button buttonText={'나와 맞는 룸메이트 보러가기'}/>
             </div>
             
         </div>

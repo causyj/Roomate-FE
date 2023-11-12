@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 const ColorButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText('#27334B'),
     backgroundColor: '#27334B',
-    fontSize: 22,
+    fontSize: 20,
     '&:hover': {
       backgroundColor: '#27334B',
     },
