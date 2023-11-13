@@ -3,7 +3,45 @@ import { LoginTextField } from "./components/LoginTextField";
 import Person from '@mui/icons-material/PermIdentity';
 import Password from '@mui/icons-material/LockOpen'
 import { Button } from "../../components/common";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 export function Login() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log("sdfs")
+    
+        try {
+          const response = await fetch('https://8b08-220-86-187-75.ngrok.io', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `username=${username}&password=${password}`,
+            credentials: 'include',
+          });
+    
+          // Handle the response as needed
+          console.log(response);
+    
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+            navigate('/textpage');
+          }
+        } catch (error) {
+          console.error('Error during login:', error);
+        }
+      };
+      const handleUsernameChange = (value:string) => {
+        setUsername(value);
+    };
+    const handlePasswordChange = (value:string) => {
+        setPassword(value);
+    };
+    
     return (
         <div className="flex flex-col font-['700']">
             <Link to='/register' className="text-lg items-end justift-end ml-auto"> 
@@ -19,17 +57,27 @@ export function Login() {
             </div>
             <div className="flex flex-col justify-center items-center mt-6">
                 <div className="mb-4">
-                    <LoginTextField text="아이디" icon={<Person/>}/>
+                    <LoginTextField 
+                        text="아이디" 
+                        icon={<Person/>} 
+                        value={username} 
+                        onChange={handleUsernameChange}/>
                 </div>
-                 <LoginTextField text="비밀번호" icon={<Password/>}/>
+                    <LoginTextField 
+                        text="비밀번호" 
+                        icon={<Password/>}
+                        value={password}
+                        onChange={handlePasswordChange}
+                        />
             </div>
-            
-                <Link to="/testpage" className="flex justify-center items-center mt-20">
+            <form onSubmit={handleSubmit} className="mt-16">
+                <Button buttonText="로그인" />
+            </form>
+                
+                
+                {/* <Link to="/testpage" className="flex justify-center items-center mt-20">
                  <Button buttonText="로그인" />
-                </Link>
-               
-           
-            
+                </Link> */}
         </div>
     )
 }
