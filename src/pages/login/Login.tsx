@@ -9,19 +9,22 @@ export function Login() {
             <Link to='/register' className="text-lg items-end justift-end ml-auto"> 
                 회원가입
             </Link>
-            <div className="flex flex-col justify-center items-center mt-4">
+            <div className="flex flex-col justify-center items-center mt-8">
                 <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="monkey" style={{width : '70px'}}/>
                 <img src={process.env.PUBLIC_URL + '/logo.png'} alt="monkey" style={{width : '200px'}}/>
             </div>
-            <div className="p-5">
-            Aniroomie에서 나의 룸메이트도 찾고 나의 기숙사 생활 유형도 알아보세요 !
+            <div className="p-4 text-lg ">
+                Aniroomie에서 내 룸메이트도 찾고
+                <div>나의 기숙사 생활 유형도 알아보세요!</div>
             </div>
-            <div className="flex flex-col justify-center items-center mt-4">
-                 <LoginTextField text="아이디" icon={<Person/>}/>
+            <div className="flex flex-col justify-center items-center mt-6">
+                <div className="mb-4">
+                    <LoginTextField text="아이디" icon={<Person/>}/>
+                </div>
                  <LoginTextField text="비밀번호" icon={<Password/>}/>
             </div>
             
-                <Link to="/" className="flex justify-center items-center mt-20">
+                <Link to="/testpage" className="flex justify-center items-center mt-20">
                  <Button buttonText="로그인" />
                 </Link>
                

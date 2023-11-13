@@ -7,7 +7,7 @@ export const LoginTextField = ({ text, icon }: { text: string; icon: ReactNode }
         <div>
       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
       {icon && <span style={{ color: 'action.active', marginRight: '8px', marginBottom: '4px' }}>{icon}</span>}
-        <TextField id="input-with-sx" label={text} variant="standard" />
+        <TextField id="input-with-sx" label={text} variant="standard" sx={{ width: '200px' }}  />
       </Box>
         </div>
     )
