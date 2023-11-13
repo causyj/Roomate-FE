@@ -5,6 +5,21 @@ import Password from '@mui/icons-material/LockOpen'
 import { Button } from "../../components/common";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MUIButton, { ButtonProps } from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+
+const ColorButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
+    color: theme.palette.getContrastText('#27334B'),
+    backgroundColor: '#27334B',
+    fontSize: 20,
+    '&:hover': {
+      backgroundColor: '#27334B',
+    },
+    padding: '8px',
+    width: '95%',  
+    fontFamily: 'Pretendard',
+    borderRadius : '10px'
+  }));
 export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -70,10 +85,9 @@ export function Login() {
                         onChange={handlePasswordChange}
                         />
             </div>
-            <form onSubmit={handleSubmit} className="mt-16">
-                <Button buttonText="로그인" />
-            </form>
-                
+           <div className="flex justify-center items-center mt-20">
+           <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton>
+           </div>
                 
                 {/* <Link to="/testpage" className="flex justify-center items-center mt-20">
                  <Button buttonText="로그인" />
