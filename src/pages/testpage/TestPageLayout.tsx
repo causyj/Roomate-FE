@@ -27,15 +27,6 @@ export function TestPageLayout() {
                 <div>sfsd</div>
                 <div>sfsd</div>
             </div>
-            
-           
-            {/* <div className="font-['700']  mb-12 bg-white flex items-center justify-around h-[70px]"style={{ position: 'fixed', bottom: 0, left: 0, right: 0,width: '100%' }}>
-                <div className="text-white">dfsdf</div>
-                <div className="text-3xl text-center">1/22</div> 
-                <div className="flex flex-row">
-                    <div className="text-xl text-primary-logo">next {'>'}</div>
-                </div>
-            </div> */}
         </div>
         
     )
