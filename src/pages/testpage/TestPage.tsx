@@ -4,7 +4,7 @@ import { TestPageLayout } from "./TestPageLayout"
 
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
-      <div className="flex flex-col ">
+      <div className="flex flex-col my-auto">
           <div className="font-['700'] text-3xl mb-4">
               <div>어서오세요!</div>
               <div>처음이신가요?</div>
