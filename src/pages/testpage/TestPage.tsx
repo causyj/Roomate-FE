@@ -5,26 +5,26 @@ import { TestPageLayout } from "./TestPageLayout"
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
       <div className="flex flex-col ">
-          <div className=" text-3xl mb-6">
+          <div className="font-['700'] text-3xl mb-4">
               <div>어서오세요!</div>
               <div>처음이신가요?</div>
           </div>
-          <div className="flex flex-wrap text-l">
+          <div className="flex flex-wrap text-lg">
               <div>나와 맞는 룸메이트를 찾기 위해 먼저</div>
               <div className="font-['600']">나의 생활유형</div>
               <div>을 알아야해요!</div>
           </div>
-          <div className='flex justify-end items-end mt-56 mb-4' style={{position:'relative'}}>
-              <img src={process.env.PUBLIC_URL + '/cloud.png'} alt="TalkBaloon" style={{width : '200px', position:'absolute' }}/>
-              <div className="flex flex-col items-center mb-24 pr-8 font-['700'] text-xl" style={{position : 'absolute'}}>
+          <div className='flex justify-end items-end mt-48 mb-4 mr-2' style={{position:'relative'}}>
+              <img src={process.env.PUBLIC_URL + '/cloud.png'} alt="TalkBaloon" style={{width : '180px', position:'absolute' }}/>
+              <div className="flex flex-col items-center mb-20 mr-5 font-['700'] text-xl" style={{position : 'absolute'}}>
                   <div className="mb-2">루미랑</div>
-                  <div >테스트 하러갈래?</div>
+                  <div className="mb-2">테스트 하러갈래?</div>
               </div>
           </div>
-          <div>
-              <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="Roomie" style={{width : '180px'}} />
+          <div className="mt-[-20px]">
+              <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="Roomie" style={{width : '150px'}} />
           </div>
-          <div onClick={onClick} className="flex items-center justify-center mt-8">
+          <div onClick={onClick} className="flex items-center justify-center mt-4">
               <Button buttonText="생활유형 테스트 하러 가기" />
           </div>
       </div>         
