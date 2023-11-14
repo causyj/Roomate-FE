@@ -1,6 +1,6 @@
-import { DescriptiveQuestion } from "../pages/testpage"
+import { Loading } from "../components/Loading/Loading"
 export function ForPractice() {
     return (
-       <DescriptiveQuestion />
+       <Loading />
     )
 }
