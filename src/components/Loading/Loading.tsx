@@ -9,7 +9,8 @@ export const Loading = () => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             navigate('/resulthome');
-        }, 1000);
+        }, 3000);
+
 
         return () => {
             clearTimeout(timeoutId);
