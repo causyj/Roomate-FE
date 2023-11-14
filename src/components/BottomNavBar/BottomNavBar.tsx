@@ -24,7 +24,7 @@ const BottomNavbar = (): React.ReactElement => {
   return (
    
     
-    <Paper style={{ position: 'fixed', bottom: 0, width: '100%'} } >
+    <Paper style={{ position: 'fixed', bottom: 0, width: '100%',  backgroundColor: 'white',zIndex: 1000 } } >
     
         <BottomNavigation
         showLabels
