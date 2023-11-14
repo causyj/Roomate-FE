@@ -82,7 +82,11 @@ export const ResultHome = () =>{
   },[]);
     return(
       <div>
-      {loading ? <Loading /> : <ResultHomePage />}
+      {loading ? 
+        <Loading 
+          firstLine='모글리님의' 
+          secondLine='생활유형을 분석 중이에요'/> 
+        : <ResultHomePage />}
     </div>
     )
 }
