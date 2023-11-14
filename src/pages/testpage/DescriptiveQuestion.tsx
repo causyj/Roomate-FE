@@ -1,14 +1,14 @@
 import React, { FormEvent, useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 export const DescriptiveQuestion = () => {
   const [postContent, setPostContent] = useState('(선택사항)');
-
+  const navigate = useNavigate();
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
     const content = formData.get('postContent') as string;
-
+    navigate('/resulthome')
     console.log('Content:', content);
   };
 
@@ -18,7 +18,7 @@ export const DescriptiveQuestion = () => {
         <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" style={{ width: '150px' }} />
       </div>
       <div className=" text-center">
-        <div className="mt-8 font-['700'] text-lg"><div>추가로,</div>원하는 룸메이트의 유형을 작성해주세요</div>
+        <p className="mt-8 font-['700'] text-lg"><div>추가로,</div>원하는 룸메이트의 유형을 작성해주세요</p>
         <div className="mt-12 font-['500'] mb-4">작성해주신 내용은<div>다른 기숙사생들이 볼 수 있어요:)</div></div>
       </div>
       <form method="post" onSubmit={handleSubmit}>
