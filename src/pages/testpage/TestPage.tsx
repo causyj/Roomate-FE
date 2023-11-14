@@ -32,8 +32,8 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
 }
 const Intro2 = ({ onClick }: { onClick: () => void }) => {
   return(
-      <div>
-          <div className="mt-16 text-xl">
+      <div className="w-full h-full flex flex-col justify-center">
+          <div className="flex flex-col text-xl">
           <div>
               <span className="font-bold">5분정도</span> 소요되는
           </div>
@@ -47,10 +47,10 @@ const Intro2 = ({ onClick }: { onClick: () => void }) => {
           </div>
           <span className="font-bold">꼭! 솔직하게 대답해주세요 :) </span>
           </div>
-          <div className="p-12 mt-8">
+          <div className="p-10">
               <img src={process.env.PUBLIC_URL + '/test.png'} alt="testpaper"/>
           </div>
-          <div onClick={onClick}className="flex items-center justify-center mt-8">
+          <div onClick={onClick}className="flex items-center justify-center ">
                   <Button buttonText="시작하기" />
           </div>
       </div>
