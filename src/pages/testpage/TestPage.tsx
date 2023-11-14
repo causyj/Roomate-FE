@@ -32,10 +32,10 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
 }
 const Intro2 = ({ onClick }: { onClick: () => void }) => {
   return(
-      <div className="w-full h-full flex flex-col justify-center">
+      <div className="w-full  flex flex-col justify-center">
           <div className="flex flex-col text-xl">
           <div>
-              <span className="font-bold">5분정도</span> 소요되는
+              <span className="font-bold ">5분정도</span> 소요되는
           </div>
           생활유형 테스트를 통해 
           <div>

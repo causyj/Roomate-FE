@@ -89,8 +89,8 @@ export function Login() {
            <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton>
            </div> */}
                 
-                <Link to="/testpage" className="flex justify-center items-center mt-20">
-                 <Button buttonText="로그인" />
+                <Link to="/testpage" className="flex justify-center items-center mt-20 ">
+                 <Button buttonText="로그인"/>
                 </Link>
         </div>
     )

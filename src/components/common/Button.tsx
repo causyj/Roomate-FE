@@ -1,5 +1,6 @@
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import "../../index.css"
 
 const ColorButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText('#27334B'),
@@ -10,7 +11,7 @@ const ColorButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     },
     padding: '8px',
     width: '95%',  
-    fontFamily: 'Pretendard',
+    fontFamily: "Pretendard",
     borderRadius : '10px'
   }));
 export function Button({ buttonText }: { buttonText: string }) {
