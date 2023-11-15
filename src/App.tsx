@@ -58,10 +58,7 @@ const Router = createBrowserRouter([
       path: '/chat',
       element: <><BottomNavbar/><Chat/></>,
   },
-  {
-      path: '/roommateoption',
-      element: <RoommateOption/>,
-  },
+  
   {
     path: '/roommatelist',
     element: <RoommateRecommend/>,

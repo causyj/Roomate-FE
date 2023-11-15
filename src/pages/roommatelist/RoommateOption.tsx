@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { Button } from '../../components/common';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -29,7 +29,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       },
     },
   }));
-export function RoommateOption() {
+export function RoommateOption({ onClick }: { onClick: () => void }) {
     const [age, setAge] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -42,7 +42,7 @@ export function RoommateOption() {
                 <div>아래의 내용을 입력해주세요!</div>
             </div>
 
-            <div className="mt-24">
+            <div className="mt-16">
                 <div>
                     <div className='mb-4'>거주하게 될 기숙사 *</div>
                     <Box sx={{ minWidth: 120 }}>
@@ -64,21 +64,26 @@ export function RoommateOption() {
                 </div>
                 <div className='mt-8'>
                     <div className='mb-4'>호실 인원 *</div>
-                    <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                        <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={age}
-                        label="Age"
-                        onChange={handleChange}
-                        input={<BootstrapInput />}
-                        >
-                        <MenuItem value={10}>2인실</MenuItem>
-                        <MenuItem value={20}>4인실</MenuItem>
-                        </Select>
-                    </FormControl>
-                    </Box>
+                      <Box sx={{ minWidth: 120 }}>
+                      <FormControl fullWidth>
+                          <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          value={age}
+                          label="Age"
+                          onChange={handleChange}
+                          input={<BootstrapInput />}
+                          >
+                          <MenuItem value={10}>2인실</MenuItem>
+                          <MenuItem value={20}>4인실</MenuItem>
+                          </Select>
+                      </FormControl>
+                      </Box>
+                    <div onClick={onClick} className="flex items-center justify-center mt-16">
+                     <Button buttonText='저장하기'/>
+                    </div>
+                   
+                   
                 </div>
 
             </div>
