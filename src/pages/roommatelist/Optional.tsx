@@ -30,7 +30,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
       },
     },
   }));
-export function Optional() {
+export function Optional({ onClick }: { onClick: () => void }) {
     const [age, setAge] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -126,10 +126,13 @@ export function Optional() {
                 </div>
                 
             </div>
-            <div className='text-center mt-4'>
+            <div onClick={onClick} className='text-center mt-4'>
                 <Button buttonText={'나와 맞는 룸메이트 보러가기'}/>
             </div>
-            
+             {/* <div className="flex justify-center items-center mt-20">
+           <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton>
+           </div> */}
+                
         </div>
     )
 }
