@@ -56,35 +56,35 @@ const animalIcon = tw.rotary({
         },        
         yellow: {
             padding : 'p-3',
-            backgroundColor: 'bg-yellow-200',
+            backgroundColor: 'bg-[#FCF097]',
         },
         rose: {
             padding : 'p-3',
-            backgroundColor: 'bg-[#FFC6C6]',
+            backgroundColor: 'bg-[#FFACA6]',
         },
         orange: {
             padding : 'p-3',
-            backgroundColor: 'bg-orange-200',
+            backgroundColor: 'bg-[#FEDEAC]',
         },
         green: {
             padding : 'p-3',
-            backgroundColor: 'bg-green-200',
+            backgroundColor: 'bg-[#AEF3B9]',
         },
         sky: {
             padding : 'p-3',
-            backgroundColor: 'bg-sky-200',
+            backgroundColor: 'bg-[#BFC9FF]',
         },
-        violet: {
+        purple: {
             padding : 'p-3',
-            backgroundColor: 'bg-violet-200',
+            backgroundColor: 'bg-[#BFC9FF]',
         },
         gray: {
             padding : 'p-3',
-            backgroundColor: 'bg-gray-200',
+            backgroundColor: 'bg-[#EEF2FB]',
         },
-        fuchsia: {
+        pink: {
             padding : 'p-3',
-            backgroundColor: 'bg-fuchsia-200',
+            backgroundColor: 'bg-[#FFD6E4]',
         },
 })
 interface AnimalLinkCardProps {
