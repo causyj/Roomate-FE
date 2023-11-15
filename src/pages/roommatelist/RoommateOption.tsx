@@ -6,7 +6,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { Button } from '../../components/common';
-
+import CircleIcon from '@mui/icons-material/Circle';
+import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
       marginTop: theme.spacing(3),
@@ -37,12 +38,12 @@ export function RoommateOption({ onClick }: { onClick: () => void }) {
   };
     return (
         <div className="flex flex-col font-['700']">
-            <div className=" text-2xl items-center justify-start mt-12">
+            <div className=" text-2xl items-center justify-start mt-8">
                 <div>보다 정확한 추천을 위해,</div>
                 <div>아래의 내용을 입력해주세요!</div>
             </div>
 
-            <div className="mt-16">
+            <div className="mt-12">
                 <div>
                     <div className='mb-4'>거주하게 될 기숙사 *</div>
                     <Box sx={{ minWidth: 120 }}>
@@ -79,11 +80,15 @@ export function RoommateOption({ onClick }: { onClick: () => void }) {
                           </Select>
                       </FormControl>
                       </Box>
-                    <div onClick={onClick} className="flex items-center justify-center mt-16">
-                     <Button buttonText='저장하기'/>
+                    <div className='flex flex-row gap-4  mt-12 justify-center'>
+                      <CircleIcon sx={{ color:'#27334B', width:'16px'}}/>
+                      <PanoramaFishEyeIcon sx={{ color:'#27334B', width:'16px'}}/>
                     </div>
                    
-                   
+                    <div onClick={onClick} className="flex items-center justify-center mt-4">
+                     <Button buttonText='저장하기'/>
+                    </div>
+                    
                 </div>
 
             </div>

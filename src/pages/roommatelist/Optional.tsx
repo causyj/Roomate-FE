@@ -1,12 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { Button } from '../../components/common';
+import CircleIcon from '@mui/icons-material/Circle';
+import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
@@ -38,7 +39,7 @@ export function Optional({ onClick }: { onClick: () => void }) {
   };
     return (
         <div className="flex flex-col font-['700']">
-            <div className=" text-2xl items-center justify-start mt-12">
+            <div className=" text-2xl items-center justify-start mt-8">
                 <div>추가로 표시되고 싶은 항목을 선택해주세요 (선택사항) </div>
             </div>
 
@@ -126,8 +127,12 @@ export function Optional({ onClick }: { onClick: () => void }) {
                 </div>
                 
             </div>
+            <div className='flex flex-row gap-4  mt-4 justify-center'>
+                        <PanoramaFishEyeIcon sx={{ color:'#27334B', width:'16px'}}/>
+                        <CircleIcon sx={{ color:'#27334B', width:'16px'}}/>
+            </div>
             <div onClick={onClick} className='text-center mt-4'>
-                <Button buttonText={'나와 맞는 룸메이트 보러가기'}/>
+                <Button buttonText={'저장하기'}/>
             </div>
              {/* <div className="flex justify-center items-center mt-20">
            <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton>

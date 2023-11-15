@@ -3,6 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { blue, yellow } from "@mui/material/colors";
 import Star from '@mui/icons-material/StarRounded';
+import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import Chat from '@mui/icons-material/ForumRounded';
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
@@ -14,7 +15,14 @@ interface RoomateCardProps {
 interface CardFrontBackProps {
     isFrontView: boolean
 }
+
 const FrontDetail = () => {
+    
+        const [isStarred, setIsStarred] = useState(false);
+      
+        const handleStarClick = () => {
+          setIsStarred(!isStarred);
+        }
     return (
         <div className="flex flex-col items-center p-4 ">
         <Stack direction="row" spacing={2}>
@@ -23,8 +31,18 @@ const FrontDetail = () => {
     <div className="flex flex-row ml-2 mt-1">
         <div className="font-['700'] text-bold text-2xl ">모글리님</div>
         <div className="">
-        <Star sx={{color : yellow[500], width:'33px', height:'35px'}} />
-        </div>
+      {isStarred ? (
+        <Star
+          sx={{ color: 'yellow', width: '33px', height: '35px', cursor: 'pointer' }}
+          onClick={handleStarClick}
+        />
+      ) : (
+        <StarBorderRoundedIcon
+          sx={{ color: 'yellow', width: '33px', height: '35px', cursor: 'pointer' }}
+          onClick={handleStarClick}
+        />
+      )}
+    </div>
     </div>
     <div className="font-['700'] text-primary-gray text-xs">블루미르홀 308관/4인실</div>
         </div>
