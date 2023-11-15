@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { AnimalDictionary } from '../animaldict/AnimalDictionary';
 import { TypeResult } from '../typeresult/TypeResult';
+import { Loading } from '../../components/Loading/Loading';
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -28,16 +29,9 @@ function CustomTabPanel(props: TabPanelProps) {
       </div>
     );
   }
-  
-  function a11yProps(index: number) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
 
-export const ResultHome = () =>{
-    const [value, setValue] = React.useState(0);
+const ResultHomePage = () => {
+  const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
@@ -63,6 +57,36 @@ export const ResultHome = () =>{
           <AnimalDictionary />
         </CustomTabPanel>
         
+    </div>
+    )
+}
+  
+  function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+
+export const ResultHome = () =>{
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setLoading(false);
+    },1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+  };
+    
+  },[]);
+    return(
+      <div>
+      {loading ? 
+        <Loading 
+          firstLine='모글리님의' 
+          secondLine='생활유형을 분석 중이에요'/> 
+        : <ResultHomePage />}
     </div>
     )
 }

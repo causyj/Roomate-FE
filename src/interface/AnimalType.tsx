@@ -1,4 +1,4 @@
 export type AnimalType = {
-    animal: 'cat' | 'owl' | 'monkey' | 'turtle' | 'wolf' | 'koala' | 'a1' | 'a2'
-    animalKor : '고양이' | '부엉이' | '원숭이'| '거북이' | '여우' | '코알라' |  '여우' | '코알라' 
+    animal: 'PolarFox' | 'Rabbit' | 'Quokka' | 'PolarBear' | 'Cat' | 'Penguin' | 'Puppy' | 'Wolf' 
+    animalKor : '북극여우' | '토끼' | '쿼카'| '북극곰' | '고양이' | '펭귄' |  '강아지' | '늑대' 
 }

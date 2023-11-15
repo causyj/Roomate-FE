@@ -1,6 +1,7 @@
-import { Intro3 } from "../pages/roommatelist/Intro3"
+import { Loading } from "../components/Loading/Loading"
+import { RoommateOption } from "../pages/roommatelist/RoommateOption"
 export function ForPractice() {
     return (
-       <Intro3 />
+       <div>sdfs</div>
     )
 }

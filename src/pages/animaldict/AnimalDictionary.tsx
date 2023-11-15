@@ -56,35 +56,35 @@ const animalIcon = tw.rotary({
         },        
         yellow: {
             padding : 'p-3',
-            backgroundColor: 'bg-yellow-200',
+            backgroundColor: 'bg-[#FCF097]',
         },
         rose: {
             padding : 'p-3',
-            backgroundColor: 'bg-rose-200',
+            backgroundColor: 'bg-[#FFACA6]',
         },
         orange: {
             padding : 'p-3',
-            backgroundColor: 'bg-orange-200',
+            backgroundColor: 'bg-[#FEDEAC]',
         },
         green: {
             padding : 'p-3',
-            backgroundColor: 'bg-green-200',
+            backgroundColor: 'bg-[#AEF3B9]',
         },
         sky: {
             padding : 'p-3',
-            backgroundColor: 'bg-sky-200',
+            backgroundColor: 'bg-[#B3E1FE]',
         },
-        violet: {
+        purple: {
             padding : 'p-3',
-            backgroundColor: 'bg-violet-200',
+            backgroundColor: 'bg-[#BFC9FF]',
         },
         gray: {
             padding : 'p-3',
-            backgroundColor: 'bg-gray-200',
+            backgroundColor: 'bg-[#EEF2FB]',
         },
-        fuchsia: {
+        pink: {
             padding : 'p-3',
-            backgroundColor: 'bg-fuchsia-200',
+            backgroundColor: 'bg-[#FFD6E4]',
         },
 })
 interface AnimalLinkCardProps {
@@ -94,13 +94,7 @@ interface AnimalLinkCardProps {
     picture:JSX.Element;
     
 }
-const here = () => {
-   return (
-    <div>
-        
-    </div>
-   )
-}
+
 const AnimalLinkCard = ({ color, picture, type, animal }: AnimalLinkCardProps) => {
     return (
         <div>
@@ -124,6 +118,13 @@ export function AnimalDictionary() {
                 {ANIMAL_LIST.map((animal) => (
                     <AnimalLinkCard key={animal.animal} color={animal.color} picture={animal.picture} type={animal.type} animal={animal.animal}/>
                 ))}
+            </div>
+            <div className="flex flex-col text-white">
+                <div >dd</div>
+                <div >dd</div>
+                <div >dd</div>
+                <div >dd</div>
+
             </div>
         </div>
     )

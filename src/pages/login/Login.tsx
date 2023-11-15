@@ -85,13 +85,13 @@ export function Login() {
                         onChange={handlePasswordChange}
                         />
             </div>
-           <div className="flex justify-center items-center mt-20">
+           {/* <div className="flex justify-center items-center mt-20">
            <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton>
-           </div>
+           </div> */}
                 
-                {/* <Link to="/testpage" className="flex justify-center items-center mt-20">
-                 <Button buttonText="로그인" />
-                </Link> */}
+                <Link to="/testpage" className="flex justify-center items-center mt-20 ">
+                 <Button buttonText="로그인"/>
+                </Link>
         </div>
     )
 }

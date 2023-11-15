@@ -3,6 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { blue, yellow } from "@mui/material/colors";
 import Star from '@mui/icons-material/StarRounded';
+import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import Chat from '@mui/icons-material/ForumRounded';
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
@@ -14,7 +15,16 @@ interface RoomateCardProps {
 interface CardFrontBackProps {
     isFrontView: boolean
 }
+
 const FrontDetail = () => {
+    const [isStarred, setIsStarred] = useState(false);
+
+        const handleStarClick = (e :any) => {
+            e.stopPropagation(); // 이벤트 전파를 막습니다.
+        
+            setIsStarred(!isStarred);
+           
+        }
     return (
         <div className="flex flex-col items-center p-4 ">
         <Stack direction="row" spacing={2}>
@@ -23,8 +33,18 @@ const FrontDetail = () => {
     <div className="flex flex-row ml-2 mt-1">
         <div className="font-['700'] text-bold text-2xl ">모글리님</div>
         <div className="">
-        <Star sx={{color : yellow[500], width:'33px', height:'35px'}} />
-        </div>
+      {isStarred ? (
+        <Star
+          sx={{  color: '#F9D800', width: '35px', height: '35px', cursor: 'pointer'  }}
+          onClick={handleStarClick}
+        />
+      ) : (
+        <StarBorderRoundedIcon
+          sx={{ width: '33px', height: '35px', cursor: 'pointer' }}
+          onClick={handleStarClick}
+        />
+      )}
+    </div>
     </div>
     <div className="font-['700'] text-primary-gray text-xs">블루미르홀 308관/4인실</div>
         </div>
@@ -61,8 +81,8 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
 const TypeAtAGlance = () =>{
     return (
       <div className="flex flex-col py-1">
-          <div className="flex flex-row justify-center mt-1">
-            <div className="flex flex-col font-['800'] text-2xs ml-3 mr-3 mb-2">
+          <div className="flex flex-row justify-center mt-1 gap-2">
+            <div className="flex flex-col font-['800'] text-sm ml-2 gap-0.5 mb-2">
                 <div>생체 리듬</div>
                 <div>흡연 여부</div>
                 <div >소음 민감도</div>
@@ -71,21 +91,30 @@ const TypeAtAGlance = () =>{
                 <div >청결도</div>
                 <div>잠버릇</div>
             </div>
-            <div className="flex flex-col  font-['800'] text-primary-gray text-2xs">
+            <div className="flex flex-col  font-['800'] text-primary-gray text-sm gap-0.5">
                 <div className="">아침형</div>
                 <div className="">비흡연자</div>
                 <div className=" text-primary-orange flex-col"> 
-                    <div className="flex flex-row mt-[-6px] mb-[-9px]">
-                    <FavoriteBorder sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/>
+                    <div className="flex flex-row mt-[-1px]">
+                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
                     </div>
-                    <div className="flex flex-row ">
-                    <FavoriteBorder sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/>
+                    <div className="flex flex-row mt-[-2px]">
+                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
+                    </div>
+                    <div className="flex flex-row mt-[-2px]">
+                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
+                    </div>
+                    <div className="flex flex-row mt-[-2px]">
+                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
+                    </div>
+                    <div className="flex flex-row mt-[-2px]">
+                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
                     </div>
                 </div>
                 
             </div>
         </div>
-        <Link to={'/typeresult'} className="font-['700'] text-xxs ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
+        <Link to={'/typeresult'} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
       </div>
     )
 }  
@@ -96,14 +125,14 @@ const CardBack = ({isFrontView} : CardFrontBackProps) => {
             isFrontView === false ? 'opacity-0 rotate-y-180' : 'z-10 opacity-100 rotate-y-0'
         }`}
     >
-       <div className="flex flex-col">
-            <div className="flex flex-row">
-                    <div className="font-['700'] text-bold text-xl ml-2">모글리님</div>
-                    <Link to={"/chat"} className="mt-1 ml-4">
-                    <Chat />
+       <div className="flex flex-col p-2 ml-2 mr-2">
+            <div className="flex flex-row ">
+                    <div className="font-['700'] text-bold text-3xl ">모글리님</div>
+                    <Link to={"/chat"} className="mt-2 ml-5">
+                        <Chat sx={{width:'40px', height: '40px' }}/>
                     </Link>
             </div>
-            <div className="font-['700'] text-primary-gray text-3xs ml-2 mt-[-4px] mb-1">블루미르홀 308관/4인실</div>
+            <div className="font-['700'] text-primary-gray text-xs mt-[-4px] mb-1">블루미르홀 308관/4인실</div>
             <Divider />
             <TypeAtAGlance />
         </div>

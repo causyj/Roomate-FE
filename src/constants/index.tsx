@@ -1,57 +1,56 @@
 import { AnimalType } from "../interface/AnimalType";
 export const ANIMAL_DATA : Record<AnimalType['animal'],{
     type : string
-    color : 'rose' | 'yellow' | 'orange' | 'green' | 'sky' | 'violet' | 'gray' | 'fuchsia' 
+    color : 'rose' | 'yellow' | 'orange' | 'green' | 'purple' | 'sky' | 'pink' | 'gray' 
     picture : JSX.Element;
     descriptoin : string,
-    
 }> = {
-    cat : {
-        type : '고양이형',
+    PolarFox : {
+        type : '북극여우',
         color : 'rose',
-        picture :  <img src={process.env.PUBLIC_URL + '/cat.png'}alt="cat"/>,
+        picture :  <img src={process.env.PUBLIC_URL + '/PolarFox.png'} width={'80px'}/>,
         descriptoin : 'sdf'
     },
-    monkey : {
-        type : '원숭이',
+    Rabbit : {
+        type : '토끼',
         color : 'orange',
-        picture :  <img src={process.env.PUBLIC_URL + '/littlemonkey.png'}alt="cat"/>,
+        picture :  <img src={process.env.PUBLIC_URL + '/Rabbit.png'}width={'70px'}/>,
         descriptoin : 'sdf'
     },
-    owl : {
-        type : '부엉이형',
+    Quokka : {
+        type : '쿼카',
         color : 'yellow',
-        picture :  <img src={process.env.PUBLIC_URL + '/owl.png'}alt="owl"/>,
+        picture :  <img src={process.env.PUBLIC_URL + '/Quokka.png'} width={'80px'}/>,
         descriptoin : 'sdf'
     },
-    turtle : {
-        type : '거북이형',
+    PolarBear : {
+        type : '북극곰',
         color : 'green',
-        picture :  <img src={process.env.PUBLIC_URL + '/turtle.png'}alt="owl"/>,
+        picture :  <img src={process.env.PUBLIC_URL + '/PolarBear.png'}width={'80px'}/>,
         descriptoin : 'sdf'
     },
-    koala : {
-        type : '코알라형',
+    Cat : {
+        type : '고양이',
+        color : 'purple',
+        picture :  <img src={process.env.PUBLIC_URL + '/Cat.png'} width={'80px'}/>,
+        descriptoin : 'sdf'
+    },
+    Penguin : {
+        type : '펭귄',
         color : 'sky',
-        picture :  <img src={process.env.PUBLIC_URL + '/koala.png'}alt="owl"/>,
+        picture :  <img src={process.env.PUBLIC_URL + '/Penguin.png'} width={'90px'}/>,
         descriptoin : 'sdf'
     },
-    wolf : {
-        type : '여우형',
-        color : 'fuchsia',
-        picture :  <img src={process.env.PUBLIC_URL + '/wolf.png'}alt="owl"/>,
+    Puppy : {
+        type : '강아지',
+        color : 'pink',
+        picture :  <img src={process.env.PUBLIC_URL + '/Puppy.png'} width={'80px'}/>,
         descriptoin : 'sdf'
     },
-    a1 : {
-        type : '코알라형',
-        color : 'sky',
-        picture :  <img src={process.env.PUBLIC_URL + '/koala.png'}alt="owl"/>,
-        descriptoin : 'sdf'
-    },
-    a2 : {
-        type : '여우형',
-        color : 'fuchsia',
-        picture :  <img src={process.env.PUBLIC_URL + '/wolf.png'}alt="owl"/>,
+    Wolf : {
+        type : '늑대',
+        color : 'gray',
+        picture :  <img src={process.env.PUBLIC_URL + '/Wolf.png'}width={'80px'}/>,
         descriptoin : 'sdf'
     },
 

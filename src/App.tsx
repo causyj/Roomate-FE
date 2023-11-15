@@ -8,7 +8,7 @@ import { AnimalDictionary } from './pages/animaldict/AnimalDictionary'
 import { Verify } from './pages/verify/Verify'
 import { Chat } from './pages/chat/Chat'
 import { RoommateRecommend } from './pages/roommatelist/RoommateRecommend'
-import { RoommateOption } from './pages/roommateoption/RoommateOption'
+import { RoommateOption } from './pages/roommatelist/RoommateOption'
 import { GroupList } from './pages/group/GroupList'
 import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
@@ -30,7 +30,7 @@ const Router = createBrowserRouter([
 },
 {
     path: '/testpage',
-    element: <><BottomNavbar/><TestPage/>,</>
+    element: <><BottomNavbar/><TestPage/></>
 },
 {
     path: '/resulthome',
@@ -58,10 +58,7 @@ const Router = createBrowserRouter([
       path: '/chat',
       element: <><BottomNavbar/><Chat/></>,
   },
-  {
-      path: '/roommateoption',
-      element: <RoommateOption/>,
-  },
+  
   {
     path: '/roommatelist',
     element: <RoommateRecommend/>,
