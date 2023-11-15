@@ -38,19 +38,45 @@ function a11yProps(index: number) {
   }
 export const RoommateRecommendPanel = () => {
     const [value, setValue] = React.useState(0);
-    
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-      setValue(newValue);
-    };
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  const getContentBasedOnTab = () => {
+    switch (value) {
+      case 0:
+        return (
+          <div>
+            <span className="font-['700']">모글리</span>님을 위한
+            <div>추천 결과입니다.</div>
+          </div>
+        );
+      case 1:
+        return (
+          <div>
+            <span className="font-['700']">전체 목록</span>
+            <div className='text-ms'>모글리님이 거주하는 건물의</div>
+            <div className='text-ms'>기숙사생들을 모두 볼 수 있어요!</div>
+          </div>
+        );
+      case 2:
+        return (
+          <div>
+            <span className="font-['700']">모글리</span>님이
+            <div>찜하신 목록입니다.</div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
     return (
         <div>
     <div className="flex flex-row items-center justify-evenly">
-    <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="roomie" width="80px"  />
-    <div className="text-2xl ">
-        <span className="font-['700']">모글리</span>님의
-        <div>매칭결과입니다.</div>
-        </div>
-    </div>
+        <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="roomie" width="80px" />
+        <div className="text-2xl ">{getContentBasedOnTab()}</div>
+      </div>
             <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider',}}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="추천 룸메이트" {...a11yProps(0)} sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}}/>
