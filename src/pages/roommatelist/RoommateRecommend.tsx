@@ -9,11 +9,7 @@ import { Loading } from '../../components/Loading/Loading';
 import { useState, useEffect } from 'react';
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
-      <div className="flex flex-col items-center mt-8">
-        <div className='flex flex-row gap-4 mb-8'>
-          <CircleIcon sx={{ color:'#27334B', width:'20px'}}/>
-          <PanoramaFishEyeIcon sx={{ color:'#27334B', width:'20px'}}/>
-        </div>
+      <div className="flex flex-col items-center mt-12">
           <div className="text-3xl font-['700']" >축하합니다!</div>
           
               <div className="text-xl font-['300'] mt-6">룸메이트 추천을 위한</div>
@@ -22,7 +18,7 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
           <div className="mt-8">
               <img src={process.env.PUBLIC_URL + '/congratulation.png'} alt="monkey" style={{width : '200px'}}/>
           </div>
-          <div onClick={onClick} className='w-1/3 text-center mt-4'>
+          <div onClick={onClick} className='w-1/3 text-center mt-8'>
                 <Button buttonText={'→'}/>
             </div>
       </div>
@@ -44,7 +40,6 @@ export const Intro2 = ({ onClick }: { onClick: () => void })  => {
 }
 export function RoommateRecommend() {
     const [step, setStep] = React.useState(0);
-    const [loading, setLoading] = useState(true);
       const handleButtonClick= () =>{
         setStep(step+1);
       }

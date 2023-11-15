@@ -17,11 +17,13 @@ interface CardFrontBackProps {
 }
 
 const FrontDetail = () => {
-    
-        const [isStarred, setIsStarred] = useState(false);
-      
-        const handleStarClick = () => {
-          setIsStarred(!isStarred);
+    const [isStarred, setIsStarred] = useState(false);
+
+        const handleStarClick = (e :any) => {
+            e.stopPropagation(); // 이벤트 전파를 막습니다.
+        
+            setIsStarred(!isStarred);
+           
         }
     return (
         <div className="flex flex-col items-center p-4 ">
@@ -33,12 +35,12 @@ const FrontDetail = () => {
         <div className="">
       {isStarred ? (
         <Star
-          sx={{ color: 'yellow', width: '33px', height: '35px', cursor: 'pointer' }}
+          sx={{  color: '#F9D800', width: '35px', height: '35px', cursor: 'pointer'  }}
           onClick={handleStarClick}
         />
       ) : (
         <StarBorderRoundedIcon
-          sx={{ color: 'yellow', width: '33px', height: '35px', cursor: 'pointer' }}
+          sx={{ width: '33px', height: '35px', cursor: 'pointer' }}
           onClick={handleStarClick}
         />
       )}
