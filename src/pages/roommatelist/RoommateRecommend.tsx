@@ -22,8 +22,8 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
           <div className="mt-8">
               <img src={process.env.PUBLIC_URL + '/congratulation.png'} alt="monkey" style={{width : '200px'}}/>
           </div>
-          <div onClick={onClick} className='w-full text-center mt-4'>
-                <Button buttonText={'다음 페이지'}/>
+          <div onClick={onClick} className='w-1/3 text-center mt-4'>
+                <Button buttonText={'→'}/>
             </div>
       </div>
   )

@@ -60,13 +60,13 @@ export const RoommateRecommendPanel = () => {
         </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-        <Tab1 />
+            <Tab1 />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-        <Tab2 />
+            <Tab2 />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-        <Tab3 />
+            <Tab3 />
         </CustomTabPanel>
 </div>
     )
