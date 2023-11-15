@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "../../components/common"
-import { TestPageLayout } from "./TestPageLayout"
+import { TestPagePanel } from "./TestPagePanel"
 
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
@@ -67,7 +67,7 @@ export function TestPage() {
     <div>
          {step === 0 && <Intro1 onClick={handleButtonClick} />}
          {step === 1 && <Intro2 onClick={handleButtonClick}/>}
-         {step === 2 && <TestPageLayout />}
+         {step === 2 && <TestPagePanel />}
     </div>
     )
 }

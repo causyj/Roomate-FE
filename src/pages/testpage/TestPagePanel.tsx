@@ -10,7 +10,7 @@ const questions = [
   // 다음 질문들...
 ];
 
-export function TestPageLayout() {
+export function TestPagePanel() {
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const handleNextPage = () => {
