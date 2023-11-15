@@ -72,7 +72,7 @@ const animalIcon = tw.rotary({
         },
         sky: {
             padding : 'p-3',
-            backgroundColor: 'bg-[#BFC9FF]',
+            backgroundColor: 'bg-[#B3E1FE]',
         },
         purple: {
             padding : 'p-3',
@@ -94,13 +94,7 @@ interface AnimalLinkCardProps {
     picture:JSX.Element;
     
 }
-const here = () => {
-   return (
-    <div>
-        
-    </div>
-   )
-}
+
 const AnimalLinkCard = ({ color, picture, type, animal }: AnimalLinkCardProps) => {
     return (
         <div>
@@ -124,6 +118,13 @@ export function AnimalDictionary() {
                 {ANIMAL_LIST.map((animal) => (
                     <AnimalLinkCard key={animal.animal} color={animal.color} picture={animal.picture} type={animal.type} animal={animal.animal}/>
                 ))}
+            </div>
+            <div className="flex flex-col text-white">
+                <div >dd</div>
+                <div >dd</div>
+                <div >dd</div>
+                <div >dd</div>
+
             </div>
         </div>
     )
