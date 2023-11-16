@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { AnimalType } from "../../interface/AnimalType";
-import { AnimalDescription } from "../typeresult/components/AnimalDescription";
+import { AnimalDescription } from "../../components/resultdetail/AnimalDescription";
 import { TypeEmoji } from "../typeresult/components/TypeEmoji";
 import { ANIMAL_DATA } from "../../constants";
 type AnimalDictionaryParams = {

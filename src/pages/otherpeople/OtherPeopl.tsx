@@ -1,8 +1,8 @@
-import { AnimalDescription } from "../../components/resultdetail/AnimalDescription"
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import { TypeEmoji } from "../../components/resultdetail/TypeEmoji"
 import { TitleBox } from "../../components/resultdetail/TitleBox"
+import { AnimalDescription } from "../../components/resultdetail/AnimalDescription"
 import { ANIMAL_DATA } from "../../constants"
 import { tw } from '../../styles'
 const TypeAtAGlance = () =>{
@@ -52,7 +52,7 @@ const ResultDetail = () => {
     )
 }
 
-export const TypeResult =() => {
+export const OtherPeople =() => {
     const result = "rabbit";
     const animalInfo = ANIMAL_DATA[result];
     const animalColor = animalInfo.color; //orange
