@@ -25,7 +25,9 @@ export const Tab1 = () => {
                  <ResetIcon />
                 </ColorFab>
             </div>
-            <div className="flex flex-row mt-4 gap-2">
+            <div className="flex flex-row w-[300px] overflow-scroll overflow-x-auto p-2 mt-4 gap-2 ">
+                <RoommateCard1 />
+                <RoommateCard1 />
                 <RoommateCard1 />
             </div>
         </div>
