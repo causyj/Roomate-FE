@@ -153,7 +153,7 @@ const CardBack = ({isFrontView} : CardBackProps) => {
     >
        <div className="flex flex-col">
             <div className="flex flex-row ">
-                    <div className="font-['700'] text-bold text-xl ml-2 ">김애옹님</div>
+                    <div className="font-['700'] text-bold text-xl ml-2 ">우당탕님</div>
                     <Link to={"/chat"} className="mt-1 ml-4">
                         <Chat/>
                     </Link>

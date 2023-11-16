@@ -119,10 +119,10 @@ const ResultDetail = () => {
     return(
 
         <div className="p-8">
-            <div className="font-['800'] mb-2">김애옹님은 이런 생활 유형이에요!</div>
+            <div className="font-['800'] mb-2">폰타나님은 이런 생활 유형이에요!</div>
             <div className="font-['700'] text-primary-gray mb-8">: 밤 12시 쯤에 취침하고, 오전 8~9시 쯤에 일어나요. 쓰레기가 적당히 쌓이면 버리는 편이에요. 음식은 가끔 방에서 먹으며, 비흡연자에요. 주로 도서관에서 공부하고, 노트북을 거의 사용하지 않아요. 룸메이트와 적당한 거리를 두고 지내고 싶어요. 잠버릇은 거의 없는 편이에요.
             </div>
-            <div className="font-['800'] mb-2">김애옹님이 원하는 룸메이트 스타일은?</div>
+            <div className="font-['800'] mb-2">폰타나님이 원하는 룸메이트 스타일은?</div>
             <div className="font-['700'] text-primary-gray">: 밤 12시에 취침하고, 오전 8시에 일어났으면 좋겠어요.매일 한 번의 방청소를 통해 깨끗한 
                    환경을 유지하길 바라며, 씻는 시간도 아침으로 일정하고 적절한 시간동안만 했으면 좋겠어요. 음식을 방에서 섭취하지 않았으면 좋겠고, 비흡연자였으면 좋겠어요
                     도서관에서 주로 공부하고, 노트북 소음을 안 냈으면 좋겠어요.룸메이트도 저와 친하게 지냈으면 좋겠어요. 저는 잠귀가 어두워요
@@ -186,7 +186,7 @@ export const OtherPeople =() => {
     return (
         <div>
             <div className="text-center text-2xl font-['800'] items-center justify-center">
-                <div className='mb-4 mt-4'>김애옹님의 생활 유형은</div>
+                <div className='mb-4 mt-4'>폰타나님의 생활 유형은</div>
                 <span className={`text-4xl ${animalIconStyle.color}`}>예민한 토끼</span> 
             </div>
             <div>
@@ -194,7 +194,7 @@ export const OtherPeople =() => {
             <AnimalDescription type={result} />
         </div>
     
-            <TitleBox title={'김애옹님의 생활 유형 한 눈에 보기'} animalColor={animalColor}/>
+            <TitleBox title={'폰타나님의 생활 유형 한 눈에 보기'} animalColor={animalColor}/>
             <TypeAtAGlance 
                 animalColor={animalColor}
                 noise={4}
@@ -204,7 +204,7 @@ export const OtherPeople =() => {
                 sleep={1}
                 />
             
-            <TitleBox title={'김애옹님 생활 유형 결과'} animalColor={animalColor}/>
+            <TitleBox title={'폰타나님 생활 유형 결과'} animalColor={animalColor}/>
             <ResultDetail />
             
             <TypeEmoji animalColor={animalColor}/>
