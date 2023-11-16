@@ -96,19 +96,19 @@ export const TypeEmoji=({animalColor }: IconBoxProps) => {
                         <img src={process.env.PUBLIC_URL + '/good.png'} alt="morning"  />
                     </div>
                     <div className="mr-3 mt-1 font-['700'] text-sm">이런 룸메와 잘 맞아요</div>
-                    <div className="mr-4 font-['700']">
+                    <div className="mr-4 font-['700']  ">
                         <div className="flex flex-row text-center  items-center justify-center mt-4">
                                 <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
-                                <div className="ml-2">고릴라</div>
+                                <div className="ml-2">토끼</div>
                         </div>
                         <div className="flex flex-row text-center items-center justify-center mt-1">
                             <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
-                            <div className="ml-2 ">고양이</div>
+                            <div className="ml-2 ">북극곰</div>
                         </div>
-                        <div className="flex flex-row text-center items-center justify-center mt-1">
+                        {/* <div className="flex flex-row text-center items-center justify-center mt-1">
                             <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
                             <div className="ml-2">강아지</div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="flex flex-col">
@@ -118,16 +118,16 @@ export const TypeEmoji=({animalColor }: IconBoxProps) => {
                     <div className="text-center mt-1 font-['700'] text-sm">이런 룸메와는 조금 힘들어요</div>
                     <div className="flex flex-row text-center font-['700'] items-center justify-center mt-4">
                         <div className={`${heartIconStyle.color}`}><BrokenHeart/></div>
-                            <div className="ml-2">고릴라</div>
+                            <div className="ml-2">늑대</div>
                     </div>
                     <div className="flex flex-row text-center font-['700'] items-center justify-center mt-1">
                         <div className={`${heartIconStyle.color}`}><BrokenHeart/></div>
-                        <div className="ml-2 ">고양이</div>
+                        <div className="ml-2 ">쿼카</div>
                     </div>
-                    <div className="flex flex-row text-center font-['700'] items-center justify-center mt-1">
+                    {/* <div className="flex flex-row text-center font-['700'] items-center justify-center mt-1">
                         <div className={`${heartIconStyle.color}`}><BrokenHeart/></div>
                         <div className="ml-2">강아지</div>
-                    </div>
+                    </div> */}
                     <div className="text-white">
                         <div>sfsdfs</div>
                         <div>sfsdfs</div>

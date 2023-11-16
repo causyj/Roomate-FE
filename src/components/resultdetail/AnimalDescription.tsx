@@ -6,7 +6,7 @@ export const AnimalDescription = ({type} : {type:string}) =>{
             <img src={process.env.PUBLIC_URL + `/${type}.png`} alt={`${type}`} style={{width : '150px'}}/>
             </div>
         <div className=" font-['600'] p-8 text-l text-primary-gray">
-        꼼꼼하고 규칙적인 아침형인간으로, 룸메이트와 친밀한 관계를 얻길 원하고 학습에 집중하는 모습을 보이는 성향이 있다
+         상쾌한 아침을 맞이하는 아침형 인간으로, 혼자만의 시간을 중요하게 생각하고 겨울보단 여름을 좋아하는 성향이 있다.
         </div>
         </div>
     )
