@@ -33,7 +33,7 @@ export function TitleBox({ title, animalColor }: TitleBoxProps) {
     const animalIconStyle = animalIconStyles[animalColor];
   return (
     <div>
-      <div className={`w-full border-4  ${animalIconStyle.color} rounded-lg flex items-center justify-start p-4 font-bold text-xl`}>
+      <div className={`w-full border-4 font-['700'] ${animalIconStyle.color} rounded-lg flex items-center justify-start p-4 font-bold text-xl`}>
         {title}
       </div>
     </div>
