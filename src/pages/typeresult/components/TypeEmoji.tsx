@@ -60,21 +60,26 @@ export const TypeEmoji=({animalColor }: IconBoxProps) => {
     }
     const animalIconStyle = animalIconStyles[animalColor];
     const heartIconStyle = heartIconStyles[animalColor];
+
     return(
         <div>
             <TitleBox title={'이모티콘으로 보는 라이프 스타일'} animalColor={animalColor}/>
-            <div className="flex flex-row p-4 text-center items-center justify-center">
-                <div className="flex flex-col text-center mr-8 ">
-                    <img src={process.env.PUBLIC_URL + '/morning.png'} alt="morning"  />
+            <div className="flex flex-row p-4 text-center items-center justify-center gap-4">
+                <div className="flex flex-col text-center mr-2">
+                    <img src={process.env.PUBLIC_URL + 'am.png'} alt="morning" width={'70px'}  />
                     <div className="font-['700'] text-primary-gray">아침형</div>
                 </div>
-                <div className="flex flex-col contain mr-8 ">
-                    <img src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="morning"  />
+                <div className="flex flex-col contain mr-2">
+                    <img src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="morning" width={'55px'} />
                     <div className="font-['700'] text-primary-gray">비흡연</div>
                 </div>
                 <div className="flex flex-col contain ">
-                    <img src={process.env.PUBLIC_URL + '/homelover.png'} alt="morning"  />
+                    <img src={process.env.PUBLIC_URL + '/homelover.png'} alt="morning" width={'55px'}  />
                     <div className="font-['700'] text-primary-gray">집순이</div>
+                </div>
+                <div className="flex flex-col contain justify-center">
+                    <img src={process.env.PUBLIC_URL + '/cold.png'} alt="morning" width={'55px'}  />
+                    <div className="font-['700'] text-primary-gray">추위에 약함</div>
                 </div>
             </div>
             <div className="flex flex-row justify-between">
