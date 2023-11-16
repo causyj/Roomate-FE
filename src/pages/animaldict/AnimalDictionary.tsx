@@ -64,7 +64,7 @@ const animalIcon = tw.rotary({
         },
         orange: {
             padding : 'p-3',
-            backgroundColor: 'bg-[#FEDEAC]',
+            backgroundColor: 'bg-[#FCA12F]',
         },
         green: {
             padding : 'p-3',
