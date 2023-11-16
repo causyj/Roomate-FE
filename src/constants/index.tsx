@@ -5,42 +5,42 @@ export const ANIMAL_DATA : Record<AnimalType['animal'],{
     picture : JSX.Element;
     // descriptoin : string,
 }> = {
-    ArcticFox : {
+    arcticFox : {
         type : '북극여우',
         color : 'rose',
         picture :  <img src={process.env.PUBLIC_URL + '/PolarFox.png'} width={'80px'}/>,
     },
-    Rabbit : {
+    rabbit : {
         type : '토끼',
         color : 'orange',
         picture :  <img src={process.env.PUBLIC_URL + '/Rabbit.png'}width={'70px'}/>,
     },
-    Quokka : {
+    quokka : {
         type : '쿼카',
         color : 'yellow',
         picture :  <img src={process.env.PUBLIC_URL + '/Quokka.png'} width={'80px'}/>,
     },
-    PolarBear : {
+    polarBear : {
         type : '북극곰',
         color : 'green',
         picture :  <img src={process.env.PUBLIC_URL + '/PolarBear.png'}width={'80px'}/>,
     },
-    Cat : {
+    cat : {
         type : '고양이',
         color : 'purple',
         picture :  <img src={process.env.PUBLIC_URL + '/Cat.png'} width={'80px'}/>,
     },
-    Penguin : {
+    penguin : {
         type : '펭귄',
         color : 'sky',
         picture :  <img src={process.env.PUBLIC_URL + '/Penguin.png'} width={'90px'}/>,
     },
-    Dog : {
+    dog : {
         type : '강아지',
         color : 'pink',
         picture :  <img src={process.env.PUBLIC_URL + '/Puppy.png'} width={'80px'}/>,
     },
-    Wolf : {
+    wolf : {
         type : '늑대',
         color : 'gray',
         picture :  <img src={process.env.PUBLIC_URL + '/Wolf.png'}width={'80px'}/>,
