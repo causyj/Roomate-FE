@@ -6,6 +6,14 @@ type IconBoxProps = {
   };
   
 export const TypeEmoji=({animalColor }: IconBoxProps) => {
+    const rhythm = '아침형';
+    const smoke = '비흡연자';
+    const home = '집순이';
+    const hotCold = '추위에 약함';
+    const rhythmIcon = rhythm === '아침형' ? '/am.png' : '/pm.png';
+    const smokeIcon = smoke === '비흡연자' ? '/nosmoking.png' : '/smoking.png';
+    const homeIcon = home === '집순이' ? '/homelover.png' : '/outside.png';
+    const hotColdIcon = hotCold === '추위에 약함' ? '/cold.png' : '/hot.png';
     const animalIconStyles = {
         yellow: {
             color : 'border-yellow-500', 
@@ -66,20 +74,20 @@ export const TypeEmoji=({animalColor }: IconBoxProps) => {
             <TitleBox title={'이모티콘으로 보는 라이프 스타일'} animalColor={animalColor}/>
             <div className="flex flex-row p-4 text-center items-center justify-center gap-4">
                 <div className="flex flex-col text-center mr-2">
-                    <img src={process.env.PUBLIC_URL + 'am.png'} alt="morning" width={'70px'}  />
-                    <div className="font-['700'] text-primary-gray">아침형</div>
+                    <img src={process.env.PUBLIC_URL + rhythmIcon} alt={rhythm} width={'70px'}  />
+                    <div className="font-['700'] text-primary-gray">{rhythm}</div>
                 </div>
                 <div className="flex flex-col contain mr-2">
-                    <img src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="morning" width={'55px'} />
-                    <div className="font-['700'] text-primary-gray">비흡연</div>
+                    <img src={process.env.PUBLIC_URL + smokeIcon} alt={smoke} width={'55px'} />
+                    <div className="font-['700'] text-primary-gray">{smoke}</div>
                 </div>
                 <div className="flex flex-col contain ">
-                    <img src={process.env.PUBLIC_URL + '/homelover.png'} alt="morning" width={'55px'}  />
-                    <div className="font-['700'] text-primary-gray">집순이</div>
+                    <img src={process.env.PUBLIC_URL + homeIcon} alt={home} width={'55px'}  />
+                    <div className="font-['700'] text-primary-gray">{home}</div>
                 </div>
                 <div className="flex flex-col contain justify-center">
-                    <img src={process.env.PUBLIC_URL + '/cold.png'} alt="morning" width={'55px'}  />
-                    <div className="font-['700'] text-primary-gray">추위에 약함</div>
+                    <img src={process.env.PUBLIC_URL + hotColdIcon} alt={hotCold} width={'55px'}  />
+                    <div className="font-['700'] text-primary-gray">{hotCold}</div>
                 </div>
             </div>
             <div className="flex flex-row justify-between">
