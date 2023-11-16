@@ -3,6 +3,8 @@ import { AnimalDescription } from "./components/AnimalDescription"
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import { TypeEmoji } from "./components/TypeEmoji"
+import { ANIMAL_DATA } from "../../constants"
+import { tw } from '../../styles'
 const TypeAtAGlance = () =>{
     return (
       <div className="flex flex-col p-8">
@@ -51,11 +53,43 @@ const ResultDetail = () => {
 }
 
 export const TypeResult =() => {
+    const result = "rabbit";
+    const animalInfo = ANIMAL_DATA[result];
+    const animalColor = animalInfo.color; //orange
+    
+    const animalIconStyles = {
+            yellow: {
+                color : 'text-yellow-500', 
+            },
+            rose: {
+                color : 'text-rose-500', 
+            },
+            orange: {
+                color : 'text-orange-500', 
+            },
+            green: {
+                color : 'text-green-500', 
+            },
+            sky: {
+                color : 'text-sky-500', 
+            },
+            purple: {
+                color : 'text-purple-500', 
+            },
+            gray: {
+                color : 'text-gray-500', 
+            },
+            pink: {
+                color : 'text-pink-600', 
+            },
+        }
+        const animalIconStyle = animalIconStyles[animalColor];
+           
     return (
         <div>
             <div className="text-center text-2xl font-['800'] items-center justify-center">
                 <div className='mb-4 mt-4'>모글리님의 생활 유형은</div>
-                <span className='text-4xl text-primary-orange'>둔감한 원숭이</span> 
+                <span className={`text-4xl ${animalIconStyle.color}`}>둔감한 토끼</span> 
             </div>
          <AnimalDescription />
     
