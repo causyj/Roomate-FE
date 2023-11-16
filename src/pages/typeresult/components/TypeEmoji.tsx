@@ -98,15 +98,15 @@ export const TypeEmoji=({animalColor }: IconBoxProps) => {
                     <div className="mr-3 mt-1 font-['700'] text-sm">이런 룸메와 잘 맞아요</div>
                     <div className="mr-4 font-['700']">
                         <div className="flex flex-row text-center  items-center justify-center mt-4">
-                                <div className=" text-primary-orange"><FavoriteOutlined/></div>
+                                <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
                                 <div className="ml-2">고릴라</div>
                         </div>
                         <div className="flex flex-row text-center items-center justify-center mt-1">
-                            <div className=" text-primary-orange"><FavoriteOutlined/></div>
+                            <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
                             <div className="ml-2 ">고양이</div>
                         </div>
                         <div className="flex flex-row text-center items-center justify-center mt-1">
-                            <div className=" text-primary-orange"><FavoriteOutlined/></div>
+                            <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
                             <div className="ml-2">강아지</div>
                         </div>
                     </div>
