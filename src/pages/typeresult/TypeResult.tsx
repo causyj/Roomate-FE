@@ -5,6 +5,7 @@ import { TypeEmoji } from "../../components/resultdetail/TypeEmoji"
 import { TitleBox } from "../../components/resultdetail/TitleBox"
 import { ANIMAL_DATA } from "../../constants"
 import { tw } from '../../styles'
+import { Link } from "react-router-dom"
   interface TypeAtAGlanceProps {
     noise: number;
     temperature: number;
@@ -132,6 +133,24 @@ const ResultDetail = () => {
             
     )
 }
+const GoToRecommend = () => {
+    return (
+        <div>
+            <Link to='/roommatelist'>
+                <div className="w-full h-16 bg-gray-100 rounded-2xl mt-2">
+                <div className="flex flex-col items-center justify-start p-3">
+                        <div className="text-xs text-center">나와 성향이 맞는 룸메이트를 보러가세요~!</div>
+                        <div className="flex flex-row">
+                            <div className="mt-1 mr-9 font-['700'] text-m ">룸메이트 추천 받으러가기 {'>'}</div>
+                            <img src={process.env.PUBLIC_URL + '/roommate.png'} alt="roomie" width="35px"  />
+                        </div>
+                 </div>
+                 </div>
+            </Link>
+        </div>
+        
+    )
+}
 
 export const TypeResult =() => {
     const result = "rabbit";
@@ -192,6 +211,16 @@ export const TypeResult =() => {
             <ResultDetail />
             
             <TypeEmoji animalColor={animalColor}/>
+            <div className="mt-6"> 
+                < GoToRecommend/>
+            </div>
+            <div className="text-white">
+                        <div>sfsdfs</div>
+                        <div>sfsdfs</div>
+                        <div>sfsdfs</div>
+                        <div>sfsdfs</div>
+                        <div>sfsdfs</div>
+            </div>
         </div>
     )
 } 

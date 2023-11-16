@@ -128,11 +128,11 @@ export const TypeEmoji=({animalColor }: IconBoxProps) => {
                         <div className={`${heartIconStyle.color}`}><BrokenHeart/></div>
                         <div className="ml-2">강아지</div>
                     </div> */}
-                    <div className="text-white">
+                    {/* <div className="text-white">
                         <div>sfsdfs</div>
                         <div>sfsdfs</div>
                         <div>sfsdfs</div>
-                    </div>
+                    </div> */}
                
                 
                 </div>
