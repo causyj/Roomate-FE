@@ -3,6 +3,8 @@ import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
 import { RoommateCard1 } from "./components/RoommateCard1";
+import { Card73 } from "./components/Card73";
+import { Card73like } from "./components/Card73like";
 const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText('#27334B'),
     display : 'flex',
@@ -26,7 +28,7 @@ export const Tab3 = () => {
                 </ColorFab>
             </div>
             <div className="flex flex-row mt-4 gap-2">
-                <RoommateCard1 />
+                <Card73like/>
             </div>
         </div>
     )

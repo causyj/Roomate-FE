@@ -11,78 +11,41 @@ import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
 interface RoomateCardProps {
     disableFlip?: boolean
-    name:string
-    dept : string 
-    year : number
-    mbti: string
-    age:string
-    animal :string
-    color: string
 }
-interface CardFrontProps {
+interface CardFrontBackProps {
     isFrontView: boolean
-    name:string
-    dept : string 
-    year : number
-    mbti: string
-    age :string
-    animal :string
-    color: string
 }
-interface CardFrontDetailProps {
+
+const FrontDetail = () => {
     
-    name:string
-    animal : string
-    color: string
-   
-}
-interface CardBackProps {
-    isFrontView: boolean
-   
-}
-
-const FrontDetail = ({name,animal,color }: CardFrontDetailProps) => {
-    const [isStarred, setIsStarred] = useState(false);
-
-        const handleStarClick = (e :any) => {
-            e.stopPropagation(); // 이벤트 전파를 막습니다.
-        
-            setIsStarred(!isStarred);
-           
-        }
     return (
         <div className="flex flex-col items-center p-4 ">
         <Stack direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" sx={{bgcolor:`${color}`,width: 70, height: 70}} src={process.env.PUBLIC_URL + animal} />
+      <Avatar alt="Remy Sharp" sx={{bgcolor: 'orange',width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabbit.png'} />
     </Stack>
     <div className="flex flex-row ml-2 mt-1">
-        <div className="font-['700'] text-bold text-2xl ">{`${name}님`}</div>
+        <div className="font-['700'] text-bold text-2xl ">김애옹님</div>
         <div className="">
-      {isStarred ? (
+      
         <Star
           sx={{  color: '#F9D800', width: '35px', height: '35px', cursor: 'pointer'  }}
-          onClick={handleStarClick}
+         
         />
-      ) : (
-        <StarBorderRoundedIcon
-          sx={{ width: '33px', height: '35px', cursor: 'pointer' }}
-          onClick={handleStarClick}
-        />
-      )}
+  
     </div>
     </div>
     <div className="font-['700'] text-primary-gray text-xs">블루미르홀 308관/2인실</div>
         </div>
     )
 }
-const CardFront = ({isFrontView,name, dept, year ,mbti,age, animal,color} : CardFrontProps) => {
+const CardFront = ({isFrontView} : CardFrontBackProps) => {
     return (
         <section
         className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out mt-0 ${
             isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
         }`}
     >
-        <FrontDetail name={name} animal={animal} color={color}/>
+        <FrontDetail />
         
             <div
             className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-between rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
@@ -91,10 +54,10 @@ const CardFront = ({isFrontView,name, dept, year ,mbti,age, animal,color} : Card
             }}
         >
             <div className="ml-2 text-m text-white font-['700']">
-                <h1 className="">{`학과 : ${dept}`}</h1> 
-                <h1 className="">{`학번 : ${year}`} </h1> 
-                <h1 className="">{`MBTI : ${mbti}`}</h1> 
-                <h1 className="">{`나이 : ${age}`}</h1> 
+                <h1 className="">학과 : 수학과 </h1> 
+                <h1 className="">학번 : 20학번 </h1> 
+                <h1 className="">MBTI : ENFP </h1> 
+                <h1 className="">나이 : 21살 </h1> 
 
             </div>
            
@@ -103,8 +66,47 @@ const CardFront = ({isFrontView,name, dept, year ,mbti,age, animal,color} : Card
         </div>
     </section>
     )
-}
-const TypeAtAGlance = () =>{
+} 
+interface TypeAtAGlanceProps {
+    noise: number;
+    temperature: number;
+    outgoing: number;
+    clean: number;
+    sleep: number;
+
+  }
+const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep}: TypeAtAGlanceProps) =>{
+ 
+    const nosieCount = Array.from({ length: noise }, (_, index) => (
+        <FavoriteOutlined key={index} sx={{width:'18px'}} />
+      ));
+      const EmptynosieCount = Array.from({ length: 5 - noise }, (_, index) => (
+        <FavoriteBorder key={noise + index} sx={{width:'18px'}} />
+      ));
+      const temperatureCount = Array.from({ length: temperature }, (_, index) => (
+        <FavoriteOutlined key={index} sx={{width:'18px'}} />
+      ));
+      const EmptytemperatureCount = Array.from({ length: 5 - temperature }, (_, index) => (
+        <FavoriteBorder key={noise + index} sx={{width:'18px'}} />
+      ));
+      const outgoingCount = Array.from({ length: outgoing }, (_, index) => (
+        <FavoriteOutlined key={index} sx={{width:'18px'}} />
+      ));
+      const EmptyoutgoingCount = Array.from({ length: 5 - outgoing }, (_, index) => (
+        <FavoriteBorder key={noise + index} sx={{width:'18px'}} />
+      ));
+      const cleanCount = Array.from({ length: clean }, (_, index) => (
+        <FavoriteOutlined key={index}  sx={{width:'18px'}}/>
+      ));
+      const EmptycleanCount = Array.from({ length: 5 - clean }, (_, index) => (
+        <FavoriteBorder key={noise + index} sx={{width:'18px'}} />
+      ));
+      const sleepCount = Array.from({ length: sleep }, (_, index) => (
+        <FavoriteOutlined key={index}  sx={{width:'18px'}}/>
+      ));
+      const EmptysleepCount = Array.from({ length: 5 - sleep }, (_, index) => (
+        <FavoriteBorder key={noise + index}  sx={{width:'18px'}}/>
+      ));
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1 gap-2">
@@ -120,31 +122,36 @@ const TypeAtAGlance = () =>{
             <div className="flex flex-col  font-['800'] text-primary-gray text-sm gap-0.5">
                 <div className="">아침형</div>
                 <div className="">비흡연자</div>
-                <div className=" text-primary-orange flex-col"> 
-                    <div className="flex flex-row mt-[-1px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
-                    <div className="flex flex-row mt-[-2px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
-                    <div className="flex flex-row mt-[-2px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
-                    <div className="flex flex-row mt-[-2px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
-                    <div className="flex flex-row mt-[-2px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
+                <div className=" text-primary-orange flex-col "> 
+                <div className={` text-primary-orange} flex flex-row mt-[-1px]`}>
+                        {nosieCount}
+                        {EmptynosieCount}
+                 </div>
+                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                        {temperatureCount}
+                        {EmptytemperatureCount}
+                 </div>
+                 <div className={`$text-primary-orange flex flex-row mt-[-1px]`}>
+                        {outgoingCount}
+                        {EmptyoutgoingCount}
+                 </div>
+                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                        {cleanCount}
+                        {EmptycleanCount}
+                 </div>
+                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                        {sleepCount}
+                        {EmptysleepCount}
+                 </div>
                 </div>
                 
             </div>
         </div>
-        <Link to={'/typeresult'} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
+        <Link to={'/otherpeople'} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
       </div>
     )
 }  
-const CardBack = ({isFrontView} : CardBackProps) => {
+const CardBack = ({isFrontView} : CardFrontBackProps) => {
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -160,12 +167,18 @@ const CardBack = ({isFrontView} : CardBackProps) => {
             </div>
             <div className="font-['700'] text-primary-gray text-xs mt-[-4px] mb-1">블루미르홀 308관/2인실</div>
             <Divider />
-            <TypeAtAGlance />
+            <TypeAtAGlance 
+                noise={4}
+                temperature={4}
+                outgoing={3}
+                clean={3}
+                sleep={1}
+                />
         </div>
         </section>
     )
 }
-export const RoommateCard1 = ({disableFlip=false,name, dept, year ,mbti,age,animal,color} : RoomateCardProps) => {
+export const Card73like = ({disableFlip=false} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
 
     const toggleCardView = () => {
@@ -176,7 +189,7 @@ export const RoommateCard1 = ({disableFlip=false,name, dept, year ,mbti,age,anim
         onClick={toggleCardView}
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2`}
     >
-        <CardFront isFrontView={isFrontView} name={name} dept={dept} year={year} mbti={mbti} age={age} animal={animal} color={color}/>
+        <CardFront isFrontView={isFrontView} />
         {disableFlip === false && <CardBack isFrontView={isFrontView} />}
     </div>
     )
