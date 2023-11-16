@@ -91,13 +91,15 @@ export const TypeResult =() => {
                 <div className='mb-4 mt-4'>모글리님의 생활 유형은</div>
                 <span className={`text-4xl ${animalIconStyle.color}`}>둔감한 토끼</span> 
             </div>
-         <AnimalDescription />
+            <AnimalDescription type={result} />
     
-            <TitleBox title={'모글리님의 생활 유형 한 눈에 보기'}/>
+            <TitleBox title={'모글리님의 생활 유형 한 눈에 보기'} animalColor={animalColor}/>
             <TypeAtAGlance />
-            <TitleBox title={'모글리님 생활 유형 결과'}/>
+            
+            <TitleBox title={'모글리님 생활 유형 결과'} animalColor={animalColor}/>
             <ResultDetail />
-            <TypeEmoji />
+            
+            <TypeEmoji animalColor={animalColor}/>
         </div>
     )
 } 
