@@ -9,6 +9,15 @@ const questions = [
   ' ',
   // 다음 질문들...
 ];
+const answers = [
+  ['한 번에 바로 일어난다.', '두 번에 일어난다.', '세 번에 일어난다.'],
+  ['답변', '답변', '답변'],
+  ['답변', '답변', ],
+  ['답변', '답변', '답변','답변'],
+  '',
+  // 다른 질문에 대한 답변 배열들...
+];
+
 
 export function TestPagePanel() {
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -34,11 +43,10 @@ export function TestPagePanel() {
       <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex + 1}</div>
       <div className="font-['600'] text-xl text-center mt-1 mb-8">{questions[questionIndex]}</div>
       <div>
-        <AnswerCard AnsweCardText="한 번에 바로 일어난다." />
-        <AnswerCard AnsweCardText="한 번에 바로 일어난다." />
-        <AnswerCard AnsweCardText="한 번에 바로 일어난다." />
-        
-      </div>
+      {(answers[questionIndex] as string[]).map((answer, index) => (
+    <AnswerCard key={index} AnsweCardText={answer} />
+  ))}
+</div>
       <div className="font-['700'] flex items-center justify-between mb-20 mt-12">
         <div className="text-white">dfffffsdf</div>
         <div className="text-3xl text-center">{`${questionIndex + 1}/${questions.length-1}`}</div>
