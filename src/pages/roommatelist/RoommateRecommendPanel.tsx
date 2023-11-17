@@ -48,7 +48,7 @@ export const RoommateRecommendPanel = () => {
       case 0:
         return (
           <div>
-            <span className="font-['700']">모글리</span>님을 위한
+            <span className="font-['700']">김푸앙</span>님을 위한
             <div>추천 결과입니다.</div>
           </div>
         );
@@ -56,14 +56,14 @@ export const RoommateRecommendPanel = () => {
         return (
           <div>
             <span className="font-['700']">전체 목록</span>
-            <div className='text-ms'>모글리님이 거주하는 건물의</div>
+            <div className='text-ms'>김푸앙님이 거주하는 건물의</div>
             <div className='text-ms'>기숙사생들을 모두 볼 수 있어요!</div>
           </div>
         );
       case 2:
         return (
           <div>
-            <span className="font-['700']">모글리</span>님이
+            <span className="font-['700']">김푸앙</span>님이
             <div>찜하신 목록입니다.</div>
           </div>
         );

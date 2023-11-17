@@ -39,7 +39,7 @@ const Intro2 = ({ onClick }: { onClick: () => void }) => {
           </div>
           생활유형 테스트를 통해 
           <div>
-              <span className="font-bold">모글리님</span>에게 딱 맞는 
+              <span className="font-bold">김푸앙님</span>에게 딱 맞는 
           </div>
           콘텐츠를 제공해드릴게요! 
           <div className="mt-4">
