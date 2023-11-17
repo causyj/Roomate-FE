@@ -24,7 +24,7 @@ const FrontDetail = () => {
       <Avatar alt="Remy Sharp" sx={{bgcolor: 'orange',width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabbit.png'} />
     </Stack>
     <div className="flex flex-row ml-2 mt-1">
-        <div className="font-['700'] text-bold text-2xl ">김애옹님</div>
+        <div className="font-['700'] text-bold text-2xl ">폰타나님</div>
         <div className="">
       
         <Star
@@ -160,7 +160,7 @@ const CardBack = ({isFrontView} : CardFrontBackProps) => {
     >
        <div className="flex flex-col p-2 ml-2 mr-2">
             <div className="flex flex-row ">
-                    <div className="font-['700'] text-bold text-3xl ">김애옹님</div>
+                    <div className="font-['700'] text-bold text-3xl ">폰타나님</div>
                     <Link to={"/chat"} className="mt-2 ml-5">
                         <Chat sx={{width:'40px', height: '40px' }}/>
                     </Link>

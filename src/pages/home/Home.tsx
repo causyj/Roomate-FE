@@ -54,8 +54,11 @@ export function Home() {
             <Link to='/notice'>
                 <div className="font-['900'] ">900-Notice</div>
             </Link>
-            <Link to='/otherpeople/:id'>
+            <Link to='/otherpeople'>
                 <div className="font-['900'] ">900-otherpeople</div>
+            </Link>
+            <Link to='/secondexample'>
+                <div className="font-['900'] ">900-secondexample</div>
             </Link>
             
             </div>

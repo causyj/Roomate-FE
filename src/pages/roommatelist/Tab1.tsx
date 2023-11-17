@@ -5,6 +5,7 @@ import ResetIcon from '@mui/icons-material/RestartAltOutlined';
 import { RoommateCard1 } from "./components/RoommateCard1";
 import { Card73 } from "./components/Card73";
 import { Card43 } from "./components/Card43";
+import { GoToGroup } from './components/GoToGroup';
 
 const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText('#27334B'),
@@ -41,6 +42,7 @@ export const Tab1 = () => {
 
   return (
     <div>
+      <GoToGroup />
       <div className="flex flex-row justify-between items-center mt-4">
         <div className="font-['700'] text-2xl">📍 추천 룸메이트</div>
         <ColorFab onClick={handleResetClick}>
