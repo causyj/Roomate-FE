@@ -18,7 +18,7 @@ const FrontDetail = () => {
     return (
         <div className="flex flex-col items-center p-2 ">
         <Stack direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" sx={{bgcolor: blue[500],width: 35, height: 35}} src={process.env.PUBLIC_URL + '/Wolf.png'} />
+      <Avatar alt="Remy Sharp" sx={{bgcolor: blue[500],width: 35, height: 35}} src={process.env.PUBLIC_URL + '/wolf.png'} />
     </Stack>
     <div className="flex flex-row ml-2">
         <div className="font-['700'] text-bold text-xl">모글리님</div>

@@ -16,6 +16,7 @@ import { ForPractice } from './forpractice/ForPractice'
 import { ResultHome } from './pages/resulthome/ResultHome'
 import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
 import { OtherPeople } from './pages/otherpeople/OtherPeople'
+import { SecondExample } from './pages/secondexample/SecondExample'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -81,7 +82,10 @@ const Router = createBrowserRouter([
     path: '/otherpeople',
     element: <OtherPeople/>,
 },
-
+{
+    path: '/secondexample',
+    element: <SecondExample/>,
+},
 
 ])
 
