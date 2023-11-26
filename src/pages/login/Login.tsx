@@ -16,7 +16,7 @@ const ColorButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
       backgroundColor: '#27334B',
     },
     padding: '8px',
-    width: '95%',  
+    width: '95%',
     fontFamily: 'Pretendard',
     borderRadius : '10px'
   }));
@@ -28,9 +28,9 @@ export function Login() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log("sdfs")
-    
+
         try {
-          const response = await fetch('https://8b08-220-86-187-75.ngrok.io', {
+          const response = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -38,13 +38,13 @@ export function Login() {
             body: `username=${username}&password=${password}`,
             credentials: 'include',
           });
-    
+
           // Handle the response as needed
           console.log(response);
-    
+
           // Check if login is successful, then redirect to StarPage
           if (response.ok) {
-            navigate('/textpage');
+            navigate('/testpage');
           }
         } catch (error) {
           console.error('Error during login:', error);
@@ -56,7 +56,7 @@ export function Login() {
     const handlePasswordChange = (value:string) => {
         setPassword(value);
     };
-    
+
     return (
         <div className="flex flex-col font-['700']">
             <Link to='/register' className="text-lg items-end justift-end ml-auto"> 
@@ -85,13 +85,16 @@ export function Login() {
                         onChange={handlePasswordChange}
                         />
             </div>
-           {/* <div className="flex justify-center items-center mt-20">
+            <div className="flex justify-center items-center mt-20">
            <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton>
-           </div> */}
+           </div>
+
+            {/*
                 
                 <Link to="/testpage" className="flex justify-center items-center mt-20 ">
                  <Button buttonText="로그인"/>
                 </Link>
+                */}
         </div>
     )
 }

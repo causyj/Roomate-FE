@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export function Home() {
     return (
-        <div>
+        <div className='flex flex-col'>
             <div className='font-bold'>세상에 이런 폰트가 d나오다니 천재인듯</div>
             
             <div className="font-['100']">Hi this is test For eng.ver </div>
@@ -54,11 +54,14 @@ export function Home() {
             <Link to='/notice'>
                 <div className="font-['900'] ">900-Notice</div>
             </Link>
-            <Link to='/otherpeople/:id'>
+            <Link to='/otherpeople'>
                 <div className="font-['900'] ">900-otherpeople</div>
+            </Link>
+            <Link to='/secondexample'>
+                <div className="font-['900'] ">900-secondexample</div>
             </Link>
             
             </div>
-        </div>
+       </div>
     )
 }
