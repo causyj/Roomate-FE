@@ -36,7 +36,8 @@ module.exports = {
               logo: '#27334B',
               bg: '#474747',
               orange: '#E3834D',
-              gray:'#747474'
+              gray:'#747474',
+              ivory:'#F7F8FB',
           },
       },
     },
