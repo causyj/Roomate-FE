@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export function Home() {
     return (
-        <div>
+        <div className='flex flex-col'>
             <div className='font-bold'>세상에 이런 폰트가 d나오다니 천재인듯</div>
             
             <div className="font-['100']">Hi this is test For eng.ver </div>
@@ -62,6 +62,6 @@ export function Home() {
             </Link>
             
             </div>
-        </div>
+       </div>
     )
 }

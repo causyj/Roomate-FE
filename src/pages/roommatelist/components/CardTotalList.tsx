@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import { blue, yellow } from "@mui/material/colors";
+
 import Star from '@mui/icons-material/StarRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import Chat from '@mui/icons-material/ForumRounded';
