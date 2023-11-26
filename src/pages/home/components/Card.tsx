@@ -20,7 +20,7 @@ export const Card: React.FC<CardProps> = ({ image, text, description1, descripti
   return (
     <div className="flex flex-row">
       <div
-        className={`h-60 w-[200px] bg-primary-logo z-20 rounded-2xl bg-primary-ivory shadow-2xl flex flex-col p-3 justify-center items-center text-center ${
+        className={`h-60 w-[200px]  rounded-2xl bg-primary-ivory shadow-2xl flex flex-col p-3 justify-center items-center text-center  ${
           showExtraContent ? 'cursor-pointer' : ''
         }`}
         onClick={toggleExtraContent}
