@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
 import { RoommateCard2 } from "./components/RoommateCard2";
 import { RoommateCard1 } from './components/RoommateCard1';
+import { CardTotalList } from './components/CardTotalList';
 const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText('#27334B'),
     display : 'flex',
@@ -35,8 +36,7 @@ export const Tab2 = () => {
                 </ColorFab>
             </div>
             <div className="grid grid-cols-2 mt-4 gap-5 justify-between">
-            
-            {/* {CardInfo.map((card, index) => (
+            {CardInfo.map((card, index) => (
           <CardTotalList
             key={index}
             name={card.name}
@@ -47,7 +47,7 @@ export const Tab2 = () => {
             animal={card.animal}
             color={card.color}
           />
-        ))} */}
+        ))}
             </div>
         </div>
     )
