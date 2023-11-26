@@ -21,6 +21,6 @@ import "../../index.css"
 // }
 export function Button({ buttonText }: { buttonText: string }) {
   return (
-      <button className="text-[20px] font-['500'] bg-primary-logo w-[95%] p-[8px] h-14 rounded-xl hover:bg-primary-logo text-white flex justify-center items-center">{buttonText}</button>
+      <button className="text-[22px] font-['400'] bg-primary-logo w-[95%]  p-[8px] h-14 rounded-xl hover:bg-primary-logo text-white flex justify-center items-center">{buttonText}</button>
   )
 }

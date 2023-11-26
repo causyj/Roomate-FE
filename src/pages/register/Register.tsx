@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { RegisterTextField } from "./components/RegisterTextField";
 import { RegisterButton } from "./components/RegisterButton";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Button } from "../../components/common";
+import { FormControl, InputLabel, MenuItem } from "@mui/material";
 export function Register() {
     const [email, setEmail] = useState('');
     const [code, setCode] = useState('');
@@ -41,7 +34,7 @@ export function Register() {
         setGender(event.target.value);
     };
     return (
-        <div className="flex flex-col items-center justify-center font-['700']">
+        <div className="flex flex-col items-center justify-center font-['700'] mb-16">
             <div className="text-xl mt-4">회원가입</div>
             <div className="mt-4">Aniroomie에 오신 것을 환영합니다!</div>
             <div className="flex flex-col mt-4">
@@ -93,9 +86,8 @@ export function Register() {
                     />
                     <RegisterButton text="중복확인"/>
                 </div>
-                <div className="flex felx-row gap-2 p-1 justify-evenly items-center">
-                    <div className="font-['700'] text-xl">성별</div>
-                    <div className="font-['700']">
+                <div className="flex felx-row gap-2 p-1 justify-evenly items-center mb-4">
+                    <div className="font-['700'] text-xl">성별</div>        
                     <FormControl sx={{ width: '200px',borderRadius: '50%' }}>
                         <InputLabel id="demo-simple-select-label" >성별</InputLabel>
                         <Select
@@ -106,6 +98,7 @@ export function Register() {
                             onChange={handleGenderChange}
                             sx={{
                                 borderRadius: '10px',
+                                height : '50px',
                             }}
                             
                         >
@@ -113,14 +106,14 @@ export function Register() {
                             <MenuItem value={'male'}>남성</MenuItem>
                         </Select>
                         </FormControl>
-                   
+                
                     </div>
                 </div>
-                <div className="mb-12 mt-4">
-                    <Button buttonText="회원가입 하기"/>
-                </div>
+    
+               
+                <Button buttonText="회원가입 하기" />
+                
             </div>
-            
-        </div>
+         
     )
 }

@@ -86,7 +86,8 @@ export function Login() {
                         />
             </div>
             <div className="flex justify-center items-center mt-20">
-           <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton>
+           {/* <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton> */}
+           <Button buttonText="로그인"/>
            </div>
 
             {/*

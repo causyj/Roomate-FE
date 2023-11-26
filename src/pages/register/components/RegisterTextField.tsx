@@ -7,13 +7,7 @@ interface RegisterTextFieldProps {
     value: string;
     onChange: (value: string) => void;
 }
-interface ErrorRegisterTextFieldProps {
-    error :boolean;
-    label: string;
-    value: string;
-    onChange: (value: string) => void;
-    helperText : string;
-}
+
 export const RegisterTextField: React.FC<RegisterTextFieldProps> = ({ label, value, onChange }) =>{
     return (
         <div className='flex felx-row'>
