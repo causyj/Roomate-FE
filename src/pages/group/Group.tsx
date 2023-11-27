@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Tab1 } from './Tab1';
+import { Tab2 } from './Tab2';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -63,7 +64,7 @@ export const Group = () => {
           <Tab1/>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          <div></div>
+          <Tab2/>
         </CustomTabPanel>
   
 </div>
