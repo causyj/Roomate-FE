@@ -9,7 +9,7 @@ import { Verify } from './pages/verify/Verify'
 import { Chat } from './pages/chat/Chat'
 import { RoommateRecommend } from './pages/roommatelist/RoommateRecommend'
 import { RoommateOption } from './pages/roommatelist/RoommateOption'
-import { GroupList } from './pages/group/GroupList'
+import { Group } from './pages/group/Group'
 import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 import { ForPractice } from './forpractice/ForPractice'
@@ -17,6 +17,7 @@ import { ResultHome } from './pages/resulthome/ResultHome'
 import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
 import { OtherPeople } from './pages/otherpeople/OtherPeople'
 import { SecondExample } from './pages/secondexample/SecondExample'
+import { GroupDetail } from './pages/group/[group]/GroupDetail'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -68,8 +69,12 @@ const Router = createBrowserRouter([
 },
   {
       path: '/group',
-      element: <GroupList/>,
+      element: <Group/>,
   },
+  {
+    path: '/group/:group',
+    element: <GroupDetail/>,
+},
   
   {
     path: '/notice',
