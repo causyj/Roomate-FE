@@ -17,7 +17,7 @@ export const GroupListCard : React.FC<GroupListCardProps> = ({ title, day, time,
                     <div className="font-['700'] text-ms text-primary-gray mt-[-2px]">{`${day} | ${time}`}</div>
                 </div>
                 <div className="bg-black w-[35px] h-[35px] rounded-full flex items-center justify-center text-white font-['600']">
-                    2/6
+                    8/10
                 </div>
             </div>
         </div>
