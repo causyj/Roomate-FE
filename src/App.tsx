@@ -9,7 +9,7 @@ import { Verify } from './pages/verify/Verify'
 import { Chat } from './pages/chat/Chat'
 import { RoommateRecommend } from './pages/roommatelist/RoommateRecommend'
 import { RoommateOption } from './pages/roommatelist/RoommateOption'
-import { GroupList } from './pages/group/GroupList'
+import { Group } from './pages/group/Group'
 import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 import { ForPractice } from './forpractice/ForPractice'
@@ -68,7 +68,7 @@ const Router = createBrowserRouter([
 },
   {
       path: '/group',
-      element: <GroupList/>,
+      element: <Group/>,
   },
   
   {
