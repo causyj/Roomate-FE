@@ -17,6 +17,7 @@ import { ResultHome } from './pages/resulthome/ResultHome'
 import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
 import { OtherPeople } from './pages/otherpeople/OtherPeople'
 import { SecondExample } from './pages/secondexample/SecondExample'
+import { GroupDetail } from './pages/group/[group]/GroupDetail'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -70,6 +71,10 @@ const Router = createBrowserRouter([
       path: '/group',
       element: <Group/>,
   },
+  {
+    path: '/group/:group',
+    element: <GroupDetail/>,
+},
   
   {
     path: '/notice',

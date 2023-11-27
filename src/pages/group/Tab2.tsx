@@ -18,7 +18,7 @@ export const Tab2 = () => {
 
             </div>
             <div className="mt-4">
-                <GroupListCard />
+                <GroupListCard title="러닝 크루" day="화요일, 목요일" time='23:00 ~ 23:00' img='running' />
             </div>
         </div>
     )
