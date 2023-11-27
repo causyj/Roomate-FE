@@ -38,6 +38,8 @@ module.exports = {
               orange: '#E3834D',
               gray:'#747474',
               ivory:'#F7F8FB',
+              pink: '#FFD8D8',
+              green : '#9FEEB5',
           },
       },
     },
