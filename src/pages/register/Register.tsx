@@ -6,7 +6,7 @@ import { Button } from "../../components/common";
 import { RegisterButton } from "../../components/common";
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
 export function Register() {
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('dd');
     const [code, setCode] = useState('');
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
@@ -35,20 +35,33 @@ export function Register() {
     const handleGenderChange = (event: SelectChangeEvent<string>) => {
         setGender(event.target.value);
     };
+    const isCauEmail = email.includes('@cau.ac.kr');
     return (
         <div className="flex flex-col items-center justify-center font-['700'] mb-16 ">
             <div className="text-2xl mt-12  text-primary-logo">회원가입</div>
             <div className="mt-4">Aniroomie에 오신 것을 환영합니다!</div>
             <div className="flex flex-col mt-4">
-                <div className="flex felx-row gap-2 mb-3">
-                    <RegisterTextField
+                <div className="flex felx-row gap-2">
+                    {isCauEmail ? 
+                        <RegisterTextField
+                        error={false}
                         label="학교 이메일"
                         value={email}
                         onChange={handleEmailChange}
+                        helperText=""
+                    /> :
+                    <RegisterTextField
+                        error={true}
+                        label="학교 이메일"
+                        value={email}
+                        onChange={handleEmailChange}
+                        helperText="@cau.ac.kr 형식이어야 합니다."
                     />
+                    }
                     <RegisterButton onClick={(e) => handleSubmit(e)}>인증받기</RegisterButton>
                 </div>
-                <div className="flex felx-row gap-2 mb-3">
+                {/* <div className="font-['500'] text-xs ml-2 text-red-600">이메일 형식이 @cau.ac.kr이 아닙니다.</div> */}
+                {/* <div className="flex felx-row gap-2 mb-3">
                     <RegisterTextField
                         label="인증코드 입력"
                         value={code}
@@ -87,7 +100,7 @@ export function Register() {
                         onChange={handleNicknameChange}
                     />
                       <RegisterButton onClick={(e) => handleSubmit(e)}>로그인</RegisterButton>
-                </div>
+                </div> */}
                 <div className="flex felx-row gap-2 p-1 justify-evenly items-center mb-4">
                     <div className="font-['700'] text-xl">성별</div>        
                     <FormControl sx={{ width: '200px',borderRadius: '50%' }}>
