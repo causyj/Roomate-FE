@@ -20,6 +20,20 @@ const StyledColorButton = styled(MUIButton)<ColorButtonProps>(({ theme }) => ({
   borderRadius: '10px',
 }));
 
+const RegisterStyledColorButton = styled(MUIButton)<ColorButtonProps>(({ theme }) => ({
+  color: theme.palette.getContrastText('#27334B'),
+  backgroundColor: '#27334B',
+  fontSize: 20,
+  '&:hover': {
+    backgroundColor: '#27334B',
+  },
+  padding: '8px',
+  width: '35%',
+  height:'50px',
+  fontFamily: 'Pretendard',
+  borderRadius: '10px',
+}));
+
 export const Button: React.FC<ColorButtonProps> = ({ onClick, ...rest }) => {
   return (
     <StyledColorButton variant="contained" onClick={onClick} {...rest}>
@@ -27,5 +41,13 @@ export const Button: React.FC<ColorButtonProps> = ({ onClick, ...rest }) => {
     </StyledColorButton>
   );
 };
+export const RegisterButton: React.FC<ColorButtonProps> = ({ onClick, ...rest }) => {
+  return (
+    <RegisterStyledColorButton variant="contained" onClick={onClick} {...rest}>
+      {rest.children}
+    </RegisterStyledColorButton>
+  );
+};
+
 
   
