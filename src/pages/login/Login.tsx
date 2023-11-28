@@ -5,21 +5,8 @@ import Password from '@mui/icons-material/LockOpen'
 import { Button } from "../../components/common";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MUIButton, { ButtonProps } from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
 
-const ColorButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
-    color: theme.palette.getContrastText('#27334B'),
-    backgroundColor: '#27334B',
-    fontSize: 20,
-    '&:hover': {
-      backgroundColor: '#27334B',
-    },
-    padding: '8px',
-    width: '95%',
-    fontFamily: 'Pretendard',
-    borderRadius : '10px'
-  }));
+
 export function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -58,17 +45,15 @@ export function Login() {
     };
 
     return (
-        <div className="flex flex-col font-['700'] text-center mx-auto justify-center">
-            <Link to='/register' className="text-lg items-end justift-end ml-auto"> 
-                회원가입
-            </Link>
-            <div className="flex flex-col justify-center items-center mt-8">
+        <div className="flex flex-col font-['700'] text-center justify-center mb-12">
+            
+            <div className="flex flex-col justify-center items-center">
                 <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="monkey" style={{width : '70px'}}/>
                 <img src={process.env.PUBLIC_URL + '/logo.png'} alt="monkey" style={{width : '200px'}}/>
             </div>
-            <div className="p-4 text-lg ">
+            <div className="p-4 text-m ">
                 Aniroomie에서 내 룸메이트도 찾고
-                <div>나의 기숙사 생활 유형도 알아보세요!</div>
+                <div>나의 기숙사 생활 유형도 알아보세요! 로그인</div>
             </div>
             <div className="flex flex-col justify-center items-center mt-6">
                 <div className="mb-4">
@@ -86,16 +71,20 @@ export function Login() {
                         />
             </div>
             <div className="flex justify-center items-center mt-20">
-           {/* <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton> */}
-           <Button buttonText="로그인"/>
-           </div>
+             {/* <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton> */}
+             <Button onClick={(e) => handleSubmit(e)}>로그인</Button>
 
-            {/*
-                
-                <Link to="/testpage" className="flex justify-center items-center mt-20 ">
-                 <Button buttonText="로그인"/>
-                </Link>
-                */}
+           </div>
+           <div className="flex items-center text-sm text-center mx-auto ml-auto mt-2">
+            아직 계정이 없으신가요? 
+            <span className="ml-2 text-primary-logo">
+              <Link to='/register' className="text-lg text-center mx-auto ml-auto mt-4 "> 
+                   회원가입
+              </Link>
+            </span>
+           </div>
+           
+
         </div>
     )
 }

@@ -25,7 +25,7 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
               <img src={process.env.PUBLIC_URL + '/congratulation.png'} alt="monkey" style={{width : '200px'}}/>
           </div>
           <div onClick={onClick} className='w-1/3 text-center mt-8'>
-                <Button buttonText={'→'}/>
+                {/* <Button buttonText={'→'}/> */}
             </div>
       </div>
   )

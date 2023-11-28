@@ -111,7 +111,7 @@ export function Register() {
                 </div>
     
                
-                <Button buttonText="회원가입 하기" />
+                {/* <Button buttonText="회원가입 하기" /> */}
                 
             </div>
          

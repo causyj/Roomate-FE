@@ -32,7 +32,7 @@ export function Verify() {
             </div>
            <div className="font-['400'] text-center mx-auto text-sm">합격인증 완료까지 <span className="font-['700']">1일~2일</span>정도 소요될 수 있습니다. </div>
            <div className="font-['700'] text-center mx-auto text-sm mb-3 ">합격 인증이 완료되면 알림으로 알려드릴게요 :)</div>
-           <Button buttonText="기숙사 합격 인증 받기"></Button>
+           {/* <Button buttonText="기숙사 합격 인증 받기"></Button> */}
         </div>
     )
 }
