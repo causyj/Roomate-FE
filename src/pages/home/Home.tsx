@@ -7,13 +7,13 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
     const [verify, setVerify] = useState(false);
    
     return (
-     <div className="w-full fixe flex justify-center overflow-y-auto">
+     <div className="w-full fixed flex justify-center overflow-y-auto">
           <div className=" h-[20%] w-full bg-primary-logo fixed top-[-1px]  flex items-center justify-center" style={{zIndex:2}}>
             <div className="flex flex-row mt-[-40px] gap-4">
                 <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="logo" style={{ width: '70px' }} />
                 <div className="flex flex-col">
                     <div className="font-['700'] text-white text-3xl ">모글리님</div>
-                    <Link to='resulthome' className="text-gray-300 font-['400']">나의 동물유형 결과 보러가기 {'>'}</Link>
+                    <Link to='/resulthome' className="text-gray-300 font-['400']">나의 동물유형 결과 보러가기 {'>'}</Link>
                 </div>
                 
             </div>

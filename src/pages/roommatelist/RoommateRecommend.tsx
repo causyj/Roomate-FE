@@ -5,7 +5,7 @@ import { Optional } from './Optional';
 import CircleIcon from '@mui/icons-material/Circle';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import { Button } from '../../components/common';
-import { Loading } from '../../components/Loading/Loading';
+import { Loading } from '../../components/Loading';
 import { useState } from 'react';
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { AnimalDictionary } from '../animaldict/AnimalDictionary';
 import { TypeResult } from '../typeresult/TypeResult';
-import { Loading } from '../../components/Loading/Loading';
+import { Loading } from '../../components/Loading';
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;

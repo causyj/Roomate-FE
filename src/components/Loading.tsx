@@ -1,4 +1,4 @@
-import ProgressIndLinear from "../common/ProgressIndLinear";
+import ProgressIndLinear from "./common/ProgressIndLinear";
 interface  LoadingProps{
     firstLine : string,
     secondLine : string,

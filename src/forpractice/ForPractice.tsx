@@ -1,7 +1,9 @@
-import { Loading } from "../components/Loading/Loading"
+import { Loading } from "../components/Loading"
 import { RoommateOption } from "../pages/roommatelist/RoommateOption"
 export function ForPractice() {
     return (
-       <div>sdfs</div>
+       <div className="full-screen bg-primary-logo">
+        ds
+       </div>
     )
 }

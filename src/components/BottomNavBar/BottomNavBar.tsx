@@ -11,7 +11,7 @@ const BottomNavbar = (): React.ReactElement => {
   const [value, setValue] = React.useState(0);
   const pathname = window.location.pathname; 
   useEffect(() => {
-    if (pathname === '/') {
+    if (pathname === '/home') {
       setValue(0);
     } else if (pathname === '/chat') {
       setValue(1);
@@ -36,7 +36,7 @@ const BottomNavbar = (): React.ReactElement => {
         <BottomNavigationAction 
             label={<div className="font-['700']">Home</div>}
             icon={<Home />}
-            href='/' 
+            href='/home' 
         />
         <BottomNavigationAction 
             label={<div className="font-['700']">Chat</div>}

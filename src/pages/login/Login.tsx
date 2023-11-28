@@ -58,7 +58,7 @@ export function Login() {
     };
 
     return (
-        <div className="flex flex-col font-['700']">
+        <div className="flex flex-col font-['700'] text-center mx-auto justify-center">
             <Link to='/register' className="text-lg items-end justift-end ml-auto"> 
                 회원가입
             </Link>
