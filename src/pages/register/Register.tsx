@@ -6,13 +6,42 @@ import { Button } from "../../components/common";
 import { RegisterButton } from "../../components/common";
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
 export function Register() {
-    const [email, setEmail] = useState('dd');
+    const [email, setEmail] = useState('');
+    const [authCode, setAuthCode] = useState('');
     const [code, setCode] = useState('');
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [passwordcheck, setPasswordcheck] = useState('');
     const [nickname, setNickname] = useState('');
     const [gender, setGender] = useState('');
+    const handleEmailConfirm = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/mailConfirm', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: email,
+              }),
+            });
+      
+            if (response.ok) {
+              // 서버에서 인증 코드를 반환한 경우
+              const data = await response.text();
+              if(data != ''){
+                setAuthCode(data);
+              }
+              console.log({authCode});
+            } else {
+              // 서버에서 에러가 발생한 경우
+              console.error('Error during mailConfirm1:', response.statusText);
+            }
+          } catch (error) {
+            console.error('Error during mailConfirm2:', error);
+          }
+        };
     const handleSubmit = async (e: React.FormEvent) => {}
     const handleEmailChange = (value:string) => {
         setEmail(value);
@@ -41,24 +70,33 @@ export function Register() {
             <div className="text-2xl mt-12  text-primary-logo">회원가입</div>
             <div className="mt-4">Aniroomie에 오신 것을 환영합니다!</div>
             <div className="flex flex-col mt-4">
-                <div className="flex felx-row gap-2">
+                <div >
                     {isCauEmail ? 
+                        <div className="flex felx-row gap-2">
+                            <RegisterTextField
+                                error={false}
+                                label="학교 이메일"
+                                value={email}
+                                onChange={handleEmailChange}
+                                helperText=""
+                            /> 
+                            <RegisterButton onClick={(e) => handleEmailConfirm(e)}>인증받기</RegisterButton>
+                        </div>
+
+                    :
+                    <div className="flex felx-row gap-2">
                         <RegisterTextField
-                        error={false}
-                        label="학교 이메일"
-                        value={email}
-                        onChange={handleEmailChange}
-                        helperText=""
-                    /> :
-                    <RegisterTextField
-                        error={true}
-                        label="학교 이메일"
-                        value={email}
-                        onChange={handleEmailChange}
-                        helperText="@cau.ac.kr 형식이어야 합니다."
-                    />
+                            error={true}
+                            label="학교 이메일"
+                            value={email}
+                            onChange={handleEmailChange}
+                            helperText="@cau.ac.kr 형식이어야 합니다."
+                            />
+                        <RegisterButton onClick={() => {}}>인증받기</RegisterButton>
+                        
+                    </div>
                     }
-                    <RegisterButton onClick={(e) => handleSubmit(e)}>인증받기</RegisterButton>
+                   
                 </div>
                 {/* <div className="font-['500'] text-xs ml-2 text-red-600">이메일 형식이 @cau.ac.kr이 아닙니다.</div> */}
                 {/* <div className="flex felx-row gap-2 mb-3">
