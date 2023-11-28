@@ -28,7 +28,7 @@ const RegisterStyledColorButton = styled(MUIButton)<ColorButtonProps>(({ theme }
     backgroundColor: '#27334B',
   },
   padding: '8px',
-  width: '35%',
+  width: '90px',
   height:'50px',
   fontFamily: 'Pretendard',
   borderRadius: '10px',

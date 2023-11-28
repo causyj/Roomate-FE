@@ -42,4 +42,36 @@ export const RegisterTextField: React.FC<RegisterTextFieldProps> = ({ error, lab
         </div>
     )
 }
+export const PasswordTextField: React.FC<RegisterTextFieldProps> = ({ error, label, value, onChange, helperText }) =>{
+    return (
+        <div className='flex felx-row'>
+      <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': {  width: '29ch',},
+      }}
+      noValidate
+      autoComplete="off"
+    >
+         <TextField
+          error = {error}
+          required
+          id={`outlined-required-${label.toLowerCase()}`}
+          label={label}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          InputProps={{
+            style: {
+              borderRadius: "10px",
+              height :"50px",
+            }
+          }}
+          helperText={helperText}
+          
+          
+        />
+      </Box>
+        </div>
+    )
+}
 
