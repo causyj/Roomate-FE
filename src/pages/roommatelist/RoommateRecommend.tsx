@@ -5,7 +5,7 @@ import { Optional } from './Optional';
 import CircleIcon from '@mui/icons-material/Circle';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
 import { Button } from '../../components/common';
-import { Loading } from '../../components/Loading/Loading';
+import { Loading } from '../../components/Loading';
 import { useState } from 'react';
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -25,7 +25,7 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
               <img src={process.env.PUBLIC_URL + '/congratulation.png'} alt="monkey" style={{width : '200px'}}/>
           </div>
           <div onClick={onClick} className='w-1/3 text-center mt-8'>
-                <Button buttonText={'→'}/>
+                {/* <Button buttonText={'→'}/> */}
             </div>
       </div>
   )

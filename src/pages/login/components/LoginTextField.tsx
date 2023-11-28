@@ -17,7 +17,7 @@ export const LoginTextField: React.FC<LoginTextFieldProps> = ({ text, icon, valu
          id={`input-with-sx-${text.toLowerCase()}`} // Unique ID for each text field
          label={text}
          variant="standard"
-         sx={{ width: '200px' }}
+         sx={{ width: '200px'}}
          value={value}
          onChange={(e) => onChange(e.target.value)}
          />

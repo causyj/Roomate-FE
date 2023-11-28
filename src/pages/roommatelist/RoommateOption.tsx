@@ -86,7 +86,7 @@ export function RoommateOption({ onClick }: { onClick: () => void }) {
                     </div>
                    
                     <div onClick={onClick} className="flex items-center justify-center mt-4">
-                     <Button buttonText='저장하기'/>
+                     {/* <Button buttonText='저장하기'/> */}
                     </div>
                     
                 </div>

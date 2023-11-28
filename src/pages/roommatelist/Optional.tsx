@@ -132,7 +132,7 @@ export function Optional({ onClick }: { onClick: () => void }) {
                         <CircleIcon sx={{ color:'#27334B', width:'16px'}}/>
             </div>
             <div onClick={onClick} className='text-center mt-4'>
-                <Button buttonText={'저장하기'}/>
+                {/* <Button buttonText={'저장하기'}/> */}
             </div>
              {/* <div className="flex justify-center items-center mt-20">
            <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton>

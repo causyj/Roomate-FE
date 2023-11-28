@@ -18,11 +18,16 @@ import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
 import { OtherPeople } from './pages/otherpeople/OtherPeople'
 import { SecondExample } from './pages/secondexample/SecondExample'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
+import { LandingPage } from './components/LandingPage'
 const Router = createBrowserRouter([
   {
       path: '/',
-      element:<Home/>
+      element:<LandingPage/>
   },
+  {
+    path: '/home',
+    element:<div><BottomNavbar/><Home/></div>
+},
 
   {
     path: '/login',
@@ -95,5 +100,5 @@ const Router = createBrowserRouter([
 
 ])
 
-export const ProjectRouter = () => <><BottomNavbar/><RouterProvider router={Router} /></>
+export const ProjectRouter = () => <><RouterProvider router={Router} /></>
 
