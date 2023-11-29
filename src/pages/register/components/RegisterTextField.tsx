@@ -3,12 +3,14 @@ import TextField from '@mui/material/TextField';
 import React from 'react';
 
 interface RegisterTextFieldProps {
+    error : boolean;
     label: string;
     value: string;
     onChange: (value: string) => void;
+    helperText: string;
 }
 
-export const RegisterTextField: React.FC<RegisterTextFieldProps> = ({ label, value, onChange }) =>{
+export const RegisterTextField: React.FC<RegisterTextFieldProps> = ({ error, label, value, onChange, helperText }) =>{
     return (
         <div className='flex felx-row'>
       <Box
@@ -20,7 +22,7 @@ export const RegisterTextField: React.FC<RegisterTextFieldProps> = ({ label, val
       autoComplete="off"
     >
          <TextField
-          error = {false}
+          error = {error}
           required
           id={`outlined-required-${label.toLowerCase()}`}
           label={label}
@@ -29,9 +31,43 @@ export const RegisterTextField: React.FC<RegisterTextFieldProps> = ({ label, val
           InputProps={{
             style: {
               borderRadius: "10px",
-              height :"50px",
+              height :"48px",
             }
           }}
+          helperText={helperText}
+          
+          
+        />
+      </Box>
+        </div>
+    )
+}
+export const PasswordTextField: React.FC<RegisterTextFieldProps> = ({ error, label, value, onChange, helperText }) =>{
+    return (
+        <div className='flex felx-row'>
+      <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': {  width: '29ch',},
+      }}
+      noValidate
+      autoComplete="off"
+    >
+         <TextField
+          error = {error}
+          required
+          id={`outlined-required-${label.toLowerCase()}`}
+          label={label}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          InputProps={{
+            style: {
+              borderRadius: "10px",
+              height :"48px",
+            }
+          }}
+          helperText={helperText}
+          
           
         />
       </Box>

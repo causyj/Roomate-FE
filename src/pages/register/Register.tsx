@@ -1,25 +1,166 @@
 import { useState } from "react";
 import { RegisterTextField } from "./components/RegisterTextField";
-import { RegisterButton } from "./components/RegisterButton";
+import { PasswordTextField } from "./components/RegisterTextField";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Button } from "../../components/common";
+import { RegisterButton } from "../../components/common";
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
+import CheckIcon from '@mui/icons-material/Check';
+import { useNavigate } from 'react-router-dom';
 export function Register() {
     const [email, setEmail] = useState('');
+    const [authCode, setAuthCode] = useState('');
     const [code, setCode] = useState('');
-    const [id, setId] = useState('');
+    const [isCodeEqual, setIsCodeEqual] = useState(false);
+    const [userId, setUserId] = useState('');
+    const [isIdDuplicate, setIsIdDuplicate] = useState(false);
+    const [isIdDuplicateButton, setIsIdDuplicateButton] = useState(0);
     const [password, setPassword] = useState('');
     const [passwordcheck, setPasswordcheck] = useState('');
     const [nickname, setNickname] = useState('');
+    const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
+    const [isNicknameDuplicateButton, setIsNicknameDuplicateButton] = useState(0);
     const [gender, setGender] = useState('');
+    const [status, setStatus] = useState(true);
+    const navigate = useNavigate();
+    const handleEmailConfirm = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/mailConfirm', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: email,
+              }),
+            });
+      
+            if (response.ok) {
+              // 서버에서 인증 코드를 반환한 경우
+              const data = await response.text();
+              if(data != ''){
+                setAuthCode(data);
+              }
+              console.log({authCode});
+            } else {
+              // 서버에서 에러가 발생한 경우
+              console.error('Error during mailConfirm1:', response.statusText);
+            }
+          } catch (error) {
+            console.error('Error during mailConfirm2:', error);
+          }
+        };
+    const handleCodeCompare = async (e: React.FormEvent) => {
+        if(code === authCode){
+            setIsCodeEqual(true);
+        }else{
+            setIsCodeEqual(false);
+        }
+        }
+    const handleIdDuplicate = async (e: React.FormEvent) => {
+            e.preventDefault();
+            try {
+                const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/auth/id/${userId}/exists`, {
+                  method: 'GET',
+                  headers: {
+                    
+                  },
+                });
+          
+                if (response.ok) {
+                  // 서버에서 인증 코드를 반환한 경우
+                  const data = await response.text();
+                  
+                // 중복이면 : true  사용가능하면 : false
+                   if(data =='true'){
+                    setIsIdDuplicate(true)
+                   }else{
+                    setIsIdDuplicate(false)
+                    setIsIdDuplicateButton(1)
+                   }
+                  
+                } else {
+                  // 서버에서 에러가 발생한 경우
+                  console.error('Error during mailConfirm1:', response.statusText);
+                }
+              } catch (error) {
+                console.error('Error during mailConfirm2:', error);
+              }
+            };  
+    const handleNicknameDuplicate = async (e: React.FormEvent) => {
+                e.preventDefault();
+                try {
+                    const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/auth/nickname/${nickname}/exists`, {
+                      method: 'GET',
+                      headers: {
+
+                      },
+                    });
+              
+                    if (response.ok) {
+                      // 서버에서 인증 코드를 반환한 경우
+                      const data = await response.text();
+                      
+                    // 중복이면 : true  사용가능하면 : false
+                       if(data =='true'){
+                        setIsNicknameDuplicate(true)
+                       }else{
+                        setIsNicknameDuplicate(false)
+                        setIsNicknameDuplicateButton(1)
+                       }
+                      console.log(data);
+                    } else {
+                      // 서버에서 에러가 발생한 경우
+                      console.error('Error during mailConfirm1:', response.statusText);
+                    }
+                  } catch (error) {
+                    console.error('Error during mailConfirm2:', error);
+                  }
+                };
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus(true);
+     
+        try {
+          const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/api/user', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body:  JSON.stringify({
+                userId: userId,
+                password: password,
+                email: email,
+                nickname: nickname,
+                gender: gender,
+                status: status,
+              }),
+            credentials: 'include',
+          });
+
+          // Handle the response as needed
+          console.log(response);
+
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+            navigate('/login');
+          }
+        } catch (error) {
+          console.error('Error during login:', error);
+        }
+      };
+      
     const handleEmailChange = (value:string) => {
         setEmail(value);
+
     };
     const handleCodeChange = (value:string) => {
         setCode(value)
+        console.log(code);
     };
     const handleIdChange = (value:string) => {
-        setId(value)
+        setUserId(value)
     };
     const handlePasswordChange = (value:string) => {
         setPassword(value)
@@ -32,61 +173,149 @@ export function Register() {
     };
     const handleGenderChange = (event: SelectChangeEvent<string>) => {
         setGender(event.target.value);
+        console.log(event.target.value);
     };
+    const isCauEmail = email.includes('@cau.ac.kr');
+    const Idduplicate = isIdDuplicateButton ? "사용 가능한 아이디입니다." : " "
+    const Nicknameduplicate = isNicknameDuplicateButton ? "사용 가능한 닉네임입니다." : " "
     return (
-        <div className="flex flex-col items-center justify-center font-['700'] mb-16">
-            <div className="text-xl mt-4">회원가입</div>
-            <div className="mt-4">Aniroomie에 오신 것을 환영합니다!</div>
-            <div className="flex flex-col mt-4">
-                <div className="flex felx-row gap-2 p-1">
-                    <RegisterTextField
-                        label="학교 이메일"
-                        value={email}
-                        onChange={handleEmailChange}
-                    />
-                    <RegisterButton text="인증받기"/>
+        <div className="flex flex-col items-center justify-center font-['700'] mt-[-40px]">
+            <div className="text-2xl text-primary-logo">회원가입</div>
+            <div className="">Aniroomie에 오신 것을 환영합니다!</div>
+            <div className="flex flex-col mt-3">
+                {/* 이메일 인증 */}
+                <div > 
+                    {isCauEmail ? 
+                        <div className="flex felx-row gap-2">
+                            <RegisterTextField
+                                error={false}
+                                label="학교 이메일"
+                                value={email}
+                                onChange={handleEmailChange}
+                                helperText=" "
+                            /> 
+                            <RegisterButton onClick={(e) => handleEmailConfirm(e)}>인증받기</RegisterButton>
+                        </div>
+
+                    :
+                    <div className="flex felx-row gap-2">
+                        <RegisterTextField
+                            error={true}
+                            label="학교 이메일"
+                            value={email}
+                            onChange={handleEmailChange}
+                            helperText="@cau.ac.kr 형식이어야 합니다."
+                            />
+                        <RegisterButton onClick={() => {}}>인증받기</RegisterButton>
+                        
+                    </div>
+                    }
+                   
                 </div>
-                <div className="flex felx-row gap-2 p-1">
+                {/* 인증코드  */}
+                 <div className="flex felx-row gap-2">
                     <RegisterTextField
-                        label="인증코드 입력"
-                        value={code}
-                        onChange={handleCodeChange}
-                    />
-                    <RegisterButton text="확인"/>
+                                error={false}
+                                label="인증코드 입력"
+                                value={code}
+                                onChange={handleCodeChange}
+                                helperText=""
+                    /> 
+    
+                    {isCodeEqual == true ? 
+                    <div className="flex flex-col items-center text-center mx-auto ">
+                      <CheckIcon sx={{color : 'green', width:'35px', height:'35px'}}/>
+                      <div className="font-['600'] text-xs">확인되었습니다.</div>
                 </div>
-                <div className="flex felx-row gap-2 p-1">
+                    :
+                     <RegisterButton onClick={(e) => handleCodeCompare(e)}>확인</RegisterButton>
+                }
+                    
+                </div>
+                <div className="font-['400'] text-xs text-gray-400 p-1 ml-2 mb-1">1분 내에 인증코드가 오지 않으면 인증받기를 다시 눌러주세요</div>
+                {/* 아이디 */}
+                <div className="flex felx-row gap-2">
+                     {isIdDuplicate ?
+                     <RegisterTextField
+                     error={true}
+                     label="아이디 입력"
+                     value={userId}
+                     onChange={handleIdChange}
+                     helperText="이미 존재하는 아이디입니다."
+                        />  
+                        : 
                     <RegisterTextField
-                        label="아이디 입력"
-                        value={id}
-                        onChange={handleIdChange}
-                    />
-                    <RegisterButton text="중복확인"/>
+                     error={false}
+                     label="아이디 입력"
+                     value={userId}
+                     onChange={handleIdChange}
+                     helperText={Idduplicate}
+                        /> 
+                    }
+                      
+                      <RegisterButton onClick={(e) => handleIdDuplicate(e)}>중복확인</RegisterButton>
                 </div>
-                <div className="flex felx-row gap-2 p-1">
+                {/* 비밀번호 */}
+                <div className="flex felx-row gap-2 mb-3 mt-1">
+                    <PasswordTextField
+                                error={false}
+                                label="비밀번호 입력"
+                                value={password}
+                                onChange={handlePasswordChange}
+                                helperText=""
+                    /> 
+                </div>
+                {/* 비밀번호 확인 */}
+                <div >
+                     {password === passwordcheck ?
+                    <div className="flex felx-row gap-2">
+                        <PasswordTextField
+                    error={false}
+                    label="비밀번호 확인"
+                    value={passwordcheck}
+                    onChange={handlePasswordcheckChange}
+                    helperText=" "
+        /> 
+                    
+                    </div>
+                     :
+                     <div className="flex felx-row gap-2" >
+                        <PasswordTextField
+                                error={true}
+                                label="비밀번호 확인"
+                                value={passwordcheck}
+                                onChange={handlePasswordcheckChange}
+                                helperText="비밀번호가 같지 않습니다."
+                    /> 
+                   
+                     </div>
+                      }
+    
+                     
+                </div>
+                {/* 닉네임*/}
+                <div className="flex felx-row gap-2">
+                {isNicknameDuplicate ?
+                     <RegisterTextField
+                     error={true}
+                     label="닉네임 입력"
+                     value={nickname}
+                     onChange={handleNicknameChange}
+                     helperText="이미 존재하는 닉네임입니다."
+                        />  
+                        : 
                     <RegisterTextField
-                        label="비밀번호 입력"
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
-                    <RegisterButton text="확인"/>
-                </div>
-                <div className="flex felx-row gap-2 p-1">
-                    <RegisterTextField
-                        label="비밀번호 확인"
-                        value={passwordcheck}
-                        onChange={handlePasswordcheckChange}
-                    />
-                    <RegisterButton text="중복확인"/>
-                </div>
-                <div className="flex felx-row gap-2 p-1">
-                    <RegisterTextField
-                        label="닉네임 입력"
-                        value={nickname}
-                        onChange={handleNicknameChange}
-                    />
-                    <RegisterButton text="중복확인"/>
-                </div>
-                <div className="flex felx-row gap-2 p-1 justify-evenly items-center mb-4">
+                     error={false}
+                     label="닉네임 입력"
+                     value={nickname}
+                     onChange={handleNicknameChange}
+                     helperText={Nicknameduplicate}
+                        /> 
+                    }
+                      <RegisterButton onClick={(e) => handleNicknameDuplicate(e)}>중복확인</RegisterButton>
+                </div> 
+                {/* 성별*/}
+                <div className="flex felx-row gap-2 p-1 justify-evenly items-center mb-1">
                     <div className="font-['700'] text-xl">성별</div>        
                     <FormControl sx={{ width: '200px',borderRadius: '50%' }}>
                         <InputLabel id="demo-simple-select-label" >성별</InputLabel>
@@ -98,20 +327,18 @@ export function Register() {
                             onChange={handleGenderChange}
                             sx={{
                                 borderRadius: '10px',
-                                height : '50px',
+                                height : '48px',
                             }}
                             
                         >
-                            <MenuItem value={'female'}>여성</MenuItem>
-                            <MenuItem value={'male'}>남성</MenuItem>
+                            <MenuItem value={'F'}>여성</MenuItem>
+                            <MenuItem value={'M'}>남성</MenuItem>
                         </Select>
                         </FormControl>
                 
                     </div>
                 </div>
-    
-               
-                {/* <Button buttonText="회원가입 하기" /> */}
+                <Button onClick={(e) => handleSubmit(e)}>회원가입 하기</Button>
                 
             </div>
          
