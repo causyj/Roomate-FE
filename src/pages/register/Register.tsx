@@ -6,12 +6,13 @@ import { Button } from "../../components/common";
 import { RegisterButton } from "../../components/common";
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
+import { useNavigate } from 'react-router-dom';
 export function Register() {
     const [email, setEmail] = useState('');
     const [authCode, setAuthCode] = useState('');
     const [code, setCode] = useState('');
     const [isCodeEqual, setIsCodeEqual] = useState(false);
-    const [id, setId] = useState('');
+    const [userId, setUserId] = useState('');
     const [isIdDuplicate, setIsIdDuplicate] = useState(false);
     const [isIdDuplicateButton, setIsIdDuplicateButton] = useState(0);
     const [password, setPassword] = useState('');
@@ -20,6 +21,8 @@ export function Register() {
     const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
     const [isNicknameDuplicateButton, setIsNicknameDuplicateButton] = useState(0);
     const [gender, setGender] = useState('');
+    const [status, setStatus] = useState(true);
+    const navigate = useNavigate();
     const handleEmailConfirm = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
@@ -58,7 +61,7 @@ export function Register() {
     const handleIdDuplicate = async (e: React.FormEvent) => {
             e.preventDefault();
             try {
-                const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/auth/id/${id}/exists`, {
+                const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/auth/id/${userId}/exists`, {
                   method: 'GET',
                   headers: {
                     
@@ -116,7 +119,38 @@ export function Register() {
                   }
                 };
     const handleSubmit = async (e: React.FormEvent) => {
-    }
+        e.preventDefault();
+        setStatus(true);
+     
+        try {
+          const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/api/user', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body:  JSON.stringify({
+                userId: userId,
+                password: password,
+                email: email,
+                nickname: nickname,
+                gender: gender,
+                status: status,
+              }),
+            credentials: 'include',
+          });
+
+          // Handle the response as needed
+          console.log(response);
+
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+            navigate('/login');
+          }
+        } catch (error) {
+          console.error('Error during login:', error);
+        }
+      };
+      
     const handleEmailChange = (value:string) => {
         setEmail(value);
 
@@ -126,7 +160,7 @@ export function Register() {
         console.log(code);
     };
     const handleIdChange = (value:string) => {
-        setId(value)
+        setUserId(value)
     };
     const handlePasswordChange = (value:string) => {
         setPassword(value)
@@ -205,7 +239,7 @@ export function Register() {
                      <RegisterTextField
                      error={true}
                      label="아이디 입력"
-                     value={id}
+                     value={userId}
                      onChange={handleIdChange}
                      helperText="이미 존재하는 아이디입니다."
                         />  
@@ -213,7 +247,7 @@ export function Register() {
                     <RegisterTextField
                      error={false}
                      label="아이디 입력"
-                     value={id}
+                     value={userId}
                      onChange={handleIdChange}
                      helperText={Idduplicate}
                         /> 
