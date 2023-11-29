@@ -8,10 +8,11 @@ import { FormControl, InputLabel, MenuItem } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 export function Register() {
     const [email, setEmail] = useState('');
-    const [isError ,setIsError] = useState(false);
     const [authCode, setAuthCode] = useState('');
     const [code, setCode] = useState('');
     const [id, setId] = useState('');
+    const [isIdDuplicate, setIsIdDuplicate] = useState(false);
+    const [isIdDuplicateButton, setIsIdDuplicateButton] = useState(0);
     const [password, setPassword] = useState('');
     const [passwordcheck, setPasswordcheck] = useState('');
     const [nickname, setNickname] = useState('');
@@ -47,8 +48,8 @@ export function Register() {
     const handleIdDuplicate = async (e: React.FormEvent) => {
             e.preventDefault();
             try {
-                const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/auth/id/${id}/exists', {
-                  method: 'POST',
+                const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/auth/id/${id}/exists`, {
+                  method: 'GET',
                   headers: {
                     
                   },
@@ -57,10 +58,18 @@ export function Register() {
                 if (response.ok) {
                   // 서버에서 인증 코드를 반환한 경우
                   const data = await response.text();
-                //   if(data != ''){
-                //     setAuthCode(data);
-                //   }
-                  console.log(data);
+                  console.log(data)
+                  console.log(typeof data)
+                // 중복이면 : true  사용가능하면 : false
+                   if(data =='true'){
+                    setIsIdDuplicate(true)
+                    console.log(`1. ${isIdDuplicate}`)
+                   }else{
+                    setIsIdDuplicate(false)
+                    console.log(`2. ${isIdDuplicate}`)
+                    setIsIdDuplicateButton(1)
+                   }
+                  
                 } else {
                   // 서버에서 에러가 발생한 경우
                   console.error('Error during mailConfirm1:', response.statusText);
@@ -68,13 +77,12 @@ export function Register() {
               } catch (error) {
                 console.error('Error during mailConfirm2:', error);
               }
-            };
-           
+            };  
     const handleNicknameDuplicate = async (e: React.FormEvent) => {
                 e.preventDefault();
                 try {
                     const response = await fetch(' http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/auth/nickname/{nickname}/exists', {
-                      method: 'POST',
+                      method: 'GET',
                       headers: {
 
                       },
@@ -83,6 +91,7 @@ export function Register() {
                     if (response.ok) {
                       // 서버에서 인증 코드를 반환한 경우
                       const data = await response.json;
+                      
                     //   if(data != ''){
                     //     setAuthCode(data);
                     //   }
@@ -100,7 +109,7 @@ export function Register() {
     }
     const handleEmailChange = (value:string) => {
         setEmail(value);
-        setIsError(true);
+
     };
     const handleCodeChange = (value:string) => {
         setCode(value)
@@ -108,7 +117,6 @@ export function Register() {
     };
     const handleIdChange = (value:string) => {
         setId(value)
-        console.log(id)
     };
     const handlePasswordChange = (value:string) => {
         setPassword(value)
@@ -123,7 +131,7 @@ export function Register() {
         setGender(event.target.value);
     };
     const isCauEmail = email.includes('@cau.ac.kr');
-    
+    const Idduplicate = isIdDuplicateButton ? "사용 가능한 아이디입니다." : " "
     return (
         <div className="flex flex-col items-center justify-center font-['700'] mb-16 ">
             <div className="text-2xl mt-12  text-primary-logo">회원가입</div>
@@ -134,7 +142,7 @@ export function Register() {
                     {isCauEmail ? 
                         <div className="flex felx-row gap-2">
                             <RegisterTextField
-                                error={isError}
+                                error={false}
                                 label="학교 이메일"
                                 value={email}
                                 onChange={handleEmailChange}
@@ -179,16 +187,26 @@ export function Register() {
                 }
                     
                 </div>
-                {/* 아이디  - 405 error */}
+                {/* 아이디 */}
                 <div className="flex felx-row gap-2">
+                     {isIdDuplicate ?
                      <RegisterTextField
-                                error={false}
-                                label="아이디 입력"
-                                value={id}
-                                onChange={handleIdChange}
-                                helperText=" "
-                    /> 
-                    
+                     error={true}
+                     label="아이디 입력"
+                     value={id}
+                     onChange={handleIdChange}
+                     helperText="아이디가 중복됩니다."
+                        />  
+                        : 
+                    <RegisterTextField
+                     error={false}
+                     label="아이디 입력"
+                     value={id}
+                     onChange={handleIdChange}
+                     helperText={Idduplicate}
+                        /> 
+                    }
+                      
                       <RegisterButton onClick={(e) => handleIdDuplicate(e)}>중복확인</RegisterButton>
                 </div>
                 {/* 비밀번호 */}
@@ -229,7 +247,7 @@ export function Register() {
     
                      
                 </div>
-                {/* 닉네임 */}
+                {/* 닉네임 -405 에러 */}
                 <div className="flex felx-row gap-2">
                      <RegisterTextField
                                 error={false}
