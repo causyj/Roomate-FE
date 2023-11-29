@@ -31,7 +31,7 @@ export const RegisterTextField: React.FC<RegisterTextFieldProps> = ({ error, lab
           InputProps={{
             style: {
               borderRadius: "10px",
-              height :"50px",
+              height :"48px",
             }
           }}
           helperText={helperText}
@@ -63,7 +63,7 @@ export const PasswordTextField: React.FC<RegisterTextFieldProps> = ({ error, lab
           InputProps={{
             style: {
               borderRadius: "10px",
-              height :"50px",
+              height :"48px",
             }
           }}
           helperText={helperText}

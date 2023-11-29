@@ -29,7 +29,7 @@ const RegisterStyledColorButton = styled(MUIButton)<ColorButtonProps>(({ theme }
   },
   padding: '8px',
   width: '90px',
-  height:'50px',
+  height:'48px',
   fontFamily: 'Pretendard',
   borderRadius: '10px',
 }));

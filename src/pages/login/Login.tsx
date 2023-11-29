@@ -53,7 +53,7 @@ export function Login() {
             </div>
             <div className="p-4 text-m ">
                 Aniroomie에서 내 룸메이트도 찾고
-                <div>나의 기숙사 생활 유형도 알아보세요! 로그인</div>
+                <div>나의 기숙사 생활 유형도 알아보세요!</div>
             </div>
             <div className="flex flex-col justify-center items-center mt-6">
                 <div className="mb-4">
