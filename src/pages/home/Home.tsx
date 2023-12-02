@@ -7,27 +7,27 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
     const [verify, setVerify] = useState(false); //테스트 했었는지 안 했었는지
     const [nickname, setNickname] = useState('');
     useEffect(() => {
-        const fetchNickname = async () =>{
-            try{
-                const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname`,{
-                method: 'GET',
-                 credentials: 'include',
+        // 서버에서 닉네임을 가져오는 API 호출
+        const fetchNickname = async () => {
+            try {
+                const response = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname', {
+                    method: 'GET',
+                    credentials: 'include',
                 });
 
-          // Check if login is successful, then redirect to StarPage
-          if (response.ok) {
-            const nickname = await response.text();
-            console.log(nickname);
-            setNickname(nickname);
-          }else{
-            console.error('Failed to fetch nickname : ',response.status, response.statusText);
-          }
-        } catch (error) {
-          console.error('Failed to fetch nickname : ', error);
-        }
-      };
-          fetchNickname();
-    },[]);
+                if (response.ok) {
+                    const nicknameData = await response.text();
+                    setNickname(nicknameData);
+                } else {
+                    console.error('Failed to fetch nickname');
+                }
+            } catch (error) {
+                console.error('Error during fetching nickname:', error);
+            }
+        };
+
+        fetchNickname();
+    }, []); 
    //h-[calc(40%+2rem)]
     return (
      <div className="flex flex-col items-center ">
@@ -38,7 +38,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                 <div className="flex flex-row gap-6 mb-4">
                     <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="logo" style={{ width: '70px' }} />
                     <div className="flex flex-col">
-                        <div className="font-['700'] text-white text-3xl ">${nickname}님</div>
+                        <div className="font-['700'] text-white text-3xl ">{nickname ? `${nickname} 님` : '로딩 중...'}</div>
                         <Link to='/resulthome' className="text-gray-300 font-['400']">나의 동물유형 결과 보러가기 {'>'}</Link>
                     </div>
                     
