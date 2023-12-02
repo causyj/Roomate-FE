@@ -79,20 +79,14 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
             </div>
             
-            <div style={{zIndex:20}}>
-            <div className="mt-[180px]"></div>
-          {/* <div className=" font-['700'] text-2xl px-12 mb-4 text-primary-bg text-center">카테고리</div> */}
-                <div className="flex flex-col items-center justify-center gap-8 text-primary-bg ">
+            <div className="mt-[180px] relative flex flex-col items-center justify-center gap-8 text-primary-bg overflow-y-auto" style={{ zIndex:20}}>
                     <Card image='roomatecard' text='룸메이트 추천' description1='나와 맞는 룸메이트를'description2=' 찾아보세요!' link='roommatelist'/>
                     <Card image='groupcard' text='모임 목록' description1='나와 비슷한 성향의 사람들과'description2='모임을 가져보세요!' link='group'/>
                     <Card image='dictionarycard' text='동물사전' description1='8개의 동물 유형을' description2='볼 수 있어요!' link='animaldict'/>   
                     <div className="text-white">sfsdfsdfsdf</div>  
                     <div className="text-white">sfsdfsdfsdf</div>  
                     
-                </div>
-
-
-          </div>
+            </div>
             
         </div>
         
@@ -108,4 +102,4 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
      </div>
     );
   };
-  
+  {/* <div className=" font-['700'] text-2xl px-12 mb-4 text-primary-bg text-center">카테고리</div> */}
