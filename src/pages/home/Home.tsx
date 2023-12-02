@@ -1,33 +1,33 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GoToGroup } from "../roommatelist/components/GoToGroup";
 import { Card } from "./components/Card";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
   export const Home = () => {
     const [verify, setVerify] = useState(false); //테스트 했었는지 안 했었는지
     const [nickname, setNickname] = useState('');
     useEffect(() => {
-        // 서버에서 닉네임을 가져오는 API 호출
-        const fetchNickname = async () => {
-            try {
-                const response = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname', {
-                    method: 'GET',
-                    credentials: 'include',
+        const fetchNickname = async () =>{
+            try{
+                const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname`,{
+                method: 'GET',
+                 credentials: 'include',
                 });
 
-                if (response.ok) {
-                    const nicknameData = await response.text();
-                    setNickname(nicknameData);
-                } else {
-                    console.error('Failed to fetch nickname');
-                }
-            } catch (error) {
-                console.error('Error during fetching nickname:', error);
-            }
-        };
-
-        fetchNickname();
-    }, []); 
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+            const nicknameData = await response.text();
+            console.log(nicknameData);
+            setNickname(nicknameData);
+            console.log(nickname);
+          }else{
+            console.error('Failed to fetch nickname : ',response.status, response.statusText);
+          }
+        } catch (error) {
+          console.error('Failed to fetch nickname : ', error);
+        }
+      };
+          fetchNickname();
+    },[]);
    //h-[calc(40%+2rem)]
     return (
      <div className="flex flex-col items-center ">
