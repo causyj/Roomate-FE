@@ -30,11 +30,11 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
     },[]);
    //h-[calc(40%+2rem)]
     return (
-     <div className="w-100vw 100vh flex justify-center overflow-y-auto">
-        <div className="flex flex-col max-w-[413px] " style={{ position: 'fixed', top: 0, width: '100%',zIndex: 100 } }>
+     <div className="flex flex-col items-center ">
+        <div className="flex flex-col max-w-[413px] w-full " style={{ position: 'fixed', top: 0,zIndex: 100 } }>
            
            
-            <div className=" max-w-[413px] h-[140px] w-full bg-primary-logo fixed top-0 flex items-center justify-center " style={{zIndex:200}}>
+            <div className=" max-w-[413px]  h-[140px] w-full bg-primary-logo fixed top-0 flex items-center justify-center " style={{zIndex:200}}>
                 <div className="flex flex-row gap-6 mb-4">
                     <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="logo" style={{ width: '70px' }} />
                     <div className="flex flex-col">
@@ -79,11 +79,25 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
             </div>
             
-            <div className="mt-[180px] relative flex flex-col items-center justify-center gap-8 text-primary-bg overflow-y-auto" style={{ zIndex:20}}>
+            <div className="mt-[70px] max-h-[800px] flex flex-col items-center justify-center gap-8 text-primary-bg overflow-y-auto flex-shrink-0 " style={{ zIndex:20, scrollBehavior: 'smooth'}}>
+            <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div>  
+                 
+                    <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div> 
+                    <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div> 
+                    <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div> 
                     <Card image='roomatecard' text='룸메이트 추천' description1='나와 맞는 룸메이트를'description2=' 찾아보세요!' link='roommatelist'/>
                     <Card image='groupcard' text='모임 목록' description1='나와 비슷한 성향의 사람들과'description2='모임을 가져보세요!' link='group'/>
                     <Card image='dictionarycard' text='동물사전' description1='8개의 동물 유형을' description2='볼 수 있어요!' link='animaldict'/>   
                     <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div>  
+                    <div className="text-white">sfsdfsdfsdf</div> 
                     <div className="text-white">sfsdfsdfsdf</div>  
                     
             </div>
