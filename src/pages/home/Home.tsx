@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GoToGroup } from "../roommatelist/components/GoToGroup";
 import { Card } from "./components/Card";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
   export const Home = () => {
@@ -16,9 +15,10 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
           // Check if login is successful, then redirect to StarPage
           if (response.ok) {
-            const nickname = await response.text();
+            const nicknameData = await response.text();
+            console.log(nicknameData);
+            setNickname(nicknameData);
             console.log(nickname);
-            setNickname(nickname);
           }else{
             console.error('Failed to fetch nickname : ',response.status, response.statusText);
           }
@@ -38,7 +38,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                 <div className="flex flex-row gap-6 mb-4">
                     <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="logo" style={{ width: '70px' }} />
                     <div className="flex flex-col">
-                        <div className="font-['700'] text-white text-3xl ">${nickname}님</div>
+                        <div className="font-['700'] text-white text-3xl ">{nickname ? `${nickname} 님` : '로딩 중...'}</div>
                         <Link to='/resulthome' className="text-gray-300 font-['400']">나의 동물유형 결과 보러가기 {'>'}</Link>
                     </div>
                     
