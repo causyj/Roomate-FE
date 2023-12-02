@@ -4,24 +4,50 @@ import { GoToGroup } from "../roommatelist/components/GoToGroup";
 import { Card } from "./components/Card";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
   export const Home = () => {
-    const [verify, setVerify] = useState(false);
-   
+    const [verify, setVerify] = useState(false); //테스트 했었는지 안 했었는지
+    const [nickname, setNickname] = useState('');
+    useEffect(() => {
+        const fetchNickname = async () =>{
+            try{
+                const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname`,{
+                method: 'GET',
+                 credentials: 'include',
+                });
+
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+            const nickname = await response.text();
+            console.log(nickname);
+            setNickname(nickname);
+          }else{
+            console.error('Failed to fetch nickname : ',response.status, response.statusText);
+          }
+        } catch (error) {
+          console.error('Failed to fetch nickname : ', error);
+        }
+      };
+          fetchNickname();
+    },[]);
+   //h-[calc(40%+2rem)]
     return (
-     <div className="w-full fixed flex justify-center overflow-y-auto">
-          <div className=" h-[20%] w-full bg-primary-logo fixed top-[-1px]  flex items-center justify-center" style={{zIndex:2}}>
-            <div className="flex flex-row mt-[-40px] gap-4">
-                <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="logo" style={{ width: '70px' }} />
-                <div className="flex flex-col">
-                    <div className="font-['700'] text-white text-3xl ">모글리님</div>
-                    <Link to='/resulthome' className="text-gray-300 font-['400']">나의 동물유형 결과 보러가기 {'>'}</Link>
+     <div className="w-100vw 100vh flex justify-center overflow-y-auto">
+        <div className="flex flex-col max-w-[413px] " style={{ position: 'fixed', top: 0, width: '100%',zIndex: 1000 } }>
+           
+           
+            <div className=" max-w-[413px] h-[140px] w-full bg-primary-logo fixed top-0 flex items-center justify-center " style={{zIndex:20}}>
+                <div className="flex flex-row  gap-4">
+                    <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="logo" style={{ width: '70px' }} />
+                    <div className="flex flex-col">
+                        <div className="font-['700'] text-white text-3xl ">${nickname}님</div>
+                        <Link to='/resulthome' className="text-gray-300 font-['400']">나의 동물유형 결과 보러가기 {'>'}</Link>
+                    </div>
+                    
                 </div>
-                
             </div>
+
+            <div className="max-w-[413px]  h-[90px] w-full bg-white mt-[120px] fixed rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 2000 } }>
             
-            
-        </div>
-          <div className="h-[90px] w-full bg-white mt-[52px] fixed rounded-t-3xl " style={{zIndex:3}}>
-            <div className="px-6 mt-4 ">
+             <div className="px-6 mt-4">
                 {verify ? 
                
                 <div className="w-full h-16 bg-gray-100 rounded-2xl mt-2">
@@ -48,7 +74,13 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                 </Link>}
 
             </div>
+            </div>
+            
         </div>
+        
+
+
+        
         <div style={{zIndex:1}}>
             <div className="mt-[180px]"></div>
           {/* <div className=" font-['700'] text-2xl px-12 mb-4 text-primary-bg text-center">카테고리</div> */}

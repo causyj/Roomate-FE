@@ -32,7 +32,8 @@ export function Login() {
           // Check if login is successful, then redirect to StarPage
           if (response.ok) {
             navigate('/testpage');
-          }
+            
+              }
         } catch (error) {
           console.error('Error during login:', error);
         }
@@ -73,6 +74,7 @@ export function Login() {
             <div className="flex justify-center items-center mt-20">
              {/* <ColorButton variant="contained" onClick={handleSubmit}>로그인</ColorButton> */}
              <Button onClick={(e) => handleSubmit(e)}>로그인</Button>
+        
 
            </div>
            <div className="flex items-center text-sm text-center mx-auto ml-auto mt-2">
