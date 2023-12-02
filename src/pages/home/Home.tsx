@@ -31,11 +31,11 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
    //h-[calc(40%+2rem)]
     return (
      <div className="w-100vw 100vh flex justify-center overflow-y-auto">
-        <div className="flex flex-col max-w-[413px] " style={{ position: 'fixed', top: 0, width: '100%',zIndex: 1000 } }>
+        <div className="flex flex-col max-w-[413px] " style={{ position: 'fixed', top: 0, width: '100%',zIndex: 100 } }>
            
            
-            <div className=" max-w-[413px] h-[140px] w-full bg-primary-logo fixed top-0 flex items-center justify-center " style={{zIndex:20}}>
-                <div className="flex flex-row  gap-4">
+            <div className=" max-w-[413px] h-[140px] w-full bg-primary-logo fixed top-0 flex items-center justify-center " style={{zIndex:200}}>
+                <div className="flex flex-row gap-6 mb-4">
                     <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="logo" style={{ width: '70px' }} />
                     <div className="flex flex-col">
                         <div className="font-['700'] text-white text-3xl ">${nickname}님</div>
@@ -45,7 +45,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                 </div>
             </div>
 
-            <div className="max-w-[413px]  h-[90px] w-full bg-white mt-[120px] fixed rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 2000 } }>
+            <div className="max-w-[413px]  h-[90px] w-full bg-white mt-[110px] fixed rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
             
              <div className="px-6 mt-4">
                 {verify ? 
@@ -74,14 +74,12 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                 </Link>}
 
             </div>
+
+           
+
             </div>
             
-        </div>
-        
-
-
-        
-        <div style={{zIndex:1}}>
+            <div style={{zIndex:20}}>
             <div className="mt-[180px]"></div>
           {/* <div className=" font-['700'] text-2xl px-12 mb-4 text-primary-bg text-center">카테고리</div> */}
                 <div className="flex flex-col items-center justify-center gap-8 text-primary-bg ">
@@ -92,7 +90,13 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                     <div className="text-white">sfsdfsdfsdf</div>  
                     
                 </div>
+
+
           </div>
+            
+        </div>
+        
+       
          
       <div >
       
