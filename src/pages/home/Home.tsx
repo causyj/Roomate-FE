@@ -91,9 +91,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                     <div className="text-white">sfsdfsdfsdf</div> 
                     <div className="text-white">sfsdfsdfsdf</div>  
                     <div className="text-white">sfsdfsdfsdf</div> 
-                    <Card image='roomatecard' text='룸메이트 추천' description1='나와 맞는 룸메이트를'description2=' 찾아보세요!' link='roommatelist'/>
-                    <Card image='groupcard' text='모임 목록' description1='나와 비슷한 성향의 사람들과'description2='모임을 가져보세요!' link='group'/>
-                    <Card image='dictionarycard' text='동물사전' description1='8개의 동물 유형을' description2='볼 수 있어요!' link='animaldict'/>   
+                    <Card image='roomatecard' text='룸메이트 추천' description1='나와 맞는 룸메이트를'description2=' 찾아보세요!' link='/roommatelist'/>
+                    <Card image='groupcard' text='모임 목록' description1='나와 비슷한 성향의 사람들과'description2='모임을 가져보세요!' link='/group'/>
+                    <Card image='dictionarycard' text='동물사전' description1='8개의 동물 유형을' description2='볼 수 있어요!' link='/animaldict'/>   
                     <div className="text-white">sfsdfsdfsdf</div>  
                     <div className="text-white">sfsdfsdfsdf</div>  
                     <div className="text-white">sfsdfsdfsdf</div>  
