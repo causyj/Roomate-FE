@@ -44,37 +44,61 @@ interface CardDataProps {
   };
 }
 export const Tab1 = () => {
+  const [initialCardData, setInitialCardData] = useState([]);
   const [cardData, setCardData] = useState<CardDataProps | null>(null);
+  const fetchInitialCardData = async () => {
+    try {
+      const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/card`, {
+        method: 'GET',
+        credentials: 'include',
+      });
 
-  const handleResetClick = () => {
-    // reset 버튼을 클릭할 때마다 새로운 카드 정보로 업데이트
-    
-  };
-
-  useEffect(() => {
-    const fetchNickname = async () =>{
-        try{
-            const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/card`,{
-            method: 'GET',
-             credentials: 'include',
-            });
-
-      // Check if login is successful, then redirect to StarPage
       if (response.ok) {
-        console.log("ok");
         const data = await response.json();
+        setInitialCardData(data);
+        setCardData(data); // 초기 카드 정보 설정
+        console.log("1. initial ok");
         console.log(data);
-        setCardData(data);
         console.log(cardData);
-      }else{
-        console.error('Failed to fetch nickname : ',response.status, response.statusText);
+        console.log(initialCardData);
+      } else {
+        console.error('Failed to fetch initial card data: ', response.status, response.statusText);
       }
     } catch (error) {
-      console.error('Failed to fetch nickname : ', error);
+      console.error('Failed to fetch initial card data: ', error);
     }
   };
-      fetchNickname();
+  const fetchNewCardData = async () => {
+    try {
+      const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/card/new`, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setCardData(data); // 새로운 카드 정보 설정
+        console.log("2. new ok");
+        console.log(data);
+        console.log(cardData);
+      } else {
+        console.error('Failed to fetch new card data : ', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Failed to fetch new card data : ', error);
+    }
+  };
+  const handleResetClick = () => {
+    // reset 버튼을 클릭할 때마다 새로운 카드 정보로 업데이트
+    fetchNewCardData();
+  }; 
+  
+  useEffect(() => {
+    // 최초 렌더링 시 초기 카드 정보 가져오기
+   fetchInitialCardData();
 },[]);
+
+ 
   return (
     <div>
       
