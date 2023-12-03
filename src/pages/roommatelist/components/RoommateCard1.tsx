@@ -50,7 +50,8 @@ interface CardFrontDetailProps {
    
 }
 interface CardBackProps {
-    isFrontView: boolean
+    isFrontView: boolean;
+    animal:string;
     nickname:string;
     dorm : number;
     room : number;
@@ -64,8 +65,7 @@ interface CardBackProps {
    
 }
 interface TypeAtGlanceProps{
-    dorm : number;
-    room : number;
+    animal:string;
     rhythm : string;
     smoke: string;
     noise: number;
@@ -143,7 +143,37 @@ const CardFront = ({isFrontView,nickname, animal, dorm, room, age,  dept, stu_nu
     </section>
     )
 }
-const TypeAtAGlance = ({rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
+const TypeAtAGlance = ({animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
+    const nosieCount = Array.from({ length: noise }, (_, index) => (
+        <FavoriteOutlined key={index} sx={{width:'18px'}} />
+      ));
+      const EmptynosieCount = Array.from({ length: 5 - noise }, (_, index) => (
+        <FavoriteBorder key={noise + index} sx={{width:'18px'}} />
+      ));
+      const temperatureCount = Array.from({ length: temperature }, (_, index) => (
+        <FavoriteOutlined key={index} sx={{width:'18px'}} />
+      ));
+      const EmptytemperatureCount = Array.from({ length: 5 - temperature }, (_, index) => (
+        <FavoriteBorder key={noise + index} sx={{width:'18px'}} />
+      ));
+      const outgoingCount = Array.from({ length: outgoing }, (_, index) => (
+        <FavoriteOutlined key={index} sx={{width:'18px'}} />
+      ));
+      const EmptyoutgoingCount = Array.from({ length: 5 - outgoing }, (_, index) => (
+        <FavoriteBorder key={noise + index} sx={{width:'18px'}} />
+      ));
+      const cleanCount = Array.from({ length: clean }, (_, index) => (
+        <FavoriteOutlined key={index}  sx={{width:'18px'}}/>
+      ));
+      const EmptycleanCount = Array.from({ length: 5 - clean }, (_, index) => (
+        <FavoriteBorder key={noise + index} sx={{width:'18px'}} />
+      ));
+      const sleepCount = Array.from({ length: sleep }, (_, index) => (
+        <FavoriteOutlined key={index}  sx={{width:'18px'}}/>
+      ));
+      const EmptysleepCount = Array.from({ length: 5 - sleep }, (_, index) => (
+        <FavoriteBorder key={noise + index}  sx={{width:'18px'}}/>
+      ));
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1 gap-2">
@@ -160,21 +190,26 @@ const TypeAtAGlance = ({rhythm,smoke,noise, temperature,outgoing,clean,sleep} : 
                 <div className="">{rhythm}</div>
                 <div className="">{smoke}</div>
                 <div className=" text-primary-orange flex-col"> 
-                    <div className="flex flex-row mt-[-1px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
-                    <div className="flex flex-row mt-[-2px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
-                    <div className="flex flex-row mt-[-2px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
-                    <div className="flex flex-row mt-[-2px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
-                    <div className="flex flex-row mt-[-2px]">
-                    <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
-                    </div>
+                <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                        {nosieCount}
+                        {EmptynosieCount}
+                 </div>
+                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                        {temperatureCount}
+                        {EmptytemperatureCount}
+                 </div>
+                 <div className={`$text-primary-orange flex flex-row mt-[-1px]`}>
+                        {outgoingCount}
+                        {EmptyoutgoingCount}
+                 </div>
+                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                        {cleanCount}
+                        {EmptycleanCount}
+                 </div>
+                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                        {sleepCount}
+                        {EmptysleepCount}
+                 </div>
                 </div>
                 
             </div>
@@ -183,7 +218,7 @@ const TypeAtAGlance = ({rhythm,smoke,noise, temperature,outgoing,clean,sleep} : 
       </div>
     )
 }  
-const CardBack = ({isFrontView,nickname, dorm, room,rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
+const CardBack = ({isFrontView,animal, nickname, dorm, room,rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -199,7 +234,7 @@ const CardBack = ({isFrontView,nickname, dorm, room,rhythm,smoke,noise, temperat
             </div>
             <div className="font-['700'] text-primary-gray text-xs mt-[-4px] mb-1">블루미르홀 {dorm}님/{room}</div>
             <Divider />
-            <TypeAtAGlance rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
+            <TypeAtAGlance animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
         </div>
         </section>
     )
@@ -216,7 +251,7 @@ export const RoommateCard1 = ({disableFlip=false,nickname, animal, dorm, room, a
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
     >
         <CardFront isFrontView={isFrontView} nickname={nickname} animal={animal} dorm={dorm} room={room} age={age} dept={dept} stu_num={stu_num} mbti={mbti}  />
-        {disableFlip === false && <CardBack isFrontView={isFrontView} nickname={nickname} dorm={dorm} room={room} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
+        {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} dorm={dorm} room={room} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
     </div>
     )
 }

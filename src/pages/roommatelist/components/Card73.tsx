@@ -28,7 +28,7 @@ const FrontDetail = () => {
     return (
         <div className="flex flex-col items-center p-4 ">
         <Stack direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" sx={{bgcolor: 'orange',width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabbit.png'} />
+      <Avatar alt="Remy Sharp" sx={{bgcolor: '#FCA12F',width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabbit.png'} />
     </Stack>
     <div className="flex flex-row ml-2 mt-1">
         <div className="font-['700'] text-bold text-2xl ">폰타나님</div>
@@ -143,7 +143,7 @@ const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep}: TypeAtAGla
                         {temperatureCount}
                         {EmptytemperatureCount}
                  </div>
-                 <div className={`$text-primary-orange flex flex-row mt-[-1px]`}>
+                 <div className={`text-[#FCA12F] flex flex-row mt-[-1px]`}>
                         {outgoingCount}
                         {EmptyoutgoingCount}
                  </div>
