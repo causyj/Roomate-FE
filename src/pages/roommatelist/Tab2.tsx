@@ -1,7 +1,6 @@
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
-import { RoommateCard2 } from "./components/RoommateCard2";
 import { RoommateCard1 } from './components/RoommateCard1';
 import { CardTotalList } from './components/CardTotalList';
 const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
