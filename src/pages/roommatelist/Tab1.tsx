@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
@@ -6,6 +6,7 @@ import { RoommateCard1 } from "./components/RoommateCard1";
 import { Card73 } from "./components/Card73";
 import { Card43 } from "./components/Card43";
 import { GoToGroup } from './components/GoToGroup';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText('#27334B'),
@@ -21,38 +22,62 @@ const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
 }));
 
 export const Tab1 = () => {
-  const initialCardInfo = [
-    { name: "모글리", dept: "영어학과", year: 23, mbti: "INSJ", age: "21", animal: '/cat.png', color: 'purple' },
-    { name: "깐풍기", dept: "정치외교학과", year: 21, mbti: "INFP", age: "21", animal: '/polarBear.png', color: 'green' },
-    { name: "울랄라", dept: "간호학부", year: 19, mbti: "ESTJ", age: "비공개", animal: '/rabbit.png', color: 'orange' },
-    { name: "팔보채", dept: "산업보안학과", year: 21, mbti: "ENFP", age: "22", animal: "/cat.png", color: 'purple' },
-  ];
-
-  const [cardInfo, setCardInfo] = useState(initialCardInfo);
+  const [cardData, setCardData] = useState();
 
   const handleResetClick = () => {
     // reset 버튼을 클릭할 때마다 새로운 카드 정보로 업데이트
-    setCardInfo([
-      { name: "우당탕", dept: "AI학과", year: 23, mbti: "ESFJ", age: "20", animal: '/cat.png', color: 'purple' },
-      { name: "내가짱", dept: "글로벌금융학과", year: 21, mbti: "ENTP", age: "비공개", animal: '/arcticFox.png', color: 'pink' },
-      { name: "우분투", dept: "SW학부", year: 23, mbti: "INFJ", age: "비공개", animal: '/arcticFox.png', color: 'pink' },
-      { name: "단무지", dept: "경제학과", year: 20, mbti: "ESFP", age: "24", animal: "/cat.png", color: 'purple' },
-    ]);
+    
   };
+  useEffect(() => {
+    const fetchNickname = async () =>{
+        try{
+            const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/card`,{
+            method: 'GET',
+             credentials: 'include',
+            });
 
+      // Check if login is successful, then redirect to StarPage
+      if (response.ok) {
+        console.log("ok");
+        const data = await response.json();
+        console.log(data);
+        setCardData(data);
+        console.log(cardData);
+      }else{
+        console.error('Failed to fetch nickname : ',response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Failed to fetch nickname : ', error);
+    }
+  };
+      fetchNickname();
+},[]);
   return (
     <div>
-      <GoToGroup />
+      
       <div className="flex flex-row justify-between items-center mt-4">
-        <div className="font-['700'] text-2xl">📍 추천 룸메이트</div>
+        <div className="font-['700'] text-2xl ">📍 추천 룸메이트</div>
         <ColorFab onClick={handleResetClick}>
           <ResetIcon />
         </ColorFab>
       </div>
-      <div className="flex flex-row w-[300px] overflow-scroll overflow-x-auto p-2 mt-4 gap-2 ">
-                 <Card73 />
-                <Card43 />
-        {cardInfo.map((card, index) => (
+      <div className="flex flex-row w-[300px] overflow-scroll overflow-x-auto overflow-y-hidden p-1 gap-2 ">
+      {cardData &&
+          Object.keys(cardData).map((key) => (
+            <RoommateCard1
+              key={key}
+              name={cardData[key].nickname}
+              dept={cardData[key].dept}
+              year={cardData[key].age}
+              mbti={cardData[key].mbti}
+              age={cardData[key].age}
+              animal={cardData[key].animal}
+              color={cardData[key].color}
+            />
+          ))}
+                 {/* <Card73 />
+                <Card43 /> */}
+        {/* {cardInfo.map((card, index) => (
           <RoommateCard1
             key={index}
             name={card.name}
@@ -63,8 +88,18 @@ export const Tab1 = () => {
             animal={card.animal}
             color={card.color}
           />
-        ))}
+        ))} */}
       </div>
+      {/* <button className='w-full h-12 bg-primary-logo rounded-2xl '>
+      <div className='flex flex-row justify-center'>
+      <ColorFab onClick={handleResetClick}>
+          <ResetIcon />
+        </ColorFab>
+        <div className="font-['700'] text-xl text-white flex items-center">다시 추천받기</div>
+      </div>
+      
+      </button> */}
+      <GoToGroup />
     </div>
   );
 };
