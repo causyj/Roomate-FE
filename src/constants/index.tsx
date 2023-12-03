@@ -1,4 +1,5 @@
 import { AnimalType } from "../interface/AnimalType";
+
 export const ANIMAL_DATA : Record<AnimalType['animal'],{
     type : string
     color : 'rose' | 'yellow' | 'orange' | 'green' | 'purple' | 'sky' | 'pink' | 'gray' 

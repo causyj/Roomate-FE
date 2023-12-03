@@ -7,6 +7,8 @@ import { Card73 } from "./components/Card73";
 import { Card43 } from "./components/Card43";
 import { GoToGroup } from './components/GoToGroup';
 import ReplayIcon from '@mui/icons-material/Replay';
+import { ANIMAL_DATA } from '../../constants';
+import { AnimalType } from '../../interface/AnimalType';
 
 const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
   color: theme.palette.getContrastText('#27334B'),
@@ -20,14 +22,35 @@ const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
   height: '35px',
   borderRadius: '20px'
 }));
+interface CardDataProps {
+  [key: string]: {
+    nickname: string;
+    animal: string;
+    dorm:number;
+    room:number;
+    age: number;
+    dept: string;
+    stu_num:number;
+    mbti: string;
+    rhythm : string;
+    smoke: string;
+    noise: number;
+    temperature:number;
+    outgoing:number;
+    clean:number;
+    sleep:number;
 
+    // 추가로 필요한 속성들을 여기에 추가할 수 있습니다.
+  };
+}
 export const Tab1 = () => {
-  const [cardData, setCardData] = useState();
+  const [cardData, setCardData] = useState<CardDataProps | null>(null);
 
   const handleResetClick = () => {
     // reset 버튼을 클릭할 때마다 새로운 카드 정보로 업데이트
     
   };
+
   useEffect(() => {
     const fetchNickname = async () =>{
         try{
@@ -65,15 +88,23 @@ export const Tab1 = () => {
       {cardData &&
           Object.keys(cardData).map((key) => (
             <RoommateCard1
-              key={key}
-              name={cardData[key].nickname}
-              dept={cardData[key].dept}
-              year={cardData[key].age}
-              mbti={cardData[key].mbti}
-              age={cardData[key].age}
+              nickname={cardData[key].nickname}
               animal={cardData[key].animal}
-              color={cardData[key].color}
-            />
+              dorm={cardData[key].dorm}
+              room={cardData[key].room}
+              age={cardData[key].age}
+              dept={cardData[key].dept}
+              stu_num={cardData[key].stu_num}
+              mbti={cardData[key].mbti}
+              rhythm={cardData[key].rhythm}
+              smoke={cardData[key].smoke}
+              noise={cardData[key].noise}
+              temperature={cardData[key].temperature}
+              outgoing={cardData[key].outgoing}
+              clean={cardData[key].clean}
+              sleep={cardData[key].sleep}
+            /> 
+            
           ))}
                  {/* <Card73 />
                 <Card43 /> */}
