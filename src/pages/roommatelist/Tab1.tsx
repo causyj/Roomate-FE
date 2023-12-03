@@ -121,15 +121,7 @@ export const Tab1 = () => {
           />
         ))} */}
       </div>
-      {/* <button className='w-full h-12 bg-primary-logo rounded-2xl '>
-      <div className='flex flex-row justify-center'>
-      <ColorFab onClick={handleResetClick}>
-          <ResetIcon />
-        </ColorFab>
-        <div className="font-['700'] text-xl text-white flex items-center">다시 추천받기</div>
-      </div>
       
-      </button> */}
       <GoToGroup />
     </div>
   );

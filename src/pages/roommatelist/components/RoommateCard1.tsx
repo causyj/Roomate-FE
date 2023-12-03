@@ -73,8 +73,7 @@ const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
             setIsStarred(!isStarred);
            
         }
-    const dn = 'penguin'
-    console.log(ANIMAL_DATA[dn as AnimalType['animal']].color)
+    
     return (
         <div className="flex flex-col items-center text-center justify-center p-4 ">
         
@@ -99,8 +98,8 @@ const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
         </div>
      
     
-        <div className="font-['700'] text-bold text-2xl text-center mx-auto ">{`${nickname}님`}</div>
-        <div className="font-['700'] text-primary-gray text-xs">블루미르홀 308관/2인실</div>
+        <div className="font-['700'] text-bold text-2xl text-center mx-auto ">{nickname}님</div>
+        <div className="font-['700'] text-primary-gray text-xs">블루미르홀 {dorm}/{room}</div>
         </div>
     )
 }
@@ -120,10 +119,10 @@ const CardFront = ({isFrontView,nickname, animal, dorm, room, age,  dept, stu_nu
             }}
         >
             <div className="ml-2 text-m text-white font-['700']">
-                <h1 className="">{`나이 : ${age}`}</h1> 
-                <h1 className="">{`학번 : ${stu_num}`} </h1> 
-                <h1 className="">{`MBTI : ${mbti}`}</h1> 
-                <h1 className="">{`학과 : ${dept}`}</h1> 
+                <h1 className="">나이 : {age}</h1> 
+                <h1 className="">학번 : ${stu_num}</h1> 
+                <h1 className="">MBTI : ${mbti}</h1> 
+                <h1 className="">학과 : ${dept}</h1> 
 
             </div>
            
