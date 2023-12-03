@@ -26,32 +26,40 @@ const FrontDetail = () => {
            
         }
     return (
-        <div className="flex flex-col items-center p-4 ">
-        <Stack direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" sx={{bgcolor: 'orange',width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabbit.png'} />
-    </Stack>
-    <div className="flex flex-row ml-2 mt-1">
-        <div className="font-['700'] text-bold text-2xl ">폰타나님</div>
-        <div className="">
-      {isStarred ? (
-        <Star
-          sx={{  color: '#F9D800', width: '35px', height: '35px', cursor: 'pointer'  }}
-          onClick={handleStarClick}
-        />
-      ) : (
-        <StarBorderRoundedIcon
-          sx={{ width: '33px', height: '35px', cursor: 'pointer' }}
-          onClick={handleStarClick}
-        />
-      )}
-    </div>
-    </div>
-    <div className="font-['700'] text-primary-gray text-xs">블루미르홀 308관/2인실</div>
-        </div>
+      <div className="flex flex-col items-center text-center justify-center p-4 ">
+        
+        <div className="font-['700'] text-primary-logo text-m text-start mr-auto">나와의 궁합 67%</div>
+      <div className="flex justify-evenly w-ful ml-auto">
+          
+      <Stack direction="row" spacing={2}>
+          <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabiit.png'} />
+      </Stack>
+      <div className="text-end mt-[-32px] mr-[-8px] ml-4">
+    {isStarred ? (
+      <Star
+        sx={{  color: 'orange', width: '50px', height: '50px', cursor: 'pointer'  }}
+        onClick={handleStarClick}
+      />
+    ) : (
+      <StarBorderRoundedIcon
+        sx={{ width: '50px', height: '50px', cursor: 'pointer' }}
+        onClick={handleStarClick}
+      />
+    )}
+      </div>
+      </div>
+   
+  
+      <div className="font-['700'] text-bold text-2xl text-center mx-auto mt-[-2px]">모글리님</div>
+      <div className="font-['700'] text-primary-gray text-xxs mt-[-5px]">블루미르홀 308관/2인실</div>
+      </div>
     )
 }
 const CardFront = ({isFrontView} : CardFrontBackProps) => {
-    return (
+  const age=5;
+  const ages = age.toString();
+  const AGE = ages == "" ? "비공개" : `${ages}살`;
+  return (
         <section
         className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out mt-0 ${
             isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
@@ -60,16 +68,45 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
         <FrontDetail />
         
             <div
-            className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-between rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
+            className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
             style={{
                 boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
             }}
         >
-            <div className="ml-2 text-m text-white font-['700']">
-                <h1 className="">학과 : 수학과 </h1> 
+            <div className="flex flex-col mx-auto  text-m text-white font-['700'] text-center ">
+{/*                
+                {/* <h1 className="">나이 : 21살 </h1> 
                 <h1 className="">학번 : 20학번 </h1> 
-                <h1 className="">MBTI : ENFP </h1> 
-                <h1 className="">나이 : 21살 </h1> 
+                <h1 className="">MBTI : ENFP </h1>
+                <h1 className="">학과 : 수학과 </h1>  
+                {/* <div className="flex flex-row gap-4">
+                  <div className="flex flex-col">
+                    <div className=" font-['500'] text-3xs text-primary-whitegray">나이</div>
+                    <div>21살</div>
+                  </div>
+                  
+                  <div className="flex flex-col">
+                    <div className=" font-['500'] text-3xs text-primary-whitegray">학번</div>
+                    <div>21학번</div>
+                  </div>
+                  
+                  <div className="flex flex-col">
+                    <div className=" font-['500'] text-3xs text-primary-whitegray">MBTI</div>
+                    <div>ENFP</div>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col">
+                    <div className=" font-['500'] text-3xs text-primary-whitegray">학과</div>
+                    <div>소프트웨어학부</div>
+                  </div> */}
+                {/* <h1>21살 / 20학번 / ENFP</h1>
+                <h1>소프트웨어학부</h1> */}
+                <h1 className="">나이 : {AGE}</h1> 
+                <h1 className="">학번 : 20학번</h1> 
+                <h1 className="">MBTI : ENFP</h1> 
+                <h1 className="">학과 : 소프트웨어학부</h1> 
+
 
             </div>
            
@@ -143,7 +180,7 @@ const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep}: TypeAtAGla
                         {temperatureCount}
                         {EmptytemperatureCount}
                  </div>
-                 <div className={`$text-primary-orange flex flex-row mt-[-1px]`}>
+                 <div className={`text-[#FCA12F] flex flex-row mt-[-1px]`}>
                         {outgoingCount}
                         {EmptyoutgoingCount}
                  </div>
@@ -159,7 +196,7 @@ const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep}: TypeAtAGla
                 
             </div>
         </div>
-        <Link to={'/otherpeople'} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
+        <Link to={'/otherpeople'} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">더 자세히 보기 클릭 →</Link>
       </div>
     )
 }  
@@ -171,13 +208,11 @@ const CardBack = ({isFrontView} : CardFrontBackProps) => {
         }`}
     >
        <div className="flex flex-col p-2 ml-2 mr-2">
-            <div className="flex flex-row ">
-                    <div className="font-['700'] text-bold text-3xl ">폰타나님</div>
-                    <Link to={"/chat"} className="mt-2 ml-5">
-                        <Chat sx={{width:'40px', height: '40px' }}/>
-                    </Link>
-            </div>
-            <div className="font-['700'] text-primary-gray text-xs mt-[-4px] mb-1">블루미르홀 308관/2인실</div>
+       <Link to="/chat" className="mb-1 flex flex-row gap-4 justify-center ">
+            <div className="font-['900'] text-bold text-3xl text-primary-logo ">채팅하기</div> 
+            <img src={process.env.PUBLIC_URL + '/message.png'} alt="logo" style={{width : '45px'}}/>
+                   
+        </Link>
             <Divider />
             <TypeAtAGlance 
                 noise={4}
@@ -202,7 +237,7 @@ export const Card73 = ({disableFlip=false} : RoomateCardProps) => {
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2`}
     >
         <CardFront isFrontView={isFrontView} />
-        {disableFlip === false && <CardBack isFrontView={isFrontView} />}
+        {disableFlip === false && <CardBack isFrontView={isFrontView} />  }
     </div>
     )
 }

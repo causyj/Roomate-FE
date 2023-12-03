@@ -16,10 +16,10 @@ import { ForPractice } from './forpractice/ForPractice'
 import { ResultHome } from './pages/resulthome/ResultHome'
 import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
 import { OtherPeople } from './pages/otherpeople/OtherPeople'
-import { SecondExample } from './pages/secondexample/SecondExample'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
 import { LandingPage } from './components/LandingPage'
 import { Chatting } from './pages/chat/[nickname]/Chatting'
+import { ResultAnother } from './pages/resulthome/[nickname]/ResultAnother'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -37,6 +37,26 @@ const Router = createBrowserRouter([
     path: '/register',
     element: <Register/>,
 },
+{
+    path: '/roommatelist',
+    element: <><BottomNavbar/><RoommateRecommend/></>,
+},
+{
+    path: '/resulthome',
+    element: <><BottomNavbar/><ResultHome/></>,
+},
+{
+    path: '/resulthome/:nickname',
+    element: <><BottomNavbar/><ResultAnother/></>,
+},
+{
+    path: '/chat',
+    element: <><BottomNavbar/><ChatList/></>,
+},
+{
+  path: '/chat/:nickname',
+  element: <><Chatting/></>,
+},
 
 
 
@@ -44,10 +64,7 @@ const Router = createBrowserRouter([
     path: '/testpage',
     element: <><BottomNavbar/><TestPage/></>
 },
-{
-    path: '/resulthome',
-    element: <ResultHome/>,
-},
+
 {
     path: '/typeresult',
     element: <TypeResult/>,
@@ -66,15 +83,8 @@ const Router = createBrowserRouter([
     path: '/verify',
     element: <Verify/>,
 },
-  {
-      path: '/chat',
-      element: <><BottomNavbar/><ChatList/></>,
-  },
-  {
-    path: '/chat/:nickname',
-    element: <><Chatting/></>,
-},
-  {
+  
+{
     path: '/roommatelist',
     element: <RoommateRecommend/>,
 },
@@ -99,10 +109,7 @@ const Router = createBrowserRouter([
     path: '/otherpeople',
     element: <OtherPeople/>,
 },
-{
-    path: '/secondexample',
-    element: <SecondExample/>,
-},
+
 
 ])
 

@@ -10,7 +10,7 @@ import { useState } from 'react';
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
-import { RoommateCard1 } from "./components/RoommateCard1";
+import { RoommateCard1 } from "./components/RoommateCard";
 import { Card73 } from "./components/Card73";
 import { Card43 } from "./components/Card43";
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
