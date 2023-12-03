@@ -111,29 +111,30 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
     return (
         <div className="flex flex-col items-center text-center justify-center p-4 ">
         
+        <div className="font-['700'] text-primary-logo text-m text-start mr-auto">나와의 궁합 67%</div>
         <div className="flex justify-evenly w-ful ml-auto">
             
-        <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
-        </Stack>
-        <div className="text-end mt-[-8px] mr-[-8px] ml-5">
-      {isStarred ? (
-        <Star
-          sx={{  color: ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: '50px', height: '50px', cursor: 'pointer'  }}
-          onClick={handleStarClick}
-        />
-      ) : (
-        <StarBorderRoundedIcon
-          sx={{ width: '50px', height: '50px', cursor: 'pointer' }}
-          onClick={handleStarClick}
-        />
-      )}
+            <Stack direction="row" spacing={2}>
+                <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+            </Stack>
+            <div className="text-end mt-[-32px] mr-[-8px] ml-4">
+          {isStarred ? (
+            <Star
+              sx={{  color: ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: '50px', height: '50px', cursor: 'pointer'  }}
+              onClick={handleStarClick}
+            />
+          ) : (
+            <StarBorderRoundedIcon
+              sx={{ width: '50px', height: '50px', cursor: 'pointer' }}
+              onClick={handleStarClick}
+            />
+          )}
+            </div>
+            
         </div>
-        </div>
-     
     
-        <div className="font-['700'] text-bold text-2xl text-center mx-auto ">{nickname}님</div>
-        <div className="font-['700'] text-primary-gray text-xs">블루미르홀 {dorm}/{room}</div>
+        <div className="font-['700'] text-bold text-2xl text-center mx-auto mt-[-2px]">{nickname}님</div>
+        <div className="font-['700'] text-primary-gray text-xxs mt-[-5px]">블루미르홀 {dorm}/{room}인실</div>
         </div>
     )
 }
@@ -147,16 +148,17 @@ const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, s
         <FrontDetail key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} />
         
             <div
-            className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-between rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
-            style={{
-                boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
-            }}
+           className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
+           style={{
+               boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
+           }}
         >
-            <div className="ml-2 text-m text-white font-['700']">
+           <div className="flex flex-col mx-auto  text-m text-white font-['700'] text-center ">
+                {age }
                 <h1 className="">나이 : {age}</h1> 
-                <h1 className="">학번 : ${stu_num}</h1> 
-                <h1 className="">MBTI : ${mbti}</h1> 
-                <h1 className="">학과 : ${dept}</h1> 
+                <h1 className="">학번 : {stu_num}</h1> 
+                <h1 className="">MBTI : {mbti}</h1> 
+                <h1 className="">학과 : {dept}</h1> 
 
             </div>
            

@@ -26,28 +26,33 @@ const FrontDetail = () => {
            
         }
     return (
-        <div className="flex flex-col items-center p-4 ">
-        <Stack direction="row" spacing={2}>
-      <Avatar alt="Remy Sharp" sx={{bgcolor: '#FCA12F',width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabbit.png'} />
-    </Stack>
-    <div className="flex flex-row ml-2 mt-1">
-        <div className="font-['700'] text-bold text-2xl ">폰타나님</div>
-        <div className="">
-      {isStarred ? (
-        <Star
-          sx={{  color: '#F9D800', width: '35px', height: '35px', cursor: 'pointer'  }}
-          onClick={handleStarClick}
-        />
-      ) : (
-        <StarBorderRoundedIcon
-          sx={{ width: '33px', height: '35px', cursor: 'pointer' }}
-          onClick={handleStarClick}
-        />
-      )}
-    </div>
-    </div>
-    <div className="font-['700'] text-primary-gray text-xs">블루미르홀 308관/2인실</div>
-        </div>
+      <div className="flex flex-col items-center text-center justify-center p-4 ">
+        
+        <div className="font-['700'] text-primary-logo text-m text-start mr-auto">나와의 궁합 67%</div>
+      <div className="flex justify-evenly w-ful ml-auto">
+          
+      <Stack direction="row" spacing={2}>
+          <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + `/rabbit.png`} />
+      </Stack>
+      <div className="text-end mt-[-32px] mr-[-8px] ml-4">
+    {isStarred ? (
+      <Star
+        sx={{  color: 'orange', width: '50px', height: '50px', cursor: 'pointer'  }}
+        onClick={handleStarClick}
+      />
+    ) : (
+      <StarBorderRoundedIcon
+        sx={{ width: '50px', height: '50px', cursor: 'pointer' }}
+        onClick={handleStarClick}
+      />
+    )}
+      </div>
+      </div>
+   
+  
+      <div className="font-['700'] text-bold text-2xl text-center mx-auto mt-[-2px]">모글리님</div>
+      <div className="font-['700'] text-primary-gray text-xxs mt-[-5px]">블루미르홀 308관/2인실</div>
+      </div>
     )
 }
 const CardFront = ({isFrontView} : CardFrontBackProps) => {
@@ -60,16 +65,45 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
         <FrontDetail />
         
             <div
-            className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-between rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
+            className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
             style={{
                 boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
             }}
         >
-            <div className="ml-2 text-m text-white font-['700']">
-                <h1 className="">학과 : 수학과 </h1> 
+            <div className="flex flex-col mx-auto  text-m text-white font-['700'] text-center ">
+{/*                
+                {/* <h1 className="">나이 : 21살 </h1> 
                 <h1 className="">학번 : 20학번 </h1> 
-                <h1 className="">MBTI : ENFP </h1> 
-                <h1 className="">나이 : 21살 </h1> 
+                <h1 className="">MBTI : ENFP </h1>
+                <h1 className="">학과 : 수학과 </h1>  
+                {/* <div className="flex flex-row gap-4">
+                  <div className="flex flex-col">
+                    <div className=" font-['500'] text-3xs text-primary-whitegray">나이</div>
+                    <div>21살</div>
+                  </div>
+                  
+                  <div className="flex flex-col">
+                    <div className=" font-['500'] text-3xs text-primary-whitegray">학번</div>
+                    <div>21학번</div>
+                  </div>
+                  
+                  <div className="flex flex-col">
+                    <div className=" font-['500'] text-3xs text-primary-whitegray">MBTI</div>
+                    <div>ENFP</div>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col">
+                    <div className=" font-['500'] text-3xs text-primary-whitegray">학과</div>
+                    <div>소프트웨어학부</div>
+                  </div> */}
+                {/* <h1>21살 / 20학번 / ENFP</h1>
+                <h1>소프트웨어학부</h1> */}
+                <h1 className="">나이 : 21살</h1> 
+                <h1 className="">학번 : 20학번</h1> 
+                <h1 className="">MBTI : ENFP</h1> 
+                <h1 className="">학과 : 소프트웨어학부</h1> 
+
 
             </div>
            
