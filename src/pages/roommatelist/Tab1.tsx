@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
 import { RoommateCard1 } from "./components/RoommateCard1";
-import { Card73 } from "./components/Card73";
-import { Card43 } from "./components/Card43";
 import { GoToGroup } from './components/GoToGroup';
-import ReplayIcon from '@mui/icons-material/Replay';
-import { ANIMAL_DATA } from '../../constants';
-import { AnimalType } from '../../interface/AnimalType';
 
-const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
-  color: theme.palette.getContrastText('#27334B'),
-  display: 'flex',
-  alignItems: 'center',
-  backgroundColor: '#27334B',
-  '&:hover': {
-    backgroundColor: '#27334B',
-  },
-  width: '20px',
-  height: '35px',
-  borderRadius: '20px'
-}));
+// const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
+//   color: theme.palette.getContrastText('#27334B'),
+//   display: 'flex',
+//   alignItems: 'center',
+//   backgroundColor: '#27334B',
+//   '&:hover': {
+//     backgroundColor: '#27334B',
+//   },
+//   width: '35px',
+//   height: '35px',
+//   borderRadius: '20px'
+// }));
 interface CardDataProps {
   [key: string]: {
     nickname: string;
@@ -101,12 +96,13 @@ export const Tab1 = () => {
  
   return (
     <div>
-      
       <div className="flex flex-row justify-between items-center mt-4">
+        <div className='flex flex-row items-center gap-4'>
         <div className="font-['700'] text-2xl ">📍 추천 룸메이트</div>
-        <ColorFab onClick={handleResetClick}>
-          <ResetIcon />
-        </ColorFab>
+        <button className="bg-primary-logo w-[45px] h-[45px] rounded-2xl" onClick={handleResetClick}>
+          <ResetIcon sx={{width:'30px', height:'30px', color:'white'}} />
+        </button>
+        </div>
       </div>
       <div className="flex flex-row w-[300px] overflow-scroll overflow-x-auto overflow-y-hidden p-1 gap-2 ">
       {cardData &&

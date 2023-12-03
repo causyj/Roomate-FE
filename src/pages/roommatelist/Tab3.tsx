@@ -2,21 +2,39 @@ import { GoToGroup } from "./components/GoToGroup"
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
-import { RoommateCard1 } from "./components/RoommateCard1";
-import { Card73 } from "./components/Card73";
-import { Card73like } from "./components/Card73like";
 const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText('#27334B'),
-    display : 'flex',
-    alignItems : 'center',
+    display: 'flex',
+    alignItems: 'center',
     backgroundColor: '#27334B',
     '&:hover': {
       backgroundColor: '#27334B',
     },
-    width: '20px',  
-    height : '35px',
-    borderRadius : '20px'
+    width: '20px',
+    height: '35px',
+    borderRadius: '20px'
   }));
+  interface CardDataProps {
+    [key: string]: {
+      nickname: string;
+      animal: string;
+      dorm:number;
+      room:number;
+      age: number;
+      dept: string;
+      stu_num:number;
+      mbti: string;
+      rhythm : string;
+      smoke: string;
+      noise: number;
+      temperature:number;
+      outgoing:number;
+      clean:number;
+      sleep:number;
+  
+      // 추가로 필요한 속성들을 여기에 추가할 수 있습니다.
+    };
+  }
 export const Tab3 = () => {
     return (
         <div>
@@ -28,7 +46,7 @@ export const Tab3 = () => {
                 </ColorFab>
             </div>
             <div className="flex flex-row mt-4 gap-2">
-                <Card73like/>
+                
             </div>
         </div>
     )
