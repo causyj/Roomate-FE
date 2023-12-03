@@ -16,7 +16,6 @@ import { ForPractice } from './forpractice/ForPractice'
 import { ResultHome } from './pages/resulthome/ResultHome'
 import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
 import { OtherPeople } from './pages/otherpeople/OtherPeople'
-import { SecondExample } from './pages/secondexample/SecondExample'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
 import { LandingPage } from './components/LandingPage'
 import { Chatting } from './pages/chat/[nickname]/Chatting'
@@ -99,10 +98,7 @@ const Router = createBrowserRouter([
     path: '/otherpeople',
     element: <OtherPeople/>,
 },
-{
-    path: '/secondexample',
-    element: <SecondExample/>,
-},
+
 
 ])
 

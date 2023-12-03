@@ -54,8 +54,6 @@ interface CardBackProps {
     isFrontView: boolean;
     animal:string;
     nickname:string;
-    dorm : number;
-    room : number;
     rhythm : string;
     smoke: string;
     noise: number;
@@ -240,11 +238,11 @@ const TypeAtAGlance = ({animal,rhythm,smoke,noise, temperature,outgoing,clean,sl
                 
             </div>
         </div>
-        <Link to={'/typeresult'} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
+        <Link to={'/typeresult'} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">더 자세히 보기 클릭 →</Link>
       </div>
     )
 }  
-const CardBack = ({isFrontView,animal, nickname, dorm, room,rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
+const CardBack = ({isFrontView,animal, nickname, rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -252,13 +250,12 @@ const CardBack = ({isFrontView,animal, nickname, dorm, room,rhythm,smoke,noise, 
         }`}
     >
        <div className="flex flex-col p-2 ml-2 mr-2">
-            <div className="flex flex-row ">
-                    <div className="font-['700'] text-bold text-3xl ">{nickname}님</div>
-                    <Link to={"/chat"} className="mt-2 ml-5">
-                        <Chat sx={{width:'40px', height: '40px' }}/>
-                    </Link>
-            </div>
-            <div className="font-['700'] text-primary-gray text-xs mt-[-4px] mb-1">블루미르홀 {dorm}님/{room}</div>
+       <Link to="/chat" className="mb-1 flex flex-row gap-4 justify-center ">
+            <div className="font-['900'] text-bold text-3xl text-primary-logo ">채팅하기</div> 
+            <img src={process.env.PUBLIC_URL + '/message.png'} alt="logo" style={{width : '45px'}}/>
+                   
+        </Link>
+
             <Divider />
             <TypeAtAGlance animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
         </div>
@@ -280,7 +277,7 @@ export const RoommateCard1 = ({disableFlip=false, key, nickname, animal, dorm, r
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
     >
         <CardFront isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
-        {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} dorm={dorm} room={room} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
+        {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
     </div>
     )
 }
