@@ -19,6 +19,7 @@ import { OtherPeople } from './pages/otherpeople/OtherPeople'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
 import { LandingPage } from './components/LandingPage'
 import { Chatting } from './pages/chat/[nickname]/Chatting'
+import { ResultAnother } from './pages/resulthome/[nickname]/ResultAnother'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -38,18 +39,32 @@ const Router = createBrowserRouter([
 },
 {
     path: '/roommatelist',
-    element: <RoommateRecommend/>,
+    element: <><BottomNavbar/><RoommateRecommend/></>,
 },
+{
+    path: '/resulthome',
+    element: <><BottomNavbar/><ResultHome/></>,
+},
+{
+    path: '/resulthome/:nickname',
+    element: <><BottomNavbar/><ResultAnother/></>,
+},
+{
+    path: '/chat',
+    element: <><BottomNavbar/><ChatList/></>,
+},
+{
+  path: '/chat/:nickname',
+  element: <><Chatting/></>,
+},
+
 
 
 {
     path: '/testpage',
     element: <><BottomNavbar/><TestPage/></>
 },
-{
-    path: '/resulthome',
-    element: <ResultHome/>,
-},
+
 {
     path: '/typeresult',
     element: <TypeResult/>,
@@ -68,14 +83,7 @@ const Router = createBrowserRouter([
     path: '/verify',
     element: <Verify/>,
 },
-  {
-      path: '/chat',
-      element: <><BottomNavbar/><ChatList/></>,
-  },
-  {
-    path: '/chat/:nickname',
-    element: <><Chatting/></>,
-},
+  
 {
     path: '/roommatelist',
     element: <RoommateRecommend/>,

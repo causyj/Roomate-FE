@@ -64,6 +64,7 @@ interface CardBackProps {
    
 }
 interface TypeAtGlanceProps{
+    nickname:string;
     animal:string;
     rhythm : string;
     smoke: string;
@@ -167,7 +168,7 @@ const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, s
     </section>
     )
 }
-const TypeAtAGlance = ({animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
+const TypeAtAGlance = ({nickname, animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
     const nosieCount = Array.from({ length: noise }, (_, index) => (
         <FavoriteOutlined key={index} sx={{width:'18px'}} />
       ));
@@ -238,7 +239,7 @@ const TypeAtAGlance = ({animal,rhythm,smoke,noise, temperature,outgoing,clean,sl
                 
             </div>
         </div>
-        <Link to={'/typeresult'} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">더 자세히 보기 클릭 →</Link>
+        <Link to={`/resulthome/${nickname}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">더 자세히 보기 클릭 →</Link>
       </div>
     )
 }  
@@ -257,7 +258,7 @@ const CardBack = ({isFrontView,animal, nickname, rhythm,smoke,noise, temperature
         </Link>
 
             <Divider />
-            <TypeAtAGlance animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
+            <TypeAtAGlance nickname={nickname} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
         </div>
         </section>
     )
