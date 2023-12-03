@@ -32,7 +32,7 @@ const FrontDetail = () => {
       <div className="flex justify-evenly w-ful ml-auto">
           
       <Stack direction="row" spacing={2}>
-          <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + `/rabbit.png`} />
+          <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabiit.png'} />
       </Stack>
       <div className="text-end mt-[-32px] mr-[-8px] ml-4">
     {isStarred ? (

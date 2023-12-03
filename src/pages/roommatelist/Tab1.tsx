@@ -5,18 +5,6 @@ import ResetIcon from '@mui/icons-material/RestartAltOutlined';
 import { RoommateCard1 } from "./components/RoommateCard";
 import { GoToGroup } from './components/GoToGroup';
 
-// const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
-//   color: theme.palette.getContrastText('#27334B'),
-//   display: 'flex',
-//   alignItems: 'center',
-//   backgroundColor: '#27334B',
-//   '&:hover': {
-//     backgroundColor: '#27334B',
-//   },
-//   width: '35px',
-//   height: '35px',
-//   borderRadius: '20px'
-// }));
 interface CardDataProps {
   [key: string]: {
     nickname: string;
@@ -127,20 +115,6 @@ export const Tab1 = () => {
             /> 
             
           ))}
-                 {/* <Card73 />
-                <Card43 /> */}
-        {/* {cardInfo.map((card, index) => (
-          <RoommateCard1
-            key={index}
-            name={card.name}
-            dept={card.dept}
-            year={card.year}
-            mbti={card.mbti}
-            age={card.age}
-            animal={card.animal}
-            color={card.color}
-          />
-        ))} */}
       </div>
       
       <GoToGroup />

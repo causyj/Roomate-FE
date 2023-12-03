@@ -15,7 +15,6 @@ interface TabPanelProps {
     index: number;
     value: number;
   }
-
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
   
@@ -81,7 +80,7 @@ export const RoommateRecommendPanel = () => {
             <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + animal} />
         </Stack> */}
         <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabiit.png'} />
+            <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabbit.png'} />
         </Stack>
         <div className="text-2xl ">{getContentBasedOnTab()}</div>
       </div>
