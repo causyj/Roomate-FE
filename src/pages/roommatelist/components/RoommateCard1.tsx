@@ -12,6 +12,7 @@ import { ANIMAL_DATA } from "../../../constants";
 import { AnimalType } from "../../../interface/AnimalType";
 interface RoomateCardProps {
     disableFlip?: boolean;
+    key:string;
     nickname: string;
     animal: string;
     dorm:number;
@@ -30,6 +31,7 @@ interface RoomateCardProps {
 }
 interface CardFrontProps {
     isFrontView: boolean;
+    key:string;
     nickname: string;
     animal: string;
     dorm:number;
@@ -41,7 +43,7 @@ interface CardFrontProps {
    
 }
 interface CardFrontDetailProps {
-    
+    key:string;
     nickname:string;
     animal : string;
     dorm : number;
@@ -74,15 +76,37 @@ interface TypeAtGlanceProps{
     sleep:number;
 }
 
-const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
+const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) => {
     const [isStarred, setIsStarred] = useState(false);
-
-        const handleStarClick = (e :any) => {
+    const [starId, setStartId] = useState('');
+        const handleStarClick = async (e: any)=> {
             e.stopPropagation(); // 이벤트 전파를 막습니다.
-        
+
             setIsStarred(!isStarred);
-           
-        }
+            
+                try {
+                    const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${starId}`, {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                    });
+              
+                    if (response.ok) {
+                      // 서버에서 인증 코드를 반환한 경우
+                      const data = await response.text();
+                      if(data != ''){
+                        setStartId(data);
+                      }
+                      console.log({starId});
+                    } else {
+                      // 서버에서 에러가 발생한 경우
+                      console.error('Error during mailConfirm1:', response.statusText);
+                    }
+                  } catch (error) {
+                    console.error('Error during mailConfirm2:', error);
+                  }
+                };
     
     return (
         <div className="flex flex-col items-center text-center justify-center p-4 ">
@@ -113,14 +137,14 @@ const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
         </div>
     )
 }
-const CardFront = ({isFrontView,nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
     return (
         <section
         className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out mt-0 ${
             isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
         }`}
     >
-        <FrontDetail nickname={nickname} animal={animal} dorm={dorm} room={room} />
+        <FrontDetail key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} />
         
             <div
             className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-between rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
@@ -238,7 +262,7 @@ const CardBack = ({isFrontView,animal, nickname, dorm, room,rhythm,smoke,noise, 
         </section>
     )
 }
-export const RoommateCard1 = ({disableFlip=false,nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+export const RoommateCard1 = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
 
     const toggleCardView = () => {
@@ -249,7 +273,7 @@ export const RoommateCard1 = ({disableFlip=false,nickname, animal, dorm, room, a
         onClick={toggleCardView}
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
     >
-        <CardFront isFrontView={isFrontView} nickname={nickname} animal={animal} dorm={dorm} room={room} age={age} dept={dept} stu_num={stu_num} mbti={mbti}  />
+        <CardFront isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={age} dept={dept} stu_num={stu_num} mbti={mbti}  />
         {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} dorm={dorm} room={room} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
     </div>
     )

@@ -112,6 +112,7 @@ export const Tab1 = () => {
       {cardData &&
           Object.keys(cardData).map((key) => (
             <RoommateCard1
+              key={key}
               nickname={cardData[key].nickname}
               animal={cardData[key].animal}
               dorm={cardData[key].dorm}
