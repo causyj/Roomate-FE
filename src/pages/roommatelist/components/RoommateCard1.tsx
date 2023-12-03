@@ -63,6 +63,17 @@ interface CardBackProps {
     sleep:number;
    
 }
+interface TypeAtGlanceProps{
+    dorm : number;
+    room : number;
+    rhythm : string;
+    smoke: string;
+    noise: number;
+    temperature:number;
+    outgoing:number;
+    clean:number;
+    sleep:number;
+}
 
 const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
     const [isStarred, setIsStarred] = useState(false);
@@ -132,7 +143,7 @@ const CardFront = ({isFrontView,nickname, animal, dorm, room, age,  dept, stu_nu
     </section>
     )
 }
-const TypeAtAGlance = () =>{
+const TypeAtAGlance = ({rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1 gap-2">
@@ -146,8 +157,8 @@ const TypeAtAGlance = () =>{
                 <div>잠버릇</div>
             </div>
             <div className="flex flex-col  font-['800'] text-primary-gray text-sm gap-0.5">
-                <div className="">아침형</div>
-                <div className="">비흡연자</div>
+                <div className="">{rhythm}</div>
+                <div className="">{smoke}</div>
                 <div className=" text-primary-orange flex-col"> 
                     <div className="flex flex-row mt-[-1px]">
                     <FavoriteBorder sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/><FavoriteOutlined sx={{width:'18px'}}/>
@@ -172,7 +183,7 @@ const TypeAtAGlance = () =>{
       </div>
     )
 }  
-const CardBack = ({isFrontView,nickname, dorm, room,rhythm,smoke,noise, temperature,outgoing,sleep} : CardBackProps) => {
+const CardBack = ({isFrontView,nickname, dorm, room,rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -181,14 +192,14 @@ const CardBack = ({isFrontView,nickname, dorm, room,rhythm,smoke,noise, temperat
     >
        <div className="flex flex-col p-2 ml-2 mr-2">
             <div className="flex flex-row ">
-                    <div className="font-['700'] text-bold text-3xl ">김애옹님</div>
+                    <div className="font-['700'] text-bold text-3xl ">{nickname}님</div>
                     <Link to={"/chat"} className="mt-2 ml-5">
                         <Chat sx={{width:'40px', height: '40px' }}/>
                     </Link>
             </div>
-            <div className="font-['700'] text-primary-gray text-xs mt-[-4px] mb-1">블루미르홀 308관/2인실</div>
+            <div className="font-['700'] text-primary-gray text-xs mt-[-4px] mb-1">블루미르홀 {dorm}님/{room}</div>
             <Divider />
-            <TypeAtAGlance />
+            <TypeAtAGlance rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
         </div>
         </section>
     )
