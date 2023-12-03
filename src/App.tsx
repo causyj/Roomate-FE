@@ -6,7 +6,7 @@ import { TestPage } from './pages/testpage/TestPage'
 import { TypeResult } from './pages/typeresult/TypeResult'
 import { AnimalDictionary } from './pages/animaldict/AnimalDictionary'
 import { Verify } from './pages/verify/Verify'
-import { Chat } from './pages/chat/Chat'
+import { ChatList,  } from './pages/chat/ChatList'
 import { RoommateRecommend } from './pages/roommatelist/RoommateRecommend'
 import { RoommateOption } from './pages/roommatelist/RoommateOption'
 import { Group } from './pages/group/Group'
@@ -19,6 +19,7 @@ import { OtherPeople } from './pages/otherpeople/OtherPeople'
 import { SecondExample } from './pages/secondexample/SecondExample'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
 import { LandingPage } from './components/LandingPage'
+import { Chatting } from './pages/chat/[nickname]/Chatting'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -65,9 +66,12 @@ const Router = createBrowserRouter([
 },
   {
       path: '/chat',
-      element: <><BottomNavbar/><Chat/></>,
+      element: <><BottomNavbar/><ChatList/></>,
   },
-  
+  {
+    path: '/chat/:nickname',
+    element: <><Chatting/></>,
+},
   {
     path: '/roommatelist',
     element: <RoommateRecommend/>,
