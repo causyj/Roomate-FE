@@ -46,13 +46,13 @@ export function Login() {
     };
 
     return (
-        <div className="flex flex-col font-['700'] text-center justify-center mb-12">
+        <div className="flex flex-col w-full h-full font-['700'] itmes-center justify-center">
             
             <div className="flex flex-col justify-center items-center">
                 <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="monkey" style={{width : '70px'}}/>
                 <img src={process.env.PUBLIC_URL + '/logo.png'} alt="monkey" style={{width : '200px'}}/>
             </div>
-            <div className="p-4 text-m ">
+            <div className="p-4 text-m text-center mx-auto">
                 Aniroomie에서 내 룸메이트도 찾고
                 <div>나의 기숙사 생활 유형도 알아보세요!</div>
             </div>
