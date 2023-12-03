@@ -6,6 +6,9 @@ import Box from '@mui/material/Box';
 import { Tab1 } from './Tab1';
 import { Tab2 } from './Tab2';
 import { Tab3 } from './Tab3';
+import { Avatar, Stack } from '@mui/material';
+import { ANIMAL_DATA } from '../../constants';
+import { AnimalType } from '../../interface/AnimalType';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -74,7 +77,9 @@ export const RoommateRecommendPanel = () => {
     return (
         <div>
     <div className="flex flex-row items-center justify-evenly">
-        <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="roomie" width="80px" />
+    {/* <Stack direction="row" spacing={2}>
+            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + animal} />
+        </Stack> */}
         <div className="text-2xl ">{getContentBasedOnTab()}</div>
       </div>
             <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider', }}>

@@ -114,7 +114,7 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
         <div className="flex justify-evenly w-ful ml-auto">
             
         <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + animal} />
+            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
         </Stack>
         <div className="text-end mt-[-8px] mr-[-8px] ml-5">
       {isStarred ? (
