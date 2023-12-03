@@ -80,6 +80,9 @@ export const RoommateRecommendPanel = () => {
     {/* <Stack direction="row" spacing={2}>
             <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + animal} />
         </Stack> */}
+        <Stack direction="row" spacing={2}>
+            <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabiit.png'} />
+        </Stack>
         <div className="text-2xl ">{getContentBasedOnTab()}</div>
       </div>
             <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider', }}>

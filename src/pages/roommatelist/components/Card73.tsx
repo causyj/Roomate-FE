@@ -56,7 +56,10 @@ const FrontDetail = () => {
     )
 }
 const CardFront = ({isFrontView} : CardFrontBackProps) => {
-    return (
+  const age=5;
+  const ages = age.toString();
+  const AGE = ages == "" ? "비공개" : `${ages}살`;
+  return (
         <section
         className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out mt-0 ${
             isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
@@ -99,7 +102,7 @@ const CardFront = ({isFrontView} : CardFrontBackProps) => {
                   </div> */}
                 {/* <h1>21살 / 20학번 / ENFP</h1>
                 <h1>소프트웨어학부</h1> */}
-                <h1 className="">나이 : 21살</h1> 
+                <h1 className="">나이 : {AGE}</h1> 
                 <h1 className="">학번 : 20학번</h1> 
                 <h1 className="">MBTI : ENFP</h1> 
                 <h1 className="">학과 : 소프트웨어학부</h1> 

@@ -36,9 +36,9 @@ interface CardFrontProps {
     animal: string;
     dorm:number;
     room:number;
-    age:number;
+    age:string;
     dept: string;
-    stu_num:number;
+    stu_num:string;
     mbti: string;
    
 }
@@ -139,6 +139,7 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
     )
 }
 const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+    
     return (
         <section
         className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out mt-0 ${
@@ -154,7 +155,7 @@ const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, s
            }}
         >
            <div className="flex flex-col mx-auto  text-m text-white font-['700'] text-center ">
-                {age }
+                
                 <h1 className="">나이 : {age}</h1> 
                 <h1 className="">학번 : {stu_num}</h1> 
                 <h1 className="">MBTI : {mbti}</h1> 
@@ -266,7 +267,10 @@ const CardBack = ({isFrontView,animal, nickname, dorm, room,rhythm,smoke,noise, 
 }
 export const RoommateCard1 = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
-
+    const ages = age.toString();
+    const AGE = ages == "" ? "비공개" : `${ages}살`;
+    const stuNum = stu_num.toString();
+    const STU_NUM = stuNum == "" ? "비공개" : `${stuNum}학번`;
     const toggleCardView = () => {
         setIsFrontView((isFrontView) => !isFrontView)
     }
@@ -275,7 +279,7 @@ export const RoommateCard1 = ({disableFlip=false, key, nickname, animal, dorm, r
         onClick={toggleCardView}
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
     >
-        <CardFront isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={age} dept={dept} stu_num={stu_num} mbti={mbti}  />
+        <CardFront isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
         {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} dorm={dorm} room={room} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
     </div>
     )
