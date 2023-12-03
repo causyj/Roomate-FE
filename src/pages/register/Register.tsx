@@ -179,7 +179,7 @@ export function Register() {
     const Idduplicate = isIdDuplicateButton ? "사용 가능한 아이디입니다." : " "
     const Nicknameduplicate = isNicknameDuplicateButton ? "사용 가능한 닉네임입니다." : " "
     return (
-        <div className="flex flex-col items-center justify-center font-['700'] mt-[-40px]">
+        <div className="flex flex-col w-full h-full items-center justify-center font-['700'] mt-[-20px]">
             <div className="text-2xl text-primary-logo">회원가입</div>
             <div className="">Aniroomie에 오신 것을 환영합니다!</div>
             <div className="flex flex-col mt-3">
