@@ -56,15 +56,19 @@ export const Chatting = () => {
                     </div>
                     </div>
 
-                    <div style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight, background: '#fff', padding: '10px' }}>
+                    {/* 메시지 입력 부분  */}  
+                    <div className="flex w-full justify-center ">
+                    <div  className="flex justify-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight,  padding: '10px', }}>
                         {/* 메시지 입력 컴포넌트 */}
                         <input
+                            className="bg-zinc-100"
                             type="text"
                             placeholder="메시지를 입력하세요"
-                            style={{ width: '80%', height: '100%', border: '1px solid #ccc', borderRadius: '5px', padding: '5px' }}
+                            style={{ width: '90%', height: '100%',borderRadius: '20px', padding: '5px',  }}
                         />
                         {/* 전송 버튼 등 */}
                         </div>
+                    </div>
                       
             </div>
         </div>
