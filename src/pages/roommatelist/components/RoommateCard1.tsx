@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import { blue, yellow } from "@mui/material/colors";
 import Star from '@mui/icons-material/StarRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import Chat from '@mui/icons-material/ForumRounded';
@@ -96,7 +95,7 @@ const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
         <div className="text-end mt-[-8px] mr-[-8px] ml-5">
       {isStarred ? (
         <Star
-          sx={{  color: '#F9D800', width: '50px', height: '50px', cursor: 'pointer'  }}
+          sx={{  color: ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: '50px', height: '50px', cursor: 'pointer'  }}
           onClick={handleStarClick}
         />
       ) : (
@@ -190,23 +189,23 @@ const TypeAtAGlance = ({animal,rhythm,smoke,noise, temperature,outgoing,clean,sl
                 <div className="">{rhythm}</div>
                 <div className="">{smoke}</div>
                 <div className=" text-primary-orange flex-col"> 
-                <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                <div className={` text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
                         {nosieCount}
                         {EmptynosieCount}
                  </div>
-                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
                         {temperatureCount}
                         {EmptytemperatureCount}
                  </div>
-                 <div className={`$text-primary-orange flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
                         {outgoingCount}
                         {EmptyoutgoingCount}
                  </div>
-                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
                         {cleanCount}
                         {EmptycleanCount}
                  </div>
-                 <div className={` text-primary-orange flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
                         {sleepCount}
                         {EmptysleepCount}
                  </div>
