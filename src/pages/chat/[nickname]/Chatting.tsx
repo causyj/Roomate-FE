@@ -1,20 +1,22 @@
 import { Avatar, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
+import SendIcon from '@mui/icons-material/Send';
 type ChattingPageParams = {
     nickname : string;
 }
 export const Chatting = () => {
-    const { nickname } = useParams<ChattingPageParams>()
+    const { nickname } = useParams<ChattingPageParams>();
+    const [inputHeight, setInputHeight] = useState(60); // 초기값은 입력 부분의 높이
+    const [msgInput, setMsgInput] = useState('');
     const message="안녕하세요! "
+    
     //저는 모글리에 sdfsdf hdsjkfㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴhskdhfjsdhfsdfsdfskshdjkfhsdsfdfj
     const messageStyle = {
         maxWidth:' 70%',
         
         //`${message.length * 15}px`,  // 예시: 글자 수에 따라 동적으로 설정
       };
-
-      const [inputHeight, setInputHeight] = useState(60); // 초기값은 입력 부분의 높이
 
       useEffect(() => {
         const handleResize = () => {
@@ -27,6 +29,23 @@ export const Chatting = () => {
           window.removeEventListener('resize', handleResize);
         };
       }, []);
+      const handleInputChange = (e:any) => {
+        // 여기에서 메시지 전송 로직을 구현하면 됩니다.
+        // 메시지 변수에는 입력된 메시지가 들어 있습니다.
+        
+        setMsgInput(e.target.value)
+      };
+    
+      const handleSendMessage = () => {
+        // 여기에서 메시지 전송 로직을 구현하면 됩니다.
+        // 메시지 변수에는 입력된 메시지가 들어 있습니다.
+        console.log('전송된 메시지:', msgInput);
+        setMsgInput(msgInput)
+        setMsgInput('');
+        
+      };
+    
+      const buttonColor = msgInput == '' ? 'bg-zinc-100' : 'bg-primary-logo'
     
     return (
         <div className="flex flex-col items-center w-full ">
@@ -57,20 +76,61 @@ export const Chatting = () => {
                     </div>
 
                     {/* 메시지 입력 부분  */}  
-                    <div className="flex w-full justify-center ">
-                    <div  className="flex justify-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight,  padding: '10px', }}>
-                        {/* 메시지 입력 컴포넌트 */}
-                        <input
-                            className="bg-zinc-100"
+                    <div className=" max-w-[413px] flex w-full justify-center items-center ml-2 ">
+                    <div  className="flex justify-center items-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight,  padding: '10px', }}>
+                        {/* 메시지 입력 컴포넌트 -form 형식*/}
+                     {/* <form  onSubmit={handleSendMessage} className="max-w-[413px] flex flex-row justify-evenly w-full">
+                     <input
+                            name="msgInput"
+                            value={msgInput}
+                            onChange={(e) => setMsgInput(e.target.value)}
+                            className="bg-zinc-100 h-100vh max-h-[52px]"
                             type="text"
                             placeholder="메시지를 입력하세요"
-                            style={{ width: '90%', height: '100%',borderRadius: '20px', padding: '5px',  }}
+                            style={{ width: '80%',borderRadius: '20px', padding: '5px',  }}
                         />
-                        {/* 전송 버튼 등 */}
+                        
+                        <div className="w-20 h-full rounded-2xl">
+                        <button
+                            type="submit"
+                            className={`text-center ${buttonColor}`}
+                            disabled={msgInput == '' ? true : false} // 입력값이 없으면 버튼 비활성화
+                            style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px', color :'white', border: 'none' }}
+                            >
+                            <SendIcon/>
+                        </button>
                         </div>
-                    </div>
-                      
-            </div>
-        </div>
+                     </form> */}
+                      {/* 메시지 입력 컴포넌트 -input*/}
+                 <div className="max-w-[413px] flex flex-row justify-evenly w-full">
+                     <input
+                            name="msgInput"
+                            value={msgInput}
+                            onChange={handleInputChange}
+                            className="bg-zinc-100 h-100vh max-h-[52px]"
+                            type="text"
+                            placeholder="메시지를 입력하세요"
+                            style={{ width: '80%',borderRadius: '20px', padding: '5px',  }}
+                        />
+                        
+                        <div className="w-20 h-full rounded-2xl">
+                        <button
+                            onClick={handleSendMessage}
+                            type="submit"
+                            className={`text-center ${buttonColor}`}
+                            disabled={msgInput == '' ? true : false} // 입력값이 없으면 버튼 비활성화
+                            style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px',  color: 'white', border: 'none' }}
+                            >
+                            <SendIcon/>
+                        </button>
+                        </div>
+                     </div> 
+                        </div>
+                        </div> 
+                    </div> 
+                </div>
+                    
+           
+        
     )
 }
