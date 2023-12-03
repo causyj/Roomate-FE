@@ -9,6 +9,7 @@ import { Tab3 } from './Tab3';
 import { Avatar, Stack } from '@mui/material';
 import { ANIMAL_DATA } from '../../constants';
 import { AnimalType } from '../../interface/AnimalType';
+import { useEffect, useState } from "react";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -39,8 +40,9 @@ function a11yProps(index: number) {
     };
   }
 export const RoommateRecommendPanel = () => {
-    const [value, setValue] = React.useState(0);
-
+    const [value, setValue] = useState(0);
+    const [nickname, setNickname] = useState('');
+    const [animal, setAnimal] = useState('');
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -73,15 +75,62 @@ export const RoommateRecommendPanel = () => {
         return null;
     }
   };
+  const fetchData = async () => {
+    try {
+      // nickname API 호출
+      const nicknameResponse = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          // 다른 헤더 정보가 필요하다면 여기에 추가합니다.
+        },
+      });
+  
+      if (nicknameResponse.ok) {
+        const nicknameData = await nicknameResponse.json();
+        setNickname(nicknameData);
+        console.log('nickname data fetched successfully:', nickname);
+      } else {
+        console.error('Failed to fetch card data: ', nicknameResponse.status, nicknameResponse.statusText);
+      }
+  
+      // 두 번째 API 호출
+      const animalResponse = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          // 다른 헤더 정보가 필요하다면 여기에 추가합니다.
+        },
+      });
+  
+      if (animalResponse.ok) {
+        const  aniamlData = await animalResponse.json();
+        setAnimal(aniamlData);
+        console.log('animal data fetched successfully:', aniamlData);
+      } else {
+        console.error('Failed to fetch animal data: ', animalResponse.status, animalResponse.statusText);
+      }
+    } catch (error) {
+      console.error('Failed to fetch data: ', error);
+    }
+  };
+  
+  // fetchData 함수 호출
+  useEffect(() => {
+    fetchData();
+  }, []); // 컴포넌트가 처음 마운트될 때 한 번만 호출하도록 설정
+  
     return (
         <div>
     <div className="flex flex-row items-center justify-evenly">
     {/* <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + animal} />
+            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
         </Stack> */}
-        <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabbit.png'} />
-        </Stack>
+         <Stack direction="row" spacing={2}>
+            <Avatar alt="Remy Sharp" sx={{bgcolor:'474747', width: 70, height: 70}} src={process.env.PUBLIC_URL + 'rabbit.png'} />
+        </Stack> 
         <div className="text-2xl ">{getContentBasedOnTab()}</div>
       </div>
             <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider', }}>
