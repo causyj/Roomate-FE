@@ -79,7 +79,7 @@ interface TypeAtGlanceProps{
 const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) => {
     const [isStarred, setIsStarred] = useState(false);
     const [starId, setStartId] = useState('');
-        const handleStarClick = async (e: any)=> {
+    const handleStarClick = async (e: any)=> {
             e.stopPropagation(); // 이벤트 전파를 막습니다.
 
             setIsStarred(!isStarred);
