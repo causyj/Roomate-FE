@@ -77,7 +77,7 @@ export const RoommateRecommendPanel = () => {
         <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="roomie" width="80px" />
         <div className="text-2xl ">{getContentBasedOnTab()}</div>
       </div>
-            <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider',}}>
+            <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider', }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="추천 룸메이트" {...a11yProps(0)} sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}}/>
             <Tab label="전체 목록" {...a11yProps(1)}sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}} />
