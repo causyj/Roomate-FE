@@ -52,7 +52,7 @@ export const RoommateRecommendPanel = () => {
       case 0:
         return (
           <div>
-            <span className="font-['700']">김푸앙</span>님을 위한
+            <span className="font-['700']">{nickname}</span>님을 위한
             <div>추천 결과입니다.</div>
           </div>
         );
@@ -60,14 +60,14 @@ export const RoommateRecommendPanel = () => {
         return (
           <div>
             <span className="font-['700']">전체 목록</span>
-            <div className='text-ms'>김푸앙님이 거주하는 건물의</div>
+            <div className='text-ms'>{nickname}님이 거주하는 건물의</div>
             <div className='text-ms'>기숙사생들을 모두 볼 수 있어요!</div>
           </div>
         );
       case 2:
         return (
           <div>
-            <span className="font-['700']">김푸앙</span>님이
+            <span className="font-['700']">{nickname}</span>님이
             <div>찜하신 목록입니다.</div>
           </div>
         );
@@ -121,15 +121,15 @@ export const RoommateRecommendPanel = () => {
   useEffect(() => {
     fetchData();
   }, []); // 컴포넌트가 처음 마운트될 때 한 번만 호출하도록 설정
-  
+  const animalData = ANIMAL_DATA[animal as AnimalType['animal']];
     return (
         <div>
     <div className="flex flex-row items-center justify-evenly">
     {/* <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[ animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
         </Stack> */}
          <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" sx={{bgcolor:'474747', width: 70, height: 70}} src={process.env.PUBLIC_URL + 'rabbit.png'} />
+            <Avatar alt="Remy Sharp" sx={{bgcolor:animalData?.color || 'black', width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
         </Stack> 
         <div className="text-2xl ">{getContentBasedOnTab()}</div>
       </div>
