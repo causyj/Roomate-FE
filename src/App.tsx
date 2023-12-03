@@ -36,7 +36,10 @@ const Router = createBrowserRouter([
     path: '/register',
     element: <Register/>,
 },
-
+{
+    path: '/roommatelist',
+    element: <RoommateRecommend/>,
+},
 
 
 {
@@ -73,7 +76,7 @@ const Router = createBrowserRouter([
     path: '/chat/:nickname',
     element: <><Chatting/></>,
 },
-  {
+{
     path: '/roommatelist',
     element: <RoommateRecommend/>,
 },
