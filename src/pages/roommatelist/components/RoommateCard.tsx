@@ -84,7 +84,7 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
             setIsStarred(!isStarred);
             
                 try {
-                    const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${starId}`, {
+                    const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${key}`, {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
@@ -263,7 +263,7 @@ const CardBack = ({isFrontView,animal, nickname, rhythm,smoke,noise, temperature
         </section>
     )
 }
-export const RoommateCard1 = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+export const RoommateCard = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
     const ages = age.toString();
     const AGE = ages == "" ? "비공개" : `${ages}살`;

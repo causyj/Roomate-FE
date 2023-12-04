@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import MUIButton, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ResetIcon from '@mui/icons-material/RestartAltOutlined';
-import { RoommateCard1 } from "./components/RoommateCard";
+import { RoommateCard } from "./components/RoommateCard";
 import { GoToGroup } from './components/GoToGroup';
 
 interface CardDataProps {
@@ -95,7 +95,7 @@ export const Tab1 = () => {
       <div className="flex flex-row w-[300px] overflow-scroll overflow-x-auto overflow-y-hidden p-1 gap-2 ">
       {cardData &&
           Object.keys(cardData).map((key) => (
-            <RoommateCard1
+            <RoommateCard
               key={key}
               nickname={cardData[key].nickname}
               animal={cardData[key].animal}
