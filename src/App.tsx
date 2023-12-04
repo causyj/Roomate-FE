@@ -62,7 +62,7 @@ const Router = createBrowserRouter([
 },
 {
     path: '/animaldict/:animal',
-    element: <AnimalDictionary/>,
+    element: <AnimalDictDetail/>,
             
 },
 

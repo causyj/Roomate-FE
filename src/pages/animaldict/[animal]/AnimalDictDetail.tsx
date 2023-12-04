@@ -55,8 +55,7 @@ export const AnimalDictDetail = () => {
 
             <TitleBox title={`${animalKOR} 유형 한 줄 소개`} animalColor={color}/>
             <div className=" font-['600'] p-7 text-l text-primary-gray">
-              dsfdf
-              {/* {descripData?.features} */}
+              {descripData?.features}
             </div>
 
             <GoodBad 
