@@ -6,6 +6,8 @@ import { TitleBox } from "../../components/resultdetail/TitleBox"
 import { ANIMAL_DATA } from "../../constants"
 import { tw } from '../../styles'
 import { Link } from "react-router-dom"
+import { TypeEmojif } from "../../components/resultdetail/TypeEmoji"
+
   interface TypeAtAGlanceProps {
     noise: number;
     temperature: number;
@@ -200,8 +202,13 @@ export const ResultHome =() => {
                 <span className={`text-4xl ${animalIconStyle.color}`}>둔감한 토끼</span> 
             </div>
 
-            <div className="w-full"><TypeEmoji animalColor="sky"/></div>
+            <div className="mt-6 flex justify-center mb-8 ">
+            <img src={process.env.PUBLIC_URL + `/rabbit.png`} alt={`rabbit`} style={{width : '150px'}}/>
+            </div>
 
+            <div className="w-full mt-4 mb-4"><TypeEmoji/></div>
+            
+            <TitleBox title={'나의 동물유형 한줄 소개'} animalColor={animalColor}/>
 
 
 
@@ -221,7 +228,7 @@ export const ResultHome =() => {
             <TitleBox title={'김푸앙님 생활 유형 결과'} animalColor={animalColor}/>
             <ResultDetail />
             
-            <TypeEmoji animalColor={animalColor}/>
+            <TypeEmojif animalColor={animalColor}/>
             <div className="mt-6"> 
                 < GoToRecommend/>
             </div>

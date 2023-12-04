@@ -5,7 +5,7 @@ type IconBoxProps = {
     animalColor: 'gray' | 'green' | 'orange' | 'pink' | 'purple' | 'yellow' | 'rose' | 'sky';
   };
   
-export const TypeEmoji=({animalColor }: IconBoxProps) => {
+export const TypeEmojif=({animalColor }: IconBoxProps) => {
     
     const animalIconStyles = {
         yellow: {

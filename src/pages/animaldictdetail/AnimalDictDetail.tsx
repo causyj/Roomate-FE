@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { AnimalType } from "../../interface/AnimalType";
 import { AnimalDescription } from "../../components/resultdetail/AnimalDescription";
-import { TypeEmoji } from "../../components/resultdetail/TypeEmoji";
+import { TypeEmojif } from "../../components/resultdetail/TypeEmoji";
 import { ANIMAL_DATA } from "../../constants";
 type AnimalDictionaryParams = {
     animal : AnimalType['animal']
@@ -44,7 +44,7 @@ export const AnimalDictDetail = () => {
             <div className={`text-4xl ${animalIconStyle} text-center  font-['800']`}>{animal} 유형</div>
             <div>
                 <AnimalDescription type={animal}/> 
-                <TypeEmoji animalColor={animalColor}/>
+                <TypeEmojif animalColor={animalColor}/>
             </div>
         </div>
     )
