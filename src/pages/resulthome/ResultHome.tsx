@@ -15,8 +15,8 @@ interface AnimalDataProps{
 }
 interface DescriplDataProps{
   features : string;
-  wellMatchedRoommates : string[];
-  incompatibleRoommates : string[];
+  wellMatchedRoommates :  Array<AnimalType['animal']>;
+  incompatibleRoommates :  Array<AnimalType['animal']>;
   
 }
 export const ResultHome =() => {
