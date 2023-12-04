@@ -36,35 +36,37 @@ export const TypeAtAGlance = ({ color }: TypeAtAGlanceProps) =>{
     };
     IconData();
   },[]);
-    const nosieCount = Array.from({ length: noise }, (_, index) => (
-        <FavoriteOutlined key={index} />
+    const nosieCount = Array.from({ length: heartData?.noise! }, (_, index) => (
+        <FavoriteOutlined key={heartData?.noise!} />
       ));
-      const EmptynosieCount = Array.from({ length: 5 - noise }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
+      const EmptynosieCount = Array.from({ length: 5 - heartData?.noise! }, (_, index) => (
+        <FavoriteBorder key={heartData?.noise! + index} />
       ));
-      const temperatureCount = Array.from({ length: temperature }, (_, index) => (
-        <FavoriteOutlined key={index} />
+
+      const temperatureCount = Array.from({ length: heartData?.temperature! }, (_, index) => (
+        <FavoriteOutlined key={heartData?.temperature!} />
       ));
-      const EmptytemperatureCount = Array.from({ length: 5 - temperature }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
+      const EmptytemperatureCount = Array.from({ length: 5 - heartData?.temperature! }, (_, index) => (
+        <FavoriteBorder key={heartData?.temperature! + index} />
       ));
-      const outgoingCount = Array.from({ length: outgoing }, (_, index) => (
-        <FavoriteOutlined key={index} />
+      
+      const outgoingCount = Array.from({ length: heartData?.outgoing! }, (_, index) => (
+        <FavoriteOutlined key={heartData?.outgoing!} />
       ));
-      const EmptyoutgoingCount = Array.from({ length: 5 - outgoing }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
+      const EmptyoutgoingCount = Array.from({ length: 5 - heartData?.outgoing! }, (_, index) => (
+        <FavoriteBorder key={heartData?.outgoing! + index} />
       ));
-      const cleanCount = Array.from({ length: clean }, (_, index) => (
-        <FavoriteOutlined key={index} />
+      const cleanCount = Array.from({ length: heartData?.clean! }, (_, index) => (
+        <FavoriteOutlined key={heartData?.clean!} />
       ));
-      const EmptycleanCount = Array.from({ length: 5 - clean }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
+      const EmptycleanCount = Array.from({ length: 5 - heartData?.clean! }, (_, index) => (
+        <FavoriteBorder key={heartData?.clean! + index} />
       ));
-      const sleepCount = Array.from({ length: sleep }, (_, index) => (
-        <FavoriteOutlined key={index} />
+      const sleepCount = Array.from({ length: heartData?.sleep! }, (_, index) => (
+        <FavoriteOutlined key={heartData?.sleep!} />
       ));
-      const EmptysleepCount = Array.from({ length: 5 - sleep }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
+      const EmptysleepCount = Array.from({ length: 5 - heartData?.sleep! }, (_, index) => (
+        <FavoriteBorder key={heartData?.sleep! + index} />
       ));
 
      
@@ -80,6 +82,7 @@ export const TypeAtAGlance = ({ color }: TypeAtAGlanceProps) =>{
                 <div className="mb-1">청결도</div>
                 <div className="mb-1">잠버릇</div>
             </div>
+            
             <div className="flex flex-col mb-1 font-['700'] text-primary-gray">
                 <div className="mb-1">아침형</div>
                 <div className="mb-1">비흡연자</div>
