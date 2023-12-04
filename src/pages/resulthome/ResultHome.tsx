@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import { TypeEmojif } from "../../components/resultdetail/TypeEmoji"
 import { Divider } from "@mui/material"
 import { GoToGroup } from "../roommatelist/components/GoToGroup"
+import BrokenHeart from "@mui/icons-material/HeartBrokenOutlined"
 
   interface TypeAtAGlanceProps {
     noise: number;
@@ -122,7 +123,7 @@ const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep,animalColor 
 const ResultDetail = () => {
     return(
 
-        <div className="p-8">
+        <div className="p-6">
             <div className="font-['800'] mb-2">김푸앙님은 이런 생활 유형이에요!</div>
             <div className="font-['700'] text-primary-gray mb-8">: 밤 12시에 취침하고, 오전 8시에 일어나요.매일 한 번의 방청소를 통해 깨끗한 환경을 유지하며,
                     씻는 시간도 아침으로 일정하고 적절한 시간동안만 해요. 음식을 주로 방에서 섭취하지 않고, 비흡연자에요
@@ -161,38 +162,67 @@ export const ResultHome =() => {
     const animalInfo = ANIMAL_DATA[result];
     const animalColor = animalInfo.color; //orange
     
-    const animalIconStyles = {
-            yellow: {
-                color : 'text-yellow-500', 
-            },
-            rose: {
-                color : 'text-rose-500', 
-            },
-            orange: {
-                color : 'text-orange-500', 
-            },
-            green: {
-                color : 'text-green-500', 
-            },
-            sky: {
-                color : 'text-sky-500', 
-            },
-            purple: {
-                color : 'text-purple-500', 
-            },
-            gray: {
-                color : 'text-gray-500', 
-            },
-            pink: {
-                color : 'text-pink-600', 
-            },
-        }
-        const animalIconStyle = animalIconStyles[animalColor];
+   
+          const animalIconStyles = {
+          yellow: {
+              color : 'border-yellow-500', 
+          },
+          rose: {
+              color : 'border-rose-500', 
+          },
+          orange: {
+              color : 'border-orange-500', 
+          },
+          green: {
+              color : 'border-green-500', 
+          },
+          sky: {
+              color : 'border-sky-500', 
+          },
+          purple: {
+              color : 'border-purple-500', 
+          },
+          gray: {
+              color : 'border-gray-500', 
+          },
+          pink: {
+              color : 'border-pink-600', 
+          },
+      }
+      const heartIconStyles = {
+          yellow: {
+              color : 'text-yellow-500', 
+          },
+          rose: {
+              color : 'text-rose-500', 
+          },
+          orange: {
+              color : 'text-orange-500', 
+          },
+          green: {
+              color : 'text-green-500', 
+          },
+          sky: {
+              color : 'text-sky-500', 
+          },
+          purple: {
+              color : 'text-purple-500', 
+          },
+          gray: {
+              color : 'text-gray-500', 
+          },
+          pink: {
+              color : 'text-pink-600', 
+          },
+      }
+      const animalIconStyle = animalIconStyles[animalColor];
+      const heartIconStyle = heartIconStyles[animalColor];
     const noise = 3;
     const temperature = 3;
     const outgoing = 1;
     const clean = 5;
     const sleep = 5
+    
     return (
         <div>
            <div className="flex w-full items-center justify-center mb-4">
@@ -208,11 +238,12 @@ export const ResultHome =() => {
             <img src={process.env.PUBLIC_URL + `/rabbit.png`} alt={`rabbit`} style={{width : '150px'}}/>
             </div>
 
-            <div className="w-full mt-4 mb-8"><TypeEmoji/></div>
+            <div className="w-full mt-4 mb-8">
+              <TypeEmoji/>
+              </div>
 
-            <Divider/>
-
-            <TitleBox title={'나의 동물유형 한줄 소개'} animalColor={animalColor}/>
+           
+            <TitleBox title={'나의 동물 유형 한줄 소개'} animalColor={animalColor}/>
             <div className=" font-['600'] p-7 text-l text-primary-gray">
             상쾌한 아침을 맞이하는 아침형 인간으로, 혼자만의 시간을 중요하게 생각하고 겨울보단 여름을 좋아하는 성향이 있다.
             </div>
@@ -221,16 +252,13 @@ export const ResultHome =() => {
                 <div className="flex flex-col items-center justify-start p-3">
                         <div className="text-xs text-center">내 동물유형을 포함한 총 8가지의 동물유형이 있어요! </div>
                         <div className="flex flex-row">
-                            <div className="mt-1 mr-3 font-['700'] text-m ">다른 동물유형 구경하러 가기{'>'}</div>
+                            <div className="mt-1 mr-3 font-['700'] text-m">다른 동물유형 구경하러 가기{'>'}</div>
                             <img src={process.env.PUBLIC_URL + '/zoo.png'} alt="roomie" width="35px"  />
                         </div>
                  </div>
                  </div>
             </Link>
 
-
-           
-    
             <TitleBox title={'김푸앙님의 생활 유형 한 눈에 보기'} animalColor={animalColor}/>
             <TypeAtAGlance 
                 animalColor={animalColor}
@@ -239,15 +267,55 @@ export const ResultHome =() => {
                 outgoing={1}
                 clean={5}
                 sleep={5}
-                />
+            />
+
+           <div className="flex flex-row justify-between mb-6">
+                <div className="flex flex-col text-center items-center">
+                    <div className={`w-40 mr-4 border-4 ${animalIconStyle.color} rounded-lg flex items-center justify-center p-1`}>
+                        <img src={process.env.PUBLIC_URL + '/good.png'} alt="morning"  />
+                    </div>
+                    <div className="mr-3 mt-1 font-['700'] text-sm">이런 룸메와 잘 맞아요</div>
+                    <div className="mr-4 font-['700'] flex flex-col justify-center items-start  ">
+                        <div className="flex flex-row mt-4">
+                                <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
+                                <div className="ml-2">토끼</div>
+                        </div>
+                        <div className="flex flex-row  mt-1">
+                            <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
+                            <div className="ml-2 ">북극곰</div>
+                        </div>
+                        {/* <div className="flex flex-row text-center items-center justify-center mt-1">
+                            <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
+                            <div className="ml-2">강아지</div>
+                        </div> */}
+                    </div>
+                </div>
+
+                <div className="flex flex-col text-center items-center justify-center">
+                      <div className={`w-40 mr-4 border-4 ${animalIconStyle.color} rounded-lg flex items-center justify-center p-1`}>
+                        <img src={process.env.PUBLIC_URL + '/bad.png'} alt="morning"  />
+                      </div>
+                      <div className="text-center mt-1 mr-3 font-['700'] text-sm">이런 룸메와는 조금 힘들어요</div>
+                      <div className="mr-4 font-['700'] flex flex-col justify-center items-start  ">
+                          <div className="flex flex-row font-['700']  mt-4">
+                            <div className={`${heartIconStyle.color}`}><BrokenHeart/></div>
+                                <div className="ml-2">늑대</div>
+                        </div>
+                        <div className="flex flex-row text-center font-['700'] items-center justify-center mt-1">
+                            <div className={`${heartIconStyle.color}`}><BrokenHeart/></div>
+                            <div className="ml-2 ">쿼카</div>
+                        </div>
+                   
+                      </div>
+
+                </div>
+            </div>
+    
             
-            <TitleBox title={'김푸앙님 생활 유형 결과'} animalColor={animalColor}/>
+            <TitleBox title={'김푸앙님의 생활 유형 상세 결과'} animalColor={animalColor}/>
             <ResultDetail />
             
-            <TypeEmojif animalColor={animalColor}/>
-            <div className="mt-6"> 
-                < GoToRecommend/>
-            </div>
+            
             <div className="text-white">
                         <div>sfsdfs</div>
                         <div>sfsdfs</div>
