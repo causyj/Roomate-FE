@@ -8,7 +8,7 @@ export const ResultDetail = ({nickname} : ResultDetailProps ) => {
     useEffect(()=>{
         const Detail = async () => {
           try {
-            const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style/icon`, {
+            const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style/text`, {
               method: 'GET',
               credentials: 'include',
             });

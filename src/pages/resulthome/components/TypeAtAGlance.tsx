@@ -1,15 +1,41 @@
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
+import { useEffect, useState } from "react";
 interface TypeAtAGlanceProps {
-    noise: number;
-    temperature: number;
-    outgoing: number;
-    clean: number;
-    sleep: number;
     color: string |undefined;
   }
-export const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep,color }: TypeAtAGlanceProps) =>{
-   
+interface HeartDataProps{
+  rhythm : string;
+  smoke: string;
+  noise: number;
+  temperature: number;
+  outgoing: number;
+  clean: number;
+  sleep: number;
+}
+export const TypeAtAGlance = ({ color }: TypeAtAGlanceProps) =>{
+  const [heartData, setHeartData] = useState<HeartDataProps | null>(null);
+  useEffect(()=>{
+    const IconData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/heart`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setHeartData(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to fetch new card data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to fetch new card data : ', error);
+      }
+    };
+    IconData();
+  },[]);
     const nosieCount = Array.from({ length: noise }, (_, index) => (
         <FavoriteOutlined key={index} />
       ));

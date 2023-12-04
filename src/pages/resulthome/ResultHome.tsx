@@ -145,14 +145,7 @@ export const ResultHome =() => {
             </Link>
 
             <TitleBox title={'나의 생활 유형 한 눈에 보기'} animalColor={color}/>
-            <TypeAtAGlance
-                color={color}
-                noise={3}
-                temperature={2}
-                outgoing={1}
-                clean={5}
-                sleep={5}
-            />
+            <TypeAtAGlance color={color}/>
             
             {descripData && 
              <GoodBad 
