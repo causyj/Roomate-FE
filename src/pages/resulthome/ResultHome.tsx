@@ -10,152 +10,9 @@ import { TypeEmojif } from "../../components/resultdetail/TypeEmoji"
 import { Divider } from "@mui/material"
 import { GoToGroup } from "../roommatelist/components/GoToGroup"
 import BrokenHeart from "@mui/icons-material/HeartBrokenOutlined"
-
-  interface TypeAtAGlanceProps {
-    noise: number;
-    temperature: number;
-    outgoing: number;
-    clean: number;
-    sleep: number;
-    animalColor: 'gray' | 'green' | 'orange' | 'pink' | 'purple' | 'yellow' | 'rose' | 'sky';
-  }
-const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep,animalColor }: TypeAtAGlanceProps) =>{
-    const animalIconStyles = {
-        yellow: {
-            color : 'text-yellow-500', 
-        },
-        rose: {
-            color : 'text-rose-500', 
-        },
-        orange: {
-            color : 'text-orange-500', 
-        },
-        green: {
-            color : 'text-green-500', 
-        },
-        sky: {
-            color : 'text-sky-500', 
-        },
-        purple: {
-            color : 'text-purple-500', 
-        },
-        gray: {
-            color : 'text-gray-500', 
-        },
-        pink: {
-            color : 'text-pink-600', 
-        },
-    }
-    const animalIconStyle = animalIconStyles[animalColor];
-    const nosieCount = Array.from({ length: noise }, (_, index) => (
-        <FavoriteOutlined key={index} />
-      ));
-      const EmptynosieCount = Array.from({ length: 5 - noise }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
-      ));
-      const temperatureCount = Array.from({ length: temperature }, (_, index) => (
-        <FavoriteOutlined key={index} />
-      ));
-      const EmptytemperatureCount = Array.from({ length: 5 - temperature }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
-      ));
-      const outgoingCount = Array.from({ length: outgoing }, (_, index) => (
-        <FavoriteOutlined key={index} />
-      ));
-      const EmptyoutgoingCount = Array.from({ length: 5 - outgoing }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
-      ));
-      const cleanCount = Array.from({ length: clean }, (_, index) => (
-        <FavoriteOutlined key={index} />
-      ));
-      const EmptycleanCount = Array.from({ length: 5 - clean }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
-      ));
-      const sleepCount = Array.from({ length: sleep }, (_, index) => (
-        <FavoriteOutlined key={index} />
-      ));
-      const EmptysleepCount = Array.from({ length: 5 - sleep }, (_, index) => (
-        <FavoriteBorder key={noise + index} />
-      ));
-
-     
-    return (
-      <div className="flex flex-col items-center p-6">
-          <div className="flex flex-row">
-            <div className="flex flex-col mr-8 font-['700']">
-                <div className="mb-1">생체 리듬</div>
-                <div className="mb-1">흡연 여부</div>
-                <div className="mb-1">소음 민감도</div>
-                <div className="mb-1">온도 민감도</div>
-                <div className="mb-1">외출/외박</div>
-                <div className="mb-1">청결도</div>
-                <div className="mb-1">잠버릇</div>
-            </div>
-            <div className="flex flex-col mb-1 font-['700'] text-primary-gray">
-                <div className="mb-1">아침형</div>
-                <div className="mb-1">비흡연자</div>
-                <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
-                        {nosieCount}
-                        {EmptynosieCount}
-                 </div>
-                 <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
-                        {temperatureCount}
-                        {EmptytemperatureCount}
-                 </div>
-                 <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
-                        {outgoingCount}
-                        {EmptyoutgoingCount}
-                 </div>
-                 <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
-                        {cleanCount}
-                        {EmptycleanCount}
-                 </div>
-                 <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
-                        {sleepCount}
-                        {EmptysleepCount}
-                 </div>
-                
-            </div>
-        </div>
-      </div>
-    )
-}  
-const ResultDetail = () => {
-    return(
-
-        <div className="p-6">
-            <div className="font-['800'] mb-2">김푸앙님은 이런 생활 유형이에요!</div>
-            <div className="font-['700'] text-primary-gray mb-8">: 밤 12시에 취침하고, 오전 8시에 일어나요.매일 한 번의 방청소를 통해 깨끗한 환경을 유지하며,
-                    씻는 시간도 아침으로 일정하고 적절한 시간동안만 해요. 음식을 주로 방에서 섭취하지 않고, 비흡연자에요
-                    도서관에서 주로 공부하고, 노트북을 자주 사용해요. 룸메이트와 친하게 지내고 싶어해요. 잠버릇이 심해요.
-            </div>
-            <div className="font-['800'] mb-2">김푸앙님이 원하는 룸메이트 스타일은?</div>
-            <div className="font-['700'] text-primary-gray">: 밤 12시에 취침하고, 오전 8시에 일어났으면 좋겠어요.매일 한 번의 방청소를 통해 깨끗한 
-                   환경을 유지하길 바라며, 씻는 시간도 아침으로 일정하고 적절한 시간동안만 했으면 좋겠어요. 음식을 방에서 섭취하지 않았으면 좋겠고, 비흡연자였으면 좋겠어요
-                    도서관에서 주로 공부하고, 노트북 소음을 안 냈으면 좋겠어요.룸메이트도 저와 친하게 지냈으면 좋겠어요. 저는 잠귀가 어두워요
-            </div>
-        </div>
-            
-    )
-}
-const GoToRecommend = () => {
-    return (
-        <div>
-            <Link to='/roommatelist'>
-                <div className="w-full h-16 bg-gray-100 rounded-2xl mt-2">
-                <div className="flex flex-col items-center justify-start p-3">
-                        <div className="text-xs text-center">나와 성향이 맞는 룸메이트를 보러가세요~!</div>
-                        <div className="flex flex-row">
-                            <div className="mt-1 mr-9 font-['700'] text-m ">룸메이트 추천 받으러가기 {'>'}</div>
-                            <img src={process.env.PUBLIC_URL + '/roommate.png'} alt="roomie" width="35px"  />
-                        </div>
-                 </div>
-                 </div>
-            </Link>
-        </div>
-        
-    )
-}
+import { TypeAtAGlance } from "./components/TypeAtAGlance"
+import { GoodBad } from "./components/GoodBad"
+import { ResultDetail } from "./components/TypeDetail"
 
 export const ResultHome =() => {
     const result = "rabbit";
@@ -260,7 +117,7 @@ export const ResultHome =() => {
             </Link>
 
             <TitleBox title={'김푸앙님의 생활 유형 한 눈에 보기'} animalColor={animalColor}/>
-            <TypeAtAGlance 
+            <TypeAtAGlance
                 animalColor={animalColor}
                 noise={3}
                 temperature={2}
@@ -269,59 +126,30 @@ export const ResultHome =() => {
                 sleep={5}
             />
 
-           <div className="flex flex-row justify-between mb-6">
-                <div className="flex flex-col text-center items-center">
-                    <div className={`w-40 mr-4 border-4 ${animalIconStyle.color} rounded-lg flex items-center justify-center p-1`}>
-                        <img src={process.env.PUBLIC_URL + '/good.png'} alt="morning"  />
-                    </div>
-                    <div className="mr-3 mt-1 font-['700'] text-sm">이런 룸메와 잘 맞아요</div>
-                    <div className="mr-4 font-['700'] flex flex-col justify-center items-start  ">
-                        <div className="flex flex-row mt-4">
-                                <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
-                                <div className="ml-2">토끼</div>
-                        </div>
-                        <div className="flex flex-row  mt-1">
-                            <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
-                            <div className="ml-2 ">북극곰</div>
-                        </div>
-                        {/* <div className="flex flex-row text-center items-center justify-center mt-1">
-                            <div className={`${heartIconStyle.color}`}><FavoriteOutlined/></div>
-                            <div className="ml-2">강아지</div>
-                        </div> */}
-                    </div>
-                </div>
-
-                <div className="flex flex-col text-center items-center justify-center">
-                      <div className={`w-40 mr-4 border-4 ${animalIconStyle.color} rounded-lg flex items-center justify-center p-1`}>
-                        <img src={process.env.PUBLIC_URL + '/bad.png'} alt="morning"  />
-                      </div>
-                      <div className="text-center mt-1 mr-3 font-['700'] text-sm">이런 룸메와는 조금 힘들어요</div>
-                      <div className="mr-4 font-['700'] flex flex-col justify-center items-start  ">
-                          <div className="flex flex-row font-['700']  mt-4">
-                            <div className={`${heartIconStyle.color}`}><BrokenHeart/></div>
-                                <div className="ml-2">늑대</div>
-                        </div>
-                        <div className="flex flex-row text-center font-['700'] items-center justify-center mt-1">
-                            <div className={`${heartIconStyle.color}`}><BrokenHeart/></div>
-                            <div className="ml-2 ">쿼카</div>
-                        </div>
-                   
-                      </div>
-
-                </div>
-            </div>
+           <GoodBad/>
     
             
             <TitleBox title={'김푸앙님의 생활 유형 상세 결과'} animalColor={animalColor}/>
             <ResultDetail />
             
+            <Link to='/roommatelist'>
+                <div className="w-full h-16 bg-gray-100 rounded-2xl mt-2">
+                <div className="flex flex-col items-center justify-start p-3">
+                        <div className="text-xs text-center">나와 성향이 맞는 룸메이트를 보러가세요~!</div>
+                        <div className="flex flex-row">
+                            <div className="mt-1 mr-3 font-['700'] text-m ">룸메이트 추천 받으러가기 {'>'}</div>
+                            <img src={process.env.PUBLIC_URL + '/roommate.png'} alt="roomie" width="35px"  />
+                        </div>
+                 </div>
+                 </div>
+            </Link>
             
             <div className="text-white">
                         <div>sfsdfs</div>
                         <div>sfsdfs</div>
                         <div>sfsdfs</div>
-                        <div>sfsdfs</div>
-                        <div>sfsdfs</div>
+                        
+                     
             </div>
         </div>
     )
