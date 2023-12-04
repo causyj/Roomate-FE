@@ -13,7 +13,7 @@ import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 import { ForPractice } from './forpractice/ForPractice'
 import { ResultHome } from './pages/resulthome/ResultHome'
-import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
+import { AnimalDictDetail } from './pages/animaldict/[animal]/AnimalDictDetail'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
 import { LandingPage } from './components/LandingPage'
 import { Chatting } from './pages/chat/[nickname]/Chatting'
@@ -55,7 +55,16 @@ const Router = createBrowserRouter([
   path: '/chat/:nickname',
   element: <><Chatting/></>,
 },
-
+{
+    path: '/animaldict',
+    element: <AnimalDictionary/>,
+            
+},
+{
+    path: '/animaldict/:animal',
+    element: <AnimalDictionary/>,
+            
+},
 
 
 {
@@ -63,11 +72,7 @@ const Router = createBrowserRouter([
     element: <><BottomNavbar/><TestPage/></>
 },
 
-{
-    path: '/animaldict',
-    element: <AnimalDictionary/>,
-            
-},
+
 {
     path: '/animaldictdetail/:animal',
     element: <AnimalDictDetail/>,

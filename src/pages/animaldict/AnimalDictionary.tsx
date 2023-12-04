@@ -108,6 +108,7 @@ const AnimalLinkCard = ({ color, picture, type, animal }: AnimalLinkCardProps) =
 
 
 export function AnimalDictionary() {
+    
     return (
         <div className=" items-start justify-center mt-2">
             <div className="flex flex-col items-center justify-center">

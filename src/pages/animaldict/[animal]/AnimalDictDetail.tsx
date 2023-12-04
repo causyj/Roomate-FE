@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { AnimalType } from "../../interface/AnimalType";
-import { AnimalDescription } from "../../components/resultdetail/AnimalDescription";
-import { ANIMAL_DATA } from "../../constants";
+import { AnimalType } from "../../../interface/AnimalType";
+import { AnimalDescription } from "../../../components/resultdetail/AnimalDescription";
+import { ANIMAL_DATA, getAnimalColor } from "../../../constants";
 type AnimalDictionaryParams = {
     animal : AnimalType['animal']
 }
@@ -32,17 +32,15 @@ export const AnimalDictDetail = () => {
             color : 'text-pink-600', 
         },
     }
-    
+
     const {animal} = useParams<AnimalDictionaryParams>()
-    if (animal === undefined) throw Error(`${animal} is undefined`)
-    const animalInfo = ANIMAL_DATA[animal];
-    const animalColor = animalInfo.color; 
-    const animalIconStyle = animalIconStyles[animalColor];
+    const color = getAnimalColor(animal as AnimalType['animal']);
+    const animalKOR = ANIMAL_DATA[animal as AnimalType['animal']].type;
     return (
         <div>
-            <div className={`text-4xl ${animalIconStyle} text-center  font-['800']`}>{animal} 유형</div>
+            <div className={`text-4xl text-${color}-500 text-center  font-['800']`}>{animalKOR} 유형</div>
             <div>
-                <AnimalDescription type={animal}/> 
+                {/* <AnimalDescription type={animal}/>  */}
                 {/* <TypeEmojif animalColor={animalColor}/> */}
             </div>
         </div>

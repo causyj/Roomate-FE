@@ -62,7 +62,7 @@ export const ResultAnother = () => {
             </div>
 
             <div className="w-full mt-4 mb-8">
-              <TypeEmojiNotUser id={id}/>
+              {/* <TypeEmojiNotUser id={id}/> */}
             </div>
         </div>
     )
