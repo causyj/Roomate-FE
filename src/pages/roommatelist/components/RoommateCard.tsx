@@ -172,7 +172,7 @@ const CardFrontPercentage = ({isFrontView,key, nickname, animal, dorm, room, age
 
 //Tab2&3의 카드 
 const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) => {
-  const [isStarred, setIsStarred] = useState(false);
+  const [isStarred, setIsStarred] = useState(true);
   const [starId, setStartId] = useState('');
   //찜 추가
   const handleStarClick = async (e: any)=> {
@@ -207,13 +207,12 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
   return (
       <div className="flex flex-col items-center text-center justify-center p-4 ">
       
-      <div className="font-['700'] text-primary-logo text-m text-start mr-auto">나와의 궁합 67%</div>
       <div className="flex justify-evenly w-ful ml-auto">
           
           <Stack direction="row" spacing={2}>
               <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
           </Stack>
-          <div className="text-end mt-[-32px] mr-[-8px] ml-4">
+          <div className="text-end mt-[-8px] mr-[-8px] ml-4">
         {isStarred ? (
           <Star
             sx={{  color: ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: '50px', height: '50px', cursor: 'pointer'  }}
@@ -229,8 +228,8 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
           
       </div>
   
-      <div className="font-['700'] text-bold text-2xl text-center mx-auto mt-[-2px]">{nickname}님</div>
-      <div className="font-['700'] text-primary-gray text-xxs mt-[-5px]">블루미르홀 {dorm}/{room}인실</div>
+      <div className="font-['700'] text-bold text-2xl text-center mx-auto">{nickname}님</div>
+      <div className="font-['700'] text-primary-gray text-xxs">블루미르홀 {dorm}/{room}인실</div>
       </div>
   )
 }

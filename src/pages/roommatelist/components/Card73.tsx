@@ -28,13 +28,13 @@ const FrontDetail = () => {
     return (
       <div className="flex flex-col items-center text-center justify-center p-4 ">
         
-        <div className="font-['700'] text-primary-logo text-m text-start mr-auto">나와의 궁합 67%</div>
+       
       <div className="flex justify-evenly w-ful ml-auto">
           
       <Stack direction="row" spacing={2}>
           <Avatar alt="Remy Sharp" sx={{bgcolor:'orange', width: 70, height: 70}} src={process.env.PUBLIC_URL + '/rabiit.png'} />
       </Stack>
-      <div className="text-end mt-[-32px] mr-[-8px] ml-4">
+      <div className="text-end mt-[-8px] mr-[-8px] ml-4">
     {isStarred ? (
       <Star
         sx={{  color: 'orange', width: '50px', height: '50px', cursor: 'pointer'  }}
@@ -50,8 +50,8 @@ const FrontDetail = () => {
       </div>
    
   
-      <div className="font-['700'] text-bold text-2xl text-center mx-auto mt-[-2px]">모글리님</div>
-      <div className="font-['700'] text-primary-gray text-xxs mt-[-5px]">블루미르홀 308관/2인실</div>
+      <div className="font-['700'] text-bold text-2xl text-center mx-auto">모글리님</div>
+      <div className="font-['700'] text-primary-gray text-xxs">블루미르홀 308관/2인실</div>
       </div>
     )
 }
