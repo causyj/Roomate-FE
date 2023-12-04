@@ -168,7 +168,7 @@ export const ResultHome =() => {
     
             
             <TitleBox title={'나의 생활 유형 상세보기'} animalColor={color}/>
-            <ResultDetail />
+            <ResultDetail nickname={nickname}/>
             
             <Link to='/roommatelist'>
                 <div className="w-full h-16 bg-gray-100 rounded-2xl mt-2">
