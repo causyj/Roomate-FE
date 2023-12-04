@@ -1,7 +1,7 @@
 import { AnimalDescription } from "../../components/resultdetail/AnimalDescription"
 import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
-import { TypeEmoji } from "../../components/resultdetail/TypeEmoji"
+import { TypeEmoji } from "./components/TypeEmoji"
 import { TitleBox } from "../../components/resultdetail/TitleBox"
 import { ANIMAL_DATA } from "../../constants"
 import { tw } from '../../styles'
@@ -191,10 +191,21 @@ export const ResultHome =() => {
     const sleep = 5
     return (
         <div>
+           <div className="flex w-full items-center justify-center mb-4">
+                    <img src={process.env.PUBLIC_URL + '/logo.png'}alt="logo"style={{width : '120px'}}/>
+            </div>
+            
             <div className="text-center text-2xl font-['800'] items-center justify-center">
-                <div className='mb-4 mt-4'>김푸앙님의 생활 유형은</div>
+                <div className='mb-4 mt-8'>김푸앙님의 생활 유형은</div>
                 <span className={`text-4xl ${animalIconStyle.color}`}>둔감한 토끼</span> 
             </div>
+
+            <div className="w-full"><TypeEmoji animalColor="sky"/></div>
+
+
+
+
+
             <AnimalDescription type={result} />
     
             <TitleBox title={'김푸앙님의 생활 유형 한 눈에 보기'} animalColor={animalColor}/>

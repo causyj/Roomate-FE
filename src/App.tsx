@@ -3,7 +3,6 @@ import { Home } from './pages/home/Home'
 import { Login } from './pages/login/Login'
 import { Register } from './pages/register/Register'
 import { TestPage } from './pages/testpage/TestPage'
-import { TypeResult } from './pages/typeresult/TypeResult'
 import { AnimalDictionary } from './pages/animaldict/AnimalDictionary'
 import { Verify } from './pages/verify/Verify'
 import { ChatList,  } from './pages/chat/ChatList'
@@ -65,10 +64,6 @@ const Router = createBrowserRouter([
     element: <><BottomNavbar/><TestPage/></>
 },
 
-{
-    path: '/typeresult',
-    element: <TypeResult/>,
-},
 {
     path: '/animaldict',
     element: <AnimalDictionary/>,
