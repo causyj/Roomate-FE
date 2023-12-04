@@ -1,21 +1,62 @@
-import { AnimalDescription } from "../../components/resultdetail/AnimalDescription"
-import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import { TypeEmoji } from "./components/TypeEmoji"
 import { TitleBox } from "../../components/resultdetail/TitleBox"
-import { ANIMAL_DATA } from "../../constants"
-import { tw } from '../../styles'
+import { ANIMAL_DATA, getAnimalColor, getAnimalColorRGB } from "../../constants"
 import { Link } from "react-router-dom"
-import { TypeEmojif } from "../../components/resultdetail/TypeEmoji"
-import { Divider } from "@mui/material"
-import { GoToGroup } from "../roommatelist/components/GoToGroup"
-import BrokenHeart from "@mui/icons-material/HeartBrokenOutlined"
 import { TypeAtAGlance } from "./components/TypeAtAGlance"
 import { GoodBad } from "./components/GoodBad"
 import { ResultDetail } from "./components/TypeDetail"
+import { useEffect, useState } from "react"
+import { AnimalType } from "../../interface/AnimalType"
 
+//api : 닉네임 / 동물 유형 / 
 export const ResultHome =() => {
-    const result = "rabbit";
+  const [nickname, setNickname] = useState('');
+  const [animal, setAnimal] = useState('');
+
+  useEffect(()=>{
+    const nicknameData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setNickname(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to fetch new card data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to fetch new card data : ', error);
+      }
+    };
+    nicknameData();
+  },[]);
+  useEffect(()=>{
+    const animalData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setAnimal(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to nicknameData data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to nicknameData data : ', error);
+      }
+    };
+    animalData();
+  },[]);
+
+    const result = "polarBear";
     const animalInfo = ANIMAL_DATA[result];
     const animalColor = animalInfo.color; //orange
     
@@ -78,17 +119,20 @@ export const ResultHome =() => {
     const temperature = 3;
     const outgoing = 1;
     const clean = 5;
-    const sleep = 5
-    
+    const sleep = 5;
+    const animals = 'penguin'; 
+    const color = getAnimalColor(animals);
+    console.log(color);
     return (
         <div>
+          {/* 로고 */}
            <div className="flex w-full items-center justify-center mb-4">
                     <img src={process.env.PUBLIC_URL + '/logo.png'}alt="logo"style={{width : '120px'}}/>
             </div>
             
             <div className="text-center text-2xl font-['800'] items-center justify-center">
-                <div className='mb-4 mt-8'>김푸앙님의 생활 유형은</div>
-                <span className={`text-4xl ${animalIconStyle.color}`}>둔감한 토끼</span> 
+                <div className='mb-4 mt-8'>{nickname}님의 생활 유형은</div>
+                <span className={`text-4xl text-['900'] text-${color}-500`}  >둔감한 토끼</span> 
             </div>
 
             <div className="mt-6 flex justify-center mb-8 ">
@@ -100,7 +144,7 @@ export const ResultHome =() => {
               </div>
 
            
-            <TitleBox title={'나의 동물 유형 한줄 소개'} animalColor={animalColor}/>
+            <TitleBox title={'나의 동물 유형 한줄 소개'} animalColor={color}/>
             <div className=" font-['600'] p-7 text-l text-primary-gray">
             상쾌한 아침을 맞이하는 아침형 인간으로, 혼자만의 시간을 중요하게 생각하고 겨울보단 여름을 좋아하는 성향이 있다.
             </div>
@@ -129,7 +173,7 @@ export const ResultHome =() => {
            <GoodBad/>
     
             
-            <TitleBox title={'김푸앙님의 생활 유형 상세 결과'} animalColor={animalColor}/>
+            <TitleBox title={'김푸앙님의 생활 유형 상세보기'} animalColor={animalColor}/>
             <ResultDetail />
             
             <Link to='/roommatelist'>
