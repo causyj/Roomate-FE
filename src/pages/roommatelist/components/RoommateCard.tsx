@@ -74,17 +74,18 @@ interface TypeAtGlanceProps{
     clean:number;
     sleep:number;
 }
-
-const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) => {
+//Tab1의 유사도 카드 앞면
+const FrontDetailPercentage = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) => {
     const [isStarred, setIsStarred] = useState(false);
     const [starId, setStartId] = useState('');
+    //찜 추가
     const handleStarClick = async (e: any)=> {
             e.stopPropagation(); // 이벤트 전파를 막습니다.
 
             setIsStarred(!isStarred);
             
                 try {
-                    const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${starId}`, {
+                    const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${key}`, {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
@@ -137,7 +138,7 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
         </div>
     )
 }
-const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+const CardFrontPercentage = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
     
     return (
         <section
@@ -145,7 +146,7 @@ const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, s
             isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
         }`}
     >
-        <FrontDetail key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} />
+        <FrontDetailPercentage key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} />
         
             <div
            className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
@@ -168,6 +169,103 @@ const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, s
     </section>
     )
 }
+
+//Tab2&3의 카드 
+const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) => {
+  const [isStarred, setIsStarred] = useState(true);
+  const [starId, setStartId] = useState('');
+  //찜 추가
+  const handleStarClick = async (e: any)=> {
+          e.stopPropagation(); // 이벤트 전파를 막습니다.
+
+          setIsStarred(!isStarred);
+          
+              try {
+                  const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${key}`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  });
+            
+                  if (response.ok) {
+                    // 서버에서 인증 코드를 반환한 경우
+                    const data = await response.text();
+                    if(data != ''){
+                      setStartId(data);
+                    }
+                    console.log({starId});
+                  } else {
+                    // 서버에서 에러가 발생한 경우
+                    console.error('Error during mailConfirm1:', response.statusText);
+                  }
+                } catch (error) {
+                  console.error('Error during mailConfirm2:', error);
+                }
+              };
+  
+  return (
+      <div className="flex flex-col items-center text-center justify-center p-4 ">
+      
+      <div className="flex justify-evenly w-ful ml-auto">
+          
+          <Stack direction="row" spacing={2}>
+              <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+          </Stack>
+          <div className="text-end mt-[-8px] mr-[-8px] ml-4">
+        {isStarred ? (
+          <Star
+            sx={{  color: ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: '50px', height: '50px', cursor: 'pointer'  }}
+            onClick={handleStarClick}
+          />
+        ) : (
+          <StarBorderRoundedIcon
+            sx={{ width: '50px', height: '50px', cursor: 'pointer' }}
+            onClick={handleStarClick}
+          />
+        )}
+          </div>
+          
+      </div>
+  
+      <div className="font-['700'] text-bold text-2xl text-center mx-auto">{nickname}님</div>
+      <div className="font-['700'] text-primary-gray text-xxs">블루미르홀 {dorm}/{room}인실</div>
+      </div>
+  )
+}
+const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+  
+  return (
+      <section
+      className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out mt-0 ${
+          isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
+      }`}
+  >
+      <FrontDetail key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} />
+      
+          <div
+         className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
+         style={{
+             boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
+         }}
+      >
+         <div className="flex flex-col mx-auto  text-m text-white font-['700'] text-center ">
+              
+              <h1 className="">나이 : {age}</h1> 
+              <h1 className="">학번 : {stu_num}</h1> 
+              <h1 className="">MBTI : {mbti}</h1> 
+              <h1 className="">학과 : {dept}</h1> 
+
+          </div>
+         
+          
+          
+      </div>
+  </section>
+  )
+}
+
+//카드 뒷면
 const TypeAtAGlance = ({nickname, animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
     const nosieCount = Array.from({ length: noise }, (_, index) => (
         <FavoriteOutlined key={index} sx={{width:'18px'}} />
@@ -263,7 +361,9 @@ const CardBack = ({isFrontView,animal, nickname, rhythm,smoke,noise, temperature
         </section>
     )
 }
-export const RoommateCard1 = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+
+//Tab1의 유사도 카드
+export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
     const ages = age.toString();
     const AGE = ages == "" ? "비공개" : `${ages}살`;
@@ -277,8 +377,29 @@ export const RoommateCard1 = ({disableFlip=false, key, nickname, animal, dorm, r
         onClick={toggleCardView}
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
     >
-        <CardFront isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
+        <CardFrontPercentage isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
         {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
     </div>
     )
+}
+
+//Tab2&3의 유사도 카드
+export const RoommateCard = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+  const [isFrontView, setIsFrontView] = useState(false)
+  const ages = age.toString();
+  const AGE = ages == "" ? "비공개" : `${ages}살`;
+  const stuNum = stu_num.toString();
+  const STU_NUM = stuNum == "" ? "비공개" : `${stuNum}학번`;
+  const toggleCardView = () => {
+      setIsFrontView((isFrontView) => !isFrontView)
+  }
+  return (
+      <div
+      onClick={toggleCardView}
+      className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
+  >
+      <CardFront isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
+      {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
+  </div>
+  )
 }

@@ -2,17 +2,7 @@ import * as React from 'react';
 import { RoommateRecommendPanel } from './RoommateRecommendPanel';
 import { RoommateOption } from './RoommateOption';
 import { Optional } from './Optional';
-import CircleIcon from '@mui/icons-material/Circle';
-import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
-import { Button } from '../../components/common';
-import { Loading } from '../../components/Loading';
-import { useState } from 'react';
-import MUIButton, { ButtonProps } from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import ResetIcon from '@mui/icons-material/RestartAltOutlined';
-import { RoommateCard1 } from "./components/RoommateCard";
-import { Card73 } from "./components/Card73";
-import { Card43 } from "./components/Card43";
+
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
       <div className="flex flex-col items-center mt-12">
