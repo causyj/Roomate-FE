@@ -53,7 +53,7 @@ interface CardFrontDetailProps {
 interface CardBackProps {
     isFrontView: boolean;
     animal:string;
-    nickname:string;
+    key:string;
     rhythm : string;
     smoke: string;
     noise: number;
@@ -64,7 +64,7 @@ interface CardBackProps {
    
 }
 interface TypeAtGlanceProps{
-    nickname:string;
+    key:string;
     animal:string;
     rhythm : string;
     smoke: string;
@@ -115,12 +115,12 @@ const FrontDetailPercentage = ({key,nickname,animal,dorm, room }: CardFrontDetai
         <div className="flex justify-evenly w-ful ml-auto">
             
             <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+                <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
             </Stack>
             <div className="text-end mt-[-32px] mr-[-8px] ml-4">
           {isStarred ? (
             <Star
-              sx={{  color: ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: '50px', height: '50px', cursor: 'pointer'  }}
+              sx={{  color: '#F9D800', width: '50px', height: '50px', cursor: 'pointer'  }}
               onClick={handleStarClick}
             />
           ) : (
@@ -210,12 +210,12 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
       <div className="flex justify-evenly w-ful ml-auto">
           
           <Stack direction="row" spacing={2}>
-              <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+              <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
           </Stack>
           <div className="text-end mt-[-8px] mr-[-8px] ml-4">
         {isStarred ? (
           <Star
-            sx={{  color: ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: '50px', height: '50px', cursor: 'pointer'  }}
+            sx={{  color: '#F9D800', width: '50px', height: '50px', cursor: 'pointer'  }}
             onClick={handleStarClick}
           />
         ) : (
@@ -266,7 +266,7 @@ const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, s
 }
 
 //카드 뒷면
-const TypeAtAGlance = ({nickname, animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
+const TypeAtAGlance = ({key, animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
     const nosieCount = Array.from({ length: noise }, (_, index) => (
         <FavoriteOutlined key={index} sx={{width:'18px'}} />
       ));
@@ -297,6 +297,7 @@ const TypeAtAGlance = ({nickname, animal,rhythm,smoke,noise, temperature,outgoin
       const EmptysleepCount = Array.from({ length: 5 - sleep }, (_, index) => (
         <FavoriteBorder key={noise + index}  sx={{width:'18px'}}/>
       ));
+      const id = key;
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1 gap-2">
@@ -312,24 +313,24 @@ const TypeAtAGlance = ({nickname, animal,rhythm,smoke,noise, temperature,outgoin
             <div className="flex flex-col  font-['800'] text-primary-gray text-sm gap-0.5">
                 <div className="">{rhythm}</div>
                 <div className="">{smoke}</div>
-                <div className=" text-primary-orange flex-col"> 
-                <div className={` text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
+                <div className=" flex flex-col"> 
+                <div className={` text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
                         {nosieCount}
                         {EmptynosieCount}
                  </div>
-                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
                         {temperatureCount}
                         {EmptytemperatureCount}
                  </div>
-                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
                         {outgoingCount}
                         {EmptyoutgoingCount}
                  </div>
-                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
                         {cleanCount}
                         {EmptycleanCount}
                  </div>
-                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].colorRGB}] flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
                         {sleepCount}
                         {EmptysleepCount}
                  </div>
@@ -337,11 +338,11 @@ const TypeAtAGlance = ({nickname, animal,rhythm,smoke,noise, temperature,outgoin
                 
             </div>
         </div>
-        <Link to={`/resulthome/${nickname}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">더 자세히 보기 클릭 →</Link>
+        <Link to={`/resulthome/${id}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">더 자세히 보기 클릭 →</Link>
       </div>
     )
 }  
-const CardBack = ({isFrontView,animal, nickname, rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
+const CardBack = ({isFrontView,animal, key, rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -356,7 +357,7 @@ const CardBack = ({isFrontView,animal, nickname, rhythm,smoke,noise, temperature
         </Link>
 
             <Divider />
-            <TypeAtAGlance nickname={nickname} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
+            <TypeAtAGlance key={key} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
         </div>
         </section>
     )
@@ -378,7 +379,7 @@ export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
     >
         <CardFrontPercentage isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
-        {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
+        {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} key={key} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
     </div>
     )
 }
@@ -399,7 +400,7 @@ export const RoommateCard = ({disableFlip=false, key, nickname, animal, dorm, ro
       className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
   >
       <CardFront isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
-      {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} nickname={nickname} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
+      {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} key={key} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
   </div>
   )
 }

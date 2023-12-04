@@ -1,4 +1,4 @@
-import { TypeEmoji } from "./components/TypeEmoji"
+import { TypeEmojiUser } from "./components/TypeEmoji"
 import { TitleBox } from "../../components/resultdetail/TitleBox"
 import { ANIMAL_DATA, getAnimalColor, getAnimalColorRGB } from "../../constants"
 import { Link } from "react-router-dom"
@@ -89,15 +89,6 @@ export const ResultHome =() => {
     };
     DescripData();
   },[]);
-
-
- 
-    const noise = 3;
-    const temperature = 3;
-    const outgoing = 1;
-    const clean = 5;
-    const sleep = 5;
-   
     const color = getAnimalColor(animalData?.animal as AnimalType['animal']);
     const colorRGB = getAnimalColorRGB(animalData?.animal as AnimalType['animal']);
     const adv = animalData?.sensitive == true ? "예민한" : "무던한"
@@ -117,11 +108,11 @@ export const ResultHome =() => {
            
 
             <div className="mt-6 flex justify-center mb-8 ">
-            <img src={process.env.PUBLIC_URL + `/rabbit.png`} alt={`rabbit`} style={{width : '150px'}}/>
+            <img src={process.env.PUBLIC_URL + `/${animalData?.animal}.png`} alt={`rabbit`} style={{width : '150px'}}/>
             </div>
 
             <div className="w-full mt-4 mb-8">
-              <TypeEmoji/>
+              <TypeEmojiUser/>
               </div>
 
            

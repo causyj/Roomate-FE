@@ -7,7 +7,7 @@ import { Tab1 } from './Tab1';
 import { Tab2 } from './Tab2';
 import { Tab3 } from './Tab3';
 import { Avatar, Stack } from '@mui/material';
-import { ANIMAL_DATA } from '../../constants';
+import { ANIMAL_DATA, getAnimalColorRGB } from '../../constants';
 import { AnimalType } from '../../interface/AnimalType';
 import { useEffect, useState } from "react";
 
@@ -121,7 +121,8 @@ export const RoommateRecommendPanel = () => {
   useEffect(() => {
     fetchData();
   }, []); // 컴포넌트가 처음 마운트될 때 한 번만 호출하도록 설정
-  const animalData = ANIMAL_DATA[animal as AnimalType['animal']];
+  // const animalData = ANIMAL_DATA[animal as AnimalType['animal']];
+  const colorRGB = getAnimalColorRGB(animal as AnimalType['animal'])
     return (
         <div>
     <div className="flex flex-row items-center justify-evenly">
@@ -129,7 +130,7 @@ export const RoommateRecommendPanel = () => {
             <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[ animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
         </Stack> */}
          <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" sx={{bgcolor:animalData?.color || 'black', width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+            <Avatar alt="Remy Sharp" sx={{bgcolor:colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
         </Stack> 
         <div className="text-2xl ">{getContentBasedOnTab()}</div>
       </div>
