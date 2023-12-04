@@ -7,6 +7,8 @@ import { ANIMAL_DATA } from "../../constants"
 import { tw } from '../../styles'
 import { Link } from "react-router-dom"
 import { TypeEmojif } from "../../components/resultdetail/TypeEmoji"
+import { Divider } from "@mui/material"
+import { GoToGroup } from "../roommatelist/components/GoToGroup"
 
   interface TypeAtAGlanceProps {
     noise: number;
@@ -206,14 +208,28 @@ export const ResultHome =() => {
             <img src={process.env.PUBLIC_URL + `/rabbit.png`} alt={`rabbit`} style={{width : '150px'}}/>
             </div>
 
-            <div className="w-full mt-4 mb-4"><TypeEmoji/></div>
-            
+            <div className="w-full mt-4 mb-8"><TypeEmoji/></div>
+
+            <Divider/>
+
             <TitleBox title={'나의 동물유형 한줄 소개'} animalColor={animalColor}/>
+            <div className=" font-['600'] p-7 text-l text-primary-gray">
+            상쾌한 아침을 맞이하는 아침형 인간으로, 혼자만의 시간을 중요하게 생각하고 겨울보단 여름을 좋아하는 성향이 있다.
+            </div>
+            <Link to='/animaldict'>
+                <div className="w-full h-16 bg-gray-100 rounded-2xl mt-[-12px] mb-6">
+                <div className="flex flex-col items-center justify-start p-3">
+                        <div className="text-xs text-center">내 동물유형을 포함한 총 8가지의 동물유형이 있어요! </div>
+                        <div className="flex flex-row">
+                            <div className="mt-1 mr-3 font-['700'] text-m ">다른 동물유형 구경하러 가기{'>'}</div>
+                            <img src={process.env.PUBLIC_URL + '/zoo.png'} alt="roomie" width="35px"  />
+                        </div>
+                 </div>
+                 </div>
+            </Link>
 
 
-
-
-            <AnimalDescription type={result} />
+           
     
             <TitleBox title={'김푸앙님의 생활 유형 한 눈에 보기'} animalColor={animalColor}/>
             <TypeAtAGlance 
