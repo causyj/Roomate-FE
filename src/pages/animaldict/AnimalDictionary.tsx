@@ -98,7 +98,7 @@ interface AnimalLinkCardProps {
 const AnimalLinkCard = ({ color, picture, type, animal }: AnimalLinkCardProps) => {
     return (
         <div>
-            <Link to={`/animaldictdetail/${animal}`}className={`${animalLinkCard.class}`}>
+            <Link to={`/animaldict/${animal}`}className={`${animalLinkCard.class}`}>
                 <div className={animalIcon.class(color)}>{picture}</div>
                 <div className="font-['700']">{type}</div>
             </Link>
@@ -108,6 +108,7 @@ const AnimalLinkCard = ({ color, picture, type, animal }: AnimalLinkCardProps) =
 
 
 export function AnimalDictionary() {
+    
     return (
         <div className=" items-start justify-center mt-2">
             <div className="flex flex-col items-center justify-center">

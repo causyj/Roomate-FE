@@ -1,92 +1,178 @@
-import React, { useState, useEffect } from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import { AnimalDictionary } from '../animaldict/AnimalDictionary';
-import { TypeResult } from '../typeresult/TypeResult';
-import { Loading } from '../../components/Loading';
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-  }
-  
-function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-            <Typography>{children}</Typography>
-        )}
-      </div>
-    );
-  }
+import { TypeEmojiUser } from "./components/TypeEmoji"
+import { TitleBox } from "../../components/resultdetail/TitleBox"
+import { ANIMAL_DATA, getAnimalColor, getAnimalColorRGB } from "../../constants"
+import { Link } from "react-router-dom"
+import { TypeAtAGlance } from "./components/TypeAtAGlance"
+import { GoodBad } from "./components/GoodBad"
+import { ResultDetail } from "./components/TypeDetail"
+import { useEffect, useState } from "react"
+import { AnimalType } from "../../interface/AnimalType"
 
-const ResultHomePage = () => {
-  const [value, setValue] = React.useState(0);
-
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-      setValue(newValue);
-    };
-    return (
-    <div>
-        <div className="flex items-center justify-center mb-4">
-                <img src={process.env.PUBLIC_URL + '/logo.png'}alt="logo"style={{width : '150px'}}/>
-        </div>
-        <div className="font-['700']">
-          <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider',}}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="나의 생활 유형" {...a11yProps(0)} sx={{marginRight:'50px' ,fontSize: '17px', fontWeight:'bold',fontFamily:'Pretendard'}}/>
-              <Tab label="동물 사전" {...a11yProps(1)}sx={{fontSize: '17px', fontWeight:'bold',fontFamily:'Pretendard'}} />
-              
-            </Tabs>
-          </Box>
-        </div>
-        <CustomTabPanel value={value} index={0}>
-          <TypeResult />
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
-          <AnimalDictionary />
-        </CustomTabPanel>
-        
-    </div>
-    )
+//api : 닉네임 / 동물 유형 / 
+interface AnimalDataProps{
+  animal : string ;
+  sensitive : boolean;
 }
+interface DescriplDataProps{
+  features : string;
+  wellMatchedRoommates :  Array<AnimalType['animal']>;
+  incompatibleRoommates :  Array<AnimalType['animal']>;
   
-  function a11yProps(index: number) {
-    return {
-      id: `simple-tab-${index}`,
-      'aria-controls': `simple-tabpanel-${index}`,
+}
+export const ResultHome =() => {
+  const [nickname, setNickname] = useState('');
+  const [animalData, setAnimalData] = useState<AnimalDataProps | null>(null);
+  const [descripData, setDescripData] = useState<DescriplDataProps | null>(null);
+//  닉네임
+  useEffect(()=>{
+    const nicknameData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setNickname(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to fetch new card data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to fetch new card data : ', error);
+      }
     };
-  }
-
-export const ResultHome = () =>{
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setLoading(false);
-    },1000);
-
-    return () => {
-      clearTimeout(timeoutId);
-  };
-    
+    nicknameData();
   },[]);
-    return(
-      <div>
-      {loading ? 
-        <Loading 
-          firstLine='김푸앙님의' 
-          secondLine='생활유형을 분석 중이에요'/> 
-        : <ResultHomePage />}
-    </div>
+  // 동물
+  useEffect(()=>{
+    const AnimalData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setAnimalData(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to nicknameData data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to nicknameData data : ', error);
+      }
+    };
+    AnimalData();
+  },[]);
+  //동물 한줄 소개 & good or bad
+  useEffect(()=>{
+    const DescripData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style/animal`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setDescripData(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to DesripData data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to DesripData data : ', error);
+      }
+    };
+    DescripData();
+  },[]);
+    const color = getAnimalColor(animalData?.animal as AnimalType['animal']);
+    const colorRGB = getAnimalColorRGB(animalData?.animal as AnimalType['animal']);
+    const adv = animalData?.sensitive == true ? "예민한" : "무던한"
+    console.log(color);
+    return (
+        <div>
+          {/* 로고 */}
+           <div className="flex w-full items-center justify-center mb-4">
+                    <img src={process.env.PUBLIC_URL + '/logo.png'}alt="logo"style={{width : '120px'}}/>
+            </div>
+            {animalData &&
+             <div className="text-center text-2xl font-['800'] items-center justify-center">
+             <div className='mb-4 mt-8'>{nickname}님의 생활 유형은</div>
+             <span className={`text-4xl text-['900'] text-${color}-500`}>{adv} {animalData.animal}</span> 
+         </div>
+            }
+           
+
+            <div className="mt-6 flex justify-center mb-8 ">
+            <img src={process.env.PUBLIC_URL + `/${animalData?.animal}.png`} alt={`rabbit`} style={{width : '150px'}}/>
+            </div>
+
+            <div className="w-full mt-4 mb-8">
+              <TypeEmojiUser/>
+              </div>
+
+           
+            <TitleBox title={'나의 동물 유형 한줄 소개'} animalColor={color}/>
+            {descripData && 
+            <div className=" font-['600'] p-7 text-l text-primary-gray">
+               {descripData.features}
+            </div>
+            }
+            
+            <Link to='/animaldict'>
+                <div className="w-full h-16 bg-gray-100 rounded-2xl mt-[-12px] mb-6">
+                <div className="flex flex-col items-center justify-start p-3">
+                        <div className="text-xs text-center">내 동물유형을 포함한 총 8가지의 동물유형이 있어요! </div>
+                        <div className="flex flex-row">
+                            <div className="mt-1 mr-3 font-['700'] text-m">다른 동물유형 구경하러 가기{'>'}</div>
+                            <img src={process.env.PUBLIC_URL + '/zoo.png'} alt="roomie" width="35px"  />
+                        </div>
+                 </div>
+                 </div>
+            </Link>
+
+            <TitleBox title={'나의 생활 유형 한 눈에 보기'} animalColor={color}/>
+            <TypeAtAGlance color={color}/>
+            
+            {descripData && 
+             <GoodBad 
+             linecolor={color} 
+              colorRGB={colorRGB} 
+              good1={descripData.wellMatchedRoommates[0]} 
+              good2={descripData.wellMatchedRoommates[1]}
+              bad1={descripData.incompatibleRoommates[0]}
+              bad2={descripData.incompatibleRoommates[1]}
+              />
+            }
+          
+    
+            
+            <TitleBox title={'나의 생활 유형 상세보기'} animalColor={color}/>
+            <ResultDetail nickname={nickname}/>
+            
+            <Link to='/roommatelist'>
+                <div className="w-full h-16 bg-gray-100 rounded-2xl mt-2">
+                <div className="flex flex-col items-center justify-start p-3">
+                        <div className="text-xs text-center">나와 성향이 맞는 룸메이트를 보러가세요~!</div>
+                        <div className="flex flex-row">
+                            <div className="mt-1 mr-3 font-['700'] text-m ">룸메이트 추천 받으러가기 {'>'}</div>
+                            <img src={process.env.PUBLIC_URL + '/roommate.png'} alt="roomie" width="35px"  />
+                        </div>
+                 </div>
+                 </div>
+            </Link>
+            
+            <div className="text-white">
+                        <div>sfsdfs</div>
+                        <div>sfsdfs</div>
+                        <div>sfsdfs</div>
+                        
+                     
+            </div>
+        </div>
     )
-}
+} 

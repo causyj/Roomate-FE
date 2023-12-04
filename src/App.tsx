@@ -3,7 +3,6 @@ import { Home } from './pages/home/Home'
 import { Login } from './pages/login/Login'
 import { Register } from './pages/register/Register'
 import { TestPage } from './pages/testpage/TestPage'
-import { TypeResult } from './pages/typeresult/TypeResult'
 import { AnimalDictionary } from './pages/animaldict/AnimalDictionary'
 import { Verify } from './pages/verify/Verify'
 import { ChatList,  } from './pages/chat/ChatList'
@@ -14,12 +13,11 @@ import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
 import { ForPractice } from './forpractice/ForPractice'
 import { ResultHome } from './pages/resulthome/ResultHome'
-import { AnimalDictDetail } from './pages/animaldictdetail/AnimalDictDetail'
-import { OtherPeople } from './pages/otherpeople/OtherPeople'
+import { AnimalDictDetail } from './pages/animaldict/[animal]/AnimalDictDetail'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
 import { LandingPage } from './components/LandingPage'
 import { Chatting } from './pages/chat/[nickname]/Chatting'
-import { ResultAnother } from './pages/resulthome/[nickname]/ResultAnother'
+import { ResultAnother } from './pages/resulthome/[id]/ResultAnother'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -46,7 +44,7 @@ const Router = createBrowserRouter([
     element: <><BottomNavbar/><ResultHome/></>,
 },
 {
-    path: '/resulthome/:nickname',
+    path: '/resulthome/:id',
     element: <><BottomNavbar/><ResultAnother/></>,
 },
 {
@@ -57,7 +55,16 @@ const Router = createBrowserRouter([
   path: '/chat/:nickname',
   element: <><Chatting/></>,
 },
-
+{
+    path: '/animaldict',
+    element: <AnimalDictionary/>,
+            
+},
+{
+    path: '/animaldict/:animal',
+    element: <AnimalDictDetail/>,
+            
+},
 
 
 {
@@ -65,15 +72,7 @@ const Router = createBrowserRouter([
     element: <><BottomNavbar/><TestPage/></>
 },
 
-{
-    path: '/typeresult',
-    element: <TypeResult/>,
-},
-{
-    path: '/animaldict',
-    element: <AnimalDictionary/>,
-            
-},
+
 {
     path: '/animaldictdetail/:animal',
     element: <AnimalDictDetail/>,
@@ -105,10 +104,7 @@ const Router = createBrowserRouter([
     path: '/forpractice',
     element: <ForPractice/>,
 },
-{
-    path: '/otherpeople',
-    element: <OtherPeople/>,
-},
+
 
 
 ])
