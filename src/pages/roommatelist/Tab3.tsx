@@ -36,18 +36,21 @@ const ColorFab = styled(MUIButton)<ButtonProps>(({ theme }) => ({
     };
   }
 export const Tab3 = () => {
+
+const handleResetClick = () => {
+
+}; 
     return (
         <div>
-            <GoToGroup />
-            <div className="flex flex-row justify-between items-center mt-4">
-                <div className="font-['700'] text-2xl">📍 내가 찜한 룸메이트</div>
-                <ColorFab>
-                 <ResetIcon />
-                </ColorFab>
-            </div>
-            <div className="flex flex-row mt-4 gap-2">
-                
-            </div>
+          <div className="flex flex-row justify-between items-center mt-4">
+            <div className='flex flex-row items-center gap-4'>
+              <div className="font-['700'] text-2xl ">📍 내가 찜한 룸메이트</div>
+                  <button className="bg-primary-logo w-[45px] h-[45px] rounded-2xl" onClick={handleResetClick}>
+                    <ResetIcon sx={{width:'30px', height:'30px', color:'white'}} />
+                  </button>
+              </div>
+           </div>
+          <GoToGroup />
         </div>
     )
 }
