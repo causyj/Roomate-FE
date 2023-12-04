@@ -84,8 +84,8 @@ export const TypeAtAGlance = ({ color }: TypeAtAGlanceProps) =>{
             </div>
             
             <div className="flex flex-col mb-1 font-['700'] text-primary-gray">
-                <div className="mb-1">아침형</div>
-                <div className="mb-1">비흡연자</div>
+                <div className="mb-1">{heartData?.rhythm!}</div>
+                <div className="mb-1">{heartData?.smoke!}</div>
                 <div className={`mb-1 text-${color}-500 flex flex-row`}>
                         {nosieCount}
                         {EmptynosieCount}
