@@ -122,6 +122,7 @@ export const ResultHome =() => {
     const sleep = 5;
     const animals = 'penguin'; 
     const color = getAnimalColor(animals);
+    const colorRGB = getAnimalColorRGB(animals);
     console.log(color);
     return (
         <div>
@@ -132,7 +133,7 @@ export const ResultHome =() => {
             
             <div className="text-center text-2xl font-['800'] items-center justify-center">
                 <div className='mb-4 mt-8'>{nickname}님의 생활 유형은</div>
-                <span className={`text-4xl text-['900'] text-${color}-500`}  >둔감한 토끼</span> 
+                <span className={`text-4xl text-['900'] text-${color}-500`} >둔감한 토끼</span> 
             </div>
 
             <div className="mt-6 flex justify-center mb-8 ">
@@ -160,9 +161,9 @@ export const ResultHome =() => {
                  </div>
             </Link>
 
-            <TitleBox title={'김푸앙님의 생활 유형 한 눈에 보기'} animalColor={animalColor}/>
+            <TitleBox title={'나의 생활 유형 한 눈에 보기'} animalColor={color}/>
             <TypeAtAGlance
-                animalColor={animalColor}
+                color={color}
                 noise={3}
                 temperature={2}
                 outgoing={1}
@@ -170,10 +171,10 @@ export const ResultHome =() => {
                 sleep={5}
             />
 
-           <GoodBad/>
+           <GoodBad color={color} colorRGB={colorRGB}/>
     
             
-            <TitleBox title={'김푸앙님의 생활 유형 상세보기'} animalColor={animalColor}/>
+            <TitleBox title={'김푸앙님의 생활 유형 상세보기'} animalColor={color}/>
             <ResultDetail />
             
             <Link to='/roommatelist'>

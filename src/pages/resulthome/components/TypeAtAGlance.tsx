@@ -6,36 +6,10 @@ interface TypeAtAGlanceProps {
     outgoing: number;
     clean: number;
     sleep: number;
-    animalColor: 'gray' | 'green' | 'orange' | 'pink' | 'purple' | 'yellow' | 'rose' | 'sky';
+    color: string |undefined;
   }
-export const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep,animalColor }: TypeAtAGlanceProps) =>{
-    const animalIconStyles = {
-        yellow: {
-            color : 'text-yellow-500', 
-        },
-        rose: {
-            color : 'text-rose-500', 
-        },
-        orange: {
-            color : 'text-orange-500', 
-        },
-        green: {
-            color : 'text-green-500', 
-        },
-        sky: {
-            color : 'text-sky-500', 
-        },
-        purple: {
-            color : 'text-purple-500', 
-        },
-        gray: {
-            color : 'text-gray-500', 
-        },
-        pink: {
-            color : 'text-pink-600', 
-        },
-    }
-    const animalIconStyle = animalIconStyles[animalColor];
+export const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep,color }: TypeAtAGlanceProps) =>{
+   
     const nosieCount = Array.from({ length: noise }, (_, index) => (
         <FavoriteOutlined key={index} />
       ));
@@ -83,23 +57,23 @@ export const TypeAtAGlance = ({ noise, temperature, outgoing, clean, sleep,anima
             <div className="flex flex-col mb-1 font-['700'] text-primary-gray">
                 <div className="mb-1">아침형</div>
                 <div className="mb-1">비흡연자</div>
-                <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
+                <div className={`mb-1 text-${color}-500 flex flex-row`}>
                         {nosieCount}
                         {EmptynosieCount}
                  </div>
-                 <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
+                 <div className={`mb-1 text-${color}-500 flex flex-row`}>
                         {temperatureCount}
                         {EmptytemperatureCount}
                  </div>
-                 <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
+                 <div className={`mb-1 text-${color}-500 flex flex-row`}>
                         {outgoingCount}
                         {EmptyoutgoingCount}
                  </div>
-                 <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
+                 <div className={`mb-1 text-${color}-500 flex flex-row`}>
                         {cleanCount}
                         {EmptycleanCount}
                  </div>
-                 <div className={`mb-1 ${animalIconStyle.color} flex flex-row`}>
+                 <div className={`mb-1 text-${color}-500 flex flex-row`}>
                         {sleepCount}
                         {EmptysleepCount}
                  </div>

@@ -72,7 +72,7 @@ export const getAnimalColorRGB = (animal: AnimalType['animal']): string | undefi
   return animalData ? animalData.colorRGB : undefined;
 };
 
-export const getAnimalColor = (animal: AnimalType['animal']) => {
+export const getAnimalColor = (animal: AnimalType['animal']): string | undefined => {
     const animalData = ANIMAL_DATA[animal];
     return animalData ? animalData.color: undefined;
   };
