@@ -48,168 +48,170 @@ const navigate = useNavigate();
 
   const handleNextPage = () => {
     
-    if (questionIndex < TEST_LIST.length - 1) {
-      let nextQuestionIndex : number=0;
-      //questionIndex+1 : 질문 번호
-      //selectedAnswer : 답변 번호
-      switch (questionIndex+1) {
-        case 1:
-          setwakeupScore(selectedAnswer);
-          nextQuestionIndex = questionIndex + 1;
-          // console.log(wakeupScore);
-          break;
-          
-        case 2:
-          // console.log(wakeupScore);
-          setbedtimeScore(selectedAnswer)
-          if (selectedAnswer <=2) {
-            nextQuestionIndex = questionIndex + 1;
-            
-          } else {
-            nextQuestionIndex = questionIndex + 2;
     
-          }
-          break;
-         case 3:
-          nextQuestionIndex =  questionIndex + 2;
-          setwakeupSensitivity(selectedAnswer);
-          break;
-         case 4:
-            nextQuestionIndex =  questionIndex + 1;
+      if (questionIndex < TEST_LIST.length - 1) {
+        let nextQuestionIndex : number=0;
+        //questionIndex+1 : 질문 번호
+        //selectedAnswer : 답변 번호
+        switch (questionIndex+1) {
+          case 1:
+            setwakeupScore(selectedAnswer);
+            nextQuestionIndex = questionIndex + 1;
+            // console.log(wakeupScore);
+            break;
+            
+          case 2:
+            // console.log(wakeupScore);
+            setbedtimeScore(selectedAnswer)
+            if (selectedAnswer <=2) {
+              nextQuestionIndex = questionIndex + 1;
+              
+            } else {
+              nextQuestionIndex = questionIndex + 2;
+      
+            }
+            break;
+           case 3:
+            nextQuestionIndex =  questionIndex + 2;
             setwakeupSensitivity(selectedAnswer);
             break;
-        case 5 : 
-          setcleaningScore(selectedAnswer);
-          if (selectedAnswer === 1) {
-            nextQuestionIndex =  questionIndex + 2;
-          }else {
-            nextQuestionIndex =  questionIndex + 1;
-          }
-          break;
-        case 6:
-          setcleaningSensitivity(selectedAnswer)
-          nextQuestionIndex =  questionIndex + 2;
-          break;
-        case 7:
+           case 4:
+              nextQuestionIndex =  questionIndex + 1;
+              setwakeupSensitivity(selectedAnswer);
+              break;
+          case 5 : 
+            setcleaningScore(selectedAnswer);
+            if (selectedAnswer === 1) {
+              nextQuestionIndex =  questionIndex + 2;
+            }else {
+              nextQuestionIndex =  questionIndex + 1;
+            }
+            break;
+          case 6:
             setcleaningSensitivity(selectedAnswer)
-            nextQuestionIndex =  questionIndex + 1;
-            break;
-        case 8 :
-          setfoodScore(selectedAnswer)
-          if (selectedAnswer === 1){
             nextQuestionIndex =  questionIndex + 2;
-          }else{
+            break;
+          case 7:
+              setcleaningSensitivity(selectedAnswer)
+              nextQuestionIndex =  questionIndex + 1;
+              break;
+          case 8 :
+            setfoodScore(selectedAnswer)
+            if (selectedAnswer === 1){
+              nextQuestionIndex =  questionIndex + 2;
+            }else{
+              nextQuestionIndex =  questionIndex + 1;
+            }
+            break;
+          case 9:
+            setfoodSensitivity(selectedAnswer);
+            nextQuestionIndex = questionIndex + 2;
+            break;
+          case 10:
+            setfoodSensitivity(selectedAnswer);
             nextQuestionIndex =  questionIndex + 1;
-          }
-          break;
-        case 9:
-          setfoodSensitivity(selectedAnswer);
-          nextQuestionIndex = questionIndex + 2;
-          break;
-        case 10:
-          setfoodSensitivity(selectedAnswer);
-          nextQuestionIndex =  questionIndex + 1;
-          break;
-        case 11:
-          if (selectedAnswer == 2){
-            setcigaretteScore(3);
-          }else{
-            setcigaretteScore(selectedAnswer);
-          }
-          nextQuestionIndex =  questionIndex + 1;
-          break;
-        case 12:
-          setstudyScore(selectedAnswer);
-          if (selectedAnswer === 1){
+            break;
+          case 11:
+            if (selectedAnswer == 2){
+              setcigaretteScore(3);
+            }else{
+              setcigaretteScore(selectedAnswer);
+            }
+            nextQuestionIndex =  questionIndex + 1;
+            break;
+          case 12:
+            setstudyScore(selectedAnswer);
+            if (selectedAnswer === 1){
+              nextQuestionIndex =  questionIndex + 2;
+            }else{
+              nextQuestionIndex =  questionIndex + 1;
+            }
+            break;
+          case 13: 
+           setstudySensitivity(selectedAnswer);
             nextQuestionIndex =  questionIndex + 2;
-          }else{
-            nextQuestionIndex =  questionIndex + 1;
-          }
-          break;
-        case 13: 
-         setstudySensitivity(selectedAnswer);
-          nextQuestionIndex =  questionIndex + 2;
-          break;
-        case 14: 
-          setstudySensitivity(selectedAnswer);
-           nextQuestionIndex =  questionIndex + 1;
-           break;
-        case 15:
-          setnotebookScore(selectedAnswer);
-          nextQuestionIndex = questionIndex + 1;
-          break;
-        case 16:
-          setnotebookSensitivity(selectedAnswer);
+            break;
+          case 14: 
+            setstudySensitivity(selectedAnswer);
+             nextQuestionIndex =  questionIndex + 1;
+             break;
+          case 15:
+            setnotebookScore(selectedAnswer);
             nextQuestionIndex = questionIndex + 1;
             break;
-        case 17:
-          setalarmScore(selectedAnswer);
-          nextQuestionIndex = questionIndex + 1;
-          break;
-        case 18:
-          setalarmSensitivity(selectedAnswer);
+          case 16:
+            setnotebookSensitivity(selectedAnswer);
+              nextQuestionIndex = questionIndex + 1;
+              break;
+          case 17:
+            setalarmScore(selectedAnswer);
             nextQuestionIndex = questionIndex + 1;
             break;
-        case 19:
+          case 18:
+            setalarmSensitivity(selectedAnswer);
+              nextQuestionIndex = questionIndex + 1;
+              break;
+          case 19:
+            if (selectedAnswer == 2){
+              setlatestudyScore(3);
+            }else{
+              setlatestudyScore(selectedAnswer);
+            }
+            nextQuestionIndex = questionIndex + 1;
+            break;
+          case 20:
+            setlatestudySensitivity(selectedAnswer);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+          case 21:
+            setsnoringScore(selectedAnswer);
+              nextQuestionIndex = questionIndex + 1;
+              break;
+          case 22:
+            setsnoringSensitivity(selectedAnswer);
+                  nextQuestionIndex = questionIndex + 1;
+                  break;
+           case 23:
+            setfriendlyScore(selectedAnswer);
+             nextQuestionIndex = questionIndex + 1;
+              break;
+          case 24:
+            setinhomeScore(selectedAnswer);
+                 nextQuestionIndex = questionIndex + 1;
+                  break;
+          case 25:
+            setinhomeSensitivity(selectedAnswer);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+         case 26:
+          setcoldOrHot(selectedAnswer-1);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+         case 27:
           if (selectedAnswer == 2){
-            setlatestudyScore(3);
+            setsummerOrWinter(3);
           }else{
-            setlatestudyScore(selectedAnswer);
+            setsummerOrWinter(selectedAnswer);
           }
-          nextQuestionIndex = questionIndex + 1;
           break;
-        case 20:
-          setlatestudySensitivity(selectedAnswer);
-          nextQuestionIndex = questionIndex + 1;
-          break;
-        case 21:
-          setsnoringScore(selectedAnswer);
+                         
+  
+          default:
             nextQuestionIndex = questionIndex + 1;
             break;
-        case 22:
-          setsnoringSensitivity(selectedAnswer);
-                nextQuestionIndex = questionIndex + 1;
-                break;
-         case 23:
-          setfriendlyScore(selectedAnswer);
-           nextQuestionIndex = questionIndex + 1;
-            break;
-        case 24:
-          setinhomeScore(selectedAnswer);
-               nextQuestionIndex = questionIndex + 1;
-                break;
-        case 25:
-          setinhomeSensitivity(selectedAnswer);
-          nextQuestionIndex = questionIndex + 1;
-          break;
-       case 26:
-        setcoldOrHot(selectedAnswer-1);
-          nextQuestionIndex = questionIndex + 1;
-          break;
-       case 27:
-        if (selectedAnswer == 2){
-          setsummerOrWinter(3);
-        }else{
-          setsummerOrWinter(selectedAnswer);
+  
         }
-        break;
-                       
-
-        default:
-          nextQuestionIndex = questionIndex + 1;
-          break;
-
+      console.log(
+        `wake ; ${wakeupScore}`,
+        `bed : ${bedtimeScore}`,
+        `sen : ${wakeupSensitivity}`
+      )
+        setQuestionIndex(nextQuestionIndex);
+        setSelectedAnswer(0); // 선택한 답변 초기화
+      } else {
+       navigate('/resulthome')
       }
-    console.log(
-      `wake ; ${wakeupScore}`,
-      `bed : ${bedtimeScore}`,
-      `sen : ${wakeupSensitivity}`
-    )
-      setQuestionIndex(nextQuestionIndex);
-      // setSelectedAnswer(0); // 선택한 답변 초기화
-    } else {
-     navigate('/resulthome')
-    }
+   
     
   };
 const handlePrevPage = () => {
@@ -357,7 +359,7 @@ const handlePrevPage = () => {
     setSelectedAnswer(0); // 선택한 답변 초기화
   
 }
-
+const isNextButtonDisabled = selectedAnswer === 0;
   return (
     <div>
       
@@ -386,7 +388,10 @@ const handlePrevPage = () => {
       </div>
       <div className="text-3xl text-center">{`${questionIndex+1}/${TEST_LIST.length-1}`}</div>
       <div className="flex flex-row">
-        <div className="text-2xl text-primary-logo" onClick={handleNextPage}>
+        <div className={`text-2xl text-primary-logo ${
+          isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+        }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
+        >
           next {'>'}
         </div>
       </div>
@@ -416,13 +421,19 @@ const handlePrevPage = () => {
 </div>
       <div className="font-['700'] flex flex-row items-center justify-between mb-20 mt-12">
       <div className="flex flex-row">
-          <div className="text-2xl text-primary-logo" onClick={handlePrevPage}>
+      <div className={`text-2xl text-primary-logo ${
+          isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+        }`} onClick={isNextButtonDisabled ? undefined : handlePrevPage}
+        >
           {'<'} previous 
           </div>
         </div>
         <div className="text-3xl text-center">{`${questionIndex+1}/${TEST_LIST.length}`}</div>
         <div className="flex flex-row">
-          <div className="text-2xl text-primary-logo" onClick={handleNextPage}>
+          <div className={`text-2xl text-primary-logo ${
+          isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+        }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
+        >
             next {'>'}
           </div>
         </div>
