@@ -64,6 +64,7 @@ export const ANIMAL_LIST = Object.entries(ANIMAL_DATA).map(([key, value]) => {
         ...value,
         animal: key as string,
         color: value.color,         
+        colorRGB: value.colorRGB,         
     }
 })
 
