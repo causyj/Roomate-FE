@@ -92,8 +92,104 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
             break;
         case 8 :
           setfoodScore(selectedAnswer)
-
-          
+          if (selectedAnswer === 1){
+            nextQuestionIndex = 10;
+          }else{
+            nextQuestionIndex = 9;
+          }
+          break;
+        case 9:
+          setfoodSensitivity(selectedAnswer);
+          nextQuestionIndex = 11;
+          break;
+        case 10:
+          setfoodSensitivity(selectedAnswer);
+          nextQuestionIndex = 11;
+          break;
+        case 11:
+          if (selectedAnswer == 2){
+            setcigaretteScore(3);
+          }else{
+            setcigaretteScore(selectedAnswer);
+          }
+          nextQuestionIndex = 12;
+          break;
+        case 12:
+          setstudyScore(selectedAnswer);
+          if (selectedAnswer === 1){
+            nextQuestionIndex = 14;
+          }else{
+            nextQuestionIndex = 13;
+          }
+          break;
+        case 13: 
+         setstudySensitivity(selectedAnswer);
+          nextQuestionIndex = 15;
+          break;
+        case 14: 
+          setstudySensitivity(selectedAnswer);
+           nextQuestionIndex = 15;
+           break;
+        case 15:
+          setnotebookScore(selectedAnswer);
+          nextQuestionIndex = questionIndex + 1;
+          break;
+        case 16:
+          setnotebookSensitivity(selectedAnswer);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+        case 17:
+          setalarmScore(selectedAnswer);
+          nextQuestionIndex = questionIndex + 1;
+          break;
+        case 18:
+          setalarmSensitivity(selectedAnswer);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+        case 19:
+          if (selectedAnswer == 2){
+            setlatestudyScore(3);
+          }else{
+            setlatestudyScore(selectedAnswer);
+          }
+          nextQuestionIndex = questionIndex + 1;
+          break;
+        case 20:
+          setlatestudySensitivity(selectedAnswer);
+          nextQuestionIndex = questionIndex + 1;
+          break;
+        case 21:
+          setsnoringScore(selectedAnswer);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+        case 22:
+          setsnoringSensitivity(selectedAnswer);
+                nextQuestionIndex = questionIndex + 1;
+                break;
+         case 23:
+          setfriendlyScore(selectedAnswer);
+           nextQuestionIndex = questionIndex + 1;
+            break;
+        case 24:
+          setinhomeScore(selectedAnswer);
+               nextQuestionIndex = questionIndex + 1;
+                break;
+        case 25:
+          setinhomeSensitivity(selectedAnswer);
+          nextQuestionIndex = questionIndex + 1;
+          break;
+       case 26:
+        setcoldOrHot(selectedAnswer-1);
+          nextQuestionIndex = questionIndex + 1;
+          break;
+       case 27:
+        if (selectedAnswer == 2){
+          setsummerOrWinter(3);
+        }else{
+          setsummerOrWinter(selectedAnswer);
+        }
+        break;
+                       
 
         default:
           nextQuestionIndex = questionIndex + 1;
