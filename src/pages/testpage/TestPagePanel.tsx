@@ -49,8 +49,7 @@ const navigate = useNavigate();
   const handleNextPage = () => {
     
     if (questionIndex < TEST_LIST.length - 1) {
-      let nextQuestionIndex : number
-      nextQuestionIndex =0;
+      let nextQuestionIndex : number=0;
       //questionIndex+1 : 질문 번호
       //selectedAnswer : 답변 번호
       switch (questionIndex+1) {
@@ -64,52 +63,52 @@ const navigate = useNavigate();
           // console.log(wakeupScore);
           setbedtimeScore(selectedAnswer)
           if (selectedAnswer <=2) {
-            nextQuestionIndex = 2;
+            nextQuestionIndex = questionIndex + 1;
             
           } else {
-            nextQuestionIndex =3;
+            nextQuestionIndex = questionIndex + 2;
     
           }
           break;
          case 3:
-          nextQuestionIndex = 5;
+          nextQuestionIndex =  questionIndex + 2;
           setwakeupSensitivity(selectedAnswer);
           break;
          case 4:
-            nextQuestionIndex = 5;
+            nextQuestionIndex =  questionIndex + 1;
             setwakeupSensitivity(selectedAnswer);
             break;
         case 5 : 
           setcleaningScore(selectedAnswer);
           if (selectedAnswer === 1) {
-            nextQuestionIndex = 7;
+            nextQuestionIndex =  questionIndex + 2;
           }else {
-            nextQuestionIndex = 6;
+            nextQuestionIndex =  questionIndex + 1;
           }
           break;
         case 6:
           setcleaningSensitivity(selectedAnswer)
-          nextQuestionIndex = 8;
+          nextQuestionIndex =  questionIndex + 2;
           break;
         case 7:
             setcleaningSensitivity(selectedAnswer)
-            nextQuestionIndex = 8;
+            nextQuestionIndex =  questionIndex + 1;
             break;
         case 8 :
           setfoodScore(selectedAnswer)
           if (selectedAnswer === 1){
-            nextQuestionIndex = 10;
+            nextQuestionIndex =  questionIndex + 2;
           }else{
-            nextQuestionIndex = 9;
+            nextQuestionIndex =  questionIndex + 1;
           }
           break;
         case 9:
           setfoodSensitivity(selectedAnswer);
-          nextQuestionIndex = 11;
+          nextQuestionIndex = questionIndex + 2;
           break;
         case 10:
           setfoodSensitivity(selectedAnswer);
-          nextQuestionIndex = 11;
+          nextQuestionIndex =  questionIndex + 1;
           break;
         case 11:
           if (selectedAnswer == 2){
@@ -117,23 +116,23 @@ const navigate = useNavigate();
           }else{
             setcigaretteScore(selectedAnswer);
           }
-          nextQuestionIndex = 12;
+          nextQuestionIndex =  questionIndex + 1;
           break;
         case 12:
           setstudyScore(selectedAnswer);
           if (selectedAnswer === 1){
-            nextQuestionIndex = 14;
+            nextQuestionIndex =  questionIndex + 2;
           }else{
-            nextQuestionIndex = 13;
+            nextQuestionIndex =  questionIndex + 1;
           }
           break;
         case 13: 
          setstudySensitivity(selectedAnswer);
-          nextQuestionIndex = 15;
+          nextQuestionIndex =  questionIndex + 2;
           break;
         case 14: 
           setstudySensitivity(selectedAnswer);
-           nextQuestionIndex = 15;
+           nextQuestionIndex =  questionIndex + 1;
            break;
         case 15:
           setnotebookScore(selectedAnswer);
@@ -209,17 +208,195 @@ const navigate = useNavigate();
       setQuestionIndex(nextQuestionIndex);
       // setSelectedAnswer(0); // 선택한 답변 초기화
     } else {
-      return <DescriptiveQuestion />;
+     navigate('/resulthome')
     }
-    // navigate('/resulthome')
+    
   };
+const handlePrevPage = () => {
+    let nextQuestionIndex : number =0;
+    //questionIndex+1 : 질문 번호
+    //selectedAnswer : 답변 번호
+    switch (questionIndex+1) {
+      case 1:
+        break;
+        
+      case 2:
+        setbedtimeScore(selectedAnswer)
+        nextQuestionIndex = questionIndex-1;
+        break;
+      case 3:
+        nextQuestionIndex = questionIndex-1;
+        setwakeupSensitivity(selectedAnswer);
+        break;
+      case 4:
+          nextQuestionIndex = questionIndex-2;
+          setwakeupSensitivity(selectedAnswer);
+          break;
+      case 5 : 
+        setcleaningScore(selectedAnswer);
+        if(bedtimeScore <=2){
+          nextQuestionIndex = questionIndex-2;
+        }else{
+          nextQuestionIndex = questionIndex-1;
+        }
+        break;
+      case 6:
+        setcleaningSensitivity(selectedAnswer)
+        nextQuestionIndex = questionIndex-1;
+        break;
+      case 7:
+          setcleaningSensitivity(selectedAnswer)
+          nextQuestionIndex = questionIndex-2;
+          break;
+      case 8 :
+        setfoodScore(selectedAnswer)
+        if(cleaningScore ==1 ){
+          nextQuestionIndex = questionIndex-1;
+        }else{
+          nextQuestionIndex = questionIndex-2;
+        }
+        break;
+      case 9:
+        setfoodSensitivity(selectedAnswer);
+        nextQuestionIndex = questionIndex-1;
+        break;
+      case 10:
+        setfoodSensitivity(selectedAnswer);
+        nextQuestionIndex = questionIndex-2;
+        break;
+      case 11:
+        if(foodScore ==1){
+          nextQuestionIndex = questionIndex-1;
+        }else{
+          nextQuestionIndex = questionIndex-2;
+        }
+        break;
+      case 12:
+        setstudyScore(selectedAnswer);
+        nextQuestionIndex = questionIndex-1;
+        break;
+      case 13: 
+       setstudySensitivity(selectedAnswer);
+        nextQuestionIndex = nextQuestionIndex = questionIndex-1;
+        break;
+      case 14: 
+        setstudySensitivity(selectedAnswer);
+         nextQuestionIndex =  questionIndex-2;
+         break;
+      case 15:
+        setnotebookScore(selectedAnswer);
+        if(studyScore==1){
+          nextQuestionIndex =  questionIndex-1;
+        }else{
+          nextQuestionIndex =  questionIndex-2;
+        }
+        break;
+      case 16:
+        setnotebookSensitivity(selectedAnswer);
+          nextQuestionIndex = questionIndex - 1;
+          break;
+      case 17:
+        setalarmScore(selectedAnswer);
+        nextQuestionIndex = questionIndex- 1;
+        break;
+      case 18:
+        setalarmSensitivity(selectedAnswer);
+          nextQuestionIndex = questionIndex - 1;
+          break;
+      case 19:
+        if (selectedAnswer == 2){
+          setlatestudyScore(3);
+        }else{
+          setlatestudyScore(selectedAnswer);
+        }
+        nextQuestionIndex = questionIndex - 1;
+        break;
+      case 20:
+        setlatestudySensitivity(selectedAnswer);
+        nextQuestionIndex = questionIndex- 1;
+        break;
+      case 21:
+        setsnoringScore(selectedAnswer);
+          nextQuestionIndex = questionIndex- 1;
+          break;
+      case 22:
+        setsnoringSensitivity(selectedAnswer);
+              nextQuestionIndex = questionIndex - 1;
+              break;
+       case 23:
+        setfriendlyScore(selectedAnswer);
+         nextQuestionIndex = questionIndex - 1;
+          break;
+      case 24:
+        setinhomeScore(selectedAnswer);
+             nextQuestionIndex = questionIndex - 1;
+              break;
+      case 25:
+        setinhomeSensitivity(selectedAnswer);
+        nextQuestionIndex = questionIndex- 1;
+        break;
+     case 26:
+      setcoldOrHot(selectedAnswer-1);
+        nextQuestionIndex = questionIndex - 1;
+        break;
+     case 27:
+      if (selectedAnswer == 2){
+        setsummerOrWinter(3);
+      }else{
+        setsummerOrWinter(selectedAnswer);
+      }
+      break;
+                     
 
+      default:
+        nextQuestionIndex = questionIndex - 1;
+        break;
+
+    }
+    setQuestionIndex(nextQuestionIndex);
+    setSelectedAnswer(0); // 선택한 답변 초기화
+  
+}
 
   return (
     <div>
       
-      {questionIndex === TEST_LIST.length -1 ?  <DescriptiveQuestion /> 
-      :<div>
+      {questionIndex === 0? 
+      <div>
+      <div className="w-full h-full flex flex-col items-center justify-center">
+      <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" style={{ width: '150px' }} />
+    </div>
+    <div className="font-['500'] mt-4 text-center">해당하는 대답을 선택해 주세요!</div>
+    <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex+1}</div>
+    <div className="font-['600'] text-xl text-center mt-1 mb-8">{TEST_LIST[questionIndex].question}</div>
+    <div>
+    {(TEST_LIST[questionIndex].answer).map((answer, index) => (
+  <AnswerCard 
+    index={index} 
+    AnswerCardText={answer} 
+    onClick={() => handleAnswerSelect({index})
+    
+  }
+      />
+))}
+</div>
+    <div className="font-['700'] flex flex-row items-center justify-between mb-20 mt-12">
+    <div className="flex flex-row">
+        <div className='text-white'>sdfsdfsfsdf</div>
+      </div>
+      <div className="text-3xl text-center">{`${questionIndex+1}/${TEST_LIST.length-1}`}</div>
+      <div className="flex flex-row">
+        <div className="text-2xl text-primary-logo" onClick={handleNextPage}>
+          next {'>'}
+        </div>
+      </div>
+    </div>
+    
+      <div className='text-white'>sdfsd</div>
+      
+    </div> 
+      :
+      <div>
         <div className="w-full h-full flex flex-col items-center justify-center">
         <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" style={{ width: '150px' }} />
       </div>
@@ -237,9 +414,13 @@ const navigate = useNavigate();
         />
   ))}
 </div>
-      <div className="font-['700'] flex items-center justify-between mb-20 mt-12">
-        <div className="text-white">dfffffsdf</div>
-        <div className="text-3xl text-center">{`${questionIndex+1}/${TEST_LIST.length-1}`}</div>
+      <div className="font-['700'] flex flex-row items-center justify-between mb-20 mt-12">
+      <div className="flex flex-row">
+          <div className="text-2xl text-primary-logo" onClick={handlePrevPage}>
+          {'<'} previous 
+          </div>
+        </div>
+        <div className="text-3xl text-center">{`${questionIndex+1}/${TEST_LIST.length}`}</div>
         <div className="flex flex-row">
           <div className="text-2xl text-primary-logo" onClick={handleNextPage}>
             next {'>'}
