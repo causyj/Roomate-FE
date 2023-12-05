@@ -74,8 +74,6 @@ const navigate = useNavigate();
   };
 
   const handleNextPage = () => {
-    
-    
       if (questionIndex < TEST_LIST.length - 1) {
         let nextQuestionIndex : number=0;
         //questionIndex+1 : 질문 번호
@@ -109,17 +107,21 @@ const navigate = useNavigate();
            case 4:
               nextQuestionIndex =  questionIndex + 1;
               setwakeupSensitivity(selectedAnswer);
+              setDone((prevDone) => prevDone + 5);
               break;
           case 5 : 
             setcleaningScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 5);
             if (selectedAnswer === 1) {
               nextQuestionIndex =  questionIndex + 2;
+              
             }else {
               nextQuestionIndex =  questionIndex + 1;
             }
             break;
           case 6:
             setcleaningSensitivity(selectedAnswer)
+            setDone((prevDone) => prevDone + 5);
             nextQuestionIndex =  questionIndex + 2;
             break;
           case 7:
@@ -128,6 +130,7 @@ const navigate = useNavigate();
               break;
           case 8 :
             setfoodScore(selectedAnswer)
+            setDone((prevDone) => prevDone + 5);
             if (selectedAnswer === 1){
               nextQuestionIndex =  questionIndex + 2;
             }else{
@@ -136,10 +139,12 @@ const navigate = useNavigate();
             break;
           case 9:
             setfoodSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
             nextQuestionIndex = questionIndex + 2;
             break;
           case 10:
             setfoodSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
             nextQuestionIndex =  questionIndex + 1;
             break;
           case 11:
@@ -149,9 +154,11 @@ const navigate = useNavigate();
               setcigaretteScore(selectedAnswer);
             }
             nextQuestionIndex =  questionIndex + 1;
+            setDone((prevDone) => prevDone + 5);
             break;
           case 12:
             setstudyScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
             if (selectedAnswer === 1){
               nextQuestionIndex =  questionIndex + 2;
             }else{
@@ -160,26 +167,32 @@ const navigate = useNavigate();
             break;
           case 13: 
            setstudySensitivity(selectedAnswer);
+           setDone((prevDone) => prevDone + 4);
             nextQuestionIndex =  questionIndex + 2;
             break;
           case 14: 
             setstudySensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
              nextQuestionIndex =  questionIndex + 1;
              break;
           case 15:
             setnotebookScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
             nextQuestionIndex = questionIndex + 1;
             break;
           case 16:
             setnotebookSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
               nextQuestionIndex = questionIndex + 1;
               break;
           case 17:
             setalarmScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
             nextQuestionIndex = questionIndex + 1;
             break;
           case 18:
             setalarmSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
               nextQuestionIndex = questionIndex + 1;
               break;
           case 19:
@@ -189,33 +202,41 @@ const navigate = useNavigate();
               setlatestudyScore(selectedAnswer);
             }
             nextQuestionIndex = questionIndex + 1;
+            setDone((prevDone) => prevDone + 4);
             break;
           case 20:
             setlatestudySensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
             nextQuestionIndex = questionIndex + 1;
             break;
           case 21:
             setsnoringScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
               nextQuestionIndex = questionIndex + 1;
               break;
           case 22:
             setsnoringSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
                   nextQuestionIndex = questionIndex + 1;
                   break;
            case 23:
             setfriendlyScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
              nextQuestionIndex = questionIndex + 1;
               break;
           case 24:
             setinhomeScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
                  nextQuestionIndex = questionIndex + 1;
                   break;
           case 25:
             setinhomeSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 5);
             nextQuestionIndex = questionIndex + 1;
             break;
          case 26:
           setcoldOrHot(selectedAnswer-1);
+          setDone((prevDone) => prevDone + 5);
             nextQuestionIndex = questionIndex + 1;
             break;
          case 27:
@@ -224,6 +245,7 @@ const navigate = useNavigate();
           }else{
             setsummerOrWinter(selectedAnswer);
           }
+          setDone((prevDone) => prevDone + 3);
           break;
                          
   
@@ -252,21 +274,24 @@ const handlePrevPage = () => {
     switch (questionIndex+1) {
       case 1:
         break;
-        
       case 2:
         setbedtimeScore(selectedAnswer)
+        setDone((prevDone) => prevDone -5);
         nextQuestionIndex = questionIndex-1;
         break;
       case 3:
         nextQuestionIndex = questionIndex-1;
         setwakeupSensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -5);
         break;
       case 4:
           nextQuestionIndex = questionIndex-2;
           setwakeupSensitivity(selectedAnswer);
+          setDone((prevDone) => prevDone -5);
           break;
       case 5 : 
         setcleaningScore(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
         if(bedtimeScore <=2){
           nextQuestionIndex = questionIndex-2;
         }else{
@@ -275,14 +300,17 @@ const handlePrevPage = () => {
         break;
       case 6:
         setcleaningSensitivity(selectedAnswer)
+        setDone((prevDone) => prevDone -5);
         nextQuestionIndex = questionIndex-1;
         break;
       case 7:
           setcleaningSensitivity(selectedAnswer)
+          setDone((prevDone) => prevDone -4);
           nextQuestionIndex = questionIndex-2;
           break;
       case 8 :
         setfoodScore(selectedAnswer)
+        setDone((prevDone) => prevDone -5);
         if(cleaningScore ==1 ){
           nextQuestionIndex = questionIndex-1;
         }else{
