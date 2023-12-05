@@ -24,9 +24,9 @@ const Progress: React.FC<ProgressProps> = ({ done }) => {
   }, [done]);
 
   return (
-    <div className="bg-slate-300 rounded-lg relative m-6 h-12 w-72">
+    <div className="bg-slate-200 rounded-3xl relative m-6 h-12 w-72">
     <div
-      className="bg-gradient-to-left bg-primary-logo shadow-md rounded-lg text-white flex items-center justify-center opacity-0 h-full w-0 transition-all duration-2000 ease"
+      className="bg-gradient-to-left bg-primary-logo shadow-md rounded-3xl font-['700'] text-white flex items-center justify-center opacity-0 h-full w-0 transition-all duration-2000 ease"
       style={style}
     >{done}%
       </div>
@@ -427,7 +427,7 @@ const handlePrevPage = () => {
         setsummerOrWinter(selectedAnswer);
       }
       setDone((prevDone) => prevDone -5);
-      break;
+      break;setDone((prevDone) => prevDone -4);
                      
 
       default:
