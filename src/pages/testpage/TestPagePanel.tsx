@@ -51,21 +51,57 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
       //selectedAnswer : 답변 번호
       switch (questionIndex+1) {
         case 1:
-          if (selectedAnswer === 1) {
-            nextQuestionIndex = 5;
+          setwakeupScore(selectedAnswer);
+          nextQuestionIndex = questionIndex + 1;
+          break;
+          
+        case 2:
+          setbedtimeScore(selectedAnswer)
+          const avg = (bedtimeScore + wakeupScore)/2;
+          if (avg <= 3) {
+            nextQuestionIndex = 2;
+            
           } else {
-            // 다른 조건에 따라 처리
-            nextQuestionIndex = questionIndex + 1;
+            nextQuestionIndex =3;
+    
           }
           break;
-        // 다른 특정한 case에 대한 처리 추가 가능
+         case 3:
+          nextQuestionIndex = 5;
+          setwakeupSensitivity(selectedAnswer);
+          break;
+         case 4:
+            nextQuestionIndex = 5;
+            setwakeupSensitivity(selectedAnswer);
+            break;
+        case 5 : 
+          setcleaningScore(selectedAnswer);
+          if (selectedAnswer === 1) {
+            nextQuestionIndex = 7;
+          }else {
+            nextQuestionIndex = 6;
+          }
+          break;
+        case 6:
+          setcleaningSensitivity(selectedAnswer)
+          nextQuestionIndex = 8;
+          break;
+        case 7:
+            setcleaningSensitivity(selectedAnswer)
+            nextQuestionIndex = 8;
+            break;
+        case 8 :
+          setfoodScore(selectedAnswer)
+
+          
 
         default:
           nextQuestionIndex = questionIndex + 1;
           break;
+
       }
 
-      setQuestionIndex(nextQuestionIndex);
+      setQuestionIndex(nextQuestionIndex!);
       setSelectedAnswer(0); // 선택한 답변 초기화
     } else {
       return <DescriptiveQuestion />;
@@ -82,7 +118,7 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
         <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" style={{ width: '150px' }} />
       </div>
       <div className="font-['500'] mt-4 text-center">해당하는 대답을 선택해 주세요!</div>
-      <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex + 1}</div>
+      <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex+1}</div>
       <div className="font-['600'] text-xl text-center mt-1 mb-8">{TEST_LIST[questionIndex].question}</div>
       <div>
       {(TEST_LIST[questionIndex].answer).map((answer, index) => (
@@ -91,7 +127,7 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
 </div>
       <div className="font-['700'] flex items-center justify-between mb-20 mt-12">
         <div className="text-white">dfffffsdf</div>
-        <div className="text-3xl text-center">{`${questionIndex + 1}/${TEST_LIST.length-1}`}</div>
+        <div className="text-3xl text-center">{`${questionIndex+1}/${TEST_LIST.length-1}`}</div>
         <div className="flex flex-row">
           <div className="text-2xl text-primary-logo" onClick={handleNextPage}>
             next {'>'}
