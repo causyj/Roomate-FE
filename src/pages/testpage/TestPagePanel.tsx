@@ -3,13 +3,40 @@ import { AnswerCard } from "./components/AnswerCard";
 import { DescriptiveQuestion } from './DescriptiveQuestion';
 import { TEST_LIST } from '../../constants';
 import { useNavigate } from 'react-router-dom';
+
 type answerProps = {
   index : number;
 }
+type ProgressProps ={
+  done: number;
+}
+
+const Progress: React.FC<ProgressProps> = ({ done }) => {
+  const [style, setStyle] = useState({} as React.CSSProperties);
+
+  useEffect(() => {
+    const newStyle: React.CSSProperties = {
+      opacity: 1,
+      width: `${done}%`,
+    };
+
+    setStyle(newStyle);
+  }, [done]);
+
+  return (
+    <div className="bg-slate-300 rounded-lg relative m-6 h-12 w-72">
+    <div
+      className="bg-gradient-to-left bg-primary-logo shadow-md rounded-lg text-white flex items-center justify-center opacity-0 h-full w-0 transition-all duration-2000 ease"
+      style={style}
+    >{done}%
+      </div>
+    </div>
+  );
+};
 export function TestPagePanel() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(0);
-
+  const [done, setDone] = useState(0);
 
 const [bedtimeScore, setbedtimeScore] = useState(0);
 const [wakeupScore, setwakeupScore] = useState(0);
@@ -56,13 +83,16 @@ const navigate = useNavigate();
         switch (questionIndex+1) {
           case 1:
             setwakeupScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 5);
             nextQuestionIndex = questionIndex + 1;
+            
             // console.log(wakeupScore);
             break;
             
           case 2:
             // console.log(wakeupScore);
             setbedtimeScore(selectedAnswer)
+            setDone((prevDone) => prevDone + 5);
             if (selectedAnswer <=2) {
               nextQuestionIndex = questionIndex + 1;
               
@@ -74,6 +104,7 @@ const navigate = useNavigate();
            case 3:
             nextQuestionIndex =  questionIndex + 2;
             setwakeupSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 5);
             break;
            case 4:
               nextQuestionIndex =  questionIndex + 1;
@@ -360,15 +391,15 @@ const handlePrevPage = () => {
   
 }
 const isNextButtonDisabled = selectedAnswer === 0;
+
   return (
     <div>
       
       {questionIndex === 0? 
       <div>
-      <div className="w-full h-full flex flex-col items-center justify-center">
-      <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" style={{ width: '150px' }} />
-    </div>
-    <div className="font-['500'] mt-4 text-center">해당하는 대답을 선택해 주세요!</div>
+  
+    <div className="font-['500'] text-center">해당하는 대답을 선택해 주세요!</div>
+    <Progress done={done}/>
     <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex+1}</div>
     <div className="font-['600'] text-xl text-center mt-1 mb-8">{TEST_LIST[questionIndex].question}</div>
     <div>
@@ -402,9 +433,7 @@ const isNextButtonDisabled = selectedAnswer === 0;
     </div> 
       :
       <div>
-        <div className="w-full h-full flex flex-col items-center justify-center">
-        <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" style={{ width: '150px' }} />
-      </div>
+       <Progress done={done}/>
       <div className="font-['500'] mt-4 text-center">해당하는 대답을 선택해 주세요!</div>
       <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex+1}</div>
       <div className="font-['600'] text-xl text-center mt-1 mb-8">{TEST_LIST[questionIndex].question}</div>
