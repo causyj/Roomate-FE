@@ -37,6 +37,7 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
 const navigate = useNavigate();
   useEffect(() => {
     console.log(`저장한 답변 ${selectedAnswer}`);
+   
   }, [selectedAnswer]); // selectedAnswer가 변경될 때만 실행
 
   const handleAnswerSelect = ({ index }: answerProps) => {
@@ -46,6 +47,7 @@ const navigate = useNavigate();
   };
 
   const handleNextPage = () => {
+    
     if (questionIndex < TEST_LIST.length - 1) {
       let nextQuestionIndex : number
       nextQuestionIndex =0;
@@ -61,10 +63,7 @@ const navigate = useNavigate();
         case 2:
           // console.log(wakeupScore);
           setbedtimeScore(selectedAnswer)
-          // console.log(bedtimeScore);
-          const avg = (bedtimeScore + wakeupScore)/2
-          // console.log(avg)
-          if (avg <= 3) {
+          if (selectedAnswer <=2) {
             nextQuestionIndex = 2;
             
           } else {
