@@ -119,7 +119,7 @@ export const getAnimalColor = (animal: AnimalType['animal']): string | undefined
     },
     //else)
     4 : {
-        question : '룸메가 일찍 자고 일찍 일어나는 사람이라면?',
+        question : '룸메가 일찍 자고 일찍 일어난다면?',
         answer : [
             '크게 상관없어',
             '조금 불편할 것 같아',

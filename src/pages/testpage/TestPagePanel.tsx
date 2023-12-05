@@ -3,7 +3,11 @@ import { AnswerCard } from "./components/AnswerCard";
 import { DescriptiveQuestion } from './DescriptiveQuestion';
 import { TEST_LIST } from '../../constants';
 import { useNavigate } from 'react-router-dom';
-
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 type answerProps = {
   index : number;
 }
@@ -442,84 +446,137 @@ const handlePrevPage = () => {
 const isNextButtonDisabled = selectedAnswer === 0;
 
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center  h-screen'>
       
       {questionIndex === 0? 
-      <div>
-  
-    <div className="font-['500'] text-center">해당하는 대답을 선택해 주세요!</div>
-    <Progress done={done}/>
-    <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex+1}</div>
-    <div className="font-['600'] text-xl text-center mt-1 mb-8">{TEST_LIST[questionIndex].question}</div>
-    <div>
-    {(TEST_LIST[questionIndex].answer).map((answer, index) => (
-  <AnswerCard 
-    index={index} 
-    AnswerCardText={answer} 
-    onClick={() => handleAnswerSelect({index})
+        <div className='flex flex-col items-center justify-center w-full'>
+       
+        <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
+        <Progress done={done}/>
+
+        <div className="w-full font-['600'] text-lg text-center  mb-6 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
+        <div className='flex flex-row items-center justify-between w-full'>
+          <div className={`text-2xl text-primary-logo ${
+                isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+              }`} onClick={undefined}
+              >
+                <ArrowBackIosNewIcon sx={{width:'50px', height:'50px', color: 'white'}}/>
+          </div>
+          
+          <div className='flex flex-col w-full items-center justify-center '>
     
-  }
-      />
-))}
-</div>
-    <div className="font-['700'] flex flex-row items-center justify-between mb-20 mt-12">
-    <div className="flex flex-row">
-        <div className='text-white'>sdfsdfsfsdf</div>
-      </div>
-      <div className="text-3xl text-center">{`${questionIndex+1}/${TEST_LIST.length-1}`}</div>
-      <div className="flex flex-row">
-        <div className={`text-2xl text-primary-logo ${
-          isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
-        }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
-        >
-          next {'>'}
-        </div>
-      </div>
-    </div>
-    
-      <div className='text-white'>sdfsd</div>
-      
-    </div> 
-      :
-      <div>
-       <Progress done={done}/>
-      <div className="font-['500'] mt-4 text-center">해당하는 대답을 선택해 주세요!</div>
-      <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex+1}</div>
-      <div className="font-['600'] text-xl text-center mt-1 mb-8">{TEST_LIST[questionIndex].question}</div>
-      <div>
-      {(TEST_LIST[questionIndex].answer).map((answer, index) => (
+            {(TEST_LIST[questionIndex].answer).map((answer, index) => (
     <AnswerCard 
       index={index} 
       AnswerCardText={answer} 
       onClick={() => handleAnswerSelect({index})
       
     }
-        />
-  ))}
-</div>
-      <div className="font-['700'] flex flex-row items-center justify-between mb-20 mt-12">
-      <div className="flex flex-row">
-      <div className={`text-2xl text-primary-logo ${
-          isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
-        }`} onClick={isNextButtonDisabled ? undefined : handlePrevPage}
-        >
-          {'<'} previous 
+                />  ))}
           </div>
-        </div>
-        <div className="text-3xl text-center">{`${questionIndex+1}/${TEST_LIST.length}`}</div>
-        <div className="flex flex-row">
           <div className={`text-2xl text-primary-logo ${
-          isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
-        }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
-        >
-            next {'>'}
+            isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+             }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
+            >
+             <ArrowForwardIosIcon sx={{width:'50px', height:'50px'}}/>
           </div>
         </div>
-      </div>
       
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
         <div className='text-white'>sdfsd</div>
         
       </div>
+      :
+     <div>
+      {questionIndex === 1 ? 
+      <div className=' flex flex-col items-center justify-center w-full'>
+       
+       <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
+       <Progress done={done}/>
+       <div className="w-full font-['600'] text-lg text-center  mb-4 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
+       <div className='flex flex-row items-center justify-between w-full'>
+         <div className={`text-2xl text-primary-logo ${
+               isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+             }`} onClick={isNextButtonDisabled ? undefined : handlePrevPage}
+             >
+               <ArrowBackIosNewIcon sx={{width:'50px', height:'50px'}}/>
+         </div>
+         
+         <div className='flex flex-col w-full items-center justify-center '>
+   
+           {(TEST_LIST[questionIndex].answer).map((answer, index) => (
+   <AnswerCard 
+     index={index} 
+     AnswerCardText={answer} 
+     onClick={() => handleAnswerSelect({index})
+     
+   }
+               />  ))}
+         </div>
+         <div className={`text-2xl text-primary-logo ${
+           isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+            }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
+           >
+            <ArrowForwardIosIcon sx={{width:'50px', height:'50px'}}/>
+         </div>
+       </div>
+     
+       <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        
+       
+     </div>
+     : 
+     <div className='flex flex-col items-center justify-center w-full'>
+       
+       <div className='mt-[-100px]'>
+       <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
+        <Progress done={done}/>
+       </div>
+        <div className="w-full font-['600'] text-lg text-center mt-4 mb-6 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
+        <div className='flex flex-row items-center justify-between w-full'>
+          <div className={`text-2xl text-primary-logo ${
+                isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+              }`} onClick={isNextButtonDisabled ? undefined : handlePrevPage}
+              >
+                <ArrowBackIosNewIcon sx={{width:'50px', height:'50px'}}/>
+          </div>
+          
+          <div className='flex flex-col w-full items-center justify-center '>
+    
+            {(TEST_LIST[questionIndex].answer).map((answer, index) => (
+    <AnswerCard 
+      index={index} 
+      AnswerCardText={answer} 
+      onClick={() => handleAnswerSelect({index})
+      
+    }
+                />  ))}
+          </div>
+          <div className={`text-2xl text-primary-logo ${
+            isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+             }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
+            >
+             <ArrowForwardIosIcon sx={{width:'50px', height:'50px'}}/>
+          </div>
+        </div>
+      
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        
+      </div>}
+     </div>
       }
     </div>
   );
