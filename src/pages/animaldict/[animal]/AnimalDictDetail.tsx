@@ -61,10 +61,10 @@ export const AnimalDictDetail = () => {
             <GoodBad 
              linecolor={color} 
               colorRGB={colorRGB} 
-              good1={descripData!.wellMatchedRoommates[0]} 
-              good2={descripData!.wellMatchedRoommates[1]}
-              bad1={descripData!.incompatibleRoommates[0]}
-              bad2={descripData!.incompatibleRoommates[1]}
+              good1={descripData?.wellMatchedRoommates[0]} 
+              good2={descripData?.wellMatchedRoommates[1]}
+              bad1={descripData?.incompatibleRoommates[0]}
+              bad2={descripData?.incompatibleRoommates[1]}
               />
 
           

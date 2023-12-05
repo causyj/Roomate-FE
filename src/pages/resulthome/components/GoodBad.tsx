@@ -6,10 +6,10 @@ import { AnimalType } from "../../../interface/AnimalType";
 type GoodBadProps = {
     linecolor : string | undefined;
     colorRGB: string | undefined;
-    good1 : AnimalType['animal'];
-    good2 : AnimalType['animal'];
-    bad1 : AnimalType['animal'];
-    bad2 : AnimalType['animal'];
+    good1 : AnimalType['animal'] | undefined;
+    good2 : AnimalType['animal'] | undefined;
+    bad1 : AnimalType['animal'] | undefined;
+    bad2 : AnimalType['animal'] | undefined;
 }
 
 // const color = getAnimalColor(animalData?.animal as AnimalType['animal']);
