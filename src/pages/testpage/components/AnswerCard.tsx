@@ -5,9 +5,10 @@ interface AnswerCardProps {
   index: number;
   AnswerCardText: string;
   onClick?: (index: number) => void;  // onClick의 매개변수로 index 추가
+
 }
 
-export const AnswerCard = ({ index, AnswerCardText, onClick } : AnswerCardProps) => {
+export const AnswerCard= ({ index, AnswerCardText, onClick } : AnswerCardProps) => {
   return (
     <div>
       <button

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnswerCard } from "./components/AnswerCard";
 import { DescriptiveQuestion } from './DescriptiveQuestion';
 import { TEST_LIST } from '../../constants';
+import { useNavigate } from 'react-router-dom';
 type answerProps = {
   index : number;
 }
@@ -33,7 +34,7 @@ const [inhomeScore, setinhomeScore] = useState(0);
 const [inhomeSensitivity, setinhomeSensitivity] = useState(0);
 const [coldOrHot, setcoldOrHot] = useState(0);
 const [summerOrWinter, setsummerOrWinter] = useState(0);
-
+const navigate = useNavigate();
   useEffect(() => {
     console.log(`저장한 답변 ${selectedAnswer}`);
   }, [selectedAnswer]); // selectedAnswer가 변경될 때만 실행
@@ -41,23 +42,28 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
   const handleAnswerSelect = ({ index }: answerProps) => {
     // 선택한 답변을 상태에 저장
     setSelectedAnswer(index+1);
+
   };
 
   const handleNextPage = () => {
-    // 다음 페이지로 이동
     if (questionIndex < TEST_LIST.length - 1) {
-      let nextQuestionIndex;
+      let nextQuestionIndex : number
+      nextQuestionIndex =0;
       //questionIndex+1 : 질문 번호
       //selectedAnswer : 답변 번호
       switch (questionIndex+1) {
         case 1:
           setwakeupScore(selectedAnswer);
           nextQuestionIndex = questionIndex + 1;
+          // console.log(wakeupScore);
           break;
           
         case 2:
+          // console.log(wakeupScore);
           setbedtimeScore(selectedAnswer)
-          const avg = (bedtimeScore + wakeupScore)/2;
+          // console.log(bedtimeScore);
+          const avg = (bedtimeScore + wakeupScore)/2
+          // console.log(avg)
           if (avg <= 3) {
             nextQuestionIndex = 2;
             
@@ -196,12 +202,17 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
           break;
 
       }
-
-      setQuestionIndex(nextQuestionIndex!);
-      setSelectedAnswer(0); // 선택한 답변 초기화
+    console.log(
+      `wake ; ${wakeupScore}`,
+      `bed : ${bedtimeScore}`,
+      `sen : ${wakeupSensitivity}`
+    )
+      setQuestionIndex(nextQuestionIndex);
+      // setSelectedAnswer(0); // 선택한 답변 초기화
     } else {
       return <DescriptiveQuestion />;
     }
+    // navigate('/resulthome')
   };
 
 
@@ -218,7 +229,13 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
       <div className="font-['600'] text-xl text-center mt-1 mb-8">{TEST_LIST[questionIndex].question}</div>
       <div>
       {(TEST_LIST[questionIndex].answer).map((answer, index) => (
-    <AnswerCard index={index} AnswerCardText={answer} onClick={() => handleAnswerSelect({index})} />
+    <AnswerCard 
+      index={index} 
+      AnswerCardText={answer} 
+      onClick={() => handleAnswerSelect({index})
+      
+    }
+        />
   ))}
 </div>
       <div className="font-['700'] flex items-center justify-between mb-20 mt-12">
