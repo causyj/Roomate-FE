@@ -8,6 +8,7 @@ import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import { Loading } from '../../components/Loading';
 type answerProps = {
   index : number;
 }
@@ -66,6 +67,20 @@ const [inhomeSensitivity, setinhomeSensitivity] = useState(0);
 const [coldOrHot, setcoldOrHot] = useState(0);
 const [summerOrWinter, setsummerOrWinter] = useState(0);
 const navigate = useNavigate();
+const [loading, setLoading] = useState(true);
+
+const timeout = () => {
+        return setTimeout(() => {
+          navigate('/resulthome');
+        }, 2000);
+      };
+      useEffect(() => {
+            const timeoutId = timeout();
+        
+            return () => {
+              clearTimeout(timeoutId);
+            };
+          }, []); 
   useEffect(() => {
     console.log(`저장한 답변 ${selectedAnswer}`);
    
@@ -259,11 +274,7 @@ const navigate = useNavigate();
             break;
   
         }
-      console.log(
-        `wake ; ${wakeupScore}`,
-        `bed : ${bedtimeScore}`,
-        `sen : ${wakeupSensitivity}`
-      )
+    
         setQuestionIndex(nextQuestionIndex);
         setSelectedAnswer(0); // 선택한 답변 초기화
       } else {
@@ -305,13 +316,15 @@ const navigate = useNavigate();
 
           // Check if login is successful, then redirect to StarPage
           if (response.ok) {
-            navigate('/testpage');
+            // navigate('/testpage');
+            // navigate('/resulthome')
+           <Loading address='/resulthome' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
             
               }
         } catch (error) {
           console.error('Error during login:', error);
         }
-       navigate('/resulthome')
+       
       }
    
     
