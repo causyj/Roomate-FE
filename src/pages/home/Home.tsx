@@ -57,8 +57,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
    //h-[calc(40%+2rem)]
     return (
      <div className="flex flex-col items-center w-full">
-        <div className="max-w-[413px]  h-[140px] w-full bg-primary-logo fixed top-0 flex items-center justify-center " style={{zIndex:200}}>
-                <div className="flex flex-row gap-6 mb-4">
+        <div className="max-w-[413px]  h-[140px] w-full bg-primary-logo fixed top-0 flex items-center justify-center  " style={{zIndex:200}}>
+                <div className="flex flex-row gap-6 mb-4 mt-[-10px]">
                     <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="logo" style={{ width: '70px' }} />
                     <div className="flex flex-col">
                         <div className="font-['700'] text-white text-3xl ">{nickname ? `${nickname} 님` : '로딩 중...'}</div>
@@ -67,9 +67,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                     
                 </div>
 
-
-
-            
         </div>
 
         <div className="  max-w-[413px]  w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[72px] overflow-y-auto p-8" style={{zIndex:20000}}>
@@ -113,18 +110,14 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                    <div className="text-white">sfsdfsdfsdf</div>  
                    <div className="text-white">sfsdfsdfsdf</div>  
                    <div className="text-white">sfsdfsdfsdf</div>  
-                   <div className="text-white">sfsdfsdfsdf</div> 
-                   <div className="text-white">sfsdfsdfsdf</div>  
-                   <div className="text-white">sfsdfsdfsdf</div> 
+
                    <Card image='roomatecard' text='룸메이트 추천' description1='나와 맞는 룸메이트를'description2=' 찾아보세요!' link='/roommatelist'/>
                    <Card image='groupcard' text='모임 목록' description1='나와 비슷한 성향의 사람들과'description2='모임을 가져보세요!' link='/group'/>
                    <Card image='dictionarycard' text='동물사전' description1='8개의 동물 유형을' description2='볼 수 있어요!' link='/animaldict'/>   
-                   <Card image='dictionarycard' text='테스트' description1='8개의 동물 유형을' description2='볼 수 있어요!' link='/testhome'/>   
+                   <Card image='test' text='생활 유형 검사' description1='나의 기숙사 생활유형' description2='테스트 해보세요!' link='/testhome'/>   
                    <div className="text-white">sfsdfsdfsdf</div>  
                    <div className="text-white">sfsdfsdfsdf</div>  
-                   <div className="text-white">sfsdfsdfsdf</div>  
-                   <div className="text-white">sfsdfsdfsdf</div> 
-                   <div className="text-white">sfsdfsdfsdf</div>  
+                    
                    
            </div>
         </div>
