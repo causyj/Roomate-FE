@@ -35,7 +35,7 @@ export const ResultHome =() => {
         });
   
         if (response.ok) {
-          const data = await response.json();
+          const data = await response.text();
           setNickname(data); // 새로운 카드 정보 설정
           
         } else {

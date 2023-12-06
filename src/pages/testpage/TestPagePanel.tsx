@@ -273,31 +273,32 @@ const [loading, setLoading] = useState(true);
             headers: {
               'Content-Type': 'application/json',
             },
-            body: `bedtimeScore=${bedtimeScore}
-                  &wakeupScore=${wakeupScore}
-                  &wakeupSensitivity=${wakeupSensitivity}
-                  &cleaningScore=${cleaningScore}
-                  &cleaningSensitivity=${cleaningSensitivity}
-                  &foodScore=${foodScore}
-                  &foodSensitivity=${foodSensitivity}
-                  &cigaretteScore=${cigaretteScore}
-                  &studyScore=${studyScore}
-                  &studySensitivity=${studySensitivity}
-                  &notebookScore=${notebookScore}
-                  &notebookSensitivity=${notebookSensitivity}
-                  &alarmScore=${alarmScore}
-                  &alarmSensitivity=${alarmSensitivity}
-                  &latestudyScore=${latestudyScore}
-                  &latestudySensitivity=${latestudySensitivity}
-                  &snoringScore=${snoringScore}
-                  &snoringSensitivity=${snoringSensitivity}
-                  &friendlyScore=${friendlyScore}
-                  &inhomeScore=${inhomeScore}
-                  &inhomeSensitivity=${inhomeSensitivity}
-                  &coldOrHot=${coldOrHot}
-                  &summerOrWinter=${summerOrWinter}
-                  `,
-            credentials: 'include',
+            body: JSON.stringify({
+              bedtimeScore,
+              wakeupScore,
+              wakeupSensitivity,
+              cleaningScore,
+              cleaningSensitivity,
+              foodScore,
+              foodSensitivity,
+              cigaretteScore,
+              studyScore,
+              studySensitivity,
+              notebookScore,
+              notebookSensitivity,
+              alarmScore,
+              alarmSensitivity,
+              latestudyScore,
+              latestudySensitivity,
+              snoringScore,
+              snoringSensitivity,
+              friendlyScore,
+              inhomeScore,
+              inhomeSensitivity,
+              coldOrHot,
+              summerOrWinter,
+          }),
+          credentials: 'include',
           }
           
           
