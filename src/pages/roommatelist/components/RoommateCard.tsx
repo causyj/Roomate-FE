@@ -12,7 +12,6 @@ import { ANIMAL_DATA } from "../../../constants";
 import { AnimalType } from "../../../interface/AnimalType";
 interface RoomateCardProps {
     disableFlip?: boolean;
-    key:string;
     nickname: string;
     animal: string;
     dorm:number;
@@ -31,7 +30,6 @@ interface RoomateCardProps {
 }
 interface CardFrontProps {
     isFrontView: boolean;
-    key:string;
     nickname: string;
     animal: string;
     dorm:number;
@@ -43,7 +41,6 @@ interface CardFrontProps {
    
 }
 interface CardFrontDetailProps {
-    key:string;
     nickname:string;
     animal : string;
     dorm : number;
@@ -53,7 +50,7 @@ interface CardFrontDetailProps {
 interface CardBackProps {
     isFrontView: boolean;
     animal:string;
-    key:string;
+    nickname: string;
     rhythm : string;
     smoke: string;
     noise: number;
@@ -64,8 +61,8 @@ interface CardBackProps {
    
 }
 interface TypeAtGlanceProps{
-    key:string;
     animal:string;
+    nickname:string;
     rhythm : string;
     smoke: string;
     noise: number;
@@ -75,7 +72,7 @@ interface TypeAtGlanceProps{
     sleep:number;
 }
 //Tab1의 유사도 카드 앞면
-const FrontDetailPercentage = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) => {
+const FrontDetailPercentage = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
     const [isStarred, setIsStarred] = useState(false);
     const [starId, setStartId] = useState('');
     //찜 추가
@@ -85,7 +82,7 @@ const FrontDetailPercentage = ({key,nickname,animal,dorm, room }: CardFrontDetai
             setIsStarred(!isStarred);
             
                 try {
-                    const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${key}`, {
+                    const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${nickname}`, {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
@@ -138,7 +135,7 @@ const FrontDetailPercentage = ({key,nickname,animal,dorm, room }: CardFrontDetai
         </div>
     )
 }
-const CardFrontPercentage = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+const CardFrontPercentage = ({isFrontView, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
     
     return (
         <section
@@ -146,7 +143,7 @@ const CardFrontPercentage = ({isFrontView,key, nickname, animal, dorm, room, age
             isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
         }`}
     >
-        <FrontDetailPercentage key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} />
+        <FrontDetailPercentage nickname={nickname} animal={animal} dorm={dorm} room={room} />
         
             <div
            className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
@@ -171,7 +168,7 @@ const CardFrontPercentage = ({isFrontView,key, nickname, animal, dorm, room, age
 }
 
 //Tab2&3의 카드 
-const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) => {
+const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
   const [isStarred, setIsStarred] = useState(true);
   const [starId, setStartId] = useState('');
   //찜 추가
@@ -181,7 +178,7 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
           setIsStarred(!isStarred);
           
               try {
-                  const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${key}`, {
+                  const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${nickname}`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
@@ -233,7 +230,7 @@ const FrontDetail = ({key,nickname,animal,dorm, room }: CardFrontDetailProps) =>
       </div>
   )
 }
-const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+const CardFront = ({isFrontView, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
   
   return (
       <section
@@ -241,7 +238,7 @@ const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, s
           isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
       }`}
   >
-      <FrontDetail key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} />
+      <FrontDetail nickname={nickname} animal={animal} dorm={dorm} room={room} />
       
           <div
          className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
@@ -266,7 +263,7 @@ const CardFront = ({isFrontView,key, nickname, animal, dorm, room, age,  dept, s
 }
 
 //카드 뒷면
-const TypeAtAGlance = ({key, animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
+const TypeAtAGlance = ({ nickname, animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
     const nosieCount = Array.from({ length: noise }, (_, index) => (
         <FavoriteOutlined key={index} sx={{width:'18px'}} />
       ));
@@ -297,7 +294,6 @@ const TypeAtAGlance = ({key, animal,rhythm,smoke,noise, temperature,outgoing,cle
       const EmptysleepCount = Array.from({ length: 5 - sleep }, (_, index) => (
         <FavoriteBorder key={noise + index}  sx={{width:'18px'}}/>
       ));
-      const id = key;
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1 gap-2">
@@ -338,11 +334,11 @@ const TypeAtAGlance = ({key, animal,rhythm,smoke,noise, temperature,outgoing,cle
                 
             </div>
         </div>
-        <Link to={`/resulthome/${id}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">더 자세히 보기 클릭 →</Link>
+        <Link to={`/resulthome/${nickname}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">더 자세히 보기 클릭 →</Link>
       </div>
     )
 }  
-const CardBack = ({isFrontView,animal, key, rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
+const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -357,14 +353,14 @@ const CardBack = ({isFrontView,animal, key, rhythm,smoke,noise, temperature,outg
         </Link>
 
             <Divider />
-            <TypeAtAGlance key={key} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
+            <TypeAtAGlance nickname={nickname} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep} />
         </div>
         </section>
     )
 }
 
 //Tab1의 유사도 카드
-export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+export const RoommateCardPercentage = ({disableFlip=false, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
     const ages = age.toString();
     const AGE = ages == "" ? "비공개" : `${ages}살`;
@@ -378,14 +374,14 @@ export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal
         onClick={toggleCardView}
         className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
     >
-        <CardFrontPercentage isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
-        {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} key={key} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
+        <CardFrontPercentage isFrontView={isFrontView} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
+        {disableFlip === false && <CardBack isFrontView={isFrontView} nickname={nickname} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
     </div>
     )
 }
 
 //Tab2&3의 유사도 카드
-export const RoommateCard = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+export const RoommateCard = ({disableFlip=false, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
   const [isFrontView, setIsFrontView] = useState(false)
   const ages = age.toString();
   const AGE = ages == "" ? "비공개" : `${ages}살`;
@@ -399,8 +395,8 @@ export const RoommateCard = ({disableFlip=false, key, nickname, animal, dorm, ro
       onClick={toggleCardView}
       className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
   >
-      <CardFront isFrontView={isFrontView} key={key} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
-      {disableFlip === false && <CardBack isFrontView={isFrontView} animal={animal} key={key} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
+      <CardFront isFrontView={isFrontView} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
+      {disableFlip === false && <CardBack isFrontView={isFrontView}  nickname={nickname} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
   </div>
   )
 }

@@ -13,28 +13,30 @@ export const Login  = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const [isFirst, setIsFirst] = useState(false); 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style`, {
-            method: 'GET',
-            credentials: 'include',
-          });
-    
-          if (response.ok) {
-            const data = await response.json();
-            setIsFirst(data);
-          } else {
-            console.error('Failed to fetch initial card data: ', response.status, response.statusText);
-          }
-        } catch (error) {
-          console.error('Failed to fetch initial card data: ', error);
+     
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setIsFirst(data);
+          if(isFirst === false) {
+              navigate('/testpage');
+            }
+            else{
+              navigate('/home');
+            }
+        } else {
+          console.error('Failed to fetch initial card data: ', response.status, response.statusText);
         }
-      };
-    
-      fetchData(); // Call the async function
-    }, []); 
-   
+      } catch (error) {
+        console.error('Failed to fetch initial card data: ', error);
+      }
+    };
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log("sdfs")
@@ -54,12 +56,13 @@ export const Login  = () => {
 
           // Check if login is successful, then redirect to StarPage
           if (response.ok) {
-            if(!isFirst) {
-              navigate('/testpage');
-            }
-            else{
-              navigate('/home');
-            }
+            // if(!isFirst) {
+            //   navigate('/testpage');
+            // }
+            // else{
+            //   navigate('/home');
+            // }
+            fetchData();
             
               }
         } catch (error) {
