@@ -8,7 +8,6 @@
     "@lottiefiles/react-lottie-player": "^3.5.3",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.14.15",
-    "@pandemicode/material-ui-dropzone": "^3.5.5",
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
