@@ -69,18 +69,6 @@ const [summerOrWinter, setsummerOrWinter] = useState(0);
 const navigate = useNavigate();
 const [loading, setLoading] = useState(true);
 
-const timeout = () => {
-        return setTimeout(() => {
-          navigate('/resulthome');
-        }, 2000);
-      };
-      useEffect(() => {
-            const timeoutId = timeout();
-        
-            return () => {
-              clearTimeout(timeoutId);
-            };
-          }, []); 
   useEffect(() => {
     console.log(`저장한 답변 ${selectedAnswer}`);
    
@@ -93,6 +81,7 @@ const timeout = () => {
   };
 
   const handleNextPage = async () => {
+    console.log(TEST_LIST.length)
       if (questionIndex < TEST_LIST.length - 1) {
         let nextQuestionIndex : number=0;
         //questionIndex+1 : 질문 번호
@@ -284,31 +273,32 @@ const timeout = () => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: `bedtimeScore=${bedtimeScore}
-                  &wakeupScore=${wakeupScore}
-                  &wakeupSensitivity=${wakeupSensitivity}
-                  &cleaningScore=${cleaningScore}
-                  &cleaningSensitivity=${cleaningSensitivity}
-                  &foodScore=${foodScore}
-                  &foodSensitivity=${foodSensitivity}
-                  &cigaretteScore=${cigaretteScore}
-                  &studyScore=${studyScore}
-                  &studySensitivity=${studySensitivity}
-                  &notebookScore=${notebookScore}
-                  &notebookSensitivity=${notebookSensitivity}
-                  &alarmScore=${alarmScore}
-                  &alarmSensitivity=${alarmSensitivity}
-                  &latestudyScore=${latestudyScore}
-                  &latestudySensitivity=${latestudySensitivity}
-                  &snoringScore=${snoringScore}
-                  &snoringSensitivity=${snoringSensitivity}
-                  &friendlyScore=${friendlyScore}
-                  &inhomeScore=${inhomeScore}
-                  &inhomeSensitivity=${inhomeSensitivity}
-                  &coldOrHot=${coldOrHot}
-                  &summerOrWinter=${summerOrWinter}
-                  `,
-            credentials: 'include',
+            body: JSON.stringify({
+              bedtimeScore,
+              wakeupScore,
+              wakeupSensitivity,
+              cleaningScore,
+              cleaningSensitivity,
+              foodScore,
+              foodSensitivity,
+              cigaretteScore,
+              studyScore,
+              studySensitivity,
+              notebookScore,
+              notebookSensitivity,
+              alarmScore,
+              alarmSensitivity,
+              latestudyScore,
+              latestudySensitivity,
+              snoringScore,
+              snoringSensitivity,
+              friendlyScore,
+              inhomeScore,
+              inhomeSensitivity,
+              coldOrHot,
+              summerOrWinter,
+          }),
+          credentials: 'include',
           }
           
           
@@ -320,25 +310,11 @@ const timeout = () => {
           // Check if login is successful, then redirect to StarPage
           if (response.ok) {
             // navigate('/testpage');
-            // navigate('/resulthome')
-           <Loading address='/resulthome' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
+          navigate('/resulthome')
+          // <Loading address='/resulthome' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
             
-              }
-              const response2 = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-
-                credentials: 'include',
-              }
               
-              
-              );
-              if (response2.ok) {
-                // navigate('/testpage');
-                // navigate('/resulthome')
-               console.log('good')
+             
                 
                   }
         } catch (error) {
@@ -525,7 +501,7 @@ const isNextButtonDisabled = selectedAnswer === 0;
   return (
     <div className='flex flex-col justify-center items-center  h-screen'>
       
-      {questionIndex === 0? 
+      {questionIndex === 0 ||  questionIndex === 1? 
         <div className='flex flex-col items-center justify-center w-full'>
        
         <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
@@ -569,13 +545,13 @@ const isNextButtonDisabled = selectedAnswer === 0;
         
       </div>
       :
-     <div>
-      {questionIndex === 1 ? 
-      <div className=' flex flex-col items-center justify-center w-full'>
+      <div className='flex flex-col items-center justify-center w-full'>
        
-       <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
+      <div className='mt-[-100px]'>
+      <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
        <Progress done={done}/>
-       <div className="w-full font-['600'] text-lg text-center  mb-4 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
+      </div>
+       <div className="w-full font-['600'] text-lg text-center mt-4 mb-6 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
        <div className='flex flex-row items-center justify-between w-full'>
          <div className={`text-2xl text-primary-logo ${
                isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
@@ -604,55 +580,9 @@ const isNextButtonDisabled = selectedAnswer === 0;
        </div>
      
        <div className='text-white'>sdfsd</div>
-        <div className='text-white'>sdfsd</div>
-        <div className='text-white'>sdfsd</div>
-        <div className='text-white'>sdfsd</div>
-        <div className='text-white'>sdfsd</div>
-        <div className='text-white'>sdfsd</div>
-        <div className='text-white'>sdfsd</div>
-        
+       <div className='text-white'>sdfsd</div>
+       <div className='text-white'>sdfsd</div>
        
-     </div>
-     : 
-     <div className='flex flex-col items-center justify-center w-full'>
-       
-       <div className='mt-[-100px]'>
-       <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
-        <Progress done={done}/>
-       </div>
-        <div className="w-full font-['600'] text-lg text-center mt-4 mb-6 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
-        <div className='flex flex-row items-center justify-between w-full'>
-          <div className={`text-2xl text-primary-logo ${
-                isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
-              }`} onClick={isNextButtonDisabled ? undefined : handlePrevPage}
-              >
-                <ArrowBackIosNewIcon sx={{width:'50px', height:'50px'}}/>
-          </div>
-          
-          <div className='flex flex-col w-full items-center justify-center '>
-    
-            {(TEST_LIST[questionIndex].answer).map((answer, index) => (
-    <AnswerCard 
-      index={index} 
-      AnswerCardText={answer} 
-      onClick={() => handleAnswerSelect({index})
-      
-    }
-                />  ))}
-          </div>
-          <div className={`text-2xl text-primary-logo ${
-            isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
-             }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
-            >
-             <ArrowForwardIosIcon sx={{width:'50px', height:'50px'}}/>
-          </div>
-        </div>
-      
-        <div className='text-white'>sdfsd</div>
-        <div className='text-white'>sdfsd</div>
-        <div className='text-white'>sdfsd</div>
-        
-      </div>}
      </div>
       }
     </div>

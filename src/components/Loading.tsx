@@ -11,7 +11,7 @@ export const Loading = ({ address,firstLine, secondLine }: LoadingProps) => {
     const timeout = () => {
             return setTimeout(() => {
               navigate(address);
-            }, 2000);
+            }, 5000);
           };
           useEffect(() => {
                 const timeoutId = timeout();

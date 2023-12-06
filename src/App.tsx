@@ -17,7 +17,7 @@ import { AnimalDictDetail } from './pages/animaldict/[animal]/AnimalDictDetail'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
 import { LandingPage } from './components/LandingPage'
 import { Chatting } from './pages/chat/[nickname]/Chatting'
-import { ResultAnother } from './pages/resulthome/[id]/ResultAnother'
+import { ResultAnother } from './pages/resulthome/[nickname]/ResultAnother'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -44,7 +44,7 @@ const Router = createBrowserRouter([
     element: <><BottomNavbar/><ResultHome/></>,
 },
 {
-    path: '/resulthome/:id',
+    path: '/resulthome/:nickname',
     element: <><BottomNavbar/><ResultAnother/></>,
 },
 {
@@ -65,12 +65,11 @@ const Router = createBrowserRouter([
     element: <AnimalDictDetail/>,
             
 },
-
-
 {
     path: '/testpage',
-    element: <><BottomNavbar/><TestPage/></>
+    element: <TestPage/>
 },
+
 
 
 {
