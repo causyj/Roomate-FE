@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "../../components/common"
 import { TestPagePanel } from "./TestPagePanel"
+import { useNavigate } from "react-router-dom"
 
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
-      <div className="flex flex-col ">
+     <div className="mt-[-80px]" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',padding:'20px' }}>
+         <div className="flex flex-col  justify-center  ">
           <div className="font-['700'] text-3xl mb-4">
               <div>어서오세요!</div>
               <div>처음이신가요?</div>
@@ -27,25 +29,29 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
           <div onClick={onClick} className="flex items-center justify-center mt-4">
               <Button>생활유형 테스트 하러 가기</Button>
           </div>
-      </div>         
+      </div>   
+    </div>      
   )
 }
 const Intro2 = ({ onClick }: { onClick: () => void }) => {
   return(
-      <div className="w-full  flex flex-col justify-center">
+    <div className="mt-[-80px]" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',padding:'20px' }}>
+         <div className="w-full  flex flex-col justify-center">
           <div className="flex flex-col text-xl">
           <div>
-              <span className="font-bold ">5분정도</span> 소요되는
+              <span className="font-bold ">3분정도</span> 소요되는
           </div>
           생활유형 테스트를 통해 
           <div>
               <span className="font-bold">김푸앙님</span>에게 딱 맞는 
           </div>
           콘텐츠를 제공해드릴게요! 
-          <div className="mt-4">
-              테스트는 <span className="font-bold">한 번만 </span>제공되니, 
+          <div className="mt-4 text-lg">
+            테스트는 중간에 나가면 
+            
           </div>
-          <span className="font-bold">꼭! 솔직하게 대답해주세요 :) </span>
+          <div><span className="font-bold text-lg">저장이 안되니, </span>주의해주세요!</div>
+          <span className="font-bold mt-4">꼭! 솔직하게 대답해주세요 :) </span>
           </div>
           <div className="p-10">
               <img src={process.env.PUBLIC_URL + '/test.png'} alt="testpaper"/>
@@ -54,20 +60,54 @@ const Intro2 = ({ onClick }: { onClick: () => void }) => {
           <Button>시작하기</Button> 
           </div>
       </div>
+    </div>
+     
       
   )
 }
 
 export function TestPage() {
   const [step, setStep] = useState(0);
+  const [isFirst, setIsFirst] = useState(false); 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setIsFirst(data);
+        } else {
+          console.error('Failed to fetch initial card data: ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to fetch initial card data: ', error);
+      }
+    };
+  
+    fetchData(); // Call the async function
+  }, []); 
+
   const handleButtonClick= () =>{
     setStep(step+1);
   }
     return (
     <div>
-         {step === 0 && <Intro1 onClick={handleButtonClick} />}
-         {step === 1 && <Intro2 onClick={handleButtonClick}/>}
-         {step === 2 && <TestPagePanel />}
+         {!isFirst ? 
+         <div>
+            {step === 0 && <Intro1 onClick={handleButtonClick} />}
+            {step === 1 && <Intro2 onClick={handleButtonClick}/>}
+            {step === 2 && <TestPagePanel />}
+         </div>
+         :
+         <div>
+             {step === 0 && <Intro2 onClick={handleButtonClick}/>}
+             {step === 1 && <TestPagePanel />}
+         </div>
+         }
     </div>
     )
 }

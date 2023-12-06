@@ -3,15 +3,38 @@ import { LoginTextField } from "./components/LoginTextField";
 import Person from '@mui/icons-material/PermIdentity';
 import Password from '@mui/icons-material/LockOpen'
 import { Button } from "../../components/common";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Troubleshoot } from "@mui/icons-material";
 
 
-export function Login() {
+export const Login  = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
+    const [isFirst, setIsFirst] = useState(false); 
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style`, {
+            method: 'GET',
+            credentials: 'include',
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            setIsFirst(data);
+          } else {
+            console.error('Failed to fetch initial card data: ', response.status, response.statusText);
+          }
+        } catch (error) {
+          console.error('Failed to fetch initial card data: ', error);
+        }
+      };
+    
+      fetchData(); // Call the async function
+    }, []); 
+   
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log("sdfs")
@@ -31,7 +54,12 @@ export function Login() {
 
           // Check if login is successful, then redirect to StarPage
           if (response.ok) {
-            navigate('/testpage');
+            if(!isFirst) {
+              navigate('/testpage');
+            }
+            else{
+              navigate('/home');
+            }
             
               }
         } catch (error) {

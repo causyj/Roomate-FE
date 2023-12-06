@@ -184,8 +184,8 @@ export const getAnimalColor = (animal: AnimalType['animal']): string | undefined
     11 : {
         question : '흡연자야?',
         answer : [
-            '응! 아니',
-            '아니',
+            '응!',
+            '아니!',
         ],
     },
 

@@ -1,7 +1,7 @@
 import { TypeEmojiUser } from "./components/TypeEmoji"
 import { TitleBox } from "../../components/resultdetail/TitleBox"
 import { ANIMAL_DATA, getAnimalColor, getAnimalColorRGB } from "../../constants"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { TypeAtAGlance } from "./components/TypeAtAGlance"
 import { GoodBad } from "./components/GoodBad"
 import { ResultDetail } from "./components/TypeDetail"
@@ -23,6 +23,8 @@ export const ResultHome =() => {
   const [nickname, setNickname] = useState('');
   const [animalData, setAnimalData] = useState<AnimalDataProps | null>(null);
   const [descripData, setDescripData] = useState<DescriplDataProps | null>(null);
+  const usenavigate = useNavigate();
+  
 //  닉네임
   useEffect(()=>{
     const nicknameData = async () => {
@@ -92,9 +94,13 @@ export const ResultHome =() => {
     const color = getAnimalColor(animalData?.animal as AnimalType['animal']);
     const colorRGB = getAnimalColorRGB(animalData?.animal as AnimalType['animal']);
     const adv = animalData?.sensitive == true ? "예민한" : "무던한"
+
     console.log(color);
+    
     return (
-        <div>
+       
+          
+          <div>
           {/* 로고 */}
            <div className="flex w-full items-center justify-center mb-4">
                     <img src={process.env.PUBLIC_URL + '/logo.png'}alt="logo"style={{width : '120px'}}/>
@@ -174,5 +180,6 @@ export const ResultHome =() => {
                      
             </div>
         </div>
+          
     )
 } 
