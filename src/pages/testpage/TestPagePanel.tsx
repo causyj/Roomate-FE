@@ -282,7 +282,7 @@ const timeout = () => {
           const response = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
+              'Content-Type': 'application/json',
             },
             body: `bedtimeScore=${bedtimeScore}
                   &wakeupScore=${wakeupScore}
@@ -309,7 +309,10 @@ const timeout = () => {
                   &summerOrWinter=${summerOrWinter}
                   `,
             credentials: 'include',
-          });
+          }
+          
+          
+          );
 
           // Handle the response as needed
           console.log(response);
@@ -321,6 +324,23 @@ const timeout = () => {
            <Loading address='/resulthome' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
             
               }
+              const response2 = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+
+                credentials: 'include',
+              }
+              
+              
+              );
+              if (response2.ok) {
+                // navigate('/testpage');
+                // navigate('/resulthome')
+               console.log('good')
+                
+                  }
         } catch (error) {
           console.error('Error during login:', error);
         }
