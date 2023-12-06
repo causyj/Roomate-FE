@@ -94,7 +94,8 @@ export const ResultHome =() => {
     const color = getAnimalColor(animalData?.animal as AnimalType['animal']);
     const colorRGB = getAnimalColorRGB(animalData?.animal as AnimalType['animal']);
     const adv = animalData?.sensitive == true ? "예민한" : "무던한"
-    const animalKOR = ANIMAL_DATA[animalData?.animal as AnimalType['animal'] ].type
+    const animalKOR = "토끼"
+    //ANIMAL_DATA[animalData?.animal as AnimalType['animal'] ].type
     console.log(color);
     
     return (
