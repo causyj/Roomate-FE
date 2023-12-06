@@ -127,8 +127,8 @@ export const Chatting = () => {
                      </div> 
                         </div>
                         </div> 
-                    </div> 
-                </div>
+            </div> 
+      </div>
                     
            
         
