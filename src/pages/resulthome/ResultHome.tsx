@@ -10,7 +10,7 @@ import { AnimalType } from "../../interface/AnimalType"
 
 //api : 닉네임 / 동물 유형 / 
 interface AnimalDataProps{
-  animal : string ;
+  animal : AnimalType['animal'];
   sensitive : boolean;
 }
 interface DescriplDataProps{
@@ -24,12 +24,12 @@ export const ResultHome =() => {
   const [animalData, setAnimalData] = useState<AnimalDataProps | null>(null);
   const [descripData, setDescripData] = useState<DescriplDataProps | null>(null);
   const usenavigate = useNavigate();
- const animalKOR = ANIMAL_DATA[animalData?.animal as AnimalType['animal']].type;
+  
 //  닉네임
   useEffect(()=>{
     const nicknameData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/nickname`, {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -51,7 +51,7 @@ export const ResultHome =() => {
   useEffect(()=>{
     const AnimalData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/animal`, {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -73,7 +73,7 @@ export const ResultHome =() => {
   useEffect(()=>{
     const DescripData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/style/animal`, {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style/animal`, {
           method: 'GET',
           credentials: 'include',
         });
@@ -94,7 +94,9 @@ export const ResultHome =() => {
     const color = getAnimalColor(animalData?.animal as AnimalType['animal']);
     const colorRGB = getAnimalColorRGB(animalData?.animal as AnimalType['animal']);
     const adv = animalData?.sensitive == true ? "예민한" : "무던한"
-
+    const animalKOR = animalData?.animal ? ANIMAL_DATA[animalData.animal].type : '';
+        //ANIMAL_DATA[animalData?.animal as AnimalType['animal']].type;
+    //ANIMAL_DATA[animalData?.animal as AnimalType['animal'] ].type
     console.log(color);
     
     return (
@@ -108,7 +110,7 @@ export const ResultHome =() => {
             {animalData &&
              <div className="text-center text-2xl font-['800'] items-center justify-center">
              <div className='mb-4 mt-8'>{nickname}님의 생활 유형은</div>
-             <span className={`text-4xl text-['900'] text-${color}-500`}>{adv} {animalKOR}</span>
+             <span className={`text-4xl text-['900'] text-${color}-500`}>{adv} {animalKOR}</span> 
          </div>
             }
            
@@ -121,10 +123,8 @@ export const ResultHome =() => {
               <TypeEmojiUser/>
               </div>
 
-              <div className={`w-full border-4 font-['700'] border-${color}-500 rounded-lg flex items-center justify-center text-center  p-4 font-bold text-xl`}>
-              나의 동물 유형 한줄 소개
-                </div>
-            {/* <TitleBox title={'나의 동물 유형 한줄 소개'} animalColor={color}/> */}
+           
+            <TitleBox title={'나의 동물 유형 한줄 소개'} animalColor={color}/>
             {descripData && 
             <div className=" font-['600'] p-7 text-l text-primary-gray">
                {descripData.features}
@@ -143,11 +143,7 @@ export const ResultHome =() => {
                  </div>
             </Link>
 
-
-            <div className={`w-full border-4 font-['700'] border-${color}-500 rounded-lg flex items-center justify-center text-center  p-4 font-bold text-xl`}>
-            나의 생활 유형 한 눈에 보기
-                </div>
-            {/* <TitleBox title={'나의 생활 유형 한 눈에 보기'} animalColor={color}/> */}
+            <TitleBox title={'나의 생활 유형 한 눈에 보기'} animalColor={color}/>
             <TypeAtAGlance color={color}/>
             
             {descripData && 
@@ -162,10 +158,8 @@ export const ResultHome =() => {
             }
           
     
-          <div className={`w-full border-4 font-['700'] border-${color}-500 rounded-lg flex items-center justify-center text-center  p-4 font-bold text-xl`}>
-          나의 생활 유형 상세보기
-                </div>
-            {/* <TitleBox title={'나의 생활 유형 상세보기'} animalColor={color}/> */}
+            
+            <TitleBox title={'나의 생활 유형 상세보기'} animalColor={color}/>
             <ResultDetail nickname={nickname}/>
             
             <Link to='/roommatelist'>

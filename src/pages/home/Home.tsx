@@ -56,7 +56,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
     },[]);
    //h-[calc(40%+2rem)]
     return (
-     <div className="flex flex-col items-center ">
+     <div className="flex flex-col items-center w-full ">
         <div className="flex flex-col max-w-[413px] w-full " style={{ position: 'fixed', top: 0,zIndex: 100 } }>
            
            
