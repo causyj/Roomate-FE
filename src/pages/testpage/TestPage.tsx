@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 const Intro1 = ({ onClick }: { onClick: () => void }) => {
   return(
-     <div className="mt-[-80px]" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',padding:'20px' }}>
+     <div className="mt-[-50px]" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',padding:'20px' }}>
          <div className="flex flex-col  justify-center  ">
           <div className="font-['700'] text-3xl mb-4">
               <div>어서오세요!</div>
@@ -35,7 +35,7 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
 }
 const Intro2 = ({ onClick }: { onClick: () => void }) => {
   return(
-    <div className="mt-[-80px]" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',padding:'20px' }}>
+    <div className="mt-[-50px]" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh',padding:'20px' }}>
          <div className="w-full  flex flex-col justify-center">
           <div className="flex flex-col text-xl">
           <div>
