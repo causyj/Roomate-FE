@@ -1,10 +1,36 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card } from "./components/Card";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
   export const Home = () => {
     const [verify, setVerify] = useState(false); //테스트 했었는지 안 했었는지
     const [nickname, setNickname] = useState('');
+    const [isFirst, setIsFirst] = useState(false); 
+     const usenavigate = useNavigate();
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setIsFirst(data);
+          if(!data){
+            usenavigate('/testpage')
+          }
+        } else {
+          console.error('Failed to fetch initial card data: ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to fetch initial card data: ', error);
+      }
+    };
+    useEffect(()=>{
+      fetchData();
+    })
+    
     useEffect(() => {
         const fetchNickname = async () =>{
             try{
