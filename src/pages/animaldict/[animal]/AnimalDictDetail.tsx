@@ -37,10 +37,13 @@ export const AnimalDictDetail = () => {
         };
         DescripData();
       },[]);
+
     const {animal} = useParams<AnimalDictionaryParams>()
     const color = getAnimalColor(animal as AnimalType['animal']);
     const colorRGB = getAnimalColorRGB(animal as AnimalType['animal']);
-    const animalKOR = ANIMAL_DATA[animal as AnimalType['animal']].type;
+
+    const animalKOR = ANIMAL_DATA[animal as AnimalType['animal']]?.type;
+    
     return (
         <div className="w-full">
               <div className="flex w-full items-center justify-center mb-4">
@@ -61,10 +64,10 @@ export const AnimalDictDetail = () => {
             <GoodBad 
              linecolor={color} 
               colorRGB={colorRGB} 
-              good1={descripData!.wellMatchedRoommates[0]} 
-              good2={descripData!.wellMatchedRoommates[1]}
-              bad1={descripData!.incompatibleRoommates[0]}
-              bad2={descripData!.incompatibleRoommates[1]}
+              good1={descripData?.wellMatchedRoommates[0]} 
+              good2={descripData?.wellMatchedRoommates[1]}
+              bad1={descripData?.incompatibleRoommates[0]}
+              bad2={descripData?.incompatibleRoommates[1]}
               />
 
           

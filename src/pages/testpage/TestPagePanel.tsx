@@ -1,102 +1,626 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnswerCard } from "./components/AnswerCard";
 import { DescriptiveQuestion } from './DescriptiveQuestion';
-const questions = [
-  '주로 몇시에 자?',
-  '그럼 주로 몇시에 일어나?',
-  '룸메가 늦게 자고 늦게 일어난다면?',
-  '방은 얼마나 자주 청소해?',
-  '룸메가 청소를 안 한다면? ',//보류
-  '음식을 주로 방에서 섭취하는 편이야?' ,
-  '룸메가 방에서 자주 음식을 먹는다면?',
-  '흡연자야?',
-  '공부는 방에서 하는 편이야?',
-  '만약 룸메가 방에서는 쉬기만 해. 그럼 눈치보여?',
-  '방에서 노트북 많이 사용 해?',
-  '룸메이트가 방에서 타자소리나 마우스 소리를 낸다면?',
-  '전 날 알람을 여러 개 맞추고 잔 당신, 다음날 아침 상황은?',
-  '룸메이트가 알람을 잘 못듣는 사람이면 어때?',
-  '늦은 시간까지 공부해야 한다면 …',
-  '자려고 하는데 룸메가 노트북이나 스탠드를 사용해서 공부한다면?',
-  '이갈이나 코골이 같은 잠버릇 있어?',
-  '룸메의 잠버릇에 예민한 편이야?',
-  '룸메이트와 친하게 지내고 싶어?',
-  '방에 자주 있는 편이야?',
-  '자주 외박하는 사람에 대해 어떻게 생각해?',
-  '마지막 질문이야! 더위와 추위를 많이 타?',
+import { TEST_LIST } from '../../constants';
+import { useNavigate } from 'react-router-dom';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
+type answerProps = {
+  index : number;
+}
+type ProgressProps ={
+  done: number;
+}
 
-  '',
-  // 다음 질문들...
-];
-const answers = [
-  ['밤 11시 이전.', '밤 12시', '새벽 1시','새벽 2시','새벽 3시 이후'],
-  ['오전 5시 이전', '오전 6시~7시', '오전 8시~9시', '오전 10시~11시', '낮 12시 이후'],
-  ['크게 상관없어', '조금 힘들 것 같아', '아 정말 안 맞아;;'],
-  ['청소? 그런건 사치야…', '적당히 쌓이면 버려.', '쓰레기는 용납 못해!'],
-  ['룸메가 청소를 안 한다면?','아…….그건 좀; (깊은 한숨)','윽.. 더러워서 어떻게 같이 살아?'],
-  ['응. 자주.','음… 가끔?','아니. 별로.'],
-  ['먹고 잘만 치우면 상관없어','좀 그래..','음식은 휴게실에서만 먹었으면 좋겠어!'],
-  ['응. ','아니.'],
-  ['응. 방에서 하는 편이야.','음… 그때그때 달라.','주로 도서관이나 열람실에서 해.'],
-  ['아니? 눈치를 왜 봐?','쉬는데 불편하려나..?','나도 나가서 공부해야 되나 ㅜㅜ?'],
-  ['맨날 써','필요할 때만 써','아니~'],
-  ['예민하지 않은 편이라 괜찮아','무소음 기기 쓰면 괜찮아','키보드 부숴버려도 돼?'],
-  ['한번에 바로 일어난다.','두 세번 만에 일어난다.','룸메가 내 알람에 깰때까지 못 일어난다'],
-  ['내가 깨워주지 뭐','쟤 언제 일어나지','폰 부숴버려도 돼?'],
-  ['노트북이나 스탠드 사용','휴게실이나 열람실에서 공부'],
-  ['오키 열공해~','시험기간이니까 참을게','잠 좀 자자!!!!'],
-  ['심해','조금 있어','없어'],
-  ['잠들면 웬만한 소리에는 안 깨','너무 심하지만 않으면 참을 수 있어','그것 때문에 잠을 못 자!!!'],
-  ['응!','아니'],
-  ['나는 집순이/집돌이야','가끔 외출/외박해','방은 잠만 자는 곳이지'],
-  ['외로워….','신경 안 써','오예! 1인실 오히려 좋아'],
-  ['더위 많이 타','추위 많이 타','둘 다 많이 타','둘 다 안 타'],
+const Progress: React.FC<ProgressProps> = ({ done }) => {
+  const [style, setStyle] = useState({} as React.CSSProperties);
 
-  // 다른 질문에 대한 답변 배열들...
-];
+  useEffect(() => {
+    const newStyle: React.CSSProperties = {
+      opacity: 1,
+      width: `${done}%`,
+    };
 
-
-export function TestPagePanel() {
-  const [questionIndex, setQuestionIndex] = useState(0);
-
-  const handleNextPage = () => {
-    // 다음 페이지로 이동
-    if (questionIndex < questions.length-1 ) {
-      setQuestionIndex((prevIndex) => prevIndex + 1);
-    } else {
-        return <DescriptiveQuestion />;
-    }
-  };
+    setStyle(newStyle);
+  }, [done]);
 
   return (
-    <div>
-      
-      {questionIndex === questions.length -1 ?  <DescriptiveQuestion /> 
-      :<div>
-        <div className="w-full h-full flex flex-col items-center justify-center">
-        <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" style={{ width: '150px' }} />
+    <div className="bg-slate-200 rounded-3xl relative m-6 h-12 w-72">
+    <div
+      className="bg-gradient-to-left bg-primary-logo shadow-md rounded-3xl font-['700'] text-white flex items-center justify-center opacity-0 h-full w-0 transition-all duration-2000 ease"
+      style={style}
+    >{done}%
       </div>
-      <div className="font-['500'] mt-4 text-center">해당하는 대답을 선택해 주세요!</div>
-      <div className="font-['600'] text-3xl mt-4 text-center">Q.{questionIndex + 1}</div>
-      <div className="font-['600'] text-xl text-center mt-1 mb-8">{questions[questionIndex]}</div>
-      <div>
-      {(answers[questionIndex] as string[]).map((answer, index) => (
-    <AnswerCard key={index} AnsweCardText={answer} />
-  ))}
-</div>
-      <div className="font-['700'] flex items-center justify-between mb-20 mt-12">
-        <div className="text-white">dfffffsdf</div>
-        <div className="text-3xl text-center">{`${questionIndex + 1}/${questions.length-1}`}</div>
-        <div className="flex flex-row">
-          <div className="text-2xl text-primary-logo" onClick={handleNextPage}>
-            next {'>'}
+    </div>
+  );
+};
+export function TestPagePanel() {
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(0);
+  const [done, setDone] = useState(0);
+
+const [bedtimeScore, setbedtimeScore] = useState(0);
+const [wakeupScore, setwakeupScore] = useState(0);
+const [wakeupSensitivity, setwakeupSensitivity] = useState(0);
+const [cleaningScore, setcleaningScore] = useState(0);
+const [cleaningSensitivity, setcleaningSensitivity] = useState(0);
+const [foodScore, setfoodScore] = useState(0);
+const [foodSensitivity, setfoodSensitivity] = useState(0);
+const [cigaretteScore, setcigaretteScore] = useState(0);
+const [studyScore, setstudyScore] = useState(0);
+const [studySensitivity, setstudySensitivity] = useState(0);
+const [notebookScore, setnotebookScore] = useState(0);
+const [notebookSensitivity, setnotebookSensitivity] = useState(0);
+const [alarmScore, setalarmScore] = useState(0);
+const [alarmSensitivity, setalarmSensitivity] = useState(0);
+const [latestudyScore, setlatestudyScore] = useState(0);
+const [latestudySensitivity, setlatestudySensitivity] = useState(0);
+const [snoringScore, setsnoringScore] = useState(0);
+const [snoringSensitivity, setsnoringSensitivity] = useState(0);
+const [friendlyScore, setfriendlyScore] = useState(0);
+const [inhomeScore, setinhomeScore] = useState(0);
+const [inhomeSensitivity, setinhomeSensitivity] = useState(0);
+const [coldOrHot, setcoldOrHot] = useState(0);
+const [summerOrWinter, setsummerOrWinter] = useState(0);
+const navigate = useNavigate();
+  useEffect(() => {
+    console.log(`저장한 답변 ${selectedAnswer}`);
+   
+  }, [selectedAnswer]); // selectedAnswer가 변경될 때만 실행
+
+  const handleAnswerSelect = ({ index }: answerProps) => {
+    // 선택한 답변을 상태에 저장
+    setSelectedAnswer(index+1);
+
+  };
+
+  const handleNextPage = async () => {
+      if (questionIndex < TEST_LIST.length - 1) {
+        let nextQuestionIndex : number=0;
+        //questionIndex+1 : 질문 번호
+        //selectedAnswer : 답변 번호
+        switch (questionIndex+1) {
+          case 1:
+            setwakeupScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 5);
+            nextQuestionIndex = questionIndex + 1;
+            
+            // console.log(wakeupScore);
+            break;
+            
+          case 2:
+            // console.log(wakeupScore);
+            setbedtimeScore(selectedAnswer)
+            setDone((prevDone) => prevDone + 5);
+            if (selectedAnswer <=2) {
+              nextQuestionIndex = questionIndex + 1;
+              
+            } else {
+              nextQuestionIndex = questionIndex + 2;
+      
+            }
+            break;
+           case 3:
+            nextQuestionIndex =  questionIndex + 2;
+            setwakeupSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 5);
+            break;
+           case 4:
+              nextQuestionIndex =  questionIndex + 1;
+              setwakeupSensitivity(selectedAnswer);
+              setDone((prevDone) => prevDone + 5);
+              break;
+          case 5 : 
+            setcleaningScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 5);
+            if (selectedAnswer === 1) {
+              nextQuestionIndex =  questionIndex + 2;
+              
+            }else {
+              nextQuestionIndex =  questionIndex + 1;
+            }
+            break;
+          case 6:
+            setcleaningSensitivity(selectedAnswer)
+            setDone((prevDone) => prevDone + 5);
+            nextQuestionIndex =  questionIndex + 2;
+            break;
+          case 7:
+              setcleaningSensitivity(selectedAnswer)
+              setDone((prevDone) => prevDone + 5);
+              nextQuestionIndex =  questionIndex + 1;
+              break;
+          case 8 :
+            setfoodScore(selectedAnswer)
+            setDone((prevDone) => prevDone + 5);
+            if (selectedAnswer === 1){
+              nextQuestionIndex =  questionIndex + 2;
+            }else{
+              nextQuestionIndex =  questionIndex + 1;
+            }
+            break;
+          case 9:
+            setfoodSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+            nextQuestionIndex = questionIndex + 2;
+            break;
+          case 10:
+            setfoodSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+            nextQuestionIndex =  questionIndex + 1;
+            break;
+          case 11:
+            if (selectedAnswer == 2){
+              setcigaretteScore(3);
+            }else{
+              setcigaretteScore(selectedAnswer);
+            }
+            nextQuestionIndex =  questionIndex + 1;
+            setDone((prevDone) => prevDone + 5);
+            break;
+          case 12:
+            setstudyScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+            if (selectedAnswer === 1){
+              nextQuestionIndex =  questionIndex + 2;
+            }else{
+              nextQuestionIndex =  questionIndex + 1;
+            }
+            break;
+          case 13: 
+           setstudySensitivity(selectedAnswer);
+           setDone((prevDone) => prevDone + 4);
+            nextQuestionIndex =  questionIndex + 2;
+            break;
+          case 14: 
+            setstudySensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+             nextQuestionIndex =  questionIndex + 1;
+             break;
+          case 15:
+            setnotebookScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+          case 16:
+            setnotebookSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+              nextQuestionIndex = questionIndex + 1;
+              break;
+          case 17:
+            setalarmScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+          case 18:
+            setalarmSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+              nextQuestionIndex = questionIndex + 1;
+              break;
+          case 19:
+            if (selectedAnswer == 2){
+              setlatestudyScore(3);
+            }else{
+              setlatestudyScore(selectedAnswer);
+            }
+            nextQuestionIndex = questionIndex + 1;
+            setDone((prevDone) => prevDone + 4);
+            break;
+          case 20:
+            setlatestudySensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+          case 21:
+            setsnoringScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+              nextQuestionIndex = questionIndex + 1;
+              break;
+          case 22:
+            setsnoringSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+                  nextQuestionIndex = questionIndex + 1;
+                  break;
+           case 23:
+            setfriendlyScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+             nextQuestionIndex = questionIndex + 1;
+              break;
+          case 24:
+            setinhomeScore(selectedAnswer);
+            setDone((prevDone) => prevDone + 4);
+                 nextQuestionIndex = questionIndex + 1;
+                  break;
+          case 25:
+            setinhomeSensitivity(selectedAnswer);
+            setDone((prevDone) => prevDone + 5);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+         case 26:
+          setcoldOrHot(selectedAnswer-1);
+          setDone((prevDone) => prevDone + 5);
+            nextQuestionIndex = questionIndex + 1;
+            break;
+         case 27:
+          if (selectedAnswer == 2){
+            setsummerOrWinter(3);
+          }else{
+            setsummerOrWinter(selectedAnswer);
+          }
+          setDone((prevDone) => prevDone + 3);
+          break;
+                         
+  
+          default:
+            nextQuestionIndex = questionIndex + 1;
+            break;
+  
+        }
+      console.log(
+        `wake ; ${wakeupScore}`,
+        `bed : ${bedtimeScore}`,
+        `sen : ${wakeupSensitivity}`
+      )
+        setQuestionIndex(nextQuestionIndex);
+        setSelectedAnswer(0); // 선택한 답변 초기화
+      } else {
+        try {
+          const response = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `bedtimeScore=${bedtimeScore}
+                  &wakeupScore=${wakeupScore}
+                  &wakeupSensitivity=${wakeupSensitivity}
+                  &cleaningScore=${cleaningScore}
+                  &cleaningSensitivity=${cleaningSensitivity}
+                  &foodScore=${foodScore}
+                  &foodSensitivity=${foodSensitivity}
+                  &cigaretteScore=${cigaretteScore}
+                  &studyScore=${studyScore}
+                  &studySensitivity=${studySensitivity}
+                  &notebookScore=${notebookScore}
+                  &notebookSensitivity=${notebookSensitivity}
+                  &alarmScore=${alarmScore}
+                  &alarmSensitivity=${alarmSensitivity}
+                  &latestudyScore=${latestudyScore}
+                  &latestudySensitivity=${latestudySensitivity}
+                  &snoringScore=${snoringScore}
+                  &snoringSensitivity=${snoringSensitivity}
+                  &friendlyScore=${friendlyScore}
+                  &inhomeScore=${inhomeScore}
+                  &inhomeSensitivity=${inhomeSensitivity}
+                  &coldOrHot=${coldOrHot}
+                  &summerOrWinter=${summerOrWinter}
+                  `,
+            credentials: 'include',
+          });
+
+          // Handle the response as needed
+          console.log(response);
+
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+            navigate('/testpage');
+            
+              }
+        } catch (error) {
+          console.error('Error during login:', error);
+        }
+       navigate('/resulthome')
+      }
+   
+    
+  };
+const handlePrevPage = () => {
+    let nextQuestionIndex : number =0;
+    //questionIndex+1 : 질문 번호
+    //selectedAnswer : 답변 번호
+    switch (questionIndex+1) {
+      case 1:
+        break;
+      case 2:
+        setbedtimeScore(selectedAnswer)
+        setDone((prevDone) => prevDone -5);
+        nextQuestionIndex = questionIndex-1;
+        break;
+      case 3:
+        nextQuestionIndex = questionIndex-1;
+        setwakeupSensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -5);
+        break;
+      case 4:
+          nextQuestionIndex = questionIndex-2;
+          setwakeupSensitivity(selectedAnswer);
+          setDone((prevDone) => prevDone -5);
+          break;
+      case 5 : 
+        setcleaningScore(selectedAnswer);
+        setDone((prevDone) => prevDone -5);
+        if(bedtimeScore <=2){
+          nextQuestionIndex = questionIndex-2;
+        }else{
+          nextQuestionIndex = questionIndex-1;
+        }
+        break;
+      case 6:
+        setcleaningSensitivity(selectedAnswer)
+        setDone((prevDone) => prevDone -5);
+        nextQuestionIndex = questionIndex-1;
+        break;
+      case 7:
+          setcleaningSensitivity(selectedAnswer)
+          setDone((prevDone) => prevDone -5);
+          nextQuestionIndex = questionIndex-2;
+          break;
+      case 8 :
+        setfoodScore(selectedAnswer)
+        setDone((prevDone) => prevDone -5);
+        if(cleaningScore ==1 ){
+          nextQuestionIndex = questionIndex-1;
+        }else{
+          nextQuestionIndex = questionIndex-2;
+        }
+        break;
+      case 9:
+        setfoodSensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -5);
+        nextQuestionIndex = questionIndex-1;
+        break;
+      case 10:
+        setfoodSensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+        nextQuestionIndex = questionIndex-2;
+        break;
+      case 11:
+        setcigaretteScore(selectedAnswer);
+        if(foodScore ==1){
+          nextQuestionIndex = questionIndex-1;
+        }else{
+          nextQuestionIndex = questionIndex-2;
+        }
+        setDone((prevDone) => prevDone -4);
+        break;
+      case 12:
+        setstudyScore(selectedAnswer);
+        setDone((prevDone) => prevDone -5);
+        nextQuestionIndex = questionIndex-1;
+        break;
+      case 13: 
+       setstudySensitivity(selectedAnswer);
+       setDone((prevDone) => prevDone -4);
+        nextQuestionIndex = nextQuestionIndex = questionIndex-1;
+        break;
+      case 14: 
+        setstudySensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+         nextQuestionIndex =  questionIndex-2;
+         break;
+      case 15:
+        setnotebookScore(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+        if(studyScore==1){
+          nextQuestionIndex =  questionIndex-1;
+        }else{
+          nextQuestionIndex =  questionIndex-2;
+        }
+        break;
+      case 16:
+        setnotebookSensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+          nextQuestionIndex = questionIndex - 1;
+          break;
+      case 17:
+        setalarmScore(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+        nextQuestionIndex = questionIndex- 1;
+        break;
+      case 18:
+        setalarmSensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+          nextQuestionIndex = questionIndex - 1;
+          break;
+      case 19:
+        if (selectedAnswer == 2){
+          setlatestudyScore(3);
+        }else{
+          setlatestudyScore(selectedAnswer);
+        }
+        nextQuestionIndex = questionIndex - 1;
+        setDone((prevDone) => prevDone -4);
+        break;
+      case 20:
+        setlatestudySensitivity(selectedAnswer);
+        nextQuestionIndex = questionIndex- 1;
+        setDone((prevDone) => prevDone -4);
+        break;
+      case 21:
+        setsnoringScore(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+          nextQuestionIndex = questionIndex- 1;
+          break;
+      case 22:
+        setsnoringSensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+              nextQuestionIndex = questionIndex - 1;
+              break;
+       case 23:
+        setfriendlyScore(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+         nextQuestionIndex = questionIndex - 1;
+          break;
+      case 24:
+        setinhomeScore(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+             nextQuestionIndex = questionIndex - 1;
+              break;
+      case 25:
+        setinhomeSensitivity(selectedAnswer);
+        setDone((prevDone) => prevDone -4);
+        nextQuestionIndex = questionIndex- 1;
+        break;
+     case 26:
+      setcoldOrHot(selectedAnswer-1);
+      setDone((prevDone) => prevDone -5);
+        nextQuestionIndex = questionIndex - 1;
+        break;
+     case 27:
+      if (selectedAnswer == 2){
+        setsummerOrWinter(3);
+      }else{
+        setsummerOrWinter(selectedAnswer);
+      }
+      setDone((prevDone) => prevDone -5);
+      break;setDone((prevDone) => prevDone -4);
+                     
+
+      default:
+        nextQuestionIndex = questionIndex - 1;
+        break;
+
+    }
+    setQuestionIndex(nextQuestionIndex);
+    setSelectedAnswer(0); // 선택한 답변 초기화
+  
+}
+const isNextButtonDisabled = selectedAnswer === 0;
+
+  return (
+    <div className='flex flex-col justify-center items-center  h-screen'>
+      
+      {questionIndex === 0? 
+        <div className='flex flex-col items-center justify-center w-full'>
+       
+        <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
+        <Progress done={done}/>
+
+        <div className="w-full font-['600'] text-lg text-center  mb-6 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
+        <div className='flex flex-row items-center justify-between w-full'>
+          <div className={`text-2xl text-primary-logo ${
+                isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+              }`} onClick={undefined}
+              >
+                <ArrowBackIosNewIcon sx={{width:'50px', height:'50px', color: 'white'}}/>
+          </div>
+          
+          <div className='flex flex-col w-full items-center justify-center '>
+    
+            {(TEST_LIST[questionIndex].answer).map((answer, index) => (
+    <AnswerCard 
+      index={index} 
+      AnswerCardText={answer} 
+      onClick={() => handleAnswerSelect({index})
+      
+    }
+                />  ))}
+          </div>
+          <div className={`text-2xl text-primary-logo ${
+            isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+             }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
+            >
+             <ArrowForwardIosIcon sx={{width:'50px', height:'50px'}}/>
           </div>
         </div>
-      </div>
       
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
         <div className='text-white'>sdfsd</div>
         
       </div>
+      :
+     <div>
+      {questionIndex === 1 ? 
+      <div className=' flex flex-col items-center justify-center w-full'>
+       
+       <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
+       <Progress done={done}/>
+       <div className="w-full font-['600'] text-lg text-center  mb-4 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
+       <div className='flex flex-row items-center justify-between w-full'>
+         <div className={`text-2xl text-primary-logo ${
+               isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+             }`} onClick={isNextButtonDisabled ? undefined : handlePrevPage}
+             >
+               <ArrowBackIosNewIcon sx={{width:'50px', height:'50px'}}/>
+         </div>
+         
+         <div className='flex flex-col w-full items-center justify-center '>
+   
+           {(TEST_LIST[questionIndex].answer).map((answer, index) => (
+   <AnswerCard 
+     index={index} 
+     AnswerCardText={answer} 
+     onClick={() => handleAnswerSelect({index})
+     
+   }
+               />  ))}
+         </div>
+         <div className={`text-2xl text-primary-logo ${
+           isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+            }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
+           >
+            <ArrowForwardIosIcon sx={{width:'50px', height:'50px'}}/>
+         </div>
+       </div>
+     
+       <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        
+       
+     </div>
+     : 
+     <div className='flex flex-col items-center justify-center w-full'>
+       
+       <div className='mt-[-100px]'>
+       <div className="font-['500'] text-center ">해당하는 대답을 선택해 주세요!</div>
+        <Progress done={done}/>
+       </div>
+        <div className="w-full font-['600'] text-lg text-center mt-4 mb-6 whitespace-normal max-w-[290px]">{TEST_LIST[questionIndex].question}</div>
+        <div className='flex flex-row items-center justify-between w-full'>
+          <div className={`text-2xl text-primary-logo ${
+                isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+              }`} onClick={isNextButtonDisabled ? undefined : handlePrevPage}
+              >
+                <ArrowBackIosNewIcon sx={{width:'50px', height:'50px'}}/>
+          </div>
+          
+          <div className='flex flex-col w-full items-center justify-center '>
+    
+            {(TEST_LIST[questionIndex].answer).map((answer, index) => (
+    <AnswerCard 
+      index={index} 
+      AnswerCardText={answer} 
+      onClick={() => handleAnswerSelect({index})
+      
+    }
+                />  ))}
+          </div>
+          <div className={`text-2xl text-primary-logo ${
+            isNextButtonDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+             }`} onClick={isNextButtonDisabled ? undefined : handleNextPage}
+            >
+             <ArrowForwardIosIcon sx={{width:'50px', height:'50px'}}/>
+          </div>
+        </div>
+      
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        <div className='text-white'>sdfsd</div>
+        
+      </div>}
+     </div>
       }
     </div>
   );

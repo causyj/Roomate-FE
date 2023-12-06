@@ -25,7 +25,7 @@ const Intro1 = ({ onClick }: { onClick: () => void }) => {
               <img src={process.env.PUBLIC_URL + '/roomie.png'} alt="Roomie" style={{width : '150px'}} />
           </div>
           <div onClick={onClick} className="flex items-center justify-center mt-4">
-              {/* <Button buttonText="생활유형 테스트 하러 가기" /> */}
+              <Button>생활유형 테스트 하러 가기</Button>
           </div>
       </div>         
   )
@@ -51,7 +51,7 @@ const Intro2 = ({ onClick }: { onClick: () => void }) => {
               <img src={process.env.PUBLIC_URL + '/test.png'} alt="testpaper"/>
           </div>
           <div onClick={onClick}className="flex items-center justify-center ">
-                  {/* <Button buttonText="시작하기" /> */}
+          <Button>시작하기</Button> 
           </div>
       </div>
       
