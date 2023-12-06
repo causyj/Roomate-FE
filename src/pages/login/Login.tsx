@@ -13,34 +13,11 @@ export const Login = () => {
     const navigate = useNavigate();
     const [isFirst, setIsFirst] = useState(false);
 
-    // const fetchData = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:8080/style`, {
-    //             method: 'GET',
-    //             credentials: 'include',
-    //         });
-    //
-    //         if (response.ok) {
-    //             const data = await response.json();
-    //             setIsFirst(data);
-    //             console.log('isFirst value:', data);
-    //         } else {
-    //             console.error('초기 카드 데이터를 가져오는 데 실패했습니다: ', response.status, response.statusText);
-    //         }
-    //     } catch (error) {
-    //         console.error('초기 카드 데이터를 가져오는 데 실패했습니다: ', error);
-    //     }
-    // };
-    //
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8080/login', {
+            const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -50,13 +27,9 @@ export const Login = () => {
             });
 
             if (response.ok) {
-                // await fetchData();
+
                 navigate('/home');
-                // if (!isFirst) {
-                //     navigate('/testpage');
-                // } else {
-                //     navigate('/home');
-                // }
+                
 
             }
         } catch (error) {
