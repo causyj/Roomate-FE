@@ -310,25 +310,11 @@ const [loading, setLoading] = useState(true);
           // Check if login is successful, then redirect to StarPage
           if (response.ok) {
             // navigate('/testpage');
-            // navigate('/resulthome')
-           <Loading address='/resulthome' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
+          navigate('/resulthome')
+          // <Loading address='/resulthome' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
             
-              }
-              const response2 = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-
-                credentials: 'include',
-              }
               
-              
-              );
-              if (response2.ok) {
-                // navigate('/testpage');
-                // navigate('/resulthome')
-               console.log('good')
+             
                 
                   }
         } catch (error) {
