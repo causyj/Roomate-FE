@@ -56,8 +56,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
     },[]);
    //h-[calc(40%+2rem)]
     return (
-     <div className="flex flex-col items-center w-full ">
-        <div className="flex flex-col max-w-[413px] w-full " style={{ position: 'fixed', top: 0,zIndex: 100 } }>
+     <div className="flex flex-col justify-center items-center w-full">
+        {/* <div className="flex flex-col max-w-[413px] w-full " style={{ position: 'fixed', top: 0,zIndex: 100 } }>
            
            
             <div className=" max-w-[413px]  h-[140px] w-full bg-primary-logo fixed top-0 flex items-center justify-center " style={{zIndex:200}}>
@@ -129,17 +129,11 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                     
             </div>
             
-        </div>
-        
-       
-         
-      <div >
-      
-        
-      
-        
-
+        </div> */}
+         <div className=" max-w-[413px] w-full h-24 font-['700'] text-3xl flex bg-white justify-start fixed top-0 px-9 items-center "  style={{zIndex:200}}>
+        <div className="">채팅목록</div>
       </div>
+  
      </div>
     );
   };
