@@ -77,7 +77,7 @@ const navigate = useNavigate();
 
   };
 
-  const handleNextPage = () => {
+  const handleNextPage = async () => {
       if (questionIndex < TEST_LIST.length - 1) {
         let nextQuestionIndex : number=0;
         //questionIndex+1 : 질문 번호
@@ -267,6 +267,50 @@ const navigate = useNavigate();
         setQuestionIndex(nextQuestionIndex);
         setSelectedAnswer(0); // 선택한 답변 초기화
       } else {
+        try {
+          const response = await fetch('http://ANIroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `bedtimeScore=${bedtimeScore}
+                  &wakeupScore=${wakeupScore}
+                  &wakeupSensitivity=${wakeupSensitivity}
+                  &cleaningScore=${cleaningScore}
+                  &cleaningSensitivity=${cleaningSensitivity}
+                  &foodScore=${foodScore}
+                  &foodSensitivity=${foodSensitivity}
+                  &cigaretteScore=${cigaretteScore}
+                  &studyScore=${studyScore}
+                  &studySensitivity=${studySensitivity}
+                  &notebookScore=${notebookScore}
+                  &notebookSensitivity=${notebookSensitivity}
+                  &alarmScore=${alarmScore}
+                  &alarmSensitivity=${alarmSensitivity}
+                  &latestudyScore=${latestudyScore}
+                  &latestudySensitivity=${latestudySensitivity}
+                  &snoringScore=${snoringScore}
+                  &snoringSensitivity=${snoringSensitivity}
+                  &friendlyScore=${friendlyScore}
+                  &inhomeScore=${inhomeScore}
+                  &inhomeSensitivity=${inhomeSensitivity}
+                  &coldOrHot=${coldOrHot}
+                  &summerOrWinter=${summerOrWinter}
+                  `,
+            credentials: 'include',
+          });
+
+          // Handle the response as needed
+          console.log(response);
+
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+            navigate('/testpage');
+            
+              }
+        } catch (error) {
+          console.error('Error during login:', error);
+        }
        navigate('/resulthome')
       }
    
