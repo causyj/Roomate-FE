@@ -61,12 +61,12 @@ const Router = createBrowserRouter([
 },
 {
     path: '/animaldict',
-    element: <AnimalDictionary/>,
+    element: <><BottomNavbar/><AnimalDictionary/></>
             
 },
 {
     path: '/animaldict/:animal',
-    element: <AnimalDictDetail/>,
+    element: <AnimalDictDetail/>
             
 },
 {
@@ -76,11 +76,7 @@ const Router = createBrowserRouter([
 
 
 
-{
-    path: '/animaldictdetail/:animal',
-    element: <AnimalDictDetail/>,
-            
-},
+
 {
     path: '/verify',
     element: <Verify/>,
@@ -88,11 +84,11 @@ const Router = createBrowserRouter([
   
 {
     path: '/roommatelist',
-    element: <RoommateRecommend/>,
+    element: <><BottomNavbar/><RoommateRecommend/>,</>
 },
   {
       path: '/group',
-      element: <Group/>,
+      element: <><BottomNavbar/><Group/></>
   },
   {
     path: '/group/:group',
@@ -101,7 +97,7 @@ const Router = createBrowserRouter([
   
   {
     path: '/notice',
-    element: <Notice/>,
+    element: <><BottomNavbar/><Notice/></>
 },
 {
     path: '/forpractice',

@@ -175,7 +175,7 @@ export const RecommendIntro = () => {
           {loading ? 
            <Loading address='/roommatelist' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
 :
-<div className="flex flex-col w-full h-screen justify-center items-center font-['700'] mt-[-90px]">
+<div className="flex flex-col w-full h-screen justify-center items-center font-['700'] mt-[-50px]">
 <div className=" text-m text-primary-logo text-center items-center justify-start">
    <div>보다 정확한 추천을 위해,</div>
    <div>아래의 내용을 입력해주세요!</div>
@@ -358,7 +358,9 @@ export const RecommendIntro = () => {
          </div>
 </div>
 
-<Button onClick={handleSubmit}>회원가입 하기</Button>  
+<div className="w-full mt-4">
+<Button onClick={handleSubmit}>추천 받으러 가기</Button>  
+</div>
 </div>
      
 

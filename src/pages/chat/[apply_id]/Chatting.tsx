@@ -251,7 +251,7 @@ export const Chatting = () => {
     return (
         <div className="flex flex-col items-center w-full">
             <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
-                <div className="font-['700'] text-3xl text-white">{anotherUser?.nickname}님</div>
+                <div className="font-['700'] text-3xl text-white">{apply_id}님</div>
             </div>
             <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
             <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>

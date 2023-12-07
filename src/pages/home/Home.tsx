@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "./components/Card";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import usePushNotification from "../../hooks/useNotification";
+
   export const Home = () => {
     const [verify, setVerify] = useState(false); //테스트 했었는지 안 했었는지
     const [nickname, setNickname] = useState('');
@@ -70,7 +72,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
         </div>
 
         <div className="  max-w-[413px]  w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[72px] overflow-y-auto p-8" style={{zIndex:20000}}>
-         <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[100px]  h-[90px] w-full ml-[-32px] bg-white   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
+        <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[100px]  h-[90px] w-full ml-[-32px] bg-white   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
             
             <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] ">
                {verify ? 
@@ -109,14 +111,17 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
                    <div className="text-white">sfsdfsdfsdf</div> 
                    <div className="text-white">sfsdfsdfsdf</div>  
                    <div className="text-white">sfsdfsdfsdf</div>  
+                   <div className="text-white">sfsdfsdfsdf</div>     
                    <div className="text-white">sfsdfsdfsdf</div>  
-
+                   <div className="text-white">sfsdfsdfsdf</div>  
                    <Card image='roomatecard' text='룸메이트 추천' description1='나와 맞는 룸메이트를'description2=' 찾아보세요!' link='/recommendIntro'/>
                    <Card image='groupcard' text='모임 목록' description1='나와 비슷한 성향의 사람들과'description2='모임을 가져보세요!' link='/group'/>
                    <Card image='dictionarycard' text='동물사전' description1='8개의 동물 유형을' description2='볼 수 있어요!' link='/animaldict'/>   
                    <Card image='test' text='생활 유형 검사' description1='나의 기숙사 생활유형' description2='테스트 해보세요!' link='/testpage'/>   
                    <div className="text-white">sfsdfsdfsdf</div>  
                    <div className="text-white">sfsdfsdfsdf</div>  
+                   <div className="text-white">sfsdfsdfsdf</div>  
+                   
                     
                    
            </div>
