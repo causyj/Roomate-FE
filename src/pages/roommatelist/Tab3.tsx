@@ -82,8 +82,7 @@ useEffect(() => {
           {likeCard && Array.isArray(likeCard) &&
         likeCard.map((card: LikeCardDataProps, index: number) => (
             <RoommateCard
-             index={index}
-              star ={card.star}
+              
               nickname={card.nickname}
               animal={card.animal}
               dorm={card.dorm}
