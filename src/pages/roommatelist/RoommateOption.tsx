@@ -8,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import { Button } from '../../components/common';
 import CircleIcon from '@mui/icons-material/Circle';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
+import { InputLabel } from '@mui/material';
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
     'label + &': {
       marginTop: theme.spacing(3),
@@ -67,6 +68,8 @@ export function RoommateOption({ onClick }: { onClick: () => void }) {
                     <div className='mb-4'>호실 인원 *</div>
                       <Box sx={{ minWidth: 120 }}>
                       <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label" >성별</InputLabel>
+                        
                           <Select
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
