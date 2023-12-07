@@ -5,6 +5,12 @@ import SendIcon from '@mui/icons-material/Send';
 type ChattingPageParams = {
     apply_id : string;
 }
+type ChatDataProps = {
+  chatRoomId : string;
+  message : string;
+  date : string;
+  senderNickname: string;
+}
 export const Chatting = () => {
     const { apply_id } = useParams<ChattingPageParams>();
     const [inputHeight, setInputHeight] = useState(60); // 초기값은 입력 부분의 높이
@@ -12,6 +18,7 @@ export const Chatting = () => {
     const [msg, setMsg] = useState('');
     const [chat, setChat] = useState([]);
     //const message="안녕하세요! "
+    //나
     const [name, setName] = useState('');
     const [chkLog, setChkLog] = useState(false);
     const [socketData, setSocketData] = useState();
@@ -19,11 +26,11 @@ export const Chatting = () => {
     const [wantMatch, setWantMatch] = useState(false);
     const [anotherUser, setAnotherUser] = useState('');
     const ws = useRef(null);
-
+    
     //채팅하는 사람 닉네임 불러오기  : anotherUser
 
     //이전 메시지 불러오기
-    const [chatData, setChatData] = useState([]);
+    const [chatData, setChatData] = useState<ChatDataProps[]>([]);
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -239,7 +246,35 @@ export const Chatting = () => {
           </div>
                 <div className="mt-[70px] flex flex-col gap-y-6">
                     {/* 이전 채팅 */}
-                    
+                    {chatData.map((item, index) => (
+                        <div key={index} className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
+                          {item.senderNickname !== name && (
+                                <Stack direction="row" spacing={2}>
+                                    <Avatar alt={item.senderNickname} sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
+                                </Stack>
+                            )}
+                            <div className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
+                                {item.senderNickname === name ?
+                                <div>
+                                  <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                style={messageStyle}>
+                                    {item.senderNickname}
+                                </div>
+                                
+                                </div>
+                                :
+                                <div>
+                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                style={messageStyle}>
+                                    {item.senderNickname}
+                                </div>
+                                <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.senderNickname}</div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+      ))}
                     {/* 새 채팅 */}
                     {chat.map((item: any, idx) => (
                         <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
