@@ -407,34 +407,7 @@ const CardFront = ({isFrontView,  nickname, star, animal, dorm, room, age,  dept
 
 //카드 뒷면
 const TypeAtAGlance = ({ nickname, animal,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : TypeAtGlanceProps) =>{
-  const [apply_id, setApply_id] = useState('');
-  const chatClick = async() => {
-    try {
-        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/chat/${nickname}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
 
-          credentials: 'include',
-        });
-
-        // Handle the response as needed
-        console.log(response);
-
-        // Check if login is successful, then redirect to StarPage
-        if (response.ok) {
-          const data = await response.json();
-          console.log(`data : ${data}`);
-         
-          
-          setApply_id(data.apply_id)
-          console.log(`${apply_id}채팅으로 넘어갑니다.`);
-        }
-      } catch (error) {
-        console.error('Error during login:', error);
-      }
-  }
     const nosieCount = Array.from({ length: noise }, (_, index) => (
         <FavoriteOutlined key={index} sx={{width:'18px'}} />
       ));
@@ -506,13 +479,41 @@ const TypeAtAGlance = ({ nickname, animal,rhythm,smoke,noise, temperature,outgoi
                 
             </div>
         </div>
-        <Link to={`/chat/${apply_id}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">
-        <div onClick={chatClick}> 더 자세히 보기 클릭 →</div>
+        <Link to={`resulthome/${nickname}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">
+        더 자세히 보기 클릭 →
           </Link>
       </div>
     )
 }  
 const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,outgoing,clean, sleep} : CardBackProps) => {
+  const [apply_id, setApply_id] = useState('');
+  const chatClick = async() => {
+    try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/chat/${nickname}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+
+          credentials: 'include',
+        });
+
+        // Handle the response as needed
+        console.log(response);
+
+        // Check if login is successful, then redirect to StarPage
+        if (response.ok) {
+          const data = await response.json();
+          console.log(`data : ${data}`);
+         
+          
+          setApply_id(data.apply_id)
+          console.log(`${apply_id}채팅으로 넘어갑니다.`);
+        }
+      } catch (error) {
+        console.error('Error during login:', error);
+      }
+  }
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -520,10 +521,12 @@ const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,
         }`}
     >
        <div className="flex flex-col p-2 ml-2 mr-2">
-       <Link to="/chat" className="mb-1 flex flex-row gap-4 justify-center ">
+       <Link to={`/chat/${apply_id}`} className="mb-1 flex flex-row gap-4 justify-center ">
+            <div onClick={chatClick}>
             <div className="font-['900'] text-bold text-3xl text-primary-logo ">채팅하기</div> 
             <img src={process.env.PUBLIC_URL + '/message.png'} alt="logo" style={{width : '45px'}}/>
                    
+            </div>
         </Link>
 
             <Divider />
