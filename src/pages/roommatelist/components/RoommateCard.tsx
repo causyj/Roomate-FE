@@ -282,7 +282,7 @@ const CardFrontPercentage = ({isFrontView, key, nickname, animal, dorm, room, ag
 
 //Tab3의 카드 
 const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
-  const [isStarred, setIsStarred] = useState(true);
+  const [isStarred, setIsStarred] = useState(false);
   const [isStarredAPI, setIsStarredAPI] = useState(false);
   const [starId, setStartId] = useState('');
   
@@ -291,7 +291,7 @@ const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
     e.stopPropagation(); // 이벤트 전파를 막습니다.
 
     //처음 false일때 누르면 true가 되며, 노란색이 됌.
-    // setIsStarred(!isStarred);
+     setIsStarred(!isStarred);
     
     //처음에 false였으니까 노란색이 됌. -> 찜 추가
     if(!isStarred){
