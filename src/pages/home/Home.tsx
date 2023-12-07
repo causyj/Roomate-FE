@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "./components/Card";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import usePushNotification from "../../hooks/useNotification";
+
   export const Home = () => {
     const [verify, setVerify] = useState(false); //테스트 했었는지 안 했었는지
     const [nickname, setNickname] = useState('');

@@ -151,7 +151,7 @@ const FrontDetailPercentage = ({nickname,animal,key, dorm, room }: FrontDetailPe
           method: 'GET',
           credentials: 'include',
         });
-  
+
         if (response.ok) {
           const data = await response.json();
           setCardData(data);
@@ -171,7 +171,7 @@ const FrontDetailPercentage = ({nickname,animal,key, dorm, room }: FrontDetailPe
             e.stopPropagation(); // 이벤트 전파를 막습니다.
 
             //처음 false일때 누르면 true가 되며, 노란색이 됌.
-            // setIsStarred(!isStarred);
+           setIsStarred(!isStarred);
             
             //처음에 false였으니까 노란색이 됌. -> 찜 추가
             if(!isStarred){
@@ -479,7 +479,7 @@ const TypeAtAGlance = ({ nickname, animal,rhythm,smoke,noise, temperature,outgoi
                 
             </div>
         </div>
-        <Link to={`resulthome/${nickname}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">
+        <Link to={`/resulthome/${nickname}`} className="font-['700'] text-ms ml-2 text-primary-gray flex justify-center mt-1 ">
         더 자세히 보기 클릭 →
           </Link>
       </div>
