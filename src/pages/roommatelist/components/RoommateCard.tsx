@@ -10,8 +10,9 @@ import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
 import { ANIMAL_DATA, getAnimalColor, getAnimalColorRGB } from "../../../constants";
 import { AnimalType } from "../../../interface/AnimalType";
-interface RoomateCardProps {
+interface RoomateCardPercentageProps {
     disableFlip?: boolean;
+
     key : string;
     nickname: string;
     animal: string;
@@ -29,8 +30,30 @@ interface RoomateCardProps {
     clean:number;
     sleep:number;
 }
+interface RoomateCardProps {
+  index:number;
+  disableFlip?: boolean;
+  star: boolean;
+  nickname: string;
+  animal: string;
+  dorm:number;
+  room:number;
+  age: number;
+  dept: string;
+  stu_num:number;
+  mbti: string;
+  rhythm : string;
+  smoke: string;
+  noise: number;
+  temperature:number;
+  outgoing:number;
+  clean:number;
+  sleep:number;
+}
 interface CardFrontProps {
     isFrontView: boolean;
+    index:number;
+    star:boolean;
     nickname: string;
     animal: string;
     dorm:number;
@@ -56,6 +79,8 @@ interface CardFrontPercentageProps {
 }
 interface CardFrontDetailProps {
     nickname:string;
+    index:number;
+    star: boolean;
     animal : string;
     dorm : number;
     room : number;
@@ -257,39 +282,64 @@ const CardFrontPercentage = ({isFrontView, key, nickname, animal, dorm, room, ag
 }
 
 //Tab2&3의 카드 
-const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
+const FrontDetail = ({star,index, nickname,animal,dorm, room }: CardFrontDetailProps) => {
   const [isStarred, setIsStarred] = useState(true);
+  const [isStarredAPI, setIsStarredAPI] = useState(false);
   const [starId, setStartId] = useState('');
   
-  //찜 추가
   const handleStarClick = async (e: any)=> {
-          e.stopPropagation(); // 이벤트 전파를 막습니다.
+      
+    e.stopPropagation(); // 이벤트 전파를 막습니다.
 
+    //처음 false일때 누르면 true가 되며, 노란색이 됌.
+    // setIsStarred(!isStarred);
+    
+    //처음에 false였으니까 노란색이 됌. -> 찜 추가
+    if(!isStarred){
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${nickname}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (response.ok) {
+          // 서버에서 인증 코드를 반환한 경우
           setIsStarred(!isStarred);
           
-              try {
-                  const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${nickname}`, {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                  });
-            
-                  if (response.ok) {
-                    // 서버에서 인증 코드를 반환한 경우
-                    const data = await response.text();
-                    if(data != ''){
-                      setStartId(data);
-                    }
-                    console.log({starId});
-                  } else {
-                    // 서버에서 에러가 발생한 경우
-                    console.error('Error during mailConfirm1:', response.statusText);
-                  }
-                } catch (error) {
-                  console.error('Error during mailConfirm2:', error);
-                }
-  };
+        } else {
+          // 서버에서 에러가 발생한 경우
+          console.error('Error during mailConfirm1:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error during mailConfirm2:', error);
+      }
+
+    }
+    //찜 삭제
+    else{
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${nickname}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (response.ok) {
+          setIsStarred(!isStarred);
+         
+        } else {
+          // 서버에서 에러가 발생한 경우
+          console.error('Error during mailConfirm1:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error during mailConfirm2:', error);
+      }
+    }
+      
+};
               const colorRGB = getAnimalColorRGB(animal as AnimalType['animal']);
   return (
       <div className="flex flex-col items-center text-center justify-center p-4 ">
@@ -300,7 +350,7 @@ const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
               <Avatar alt="Remy Sharp" sx={{bgcolor:colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
           </Stack>
           <div className="text-end mt-[-8px] mr-[-8px] ml-4">
-        {isStarred ? (
+        {star ? (
           <Star
             sx={{  color: '#F9D800', width: '50px', height: '50px', cursor: 'pointer'  }}
             onClick={handleStarClick}
@@ -320,7 +370,7 @@ const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
       </div>
   )
 }
-const CardFront = ({isFrontView, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+const CardFront = ({isFrontView, index, nickname, star, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
   
   return (
       <section
@@ -328,7 +378,7 @@ const CardFront = ({isFrontView, nickname, animal, dorm, room, age,  dept, stu_n
           isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
       }`}
   >
-      <FrontDetail nickname={nickname} animal={animal} dorm={dorm} room={room} />
+      <FrontDetail nickname={nickname} index={index} star={star} animal={animal} dorm={dorm} room={room} />
       
           <div
          className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
@@ -451,7 +501,7 @@ const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,
 }
 
 //Tab1의 유사도 카드
-export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardPercentageProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
     const ages = age.toString();
     const AGE = ages == "0" ? "비공개" : `${ages}살`;
@@ -472,7 +522,7 @@ export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal
 }
 
 //Tab2&3의 유사도 카드
-export const RoommateCard = ({disableFlip=false, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+export const RoommateCard = ({disableFlip=false, index,nickname, star, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
   const [isFrontView, setIsFrontView] = useState(false)
   const ages = age.toString();
   const AGE = ages == "" ? "비공개" : `${ages}살`;
@@ -486,7 +536,7 @@ export const RoommateCard = ({disableFlip=false, nickname, animal, dorm, room, a
       onClick={toggleCardView}
       className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
   >
-      <CardFront isFrontView={isFrontView} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
+      <CardFront isFrontView={isFrontView} index={index} star={star} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
       {disableFlip === false && <CardBack isFrontView={isFrontView}  nickname={nickname} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
   </div>
   )
