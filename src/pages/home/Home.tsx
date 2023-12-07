@@ -147,7 +147,7 @@ interface AnimalDataProps{
             
             <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] ">
             
-                    {isBoxVisible && <div className="flex flex-row items-center justify-start w-full h-16 bg-yellow-200 rounded-2xl mt-2" >
+                    {isBoxVisible && <div className="flex flex-row items-center justify-start w-full h-16 bg-yellow-200 rounded-2xl mt-2"  >
               
                    <div className="ml-12 mr-4 ">
                    <Stack direction="row" spacing={2}>
@@ -203,7 +203,7 @@ interface AnimalDataProps{
                    <div className="text-white">sfsdfsdfsdf</div>     
                    <div className="text-white">sfsdfsdfsdf</div>  
                    <div className="text-white">sfsdfsdfsdf</div>  
-                   <Card image='roomatecard' text='룸메이트 추천' description1='나와 맞는 룸메이트를'description2=' 찾아보세요!' link='/recommendIntro'/>
+                   <Card image='roomatecard' text='룸메이트 추천' description1='나와 맞는 룸메이트를'description2=' 찾아보세요!' link='/resulthome'/>
                    <Card image='groupcard' text='모임 목록' description1='나와 비슷한 성향의 사람들과'description2='모임을 가져보세요!' link='/group'/>
                    <Card image='dictionarycard' text='동물사전' description1='8개의 동물 유형을' description2='볼 수 있어요!' link='/animaldict'/>   
                    <Card image='test' text='생활 유형 검사' description1='나의 기숙사 생활유형' description2='테스트 해보세요!' link='/testpage'/>   
