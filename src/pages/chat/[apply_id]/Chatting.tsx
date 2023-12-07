@@ -1,7 +1,9 @@
 import { Avatar, Button, Stack } from "@mui/material";
 import { useEffect, useCallback, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
+import { getAnimalColorRGB } from "../../../constants";
+import { AnimalType } from "../../../interface/AnimalType";
 type ChattingPageParams = {
     apply_id : string;
 }
@@ -10,6 +12,11 @@ type ChatDataProps = {
   message : string;
   date : string;
   senderNickname: string;
+}
+type AnotherUserProps ={
+  //상대방
+  animal : string;
+  nickname : string;
 }
 export const Chatting = () => {
     const { apply_id } = useParams<ChattingPageParams>();
@@ -24,10 +31,33 @@ export const Chatting = () => {
     const [socketData, setSocketData] = useState();
     const [isMatched, setIsMatched] = useState(false);
     const [wantMatch, setWantMatch] = useState(false);
-    const [anotherUser, setAnotherUser] = useState('');
+    const [anotherUser, setAnotherUser] = useState<AnotherUserProps | null>(null);
     const ws = useRef(null);
     
     //채팅하는 사람 닉네임 불러오기  : anotherUser
+    useEffect(()=>{
+      const OtherData = async () => {
+        try {
+          const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/chat/${apply_id}/another`, {
+            method: 'GET',
+            credentials: 'include',
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            setAnotherUser(data); // 새로운 카드 정보 설정
+            
+          } else {
+            console.error('Failed to nicknameData data : ', response.status, response.statusText);
+          }
+        } catch (error) {
+          console.error('Failed to nicknameData data : ', error);
+        }
+      };
+      OtherData();
+    },[]);
+
+
 
     //이전 메시지 불러오기
     const [chatData, setChatData] = useState<ChatDataProps[]>([]);
@@ -217,10 +247,11 @@ export const Chatting = () => {
     const onClick = () =>{
       setWantMatch(!wantMatch);
     }
+    const colorRGB = getAnimalColorRGB(anotherUser?.animal as AnimalType['animal']);
     return (
         <div className="flex flex-col items-center w-full">
             <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
-                <div className="font-['700'] text-3xl text-white">{name}님</div>
+                <div className="font-['700'] text-3xl text-white">{anotherUser?.nickname}님</div>
             </div>
             <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
             <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
@@ -249,9 +280,11 @@ export const Chatting = () => {
                     {chatData.map((item, index) => (
                         <div key={index} className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
                           {item.senderNickname !== name && (
-                                <Stack direction="row" spacing={2}>
-                                    <Avatar alt={item.senderNickname} sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
+                               <Link to={`/resulthpme/${anotherUser?.nickname}`}>
+                                 <Stack direction="row" spacing={2}>
+                                    <Avatar alt={item.senderNickname} sx={{ bgcolor: colorRGB, width: 50, height: 50 }} src={process.env.PUBLIC_URL + `/${anotherUser?.animal}.png`} />
                                 </Stack>
+                               </Link>
                             )}
                             <div className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
                                 {item.senderNickname === name ?
