@@ -9,6 +9,10 @@ import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
+
+interface glance{
+    name:string;
+}
 interface RoomateCardProps {
     disableFlip?: boolean
     name:string
@@ -37,6 +41,7 @@ interface CardFrontDetailProps {
    
 }
 interface CardBackProps {
+    name:string;
     isFrontView: boolean
    
 }
@@ -90,13 +95,15 @@ const CardFront = ({isFrontView,name, dept, year ,mbti,age, animal,color} : Card
                 boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
             }}
         >
-            <div className="ml-2 text-xs text-white font-['700']">
-                <h1 className="">{`학과 : ${dept}`}</h1> 
-                <h1 className="">{`학번 : ${year}`} </h1> 
-                <h1 className="">{`MBTI : ${mbti}`}</h1> 
-                <h1 className="">{`나이 : ${age}`}</h1> 
+            <div className="flex flex-col mx-auto  text-xs text-white font-['700'] text-center ">
+                
+                <h1 className="">나이 : {age}</h1> 
+                <h1 className="">학번 : {year}</h1> 
+                <h1 className="">MBTI : {mbti}</h1> 
+                <h1 className="">학과 : {dept}</h1> 
 
             </div>
+           
            
             
             
@@ -104,7 +111,7 @@ const CardFront = ({isFrontView,name, dept, year ,mbti,age, animal,color} : Card
     </section>
     )
 }
-const TypeAtAGlance = () =>{
+const TypeAtAGlance = ({name}:glance) =>{
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1">
@@ -120,31 +127,31 @@ const TypeAtAGlance = () =>{
             <div className="flex flex-col  font-['800'] text-primary-gray text-2xs">
                 <div className="">아침형</div>
                 <div className="">비흡연자</div>
-                <div className=" text-primary-orange flex-col"> 
+                <div className=" text-primary-logo flex-col"> 
                     <div className="flex flex-row mt-[-6px] mb-[-9px]">
-                    <FavoriteBorder sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/>
+                    <FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/>
                     </div>
                     <div className="flex flex-row mt-[-10px]">
-                    <FavoriteBorder sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/>
+                    <FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteBorder sx={{width:'10px'}}/><FavoriteBorder sx={{width:'10px'}}/><FavoriteBorder sx={{width:'10px'}}/>
                     </div>
                     <div className="flex flex-row mt-[-10px]">
-                    <FavoriteBorder sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/>
+                    <FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteBorder sx={{width:'10px'}}/><FavoriteBorder sx={{width:'10px'}}/>
                     </div>
                     <div className="flex flex-row mt-[-12px]">
-                    <FavoriteBorder sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/>
+                    <FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteBorder sx={{width:'10px'}}/>
                     </div>
                     <div className="flex flex-row mt-[-10px]">
-                    <FavoriteBorder sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/>
+                    <FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteOutlined sx={{width:'10px'}}/><FavoriteBorder sx={{width:'10px'}}/><FavoriteBorder sx={{width:'10px'}}/>
                     </div>
                 </div>
                 
             </div>
         </div>
-        <Link to={'/typeresult'} className="font-['700'] text-xxs ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
+        <Link to={`/resulthome/${name}`} className="font-['700'] text-xxs ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
       </div>
     )
 }  
-const CardBack = ({isFrontView} : CardBackProps) => {
+const CardBack = ({isFrontView,name} : CardBackProps) => {
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -152,15 +159,14 @@ const CardBack = ({isFrontView} : CardBackProps) => {
         }`}
     >
        <div className="flex flex-col">
-            <div className="flex flex-row ">
-                    <div className="font-['700'] text-bold text-xl ml-2 ">우당탕님</div>
-                    <Link to={"/chat"} className="mt-1 ml-4">
-                        <Chat/>
-                    </Link>
-            </div>
-            <div className="font-['700'] text-primary-gray text-3xs ml-2 mt-[-4px] mb-1">블루미르홀 308관/2인실</div>
+            
+            <Link to="/chat" className="mb-1 flex flex-row gap-4 justify-center ">
+            <div className="font-['900'] text-bold text-m text-xlprimary-logo ">채팅하기</div> 
+            <img src={process.env.PUBLIC_URL + '/message.png'} alt="logo" style={{width : '25px'}}/>
+                   
+        </Link>
             <Divider />
-            <TypeAtAGlance />
+            <TypeAtAGlance name={name} />
         </div>
         </section>
     )
@@ -177,7 +183,7 @@ export const CardTotalList = ({disableFlip=false,name, dept, year ,mbti,age,anim
         className={`relative h-[11rem] w-[9rem] min-w-[9rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl`}
     >
         <CardFront isFrontView={isFrontView} name={name} dept={dept} year={year} mbti={mbti} age={age} animal={animal} color={color}/>
-        {disableFlip === false && <CardBack isFrontView={isFrontView} />}
+        {disableFlip === false && <CardBack isFrontView={isFrontView} name={name} />}
     </div>
     )
 }
