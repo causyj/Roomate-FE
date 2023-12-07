@@ -8,7 +8,7 @@ export const Tab1 = () => {
             <div className="font-['700'] text-xl mt-6">모글리님께 추천드려요!</div>
             <div className="flex flex-row w-[300px] overflow-scroll overflow-x-auto p-2 gap-2">
                     <GroupCard title="기상스터디" tag="아침형" img="morning" color='pink'/>
-                <GroupCard title="기상 스터디" tag="아침형" img="morning" color='pink'/>
+                <GroupCard title="러닝크루" tag="외향형" img="running" color='green'/>
             </div>
             <div className="font-['700'] text-xl mt-6">모임목록</div>
             <div className="flex flex-col w-full">

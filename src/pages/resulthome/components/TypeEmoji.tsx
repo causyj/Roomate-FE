@@ -12,7 +12,7 @@ type IconDataProps ={
     hotCold : string 
 }
 type TypeEmojiNotUserProps = {
-    id : string;
+  nickname : string |undefined;
 }
 export const TypeEmojiUser = () => {
     const [iconData, setIconData] = useState<IconDataProps | null>(null);
@@ -68,12 +68,12 @@ export const TypeEmojiUser = () => {
     )
 }
 
-export const TypeEmojiNotUser = ({id } : TypeEmojiNotUserProps) => {
+export const TypeEmojiNotUser = ({nickname } : TypeEmojiNotUserProps) => {
     const [iconData, setIconData] = useState<IconDataProps | null>(null);
     useEffect(()=>{
         const IconData = async () => {
           try {
-            const response = await fetch( `http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style/icon/${id}` , {
+            const response = await fetch( `http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/style/icon/${nickname}` , {
               method: 'GET',
               credentials: 'include',
             });

@@ -23,7 +23,7 @@ export const GoodBad = ({linecolor, colorRGB, good1, good2, bad1, bad2} : GoodBa
         <div>
             <div className="flex flex-row justify-between mb-6">
                 <div className="flex flex-col text-center items-center">
-                    <div className={`w-40 mr-4 border-4 border-${linecolor}-500 rounded-lg flex items-center justify-center p-1`}>
+                    <div className={`w-40 mr-4 border-4 border-primary-logo rounded-lg flex items-center justify-center p-1`}>
                         <img src={process.env.PUBLIC_URL + '/good.png'} alt="morning"  />
                     </div>
                     <div className="mr-3 mt-1 font-['700'] text-sm">이런 룸메와 잘 맞아요</div>

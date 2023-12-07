@@ -1,9 +1,22 @@
-import { Avatar, Stack } from "@mui/material";
+import { Avatar, Button, Stack } from "@mui/material";
 import { useEffect, useCallback, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
+import { getAnimalColorRGB } from "../../../constants";
+import { AnimalType } from "../../../interface/AnimalType";
 type ChattingPageParams = {
     apply_id : string;
+}
+type ChatDataProps = {
+  chatRoomId : string;
+  message : string;
+  date : string;
+  senderNickname: string;
+}
+type AnotherUserProps ={
+  //상대방
+  animal : string;
+  nickname : string;
 }
 export const Chatting = () => {
     const { apply_id } = useParams<ChattingPageParams>();
@@ -12,13 +25,63 @@ export const Chatting = () => {
     const [msg, setMsg] = useState('');
     const [chat, setChat] = useState([]);
     //const message="안녕하세요! "
+    //나
     const [name, setName] = useState('');
     const [chkLog, setChkLog] = useState(false);
     const [socketData, setSocketData] = useState();
+    const [isMatched, setIsMatched] = useState(false);
+    const [wantMatch, setWantMatch] = useState(false);
+    const [anotherUser, setAnotherUser] = useState<AnotherUserProps | null>(null);
     const ws = useRef(null);
+    
+    //채팅하는 사람 닉네임 불러오기  : anotherUser
+    useEffect(()=>{
+      const OtherData = async () => {
+        try {
+          const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/chat/${apply_id}/another`, {
+            method: 'GET',
+            credentials: 'include',
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            setAnotherUser(data); // 새로운 카드 정보 설정
+            
+          } else {
+            console.error('Failed to nicknameData data : ', response.status, response.statusText);
+          }
+        } catch (error) {
+          console.error('Failed to nicknameData data : ', error);
+        }
+      };
+      OtherData();
+    },[]);
 
 
 
+    //이전 메시지 불러오기
+    const [chatData, setChatData] = useState<ChatDataProps[]>([]);
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/messages/${apply_id}', {
+            method: 'GET',
+            credentials: 'include',
+          });
+  
+          if (response.ok) {
+            const data = await response.json();
+            setChatData(data); // 데이터 배열로 설정
+          } else {
+            console.error('Failed to fetch data:', response.status, response.statusText);
+          }
+        } catch (error) {
+          console.error('Failed to fetch data:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
 
     const messageStyle = {
         maxWidth:' 70%',
@@ -98,7 +161,7 @@ export const Chatting = () => {
     }, [apply_id]);
 
 
-    const handleSendMessage = useCallback(() => {
+    const handleSendMessage = useCallback( async() => {
         console.log('전송된 메시지:', msg);
         if (!chkLog) {
             if (name === '') {
@@ -110,7 +173,7 @@ export const Chatting = () => {
             webSocketLogin();
             setChkLog(true);
         }
-
+        
         if (msg !== '') {
             const data = {
                 name,
@@ -145,16 +208,107 @@ export const Chatting = () => {
             return;
         }
         setMsg('');
+
+        try {
+          const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/sending/message', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body:  JSON.stringify({
+              chatRoomId: apply_id,
+              nickname: name,
+              message: msg,
+              date:  new Date().toLocaleString(),
+              }),
+            credentials: 'include',
+          });
+
+          // Handle the response as needed
+          console.log(response);
+
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+           console.log(
+            `
+            chatRoomId: ${apply_id},
+              nickname: ${name},
+              message: ${msg},
+              date: ${ new Date().toLocaleString()},
+            `
+           )
+          }
+        } catch (error) {
+          console.error('Error during login:', error);
+        }
     }, [chkLog, msg, name, webSocketLogin]);
 
     const buttonColor = msg == '' ? 'bg-zinc-100' : 'bg-primary-logo'
+    const onClick = () =>{
+      setWantMatch(!wantMatch);
+    }
+    const colorRGB = getAnimalColorRGB(anotherUser?.animal as AnimalType['animal']);
     return (
         <div className="flex flex-col items-center w-full">
             <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
-                <div className="font-['700'] text-3xl text-white">모글리님</div>
+                <div className="font-['700'] text-3xl text-white">{anotherUser?.nickname}님</div>
             </div>
             <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
-                <div className="flex flex-col gap-y-6">
+            <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
+            
+            <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] flex justify-center ">
+              
+              
+              {isMatched ? 
+              <button className="border-2 border-primary-logo w-[200px] h-12 bg-green-400 text-xl text-black  rounded-2xl mt-[-10px] font-['600']">
+                매칭 완료
+              </button>:
+              <div>
+
+
+                {wantMatch ? 
+              <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
+              :
+              <button onClick={onClick} className=" bg-primary-logo w-[200px] h-12 text-white text-xl  rounded-2xl mt-[-50px] font-['600']">매칭 대기중 (1/2)</button>
+              }
+              </div>
+              }
+           </div>
+          </div>
+                <div className="mt-[70px] flex flex-col gap-y-6">
+                    {/* 이전 채팅 */}
+                    {chatData.map((item, index) => (
+                        <div key={index} className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
+                          {item.senderNickname !== name && (
+                               <Link to={`/resulthpme/${anotherUser?.nickname}`}>
+                                 <Stack direction="row" spacing={2}>
+                                    <Avatar alt={item.senderNickname} sx={{ bgcolor: colorRGB, width: 50, height: 50 }} src={process.env.PUBLIC_URL + `/${anotherUser?.animal}.png`} />
+                                </Stack>
+                               </Link>
+                            )}
+                            <div className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
+                                {item.senderNickname === name ?
+                                <div>
+                                  <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                style={messageStyle}>
+                                    {item.senderNickname}
+                                </div>
+                                
+                                </div>
+                                :
+                                <div>
+                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                style={messageStyle}>
+                                    {item.senderNickname}
+                                </div>
+                                <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.senderNickname}</div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+      ))}
+                    {/* 새 채팅 */}
                     {chat.map((item: any, idx) => (
                         <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
                             {item.name !== name && (
@@ -163,10 +317,24 @@ export const Chatting = () => {
                                 </Stack>
                             )}
                             <div className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
-                                <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} style={messageStyle}>
+                                {item.name === name ?
+                                <div>
+                                  <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                                  <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                style={messageStyle}>
+                                    {item.msg}
+                                </div>
+                                
+                                </div>
+                                :
+                                <div>
+                                  <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                style={messageStyle}>
                                     {item.msg}
                                 </div>
                                 <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                                </div>
+                                }
                             </div>
                         </div>
                     ))}
