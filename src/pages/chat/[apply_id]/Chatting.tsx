@@ -267,9 +267,9 @@ export const Chatting = () => {
 
 
                 {wantMatch ? 
-              <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
+              <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭 대기중 (1/2)</button>
               :
-              <button onClick={onClick} className=" bg-primary-logo w-[200px] h-12 text-white text-xl  rounded-2xl mt-[-50px] font-['600']">매칭 대기중 (1/2)</button>
+              <button onClick={onClick} className=" bg-primary-logo w-[200px] h-12 text-white text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
               }
               </div>
               }
@@ -290,7 +290,7 @@ export const Chatting = () => {
                                 {item.senderNickname === name ?
                                 <div>
                                   <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
-                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : "bg-zinc-100 font-['600'] text-primary-bg rounded-3xl rounded-tl-md"} p-2 px-4`} 
                                 style={messageStyle}>
                                     {item.senderNickname}
                                 </div>
@@ -298,7 +298,7 @@ export const Chatting = () => {
                                 </div>
                                 :
                                 <div>
-                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : "bg-zinc-100 font-['600'] text-primary-bg rounded-3xl rounded-tl-md"} p-2 px-4`} 
                                 style={messageStyle}>
                                     {item.senderNickname}
                                 </div>
