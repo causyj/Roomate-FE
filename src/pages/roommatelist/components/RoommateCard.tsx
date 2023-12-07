@@ -30,9 +30,24 @@ interface RoomateCardPercentageProps {
     clean:number;
     sleep:number;
 }
+interface RoomateCard2Props {
+  disableFlip?: boolean;
+
+  key : string;
+  nickname: string;
+  animal: string;
+  dorm:number;
+  room:number;
+  age: number;
+  dept: string;
+  stu_num:number;
+  mbti: string;
+  
+}
 interface RoomateCardProps {
   index:number;
   disableFlip?: boolean;
+  
   star: boolean;
   nickname: string;
   animal: string;
@@ -52,7 +67,6 @@ interface RoomateCardProps {
 }
 interface CardFrontProps {
     isFrontView: boolean;
-    index:number;
     star:boolean;
     nickname: string;
     animal: string;
@@ -63,6 +77,18 @@ interface CardFrontProps {
     stu_num:string;
     mbti: string;
    
+}
+interface CardFront2 {
+  isFrontView: boolean;
+  nickname: string;
+  animal: string;
+  dorm:number;
+  room:number;
+  age:string;
+  dept: string;
+  stu_num:string;
+  mbti: string;
+ 
 }
 interface CardFrontPercentageProps {
   isFrontView: boolean;
@@ -79,12 +105,18 @@ interface CardFrontPercentageProps {
 }
 interface CardFrontDetailProps {
     nickname:string;
-    index:number;
     star: boolean;
     animal : string;
     dorm : number;
     room : number;
    
+}
+interface CardFrontDetail2Props {
+  nickname:string;
+  animal : string;
+  dorm : number;
+  room : number;
+ 
 }
 interface FrontDetailPercentageProps {
   nickname:string;
@@ -249,6 +281,49 @@ const FrontDetailPercentage = ({nickname,animal,key, dorm, room }: FrontDetailPe
         </div>
     )
 }
+const FrontDetail2 = ({nickname,animal, dorm, room }: CardFrontDetail2Props) => {
+  const [isStarred, setIsStarred] = useState(false);
+  const [isStarredAPI, setIsStarredAPI] = useState(false);
+  const [cardData, setCardData] = useState<CardDataProps | null>(null);
+ 
+  //찜 추가/삭제
+  const handleStarClick = async (e: any)=> {
+    
+          e.stopPropagation(); // 이벤트 전파를 막습니다.
+          setIsStarred(!isStarred);
+        
+     };
+  const colorRGB = getAnimalColorRGB(animal as AnimalType['animal']);
+  return (
+      <div className="flex flex-col items-center text-center justify-center p-4 ">
+      
+      <div className="font-['700'] text-primary-logo text-m text-start mr-auto">나와의 궁합 67%</div>
+      <div className="flex justify-evenly w-ful ml-auto">
+          
+          <Stack direction="row" spacing={2}>
+              <Avatar alt="Remy Sharp" sx={{bgcolor:colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+          </Stack>
+          <div className="text-end mt-[-32px] mr-[-8px] ml-4">
+        {isStarred ? (
+          <Star
+            sx={{  color: '#F9D800', width: '50px', height: '50px', cursor: 'pointer'  }}
+            onClick={handleStarClick}
+          />
+        ) : (
+          <StarBorderRoundedIcon
+            sx={{ width: '50px', height: '50px', cursor: 'pointer' }}
+            onClick={handleStarClick}
+          />
+        )}
+          </div>
+          
+      </div>
+  
+      <div className="font-['700'] text-bold text-2xl text-center mx-auto mt-[-2px]">{nickname}님</div>
+      <div className="font-['700'] text-primary-gray text-xxs mt-[-5px]">블루미르홀 {dorm}/{room}인실</div>
+      </div>
+  )
+}
 const CardFrontPercentage = ({isFrontView, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontPercentageProps) => {
     
     return (
@@ -280,9 +355,40 @@ const CardFrontPercentage = ({isFrontView, key, nickname, animal, dorm, room, ag
     </section>
     )
 }
+const CardFront2 = ({isFrontView,  nickname, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFront2) => {
+    
+  return (
+      <section
+      className={`relative inset-0 z-10 h-full w-full transition duration-300 ease-in-out mt-0 ${
+          isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
+      }`}
+  >
+      <FrontDetail2 nickname={nickname} animal={animal} dorm={dorm} room={room} />
+      
+          <div
+         className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
+         style={{
+             boxShadow: '-1px -1px 10px rgba(32, 32, 32, 0.2)',
+         }}
+      >
+         <div className="flex flex-col mx-auto  text-m text-white font-['700'] text-center ">
+              
+              <h1 className="">나이 : {age}</h1> 
+              <h1 className="">학번 : {stu_num}</h1> 
+              <h1 className="">MBTI : {mbti}</h1> 
+              <h1 className="">학과 : {dept}</h1> 
 
-//Tab2&3의 카드 
-const FrontDetail = ({star,index, nickname,animal,dorm, room }: CardFrontDetailProps) => {
+          </div>
+         
+          
+          
+      </div>
+  </section>
+  )
+}
+
+//Tab3의 카드 
+const FrontDetail = ({star,nickname,animal,dorm, room }: CardFrontDetailProps) => {
   const [isStarred, setIsStarred] = useState(true);
   const [isStarredAPI, setIsStarredAPI] = useState(false);
   const [starId, setStartId] = useState('');
@@ -370,7 +476,7 @@ const FrontDetail = ({star,index, nickname,animal,dorm, room }: CardFrontDetailP
       </div>
   )
 }
-const CardFront = ({isFrontView, index, nickname, star, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+const CardFront = ({isFrontView,  nickname, star, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
   
   return (
       <section
@@ -378,7 +484,7 @@ const CardFront = ({isFrontView, index, nickname, star, animal, dorm, room, age,
           isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
       }`}
   >
-      <FrontDetail nickname={nickname} index={index} star={star} animal={animal} dorm={dorm} room={room} />
+      <FrontDetail nickname={nickname}  star={star} animal={animal} dorm={dorm} room={room} />
       
           <div
          className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
@@ -520,9 +626,27 @@ export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal
     </div>
     )
 }
-
-//Tab2&3의 유사도 카드
-export const RoommateCard = ({disableFlip=false, index,nickname, star, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+export const RoommateCard2 = ({disableFlip=false, key, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,} : RoomateCard2Props) => {
+  const [isFrontView, setIsFrontView] = useState(false)
+  const ages = age.toString();
+  const AGE = ages == "0" ? "비공개" : `${ages}살`;
+  const stuNum = stu_num.toString();
+  const STU_NUM = stuNum == "0" ? "비공개" : `${stuNum}학번`;
+  const toggleCardView = () => {
+      setIsFrontView((isFrontView) => !isFrontView)
+  }
+  return (
+      <div
+      onClick={toggleCardView}
+      className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
+  >
+      <CardFront2 isFrontView={isFrontView} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
+      {disableFlip === false && <CardBack isFrontView={isFrontView} nickname={nickname} animal={animal} rhythm={"아침형"} smoke={"비흡연자"} noise={2} temperature= {4} outgoing={5} clean={1} sleep={3}/>}
+  </div>
+  )
+}
+//Tab3의 유사도 카드
+export const RoommateCard = ({disableFlip=false, nickname, star, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
   const [isFrontView, setIsFrontView] = useState(false)
   const ages = age.toString();
   const AGE = ages == "" ? "비공개" : `${ages}살`;
@@ -536,7 +660,7 @@ export const RoommateCard = ({disableFlip=false, index,nickname, star, animal, d
       onClick={toggleCardView}
       className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
   >
-      <CardFront isFrontView={isFrontView} index={index} star={star} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
+      <CardFront isFrontView={isFrontView} star={star} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
       {disableFlip === false && <CardBack isFrontView={isFrontView}  nickname={nickname} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
   </div>
   )
