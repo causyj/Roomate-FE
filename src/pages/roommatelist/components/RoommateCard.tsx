@@ -31,10 +31,7 @@ interface RoomateCardPercentageProps {
     sleep:number;
 }
 interface RoomateCardProps {
-  index:number;
   disableFlip?: boolean;
-  
-  star: boolean;
   nickname: string;
   animal: string;
   dorm:number;
@@ -53,7 +50,6 @@ interface RoomateCardProps {
 }
 interface CardFrontProps {
     isFrontView: boolean;
-    star:boolean;
     nickname: string;
     animal: string;
     dorm:number;
@@ -80,7 +76,7 @@ interface CardFrontPercentageProps {
 }
 interface CardFrontDetailProps {
     nickname:string;
-    star: boolean;
+  
     animal : string;
     dorm : number;
     room : number;
@@ -285,7 +281,7 @@ const CardFrontPercentage = ({isFrontView, key, nickname, animal, dorm, room, ag
 
 
 //Tab3의 카드 
-const FrontDetail = ({star,nickname,animal,dorm, room }: CardFrontDetailProps) => {
+const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
   const [isStarred, setIsStarred] = useState(true);
   const [isStarredAPI, setIsStarredAPI] = useState(false);
   const [starId, setStartId] = useState('');
@@ -353,7 +349,7 @@ const FrontDetail = ({star,nickname,animal,dorm, room }: CardFrontDetailProps) =
               <Avatar alt="Remy Sharp" sx={{bgcolor:colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
           </Stack>
           <div className="text-end mt-[-8px] mr-[-8px] ml-4">
-        {star ? (
+        {isStarred ? (
           <Star
             sx={{  color: '#F9D800', width: '50px', height: '50px', cursor: 'pointer'  }}
             onClick={handleStarClick}
@@ -373,7 +369,7 @@ const FrontDetail = ({star,nickname,animal,dorm, room }: CardFrontDetailProps) =
       </div>
   )
 }
-const CardFront = ({isFrontView,  nickname, star, animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
+const CardFront = ({isFrontView,  nickname,animal, dorm, room, age,  dept, stu_num ,mbti} : CardFrontProps) => {
   
   return (
       <section
@@ -381,7 +377,7 @@ const CardFront = ({isFrontView,  nickname, star, animal, dorm, room, age,  dept
           isFrontView ? 'opacity-0 -rotate-y-180' : 'opacity-100 rotate-y-0'
       }`}
   >
-      <FrontDetail nickname={nickname}  star={star} animal={animal} dorm={dorm} room={room} />
+      <FrontDetail nickname={nickname}  animal={animal} dorm={dorm} room={room} />
       
           <div
          className="absolute bottom-0 left-0 flex h-28 w-full flex-col items-center justify-center rounded-b-xl rounded-tl-[5rem] rounded-tr-none bg-slate-800 p-3"
@@ -514,7 +510,7 @@ const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,
   //       console.error('Error during login:', error);
   //     }
   // }
-  const apply_id = nickname;
+
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -522,7 +518,7 @@ const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,
         }`}
     >
        <div className="flex flex-col p-2 ml-2 mr-2">
-       <Link to={`/chat/${apply_id}`} className="mb-1 flex flex-row gap-4 justify-center ">
+       <Link to={`/chat/${nickname}`} className="mb-1 flex flex-row gap-4 justify-center ">
           
             {/* <div className="font-['900'] text-bold text-3xl text-primary-logo" onClick={chatClick}>채팅하기</div> 
             <img src={process.env.PUBLIC_URL + '/message.png'} alt="logo" style={{width : '45px'}} onClick={chatClick}/>
@@ -561,7 +557,7 @@ export const RoommateCardPercentage = ({disableFlip=false, key, nickname, animal
 }
 
 //Tab3의 유사도 카드
-export const RoommateCard = ({disableFlip=false, nickname, star, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
+export const RoommateCard = ({disableFlip=false, nickname,  animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
   const [isFrontView, setIsFrontView] = useState(false)
   const ages = age.toString();
   const AGE = ages == "" ? "비공개" : `${ages}살`;
@@ -575,7 +571,7 @@ export const RoommateCard = ({disableFlip=false, nickname, star, animal, dorm, r
       onClick={toggleCardView}
       className={`relative h-[17rem] w-[14rem] min-w-[14rem] cursor-pointer transition-transform duration-300 perspective-500 transform-style-3d transform-gpu border-2 border-slate-800 rounded-2xl mt-2 `}
   >
-      <CardFront isFrontView={isFrontView} star={star} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
+      <CardFront isFrontView={isFrontView} nickname={nickname} animal={animal} dorm={dorm} room={room} age={AGE} dept={dept} stu_num={STU_NUM} mbti={mbti}  />
       {disableFlip === false && <CardBack isFrontView={isFrontView}  nickname={nickname} animal={animal} rhythm={rhythm} smoke={smoke} noise={noise} temperature= {temperature} outgoing={outgoing} clean={clean} sleep={sleep}/>}
   </div>
   )

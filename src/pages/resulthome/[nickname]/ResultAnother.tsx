@@ -21,6 +21,7 @@ interface DescriplDataProps{
 
 
 export const ResultAnother = () => {
+  const { nickname } = useParams<ResultAnotherPageParams>();
     //동물, 한줄소개 bad, good
     const [descripData, setDescripData] = useState<DescriplDataProps | null>(null);
     useEffect(()=>{
@@ -45,7 +46,7 @@ export const ResultAnother = () => {
       DescripData();
     },[]);
 
-    const { nickname } = useParams<ResultAnotherPageParams>();
+    
     const animal = descripData?.name as keyof typeof ANIMAL_DATA;
     const color = getAnimalColor(animal as AnimalType['animal']);
     const colorRGB = getAnimalColorRGB(animal as AnimalType['animal']);
@@ -71,7 +72,7 @@ export const ResultAnother = () => {
               <TypeEmojiNotUser nickname={nickname}/>
               </div>
 
-              <TitleBox title={`${nickname}동물 유형 한줄 소개`} animalColor={color}/>
+              <TitleBox title={`${nickname}님의 동물 유형 한줄 소개`} animalColor={color}/>
             {descripData && 
             <div className=" font-['600'] p-7 text-l text-primary-gray">
                {descripData.features}
