@@ -8,7 +8,7 @@ import FavoriteOutlined from "@mui/icons-material/FavoriteOutlined"
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder"
 import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
-import { ANIMAL_DATA } from "../../../constants";
+import { ANIMAL_DATA, getAnimalColor, getAnimalColorRGB } from "../../../constants";
 import { AnimalType } from "../../../interface/AnimalType";
 interface RoomateCardProps {
     disableFlip?: boolean;
@@ -79,7 +79,7 @@ const FrontDetailPercentage = ({nickname,animal,dorm, room }: CardFrontDetailPro
     const handleStarClick = async (e: any)=> {
             e.stopPropagation(); // 이벤트 전파를 막습니다.
 
-            setIsStarred(!isStarred);
+            // setIsStarred(!isStarred);
             
                 try {
                     const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/star/${nickname}`, {
@@ -94,6 +94,7 @@ const FrontDetailPercentage = ({nickname,animal,dorm, room }: CardFrontDetailPro
                       const data = await response.text();
                       if(data != ''){
                         setStartId(data);
+                        setIsStarred(!isStarred);
                       }
                       console.log({starId});
                     } else {
@@ -104,7 +105,7 @@ const FrontDetailPercentage = ({nickname,animal,dorm, room }: CardFrontDetailPro
                     console.error('Error during mailConfirm2:', error);
                   }
                 };
-    
+                const colorRGB = getAnimalColorRGB(animal as AnimalType['animal']);
     return (
         <div className="flex flex-col items-center text-center justify-center p-4 ">
         
@@ -112,7 +113,7 @@ const FrontDetailPercentage = ({nickname,animal,dorm, room }: CardFrontDetailPro
         <div className="flex justify-evenly w-ful ml-auto">
             
             <Stack direction="row" spacing={2}>
-                <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+                <Avatar alt="Remy Sharp" sx={{bgcolor:colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
             </Stack>
             <div className="text-end mt-[-32px] mr-[-8px] ml-4">
           {isStarred ? (
@@ -171,6 +172,7 @@ const CardFrontPercentage = ({isFrontView, nickname, animal, dorm, room, age,  d
 const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
   const [isStarred, setIsStarred] = useState(true);
   const [starId, setStartId] = useState('');
+  
   //찜 추가
   const handleStarClick = async (e: any)=> {
           e.stopPropagation(); // 이벤트 전파를 막습니다.
@@ -200,14 +202,14 @@ const FrontDetail = ({nickname,animal,dorm, room }: CardFrontDetailProps) => {
                   console.error('Error during mailConfirm2:', error);
                 }
               };
-  
+              const colorRGB = getAnimalColorRGB(animal as AnimalType['animal']);
   return (
       <div className="flex flex-col items-center text-center justify-center p-4 ">
       
       <div className="flex justify-evenly w-ful ml-auto">
           
           <Stack direction="row" spacing={2}>
-              <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[animal as AnimalType['animal']].colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+              <Avatar alt="Remy Sharp" sx={{bgcolor:colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
           </Stack>
           <div className="text-end mt-[-8px] mr-[-8px] ml-4">
         {isStarred ? (
@@ -294,6 +296,7 @@ const TypeAtAGlance = ({ nickname, animal,rhythm,smoke,noise, temperature,outgoi
       const EmptysleepCount = Array.from({ length: 5 - sleep }, (_, index) => (
         <FavoriteBorder key={noise + index}  sx={{width:'18px'}}/>
       ));
+      const color = getAnimalColor(animal as AnimalType['animal']);
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1 gap-2">
@@ -310,23 +313,23 @@ const TypeAtAGlance = ({ nickname, animal,rhythm,smoke,noise, temperature,outgoi
                 <div className="">{rhythm}</div>
                 <div className="">{smoke}</div>
                 <div className=" flex flex-col"> 
-                <div className={` text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
+                <div className={` text-[${color}] flex flex-row mt-[-1px]`}>
                         {nosieCount}
                         {EmptynosieCount}
                  </div>
-                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${color}] flex flex-row mt-[-1px]`}>
                         {temperatureCount}
                         {EmptytemperatureCount}
                  </div>
-                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${color}] flex flex-row mt-[-1px]`}>
                         {outgoingCount}
                         {EmptyoutgoingCount}
                  </div>
-                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${color}] flex flex-row mt-[-1px]`}>
                         {cleanCount}
                         {EmptycleanCount}
                  </div>
-                 <div className={`text-[${ANIMAL_DATA[animal as AnimalType['animal']].color}] flex flex-row mt-[-1px]`}>
+                 <div className={`text-[${color}] flex flex-row mt-[-1px]`}>
                         {sleepCount}
                         {EmptysleepCount}
                  </div>
