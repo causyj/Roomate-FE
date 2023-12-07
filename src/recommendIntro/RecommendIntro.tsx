@@ -101,7 +101,7 @@ export const RecommendIntro = () => {
     6.${mbti}
     `)
     e.preventDefault();
-    setLoading(true);
+   
     //usenavigate('/resulthome');
    
     try {
@@ -123,13 +123,14 @@ export const RecommendIntro = () => {
 
       // Handle the response as needed
       console.log(response);
-
+      setLoading(true);  
       // Check if login is successful, then redirect to StarPage
 
       if (response.ok) {
-       usenavigate('/resulthome');
+       //usenavigate('/resulthome');
        // <Loading firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
-      }
+       setLoading(true);  
+    }
     } catch (error) {
       console.error('Error during login:', error);
     }
@@ -137,7 +138,7 @@ export const RecommendIntro = () => {
     return (
         <div>
           {loading ? 
-           <Loading address='/resulthome' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
+           <Loading address='/roommatelist' firstLine='모글리님의' secondLine='생활 유형을 분석 중이에요'/>
 :
 <div className="flex flex-col w-full h-screen justify-center items-center font-['700'] mt-[-90px]">
 <div className=" text-m text-primary-logo text-center items-center justify-start">
