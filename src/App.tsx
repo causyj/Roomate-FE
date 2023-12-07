@@ -7,7 +7,6 @@ import { AnimalDictionary } from './pages/animaldict/AnimalDictionary'
 import { Verify } from './pages/verify/Verify'
 import { ChatList,  } from './pages/chat/ChatList'
 import { RoommateRecommend } from './pages/roommatelist/RoommateRecommend'
-import { RoommateOption } from './pages/roommatelist/RoommateOption'
 import { Group } from './pages/group/Group'
 import { Notice } from './pages/notice/Notice'
 import BottomNavbar from './components/BottomNavBar/BottomNavBar'
@@ -16,8 +15,9 @@ import { ResultHome } from './pages/resulthome/ResultHome'
 import { AnimalDictDetail } from './pages/animaldict/[animal]/AnimalDictDetail'
 import { GroupDetail } from './pages/group/[group]/GroupDetail'
 import { LandingPage } from './components/LandingPage'
-import { Chatting } from './pages/chat/[nickname]/Chatting'
+import { Chatting } from './pages/chat/[apply_id]/Chatting'
 import { ResultAnother } from './pages/resulthome/[nickname]/ResultAnother'
+import { RecommendIntro } from './recommendIntro/RecommendIntro'
 const Router = createBrowserRouter([
   {
       path: '/',
@@ -40,6 +40,10 @@ const Router = createBrowserRouter([
     element: <><BottomNavbar/><RoommateRecommend/></>,
 },
 {
+    path: '/recommendIntro',
+    element: <><RecommendIntro/></>,
+},
+{
     path: '/resulthome',
     element: <><BottomNavbar/><ResultHome/></>,
 },
@@ -52,7 +56,7 @@ const Router = createBrowserRouter([
     element: <><BottomNavbar/><ChatList/></>,
 },
 {
-  path: '/chat/:nickname',
+  path: '/chat/:apply_id',
   element: <><Chatting/></>,
 },
 {

@@ -62,8 +62,8 @@ export const Tab1 = () => {
         const data = await response.json();
         setCardData(data); // 새로운 카드 정보 설정
         console.log("2. new ok");
-        console.log(data);
-        console.log(cardData);
+        console.log(`data : ${data}`);
+        console.log(`data : ${cardData}`);
       } else {
         console.error('Failed to fetch new card data : ', response.status, response.statusText);
       }

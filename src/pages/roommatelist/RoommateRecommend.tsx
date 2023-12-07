@@ -1,61 +1,158 @@
-import * as React from 'react';
-import { RoommateRecommendPanel } from './RoommateRecommendPanel';
-import { RoommateOption } from './RoommateOption';
-import { Optional } from './Optional';
 
-const Intro1 = ({ onClick }: { onClick: () => void }) => {
-  return(
-      <div className="flex flex-col items-center mt-12">
-          <div className="text-3xl font-['700']" >축하합니다!</div>
-          
-              <div className="text-xl font-['300'] mt-6">룸메이트 추천을 위한</div>
-              <div className="text-xl font-['300']">모든 과정이 끝났습니다</div>
-         
-          <div className="mt-8">
-              <img src={process.env.PUBLIC_URL + '/congratulation.png'} alt="monkey" style={{width : '200px'}}/>
-          </div>
-          <div onClick={onClick} className='w-1/3 text-center mt-8'>
-                {/* <Button buttonText={'→'}/> */}
-            </div>
-      </div>
-  )
-}
-export const Intro2 = ({ onClick }: { onClick: () => void })  => {
-  return (
-      <div className="flex flex-col items-center justify-center font-['700']">
-          <div className="px-8 text-xl">더 많은 사용자의 유입을 위해, 기숙사 합격통보 날의 일주일 뒤부터 매칭을 시작합니다</div>
-          <div className="mt-8 mb-4">
-              <img src={process.env.PUBLIC_URL + '/calendar.png'} alt="monkey" style={{width : '200px'}}/>
-          </div>
-          <div>
-              매칭이 시작되면 알림으로 알려드릴게요 :)
-          </div>
-   
-      </div>
-  )
-}
-export function RoommateRecommend() {
-    const [step, setStep] = React.useState(3);
-   
-      const handleButtonClick= () =>{
-        setStep(step+1);
-      }
-    //   useEffect(() => {
-    //     // 최초 렌더링 시에만 실행되도록 설정
-    //     if (step === 0) {
-    //         // 여기에 최초 렌더링 시에 실행되어야 하는 로직 추가
-    //     }
-    // }, [step]);
+import * as React from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { Tab1 } from './Tab1';
+import { Tab2 } from './Tab2';
+import { Tab3 } from './Tab3';
+import { Avatar, Stack } from '@mui/material';
+import { ANIMAL_DATA, getAnimalColorRGB } from '../../constants';
+import { AnimalType } from '../../interface/AnimalType';
+import { useEffect, useState } from "react";
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+  }
+  interface AnimalDataProps{
+    animal : AnimalType['animal'];
+    sensitive : boolean;
+  }
+function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+  
     return (
-      <div>
-         {/* {step === 0 && <RoommateOption onClick={handleButtonClick} />}
-         {step === 1 && <Optional onClick={handleButtonClick}/>}
-         {step === 2 && <Intro1 onClick={handleButtonClick}/>}  */}
-         {/* 원래 이 페이지여야 하지만, 우선 제외 
-         {step === 3 && <Intro2 onClick={handleButtonClick}/>}  
-         */} 
-         {step === 3 && <RoommateRecommendPanel />} 
-         
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && (
+            <Typography>{children}</Typography>
+        )}
       </div>
-  )
+    );
+  }
+function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+export const RoommateRecommend = () => {
+    const [value, setValue] = useState(0);
+    const [nickname, setNickname] = useState('');
+    const [animalData, setAnimalData] = useState<AnimalDataProps | null>(null);
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  const getContentBasedOnTab = () => {
+    switch (value) {
+      case 0:
+        return (
+          <div>
+            <span className="font-['700']">{nickname}</span>님을 위한
+            <div>추천 결과입니다.</div>
+          </div>
+        );
+      case 1:
+        return (
+          <div>
+            <span className="font-['700']">전체 목록</span>
+            <div className='text-ms'>{nickname}님이 거주하는 건물의</div>
+            <div className='text-ms'>기숙사생들을 모두 볼 수 있어요!</div>
+          </div>
+        );
+      case 2:
+        return (
+          <div>
+            <span className="font-['700']">{nickname}</span>님이
+            <div>찜하신 목록입니다.</div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+  useEffect(()=>{
+    const nicknameData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.text();
+          setNickname(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to fetch new card data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to fetch new card data : ', error);
+      }
+    };
+    nicknameData();
+  },[]);
+  // 동물
+  useEffect(()=>{
+    const AnimalData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setAnimalData(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to nicknameData data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to nicknameData data : ', error);
+      }
+    };
+    AnimalData();
+  },[]);
+  // const animalData = ANIMAL_DATA[animal as AnimalType['animal']];
+  const colorRGB = getAnimalColorRGB(animalData?.animal as AnimalType['animal']);
+    return (
+        <div>
+    <div className="flex flex-row items-center justify-evenly">
+    {/* <Stack direction="row" spacing={2}>
+            <Avatar alt="Remy Sharp" sx={{bgcolor:ANIMAL_DATA[ animal as AnimalType['animal']].color, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animal}.png`} />
+        </Stack> */}
+         <Stack direction="row" spacing={2}>
+            <Avatar alt="Remy Sharp" sx={{bgcolor:colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animalData?.animal}.png`} />
+        </Stack> 
+        <div className="text-2xl ">{getContentBasedOnTab()}</div>
+      </div>
+            <Box sx={{display: 'flex', alignItems: 'center',justifyContent: 'center', borderBottom: 1, borderColor: 'divider', }}>
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="추천 룸메이트" {...a11yProps(0)} sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}}/>
+            <Tab label="전체 목록" {...a11yProps(1)}sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}} />
+            <Tab label="찜 목록" {...a11yProps(2)}sx={{fontSize: '15px', fontWeight:'bold',fontFamily:'Pretendard'}} />
+
+        </Tabs>
+        </Box>
+        <CustomTabPanel value={value} index={0}>
+            <Tab1 />
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={1}>
+            <Tab2 />
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={2}>
+            <Tab3 />
+        </CustomTabPanel>
+</div>
+    )
 }
