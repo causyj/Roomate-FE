@@ -33,7 +33,7 @@ const BottomNavbar = (): React.ReactElement => {
   }, [location.pathname]);
   if (location.pathname === '/home') {
     return (
-      <Paper style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white', zIndex: 50000 , marginLeft:'-205px'}}>
+      <Paper style={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white', zIndex: 50000 , marginLeft:'-190px'}}>
       <BottomNavigation
         showLabels
         value={value}

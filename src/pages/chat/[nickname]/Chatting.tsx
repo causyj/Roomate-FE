@@ -5,7 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { getAnimalColorRGB } from "../../../constants";
 import { AnimalType } from "../../../interface/AnimalType";
 type ChattingPageParams = {
-    apply_id : string;
+  nickname : string;
 }
 type ChatDataProps = {
   chatRoomId : string;
@@ -19,7 +19,7 @@ type AnotherUserProps ={
   nickname : string;
 }
 export const Chatting = () => {
-    const { apply_id } = useParams<ChattingPageParams>();
+    const { nickname } = useParams<ChattingPageParams>();
     const [inputHeight, setInputHeight] = useState(60); // 초기값은 입력 부분의 높이
     //const [msgInput, setMsgInput] = useState('');
     const [msg, setMsg] = useState('');
@@ -38,7 +38,7 @@ export const Chatting = () => {
     useEffect(()=>{
       const OtherData = async () => {
         try {
-          const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/chat/${apply_id}/another`, {
+          const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/chat/${nickname}/another`, {
             method: 'GET',
             credentials: 'include',
           });
@@ -158,7 +158,7 @@ export const Chatting = () => {
         ws.current.onerror = (error: any) => {
             console.error('WebSocket error:', error);
         };
-    }, [apply_id]);
+    }, [nickname]);
 
 
     const handleSendMessage = useCallback( async() => {
@@ -216,7 +216,7 @@ export const Chatting = () => {
               'Content-Type': 'application/json',
             },
             body:  JSON.stringify({
-              chatRoomId: apply_id,
+              chatRoomId: nickname,
               nickname: name,
               message: msg,
               date:  new Date().toLocaleString(),
@@ -231,7 +231,7 @@ export const Chatting = () => {
           if (response.ok) {
            console.log(
             `
-            chatRoomId: ${apply_id},
+            chatRoomId: ${nickname},
               nickname: ${name},
               message: ${msg},
               date: ${ new Date().toLocaleString()},
@@ -251,7 +251,7 @@ export const Chatting = () => {
     return (
         <div className="flex flex-col items-center w-full">
             <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
-                <div className="font-['700'] text-3xl text-white">{apply_id}님</div>
+                <div className="font-['700'] text-3xl text-white">{nickname}님</div>
             </div>
             <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
             <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>

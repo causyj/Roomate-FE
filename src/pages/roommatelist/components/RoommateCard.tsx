@@ -514,7 +514,7 @@ const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,
   //       console.error('Error during login:', error);
   //     }
   // }
-  const apply_id = nickname;
+
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -522,7 +522,7 @@ const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,
         }`}
     >
        <div className="flex flex-col p-2 ml-2 mr-2">
-       <Link to={`/chat/${apply_id}`} className="mb-1 flex flex-row gap-4 justify-center ">
+       <Link to={`/chat/${nickname}`} className="mb-1 flex flex-row gap-4 justify-center ">
           
             {/* <div className="font-['900'] text-bold text-3xl text-primary-logo" onClick={chatClick}>채팅하기</div> 
             <img src={process.env.PUBLIC_URL + '/message.png'} alt="logo" style={{width : '45px'}} onClick={chatClick}/>

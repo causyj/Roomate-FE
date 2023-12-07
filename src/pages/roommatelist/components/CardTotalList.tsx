@@ -185,7 +185,7 @@ const CardBack = ({isFrontView,name} : CardBackProps) => {
     >
        <div className="flex flex-col">
             
-                <Link to={`/chat/${id}`}className="mb-1 flex flex-row gap-4 justify-center ">
+                <Link to={`/chat/${name}`}className="mb-1 flex flex-row gap-4 justify-center ">
             <div className="font-['900'] text-bold text-m text-xlprimary-logo ">채팅하기</div> 
             <img src={process.env.PUBLIC_URL + '/message.png'} alt="logo" style={{width : '25px'}}/>
                    
