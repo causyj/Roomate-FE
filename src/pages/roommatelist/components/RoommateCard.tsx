@@ -363,9 +363,9 @@ const CardBack = ({isFrontView,animal,nickname, rhythm,smoke,noise, temperature,
 export const RoommateCardPercentage = ({disableFlip=false, nickname, animal, dorm, room, age,  dept, stu_num ,mbti,rhythm,smoke,noise, temperature,outgoing,clean,sleep} : RoomateCardProps) => {
     const [isFrontView, setIsFrontView] = useState(false)
     const ages = age.toString();
-    const AGE = ages == "" ? "비공개" : `${ages}살`;
+    const AGE = ages == "0" ? "비공개" : `${ages}살`;
     const stuNum = stu_num.toString();
-    const STU_NUM = stuNum == "" ? "비공개" : `${stuNum}학번`;
+    const STU_NUM = stuNum == "0" ? "비공개" : `${stuNum}학번`;
     const toggleCardView = () => {
         setIsFrontView((isFrontView) => !isFrontView)
     }

@@ -53,19 +53,34 @@ export const RecommendIntro = () => {
      const [age, setAge] = useState('');
      const [age_num, setAge_num] = useState(0);
      const [mbti, setMbti] = useState('');
-     const usenavigate = useNavigate();
      const [loading, setLoading] = useState(false);
+
+
+
+     const [dormValid, setDormValid] = useState(false);
+     const [roomValid, setRoomValid] = useState(false);
+     const [deptValid, setDeptValid] = useState(false);
+     const [stuNumValid, setStuNumValid] = useState(false);
+     const [ageValid, setAgeValid] = useState(false);
+     const [mbtiValid, setMbtiValid] = useState(false);
      const handledormChange = (event: SelectChangeEvent) => {
     setDorm(event.target.value as string);
     setDormNUM(parseInt(dorm));
-    
+    setDormValid(event.target.value as string !== ''); 
   };
   const handleroomChange = (event: SelectChangeEvent) => {
     setRoom(event.target.value as string);
     setRoomNUM(parseInt(room));
+    setRoomValid(event.target.value as string !== ''); 
   };
   const handledeptChange = (event: SelectChangeEvent) => {
-    setDept(event.target.value as string);
+    setDeptValid(event.target.value as string !== ''); 
+    if(deptValid){
+        setDept(event.target.value as string);
+    }else{
+        setDept("비공개");
+    }
+   
     console.log(dept)
   };
   const departmentOptions = departments.map((department) => (
@@ -74,21 +89,39 @@ export const RecommendIntro = () => {
     </MenuItem>
   ));
   const handlestu_numChange = (event: SelectChangeEvent) => {
-    setStu_num(event.target.value as string);
-    setStu_NUM(parseInt(room));
+    setStuNumValid(event.target.value as string !== ''); 
+    if(stuNumValid){
+        setStu_num(event.target.value as string);
+        setStu_NUM(parseInt(stu_num));
+    }else{
+        setStu_NUM(0);
+    }
   };
   const handledageChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-    setAge_num(parseInt(room));
+
+    setAgeValid(event.target.value as string !== ''); 
+    if(ageValid){
+        setAge(event.target.value as string);
+        setAge_num(parseInt(age))
+    }else{
+        setAge_num(0);
+    }
   };
   const handlembtiChange = (event: SelectChangeEvent) => {
-    setMbti(event.target.value as string);
+   
+    setMbtiValid(event.target.value as string !== ''); 
+    if(mbtiValid){
+        setMbti(event.target.value as string)
+    }else{
+        setDept("비공개");
+    }
   };
   const mbtiOptions = mbtis.map((mbtis) => (
     <MenuItem key={mbtis.value} value={mbtis.value}>
       {mbtis.label}
     </MenuItem>
   ));
+  const isFormValid = dormValid &&  roomValid ;
 
     
   const handleSubmit = async (e: React.FormEvent) => {
@@ -103,8 +136,8 @@ export const RecommendIntro = () => {
     e.preventDefault();
    
     //usenavigate('/resulthome');
-   
-    try {
+   if(isFormValid){
+     try {
       const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/detail', {
         method: 'POST',
         headers: {
@@ -135,6 +168,8 @@ export const RecommendIntro = () => {
       console.error('Error during login:', error);
     }
   };
+   }
+   
     return (
         <div>
           {loading ? 
@@ -210,7 +245,7 @@ export const RecommendIntro = () => {
        <div className='mb-2 mt-4 text-ms'>학과</div>
          <Box sx={{ minWidth: 200 }}>
          <FormControl fullWidth>
-         <InputLabel id="demo-simple-select-label" >대학</InputLabel>
+         <InputLabel id="demo-simple-select-label" >비공개</InputLabel>
            
              <Select
              labelId="demo-simple-select-label"
@@ -233,7 +268,7 @@ export const RecommendIntro = () => {
          <div className='mb-2 mt-4 text-ms'>학번</div>
          <Box sx={{ minWidth: 200 }}>
          <FormControl fullWidth>
-         <InputLabel id="demo-simple-select-label" >학번</InputLabel>
+         <InputLabel id="demo-simple-select-label" >비공개</InputLabel>
            
              <Select
              labelId="demo-simple-select-label"
@@ -246,6 +281,7 @@ export const RecommendIntro = () => {
                height : '48px',
            }}
              >
+                <MenuItem value={0}>비공개</MenuItem>
               <MenuItem value={16}>16학번</MenuItem>
              <MenuItem value={17}>17학번</MenuItem>
              <MenuItem value={18}>18학번</MenuItem>
@@ -267,7 +303,7 @@ export const RecommendIntro = () => {
          <div className='mb-2 mt-4 text-ms'>나이</div>
          <Box sx={{ minWidth: 80 }}>
          <FormControl fullWidth>
-         <InputLabel id="demo-simple-select-label" >나이</InputLabel>
+         <InputLabel id="demo-simple-select-label" >비공개</InputLabel>
            
              <Select
              labelId="demo-simple-select-label"
@@ -280,7 +316,7 @@ export const RecommendIntro = () => {
                height : '48px',
            }}
              >
-             <MenuItem value={0}>비공</MenuItem>
+             <MenuItem value={0}>비공개</MenuItem>
              <MenuItem value={20}>20</MenuItem>
              <MenuItem value={21}>21</MenuItem>
              <MenuItem value={22}>22</MenuItem>
@@ -298,7 +334,7 @@ export const RecommendIntro = () => {
            <div className='mb-2 mt-4 text-ms'>mbti</div>
          <Box sx={{ minWidth: 80 }}>
          <FormControl fullWidth>
-         <InputLabel id="demo-simple-select-label" >mbti</InputLabel>
+         <InputLabel id="demo-simple-select-label" >비공개</InputLabel>
            
              <Select
              labelId="demo-simple-select-label"
