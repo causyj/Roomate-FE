@@ -123,10 +123,8 @@ export const ResultHome =() => {
               <TypeEmojiUser/>
               </div>
 
-              <div className={`w-full border-4 font-['700'] border-${color}-500 rounded-lg flex items-center justify-center text-center  p-4 font-bold text-xl`}>
-              나의 동물 유형 한줄 소개
-             </div>
-            {/* <TitleBox title={'나의 동물 유형 한줄 소개'} animalColor={color}/> */}
+         
+            <TitleBox title={'나의 동물 유형 한줄 소개'} animalColor={color}/>
             {descripData && 
             <div className=" font-['600'] p-7 text-l text-primary-gray">
                {descripData.features}
@@ -145,10 +143,8 @@ export const ResultHome =() => {
                  </div>
             </Link>
 
-            <div className={`w-full border-4 font-['700'] border-${color}-500 rounded-lg flex items-center justify-center text-center  p-4 font-bold text-xl`}>
-            나의 생활 유형 한 눈에 보기
-             </div>
-            {/* <TitleBox title={'나의 생활 유형 한 눈에 보기'} animalColor={color}/> */}
+            
+            <TitleBox title={'나의 생활 유형 한 눈에 보기'} animalColor={color}/>
             <TypeAtAGlance color={color}/>
             
             {descripData && 
@@ -163,10 +159,7 @@ export const ResultHome =() => {
             }
           
     
-          <div className={`w-full border-4 font-['700'] border-${color}-500 rounded-lg flex items-center justify-center text-center  p-4 font-bold text-xl`}>
-          나의 생활 유형 상세보기
-             </div>
-            {/* <TitleBox title={'나의 생활 유형 상세보기'} animalColor={color}/> */}
+            <TitleBox title={'나의 생활 유형 상세보기'} animalColor={color}/>
             <ResultDetail nickname={nickname}/>
             
             <Link to='/roommatelist'>
