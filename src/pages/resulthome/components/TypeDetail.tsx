@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 type ResultDetailProps = {
-    nickname : string;
+    nickname : string |undefined;
 }
 export const ResultDetail = ({nickname} : ResultDetailProps ) => {
     const [detail, setDetail] = useState('');

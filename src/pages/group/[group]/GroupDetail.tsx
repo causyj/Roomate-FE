@@ -11,7 +11,7 @@ export const GroupDetail = () => {
        <div>
         {group=="기상스터디" ? 
          <div>
-            <div className='fixed max-w-[380px] w-full h-full mt-[-40px] ml-[-50%] bg-primary-pink'>
+            <div className='fixed max-w-[413px] top-0 w-full h-full  ml-[-50%]  bg-primary-pink'>
                 <div className='flex flex-col justify-start p-10'>
                     <div className="font-['700'] text-3xl text-blue-600">새벽 기상으로</div>
                     <div className="font-['700'] text-3xl text-primary-bg">부지런한 삶을</div>
@@ -21,7 +21,7 @@ export const GroupDetail = () => {
                     </div>
                 </div>
             </div>
-            <div className='fixed  max-w-[380px] h-[calc(40%+2rem)] w-full ml-[-50%] bg-black bottom-0 rounded-t-3xl px-8 py-4 flex items-start flex-col justify-start'>
+            <div className='fixed  max-w-[413px] h-[calc(40%+2rem)] w-full ml-[-50%] bg-black bottom-0 rounded-t-3xl px-8 py-4 flex items-start flex-col justify-start'>
                 <div className="font-['700'] text-3xl text-white">{group}</div>
                 <div className="font-['600'] text-xs text-primary-whitegray">
                     <div>기상 스터디로 아침을 알차게 보내보세요!</div>
@@ -48,7 +48,7 @@ export const GroupDetail = () => {
          </div>
       : 
       <div>
-            <div className='fixed max-w-[380px] w-full h-full mt-[-40px] ml-[-50%] bg-primary-green'>
+            <div className='fixed top-0 max-w-[380px] w-full h-full  ml-[-50%] bg-primary-green'>
                 <div className='flex flex-col justify-start p-10'>
                     <div className="font-['700'] text-3xl text-blue-600">한강에서</div>
                     <div className="font-['700'] text-3xl text-primary-bg">러닝도 하고</div>

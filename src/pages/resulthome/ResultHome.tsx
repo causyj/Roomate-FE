@@ -179,6 +179,7 @@ export const ResultHome =() => {
                         <div>sfsdfs</div>
                         <div>sfsdfs</div>
                         
+                        
                      
             </div>
         </div>

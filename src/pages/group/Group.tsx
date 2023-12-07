@@ -5,13 +5,20 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Tab1 } from './Tab1';
 import { Tab2 } from './Tab2';
+import { AnimalType } from '../../interface/AnimalType';
+import { getAnimalColorRGB } from '../../constants';
+import { Avatar, Stack } from '@mui/material';
 
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
   }
-
+  
+interface AnimalDataProps{
+  animal : AnimalType['animal'];
+  sensitive : boolean;
+}
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
   
@@ -36,17 +43,43 @@ function a11yProps(index: number) {
     };
   }
 export const Group = () => {
+  const [animalData, setAnimalData] = React.useState<AnimalDataProps | null>(null);
+  React.useEffect(()=>{
+    const AnimalData = async () => {
+      try {
+        const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/animal`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setAnimalData(data); // 새로운 카드 정보 설정
+          
+        } else {
+          console.error('Failed to nicknameData data : ', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Failed to nicknameData data : ', error);
+      }
+    };
+    AnimalData();
+  },[]);
     const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-
+  const colorRGB = getAnimalColorRGB(animalData?.animal as AnimalType['animal']);
     return (
         <div>
     <div className="flex flex-row items-center justify-evenly gap-4">
-        <img src={process.env.PUBLIC_URL + '/aniroomie.png'} alt="roomie" width="80px" />
+        
+    <Stack direction="row" spacing={2}>
+            <Avatar alt="Remy Sharp" sx={{bgcolor:colorRGB, width: 70, height: 70}} src={process.env.PUBLIC_URL + `/${animalData?.animal}.png`} />
+        </Stack> 
+
         <div className="flex flex-col justify-center items-center">
             <span className="font-['700'] text-2xl">기숙사 내 모임목록</span>
             <div className='text-ms'>기숙사 내의 모임을 둘러보세요!</div>
