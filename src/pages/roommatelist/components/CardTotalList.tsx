@@ -112,6 +112,7 @@ const CardFront = ({isFrontView,name, dept, year ,mbti,age, animal,color} : Card
     )
 }
 const TypeAtAGlance = ({name}:glance) =>{
+    
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1">
@@ -152,6 +153,7 @@ const TypeAtAGlance = ({name}:glance) =>{
     )
 }  
 const CardBack = ({isFrontView,name} : CardBackProps) => {
+    const id =1;
     return (
         <section
         className={`group absolute inset-0 z-0 flex h-full w-full flex-col items-start justify-between rounded-xl bg-[#F7F8FB] px-2 py-1.5 transition duration-300 ease-in-out ${
@@ -160,7 +162,7 @@ const CardBack = ({isFrontView,name} : CardBackProps) => {
     >
        <div className="flex flex-col">
             
-            <Link to="/chat" className="mb-1 flex flex-row gap-4 justify-center ">
+                <Link to={`/chat/${id}`}className="mb-1 flex flex-row gap-4 justify-center ">
             <div className="font-['900'] text-bold text-m text-xlprimary-logo ">채팅하기</div> 
             <img src={process.env.PUBLIC_URL + '/message.png'} alt="logo" style={{width : '25px'}}/>
                    
