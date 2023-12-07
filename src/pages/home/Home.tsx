@@ -70,7 +70,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
         </div>
 
         <div className="  max-w-[413px]  w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[72px] overflow-y-auto p-8" style={{zIndex:20000}}>
-        <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[100px]  h-[90px] w-full ml-[-32px] bg-white   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
+         <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[100px]  h-[90px] w-full ml-[-32px] bg-white   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
             
             <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] ">
                {verify ? 

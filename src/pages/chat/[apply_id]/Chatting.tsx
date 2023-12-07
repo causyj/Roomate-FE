@@ -1,4 +1,4 @@
-import { Avatar, Stack } from "@mui/material";
+import { Avatar, Button, Stack } from "@mui/material";
 import { useEffect, useCallback, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
@@ -15,6 +15,8 @@ export const Chatting = () => {
     const [name, setName] = useState('');
     const [chkLog, setChkLog] = useState(false);
     const [socketData, setSocketData] = useState();
+    const [isMatched, setIsMatched] = useState(false);
+    const [wantMatch, setWantMatch] = useState(false);
     const ws = useRef(null);
 
 
@@ -148,12 +150,33 @@ export const Chatting = () => {
     }, [chkLog, msg, name, webSocketLogin]);
 
     const buttonColor = msg == '' ? 'bg-zinc-100' : 'bg-primary-logo'
+    const onClick = () =>{
+      setWantMatch(!wantMatch);
+    }
     return (
         <div className="flex flex-col items-center w-full">
             <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
                 <div className="font-['700'] text-3xl text-white">모글리님</div>
             </div>
             <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
+            <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
+            
+            <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] flex justify-center ">
+              {isMatched ? 
+              <button className="border-2 border-primary-logo w-[200px] h-12 bg-green-400 text-xl text-black  rounded-2xl mt-[-10px] font-['600']">
+                매칭 완료
+              </button>:
+              <div>
+
+                {wantMatch ? 
+              <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
+              :
+              <button onClick={onClick} className=" bg-primary-logo w-[200px] h-12 text-white text-xl  rounded-2xl mt-[-50px] font-['600']">매칭 대기중 (1/2)</button>
+              }
+              </div>
+              }
+           </div>
+          </div>
                 <div className="flex flex-col gap-y-6">
                     {chat.map((item: any, idx) => (
                         <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
