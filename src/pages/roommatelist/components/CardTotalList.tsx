@@ -112,7 +112,28 @@ const CardFront = ({isFrontView,name, dept, year ,mbti,age, animal,color} : Card
     )
 }
 const TypeAtAGlance = ({name}:glance) =>{
-    
+    const chatClick = async() => {
+        try {
+            const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/chat/${name}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+
+              credentials: 'include',
+            });
+  
+            // Handle the response as needed
+            console.log(response);
+  
+            // Check if login is successful, then redirect to StarPage
+            if (response.ok) {
+              console.log(`${name}채팅으로 넘어갑니다.`);
+            }
+          } catch (error) {
+            console.error('Error during login:', error);
+          }
+      }
     return (
       <div className="flex flex-col py-1">
           <div className="flex flex-row justify-center mt-1">
@@ -148,7 +169,9 @@ const TypeAtAGlance = ({name}:glance) =>{
                 
             </div>
         </div>
-        <Link to={`/resulthome/${name}`} className="font-['700'] text-xxs ml-2 text-primary-gray flex justify-center mt-[-4px]">더 자세히 보기 →</Link>
+        <Link to={`/resulthome/${name}`} className="font-['700'] text-xxs ml-2 text-primary-gray flex justify-center mt-[-4px]">
+        <div onClick={chatClick}> 더 자세히 보기 클릭 →</div>
+        </Link>
       </div>
     )
 }  

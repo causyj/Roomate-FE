@@ -1,6 +1,6 @@
 import { Avatar, Button, Stack } from "@mui/material";
 import { useEffect, useCallback, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
 type ChattingPageParams = {
     apply_id : string;
@@ -100,7 +100,7 @@ export const Chatting = () => {
     }, [apply_id]);
 
 
-    const handleSendMessage = useCallback(() => {
+    const handleSendMessage = useCallback( async() => {
         console.log('전송된 메시지:', msg);
         if (!chkLog) {
             if (name === '') {
@@ -112,7 +112,7 @@ export const Chatting = () => {
             webSocketLogin();
             setChkLog(true);
         }
-
+        
         if (msg !== '') {
             const data = {
                 name,
@@ -147,6 +147,42 @@ export const Chatting = () => {
             return;
         }
         setMsg('');
+
+        try {
+          const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/sending/message', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body:  JSON.stringify({
+              chatRoomId: apply_id,
+              nickname: name,
+              message: msg,
+              date:  new Date().toLocaleString(),
+              }),
+            credentials: 'include',
+          });
+
+          // Handle the response as needed
+          console.log(response);
+
+          // Check if login is successful, then redirect to StarPage
+          if (response.ok) {
+           console.log(
+            `
+            chatRoomId: ${apply_id},
+              nickname: ${name},
+              message: ${msg},
+              date: ${ new Date().toLocaleString()},
+            `
+           )
+          }
+        } catch (error) {
+          console.error('Error during login:', error);
+        }
+
+
+
     }, [chkLog, msg, name, webSocketLogin]);
 
     const buttonColor = msg == '' ? 'bg-zinc-100' : 'bg-primary-logo'
@@ -177,7 +213,7 @@ export const Chatting = () => {
               }
            </div>
           </div>
-                <div className="flex flex-col gap-y-6">
+                <div className="mt-[70px] flex flex-col gap-y-6">
                     {chat.map((item: any, idx) => (
                         <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
                             {item.name !== name && (
