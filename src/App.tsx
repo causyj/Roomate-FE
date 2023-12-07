@@ -42,7 +42,7 @@ const Router = createBrowserRouter([
 },
 {
     path: '/recommendIntro',
-    element: <><BottomNavbar/><RecommendIntro/></>,
+    element: <><RecommendIntro/></>,
 },
 {
     path: '/resulthome',

@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import ProgressIndLinear from "./common/ProgressIndLinear";
 import { useNavigate } from "react-router-dom";
 interface  LoadingProps{
-    address : string;
+  address : string;
     firstLine : string,
     secondLine : string,
 }
-export const Loading = ({ address,firstLine, secondLine }: LoadingProps) => {
+export const Loading = ({ address , firstLine, secondLine }: LoadingProps) => {
     const navigate = useNavigate();
     const timeout = () => {
             return setTimeout(() => {
               navigate(address);
-            }, 5000);
+            }, 1000);
           };
           useEffect(() => {
                 const timeoutId = timeout();
