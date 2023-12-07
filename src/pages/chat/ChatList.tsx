@@ -48,22 +48,22 @@ export function ChatList() {
 
             <div className="flex flex-col overflow-y-auto gap-4 mt-4">
                 {nickname == "컴공이" ?
-                 <Link to={`푸앙이님`}>
+                 <Link to={`푸앙이이`}>
                  <div className="w-full flex flex-row  ">
                         <div>
                             <Stack direction="row" spacing={2}>
-                                <Avatar alt="Remy Sharp" sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
+                                <Avatar alt="Remy Sharp" sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/dog.png'} />
                             </Stack>
                         </div>
                         <div className="flex flex-col ml-4 py-0.5 ">
-                            <div className="font-['700'] text-lg ">푸앙이님</div>
+                            <div className="font-['700'] text-lg ">푸앙이이님</div>
                             <div className="font-['700'] text-xs text-primary-gray ">안녕하세요!</div>
                         </div>
                         <div className="font-['700'] text-xl  ml-32 mr-1 mt-2 w-5 h-5 bg-red-700 text-white rounded-full text-center">1</div>
                     </div>
              </Link>
              :
-             <Link to={`푸앙이`}>
+             <Link to={`푸앙이이`}>
                  <div className="w-full flex flex-row">
                      <div>
                          <Stack direction="row" spacing={2}>
@@ -71,7 +71,7 @@ export function ChatList() {
                          </Stack>
                      </div>
                      <div className="flex flex-col ml-4 py-0.5">
-                         <div className="font-['700'] text-lg ">푸앙이님</div>
+                         <div className="font-['700'] text-lg ">컴공이님</div>
                          <div className="font-['700'] text-xs text-primary-gray">안녕하세요</div>
                      </div>
                      <div className="font-['700'] text-xs text-primary-gray text-xxs text-end ml-auto mr-1 mt-2"></div>

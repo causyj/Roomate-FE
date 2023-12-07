@@ -249,126 +249,289 @@ export const Chatting = () => {
     }
     const colorRGB = getAnimalColorRGB(anotherUser?.animal as AnimalType['animal']);
     return (
-        <div className="flex flex-col items-center w-full">
-            <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
-                <div className="font-['700'] text-3xl text-white">{nickname}님</div>
-            </div>
-            <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
-            <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
-            
-            <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] flex justify-center ">
-              
-              
-              {isMatched ? 
-              <button className="border-2 border-primary-logo w-[200px] h-12 bg-green-400 text-xl text-black  rounded-2xl mt-[-10px] font-['600']">
-                매칭 완료
-              </button>:
-              <div>
+    <div>
+      {name === "컴공이이" ? 
+       <div className="flex flex-col items-center w-full">
+       <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
+           <div className="font-['700'] text-3xl text-white">{nickname}님</div>
+       </div>
+       <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
+       <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
+       
+       <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] flex justify-center ">
+         
+         
+         {isMatched ? 
+         <button className="border-2 border-primary-logo w-[200px] h-12 bg-green-400 text-xl text-black  rounded-2xl mt-[-10px] font-['600']">
+           매칭 완료
+         </button>:
+         <div>
 
 
-                {wantMatch ? 
-              <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭 대기중 (1/2)</button>
-              :
-              <button onClick={onClick} className=" bg-primary-logo w-[200px] h-12 text-white text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
-              }
-              </div>
-              }
-           </div>
-          </div>
-                <div className="mt-[70px] flex flex-col gap-y-6">
-                    {/* 이전 채팅 */}
-                    {chatData.map((item, index) => (
-                        <div key={index} className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
-                          {item.senderNickname !== name && (
-                               <Link to={`/resulthpme/${anotherUser?.nickname}`}>
-                                 <Stack direction="row" spacing={2}>
-                                    <Avatar alt={item.senderNickname} sx={{ bgcolor: colorRGB, width: 50, height: 50 }} src={process.env.PUBLIC_URL + `/${anotherUser?.animal}.png`} />
-                                </Stack>
-                               </Link>
-                            )}
-                            <div className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
-                                {item.senderNickname === name ?
-                                <div>
-                                  <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
-                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : "bg-zinc-100 font-['600'] text-primary-bg rounded-3xl rounded-tl-md"} p-2 px-4`} 
-                                style={messageStyle}>
-                                    {item.senderNickname}
-                                </div>
-                                
-                                </div>
-                                :
-                                <div>
-                                  <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : "bg-zinc-100 font-['600'] text-primary-bg rounded-3xl rounded-tl-md"} p-2 px-4`} 
-                                style={messageStyle}>
-                                    {item.senderNickname}
-                                </div>
-                                <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.senderNickname}</div>
-                                </div>
-                                }
-                            </div>
-                        </div>
-      ))}
-                    {/* 새 채팅 */}
-                    {chat.map((item: any, idx) => (
-                        <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
-                            {item.name !== name && (
-                                <Stack direction="row" spacing={2}>
-                                    <Avatar alt={item.name} sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
-                                </Stack>
-                            )}
-                            <div className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
-                                {item.name === name ?
-                                <div>
-                                  <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
-                                  <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
-                                style={messageStyle}>
-                                    {item.msg}
-                                </div>
-                                
-                                </div>
-                                :
-                                <div>
-                                  <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
-                                style={messageStyle}>
-                                    {item.msg}
-                                </div>
-                                <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* 메시지 입력 부분 */}
-                <div className="max-w-[413px] flex w-full justify-center items-center ml-2">
-                    <div className="flex justify-center items-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight, padding: '10px' }}>
-                        <div className="max-w-[413px] flex flex-row justify-evenly w-full">
-                            <input
-                                name="msgInput"
-                                value={msg}
-                                onChange={handleInputChange}
-                                className="bg-zinc-100 h-100vh max-h-[52px]"
-                                type="text"
-                                placeholder="메시지를 입력하세요"
-                                style={{ width: '80%', borderRadius: '20px', padding: '5px' }}
-                            />
-
-                            <div className="w-20 h-full rounded-2xl">
-                                <button
-                                    onClick={handleSendMessage}
-                                    type="submit"
-                                    className={`text-center ${msg === '' ? 'bg-zinc-100' : 'bg-primary-logo'}`}
-                                    disabled={msg === ''} // 입력값이 없으면 버튼 비활성화
-                                    style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px', color: 'white', border: 'none' }}
-                                >
-                                    <SendIcon />
-                                </button>
-                            </div>
+           {wantMatch ? 
+         <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭 대기중 (1/2)</button>
+         :
+         <button onClick={onClick} className=" bg-primary-logo w-[200px] h-12 text-white text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
+         }
+         </div>
+         }
+      </div>
+     </div>
+           <div className="mt-[70px] flex flex-col gap-y-6">
+           <div className="flex flex-row items-center gap-2">
+                        <Stack direction="row" spacing={2}>
+                            <Avatar alt="Remy Sharp" sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
+                        </Stack>
+                        {/* border-2 border-primary-logo */}
+                        <div className="flex flex-row gap-2">
+                            <div className="max-w-2/3 break-words bg-zinc-100  font-['600'] text-primary-bg rounded-3xl rounded-tl-md p-2 px-4" style={messageStyle}>안녕하세요!</div>
+                            <div className="font-['600'] text-primary-gray text-xxs flex items-end "></div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+               {/* 새 채팅 */}
+               {chat.map((item: any, idx) => (
+                   <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
+                       {item.name !== name && (
+                           <Stack direction="row" spacing={2}>
+                               <Avatar alt={item.name} sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
+                           </Stack>
+                       )}
+                       <div className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
+                           {item.name === name ?
+                           <div>
+                             <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                             <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                           style={messageStyle}>
+                               {item.msg}
+                           </div>
+                           
+                           </div>
+                           :
+                           <div>
+                             <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                           style={messageStyle}>
+                               {item.msg}
+                           </div>
+                           <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                           </div>
+                           }
+                       </div>
+                   </div>
+               ))}
+           </div>
+
+           {/* 메시지 입력 부분 */}
+           <div className="max-w-[413px] flex w-full justify-center items-center ml-2">
+               <div className="flex justify-center items-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight, padding: '10px' }}>
+                   <div className="max-w-[413px] flex flex-row justify-evenly w-full">
+                       <input
+                           name="msgInput"
+                           value={msg}
+                           onChange={handleInputChange}
+                           className="bg-zinc-100 h-100vh max-h-[52px]"
+                           type="text"
+                           placeholder="메시지를 입력하세요"
+                           style={{ width: '80%', borderRadius: '20px', padding: '5px' }}
+                       />
+
+                       <div className="w-20 h-full rounded-2xl">
+                           <button
+                               onClick={handleSendMessage}
+                               type="submit"
+                               className={`text-center ${msg === '' ? 'bg-zinc-100' : 'bg-primary-logo'}`}
+                               disabled={msg === ''} // 입력값이 없으면 버튼 비활성화
+                               style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px', color: 'white', border: 'none' }}
+                           >
+                               <SendIcon />
+                           </button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   : 
+   <div className="flex flex-col items-center w-full">
+       <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
+           <div className="font-['700'] text-3xl text-white">{nickname}님</div>
+       </div>
+       <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
+       <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
+       
+       <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] flex justify-center ">
+         
+         
+         {isMatched ? 
+         <button className="border-2 border-primary-logo w-[200px] h-12 bg-green-400 text-xl text-black  rounded-2xl mt-[-10px] font-['600']">
+           매칭 완료
+         </button>:
+         <div>
+
+
+           {wantMatch ? 
+         <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭 대기중 (1/2)</button>
+         :
+         <button onClick={onClick} className=" bg-primary-logo w-[200px] h-12 text-white text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
+         }
+         </div>
+         }
+      </div>
+     </div>
+           
+           {/* 메시지 입력 부분 */}
+           <div className="max-w-[413px] flex w-full justify-center items-center ml-2">
+               <div className="flex justify-center items-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight, padding: '10px' }}>
+                   <div className="max-w-[413px] flex flex-row justify-evenly w-full">
+                       <input
+                           name="msgInput"
+                           value={msg}
+                           onChange={handleInputChange}
+                           className="bg-zinc-100 h-100vh max-h-[52px]"
+                           type="text"
+                           placeholder="메시지를 입력하세요"
+                           style={{ width: '80%', borderRadius: '20px', padding: '5px' }}
+                       />
+
+                       <div className="w-20 h-full rounded-2xl">
+                           <button
+                               onClick={handleSendMessage}
+                               type="submit"
+                               className={`text-center ${msg === '' ? 'bg-zinc-100' : 'bg-primary-logo'}`}
+                               disabled={msg === ''} // 입력값이 없으면 버튼 비활성화
+                               style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px', color: 'white', border: 'none' }}
+                           >
+                               <SendIcon />
+                           </button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+      }
+    </div>
+       
     );
 }
+
+// {/* <div className="flex flex-col items-center w-full">
+//             <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
+//                 <div className="font-['700'] text-3xl text-white">{nickname}님</div>
+//             </div>
+//             <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
+//             <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
+            
+//             <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] flex justify-center ">
+              
+              
+//               {isMatched ? 
+//               <button className="border-2 border-primary-logo w-[200px] h-12 bg-green-400 text-xl text-black  rounded-2xl mt-[-10px] font-['600']">
+//                 매칭 완료
+//               </button>:
+//               <div>
+
+
+//                 {wantMatch ? 
+//               <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭 대기중 (1/2)</button>
+//               :
+//               <button onClick={onClick} className=" bg-primary-logo w-[200px] h-12 text-white text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
+//               }
+//               </div>
+//               }
+//            </div>
+//           </div>
+//                 <div className="mt-[70px] flex flex-col gap-y-6">
+//                     {/* 이전 채팅 */}
+//                     {chatData.map((item, index) => (
+//                         <div key={index} className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
+//                           {item.senderNickname !== name && (
+//                                <Link to={`/resulthpme/${anotherUser?.nickname}`}>
+//                                  <Stack direction="row" spacing={2}>
+//                                     <Avatar alt={item.senderNickname} sx={{ bgcolor: colorRGB, width: 50, height: 50 }} src={process.env.PUBLIC_URL + `/${anotherUser?.animal}.png`} />
+//                                 </Stack>
+//                                </Link>
+//                             )}
+//                             <div className={item.senderNickname === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
+//                                 {item.senderNickname === name ?
+//                                 <div>
+//                                   <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+//                                   <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : "bg-zinc-100 font-['600'] text-primary-bg rounded-3xl rounded-tl-md"} p-2 px-4`} 
+//                                 style={messageStyle}>
+//                                     {item.senderNickname}
+//                                 </div>
+                                
+//                                 </div>
+//                                 :
+//                                 <div>
+//                                   <div className={`max-w-2/3 break-words ${item.senderNickname === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : "bg-zinc-100 font-['600'] text-primary-bg rounded-3xl rounded-tl-md"} p-2 px-4`} 
+//                                 style={messageStyle}>
+//                                     {item.senderNickname}
+//                                 </div>
+//                                 <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.senderNickname}</div>
+//                                 </div>
+//                                 }
+//                             </div>
+//                         </div>
+//       ))}
+//                     {/* 새 채팅 */}
+//                     {chat.map((item: any, idx) => (
+//                         <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
+//                             {item.name !== name && (
+//                                 <Stack direction="row" spacing={2}>
+//                                     <Avatar alt={item.name} sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
+//                                 </Stack>
+//                             )}
+//                             <div className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
+//                                 {item.name === name ?
+//                                 <div>
+//                                   <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+//                                   <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+//                                 style={messageStyle}>
+//                                     {item.msg}
+//                                 </div>
+                                
+//                                 </div>
+//                                 :
+//                                 <div>
+//                                   <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+//                                 style={messageStyle}>
+//                                     {item.msg}
+//                                 </div>
+//                                 <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+//                                 </div>
+//                                 }
+//                             </div>
+//                         </div>
+//                     ))}
+//                 </div>
+
+//                 {/* 메시지 입력 부분 */}
+//                 <div className="max-w-[413px] flex w-full justify-center items-center ml-2">
+//                     <div className="flex justify-center items-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight, padding: '10px' }}>
+//                         <div className="max-w-[413px] flex flex-row justify-evenly w-full">
+//                             <input
+//                                 name="msgInput"
+//                                 value={msg}
+//                                 onChange={handleInputChange}
+//                                 className="bg-zinc-100 h-100vh max-h-[52px]"
+//                                 type="text"
+//                                 placeholder="메시지를 입력하세요"
+//                                 style={{ width: '80%', borderRadius: '20px', padding: '5px' }}
+//                             />
+
+//                             <div className="w-20 h-full rounded-2xl">
+//                                 <button
+//                                     onClick={handleSendMessage}
+//                                     type="submit"
+//                                     className={`text-center ${msg === '' ? 'bg-zinc-100' : 'bg-primary-logo'}`}
+//                                     disabled={msg === ''} // 입력값이 없으면 버튼 비활성화
+//                                     style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px', color: 'white', border: 'none' }}
+//                                 >
+//                                     <SendIcon />
+//                                 </button>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div> */}
