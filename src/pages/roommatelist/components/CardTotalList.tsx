@@ -169,7 +169,7 @@ const TypeAtAGlance = ({name}:glance) =>{
                 
             </div>
         </div>
-        <Link to={`/resulthome/${name}`} className="font-['700'] text-xxs ml-2 text-primary-gray flex justify-center mt-[-4px]">
+        <Link to={`/chat/${name}`} className="font-['700'] text-xxs ml-2 text-primary-gray flex justify-center mt-[-4px]">
         <div onClick={chatClick}> 더 자세히 보기 클릭 →</div>
         </Link>
       </div>

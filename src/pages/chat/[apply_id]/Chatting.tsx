@@ -17,10 +17,34 @@ export const Chatting = () => {
     const [socketData, setSocketData] = useState();
     const [isMatched, setIsMatched] = useState(false);
     const [wantMatch, setWantMatch] = useState(false);
+    const [anotherUser, setAnotherUser] = useState('');
     const ws = useRef(null);
 
+    //채팅하는 사람 닉네임 불러오기  : anotherUser
 
-
+    //이전 메시지 불러오기
+    const [chatData, setChatData] = useState([]);
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/messages/${apply_id}', {
+            method: 'GET',
+            credentials: 'include',
+          });
+  
+          if (response.ok) {
+            const data = await response.json();
+            setChatData(data); // 데이터 배열로 설정
+          } else {
+            console.error('Failed to fetch data:', response.status, response.statusText);
+          }
+        } catch (error) {
+          console.error('Failed to fetch data:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
 
     const messageStyle = {
         maxWidth:' 70%',
@@ -180,9 +204,6 @@ export const Chatting = () => {
         } catch (error) {
           console.error('Error during login:', error);
         }
-
-
-
     }, [chkLog, msg, name, webSocketLogin]);
 
     const buttonColor = msg == '' ? 'bg-zinc-100' : 'bg-primary-logo'
@@ -192,17 +213,20 @@ export const Chatting = () => {
     return (
         <div className="flex flex-col items-center w-full">
             <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
-                <div className="font-['700'] text-3xl text-white">모글리님</div>
+                <div className="font-['700'] text-3xl text-white">{name}님</div>
             </div>
             <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
             <div className="  top-0 fixed max-w-[413px] flex justify-center text-center items-center mt-[80px]  h-[60px] w-full ml-[-32px] bg-white-300   rounded-t-3xl" style={{ position: 'fixed', width: '100%',zIndex: 200 } }>
             
             <div className="px-6 w-full top-0 fixed mt-[110px] max-w-[413px] flex justify-center ">
+              
+              
               {isMatched ? 
               <button className="border-2 border-primary-logo w-[200px] h-12 bg-green-400 text-xl text-black  rounded-2xl mt-[-10px] font-['600']">
                 매칭 완료
               </button>:
               <div>
+
 
                 {wantMatch ? 
               <button onClick={onClick} className=" border-2 border-primary-logo w-[200px] h-12 text-primary-logo text-xl  rounded-2xl mt-[-50px] font-['600']">매칭하기</button>
@@ -214,6 +238,9 @@ export const Chatting = () => {
            </div>
           </div>
                 <div className="mt-[70px] flex flex-col gap-y-6">
+                    {/* 이전 채팅 */}
+                    
+                    {/* 새 채팅 */}
                     {chat.map((item: any, idx) => (
                         <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
                             {item.name !== name && (
@@ -222,10 +249,24 @@ export const Chatting = () => {
                                 </Stack>
                             )}
                             <div className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
-                                <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} style={messageStyle}>
+                                {item.name === name ?
+                                <div>
+                                  <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                                  <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                style={messageStyle}>
+                                    {item.msg}
+                                </div>
+                                
+                                </div>
+                                :
+                                <div>
+                                  <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} 
+                                style={messageStyle}>
                                     {item.msg}
                                 </div>
                                 <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                                </div>
+                                }
                             </div>
                         </div>
                     ))}
