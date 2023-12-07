@@ -4,9 +4,9 @@ import { AnimalType } from "../../../interface/AnimalType";
 import { useEffect, useState } from "react";
 import { TypeEmojiNotUser } from "../components/TypeEmoji";
 import { TitleBox } from "../../../components/resultdetail/TitleBox";
-import { TypeAtAGlance } from "../components/TypeAtAGlance";
+import { TypeAtAGlance, TypeAtAGlanceNotUser } from "../components/TypeAtAGlance";
 import { GoodBad } from "../components/GoodBad";
-import { ResultDetail } from "../components/TypeDetail";
+import { ResultDetail, ResultDetailAnother } from "../components/TypeDetail";
 
 type ResultAnotherPageParams = {
   nickname : string ;
@@ -90,7 +90,7 @@ export const ResultAnother = () => {
             </Link>
             
             <TitleBox title={`${nickname}님의 생활 유형 한 눈에 보기`} animalColor={color}/>
-            <TypeAtAGlance color={color}/>
+            <TypeAtAGlanceNotUser color={color} nickname={nickname}/>
 
 
             {descripData && 
@@ -105,7 +105,7 @@ export const ResultAnother = () => {
             }
 
         <TitleBox title={`${nickname}님의 생활 유형 상세보기`} animalColor={color}/>
-            <ResultDetail nickname={nickname}/>
+            <ResultDetailAnother nickname={nickname}/>
           
 
             <Link to='/roommatelist'>
