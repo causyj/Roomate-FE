@@ -29,7 +29,7 @@ export const Chatting = () => {
     useEffect(() => {
         const fetchNickname = async () =>{
             try{
-                const response = await fetch(`http://localhost:8080/nickname`,{
+                const response = await fetch(`http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/nickname`,{
                     method: 'GET',
                     credentials: 'include',
                 });
@@ -71,7 +71,7 @@ export const Chatting = () => {
 
     const webSocketLogin = useCallback(() => {
         // @ts-ignore
-        ws.current = new WebSocket(`ws://localhost:8080/socket/chatt/${apply_id}`);
+        ws.current = new WebSocket(`ws://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/socket/chatt/${apply_id}`);
 // @ts-ignore
         ws.current.onopen = () => {
             console.log('WebSocket connection opened');
@@ -125,7 +125,7 @@ export const Chatting = () => {
                 // @ts-ignore
                 ws.current.send(temp);
             } else {
-                console.warn('WebSocket is not open, waiting for connection to open...');
+                console.warn('WebSocket is not open, waiting for connection to open…');
                 // Wait for the connection to open
                 setTimeout(() => {
                     // Check again and send the message if the connection is open
