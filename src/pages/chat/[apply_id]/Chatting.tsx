@@ -2,7 +2,6 @@ import { Avatar, Stack } from "@mui/material";
 import { useEffect, useCallback, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import SendIcon from '@mui/icons-material/Send';
-import { Button } from "../../../components/common";
 type ChattingPageParams = {
     apply_id : string;
 }
@@ -11,11 +10,13 @@ export const Chatting = () => {
     const [inputHeight, setInputHeight] = useState(60); // 초기값은 입력 부분의 높이
     //const [msgInput, setMsgInput] = useState('');
     const [msg, setMsg] = useState('');
-    const message="안녕하세요! "
-    const [name, setName] = useState('수민');
+    const [chat, setChat] = useState([]);
+    //const message="안녕하세요! "
+    const [name, setName] = useState('');
     const [chkLog, setChkLog] = useState(false);
     const [socketData, setSocketData] = useState();
     const ws = useRef(null);
+
 
 
 
@@ -24,6 +25,30 @@ export const Chatting = () => {
 
         //`${message.length * 15}px`,  // 예시: 글자 수에 따라 동적으로 설정
     };
+
+    useEffect(() => {
+        const fetchNickname = async () =>{
+            try{
+                const response = await fetch(`http://localhost:8080/nickname`,{
+                    method: 'GET',
+                    credentials: 'include',
+                });
+
+                // Check if login is successful, then redirect to StarPage
+                if (response.ok) {
+                    const nicknameData = await response.text();
+                    console.log(nicknameData);
+                    setName(nicknameData);
+                    console.log(name);
+                }else{
+                    console.error('Failed to fetch nickname : ',response.status, response.statusText);
+                }
+            } catch (error) {
+                console.error('Failed to fetch nickname : ', error);
+            }
+        };
+        fetchNickname();
+    },[]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -54,8 +79,13 @@ export const Chatting = () => {
 // @ts-ignore
         ws.current.onmessage = (message) => {
             console.log('WebSocket message received:', message.data);
-            //const newMessage = JSON.parse(message.data);
-            //setChatt((prevChatt) => [...prevChatt, newMessage]);
+            const newMessage = JSON.parse(message.data);
+            // @ts-ignore
+            setChat((prevChat) => {
+                const newChat = [...prevChat, newMessage];
+                console.log('New chat state:', newChat); // 로깅 추가
+                return newChat;
+            });
         };
 // @ts-ignore
         ws.current.onclose = (event: any) => {
@@ -95,7 +125,18 @@ export const Chatting = () => {
                 // @ts-ignore
                 ws.current.send(temp);
             } else {
-                console.warn('WebSocket is not open');
+                console.warn('WebSocket is not open, waiting for connection to open...');
+                // Wait for the connection to open
+                setTimeout(() => {
+                    // Check again and send the message if the connection is open
+                    // @ts-ignore
+                    if (ws.current.readyState === WebSocket.OPEN) {
+                        // @ts-ignore
+                        ws.current.send(temp);
+                    } else {
+                        console.error('WebSocket is still not open. Message not sent.');
+                    }
+                }, 1000); // Adjust the timeout duration as needed
             }
         } else {
             alert('메세지를 입력하세요.');
@@ -106,71 +147,34 @@ export const Chatting = () => {
         setMsg('');
     }, [chkLog, msg, name, webSocketLogin]);
 
-const handleConfirm = () => {
-  console.log('눌림')
-  
-}
     const buttonColor = msg == '' ? 'bg-zinc-100' : 'bg-primary-logo'
-
     return (
-        <div className="flex flex-col items-center w-full ">
-            <div className=" max-w-[413px]  h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center " style={{zIndex:200}}>
-               <div className="flex flex-row">
-               <div className="font-['700'] text-3xl text-white">모글리님</div>
-               <Button onClick={handleConfirm}>매칭중</Button>  
-
-                </div>
+        <div className="flex flex-col items-center w-full">
+            <div className="max-w-[413px] h-[100px] w-full bg-primary-logo fixed top-0 flex items-center justify-center" style={{ zIndex: 200 }}>
+                <div className="font-['700'] text-3xl text-white">모글리님</div>
             </div>
-            <div className="  max-w-[413px]  w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{zIndex:20000}}>
+            <div className="max-w-[413px] w-full fixed min-h-screen max-h-screen bg-white rounded-t-3xl mt-[52px] overflow-y-auto p-8" style={{ zIndex: 20000 }}>
                 <div className="flex flex-col gap-y-6">
-                    {/* 상대방 */}
-                    <div className="flex flex-row items-center gap-2">
-                        <Stack direction="row" spacing={2}>
-                            <Avatar alt="Remy Sharp" sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
-                        </Stack>
-                        {/* border-2 border-primary-logo */}
-                        <div className="flex flex-row gap-2">
-                            <div className="max-w-2/3 break-words bg-zinc-100  font-['600'] text-primary-bg rounded-3xl rounded-tl-md p-2 px-4" style={messageStyle}>{message}</div>
-                            <div className="font-['600'] text-primary-gray text-xxs flex items-end ">오전 12:05</div>
+                    {chat.map((item: any, idx) => (
+                        <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
+                            {item.name !== name && (
+                                <Stack direction="row" spacing={2}>
+                                    <Avatar alt={item.name} sx={{ bgcolor: 'pink', width: 50, height: 50 }} src={process.env.PUBLIC_URL + '/cat.png'} />
+                                </Stack>
+                            )}
+                            <div className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row gap-2'}>
+                                <div className={`max-w-2/3 break-words ${item.name === name ? 'bg-primary-logo text-white rounded-3xl rounded-tr-md' : 'bg-zinc-100 font-[600] text-primary-bg rounded-3xl rounded-tl-md'} p-2 px-4`} style={messageStyle}>
+                                    {item.msg}
+                                </div>
+                                <div className="font-['600'] text-primary-gray text-xxs flex items-end">{item.date}</div>
+                            </div>
                         </div>
-                    </div>
-
-                    {/* 나 */}
-                    <div className="flex flex-row gap-2 justify-end">
-                        <div className="font-['600'] text-primary-gray text-xxs flex items-end ">오전 12:05</div>
-
-                        <div className="max-w-2/3 break-word font-['600'] bg-primary-logo text-white rounded-3xl rounded-tr-md p-2 px-4" style={messageStyle}>{message}</div>
-
-                    </div>
+                    ))}
                 </div>
 
-                {/* 메시지 입력 부분  */}
-                <div className=" max-w-[413px] flex w-full justify-center items-center ml-2 ">
-                    <div  className="flex justify-center items-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight,  padding: '10px', }}>
-                        {/* 메시지 입력 컴포넌트 -form 형식*/}
-                        {/* <form  onSubmit={handleSendMessage} className="max-w-[413px] flex flex-row justify-evenly w-full">
-                     <input
-                            name="msgInput"
-                            value={msgInput}
-                            onChange={(e) => setMsgInput(e.target.value)}
-                            className="bg-zinc-100 h-100vh max-h-[52px]"
-                            type="text"
-                            placeholder="메시지를 입력하세요"
-                            style={{ width: '80%',borderRadius: '20px', padding: '5px',  }}
-                        />
-
-                        <div className="w-20 h-full rounded-2xl">
-                        <button
-                            type="submit"
-                            className={`text-center ${buttonColor}`}
-                            disabled={msgInput == '' ? true : false} // 입력값이 없으면 버튼 비활성화
-                            style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px', color :'white', border: 'none' }}
-                            >
-                            <SendIcon/>
-                        </button>
-                        </div>
-                     </form> */}
-                        {/* 메시지 입력 컴포넌트 -input*/}
+                {/* 메시지 입력 부분 */}
+                <div className="max-w-[413px] flex w-full justify-center items-center ml-2">
+                    <div className="flex justify-center items-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight, padding: '10px' }}>
                         <div className="max-w-[413px] flex flex-row justify-evenly w-full">
                             <input
                                 name="msgInput"
@@ -179,18 +183,18 @@ const handleConfirm = () => {
                                 className="bg-zinc-100 h-100vh max-h-[52px]"
                                 type="text"
                                 placeholder="메시지를 입력하세요"
-                                style={{ width: '80%',borderRadius: '20px', padding: '5px',  }}
+                                style={{ width: '80%', borderRadius: '20px', padding: '5px' }}
                             />
 
                             <div className="w-20 h-full rounded-2xl">
                                 <button
                                     onClick={handleSendMessage}
                                     type="submit"
-                                    className={`text-center ${buttonColor}`}
-                                    disabled={msg == '' ? true : false} // 입력값이 없으면 버튼 비활성화
-                                    style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px',  color: 'white', border: 'none' }}
+                                    className={`text-center ${msg === '' ? 'bg-zinc-100' : 'bg-primary-logo'}`}
+                                    disabled={msg === ''} // 입력값이 없으면 버튼 비활성화
+                                    style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '20px', color: 'white', border: 'none' }}
                                 >
-                                    <SendIcon/>
+                                    <SendIcon />
                                 </button>
                             </div>
                         </div>
@@ -198,8 +202,5 @@ const handleConfirm = () => {
                 </div>
             </div>
         </div>
-
-
-
-    )
+    );
 }
