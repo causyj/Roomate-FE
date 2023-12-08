@@ -129,6 +129,7 @@ export const Chatting = () => {
         // 메시지 변수에는 입력된 메시지가 들어 있습니다.
 
         setMsg(e.target.value)
+
     };
 
 
@@ -289,7 +290,7 @@ export const Chatting = () => {
                         </div>
                     </div>
                {/* 새 채팅 */}
-               {chat.map((item: any, idx) => (
+               {/* {chat.map((item: any, idx) => (
                    <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
                        {item.name !== name && (
                            <Stack direction="row" spacing={2}>
@@ -317,7 +318,7 @@ export const Chatting = () => {
                            }
                        </div>
                    </div>
-               ))}
+               ))} */}
            </div>
 
            {/* 메시지 입력 부분 */}
@@ -375,7 +376,7 @@ export const Chatting = () => {
          }
          </div>
          }
-      </div>
+      </div> 
      </div>
            
            {/* 메시지 입력 부분 */}
