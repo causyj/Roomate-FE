@@ -31,6 +31,7 @@ export const Chatting = () => {
     const [socketData, setSocketData] = useState();
     const [isMatched, setIsMatched] = useState(false);
     const [wantMatch, setWantMatch] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false)
     const [anotherUser, setAnotherUser] = useState<AnotherUserProps | null>(null);
     const ws = useRef(null);
     
@@ -129,6 +130,7 @@ export const Chatting = () => {
         // 메시지 변수에는 입력된 메시지가 들어 있습니다.
 
         setMsg(e.target.value)
+
     };
 
 
@@ -162,6 +164,7 @@ export const Chatting = () => {
 
 
     const handleSendMessage = useCallback( async() => {
+      setIsSubmit(true);
         console.log('전송된 메시지:', msg);
         if (!chkLog) {
             if (name === '') {
@@ -289,7 +292,7 @@ export const Chatting = () => {
                         </div>
                     </div>
                {/* 새 채팅 */}
-               {chat.map((item: any, idx) => (
+               {/* {chat.map((item: any, idx) => (
                    <div key={idx} className={item.name === name ? 'flex flex-row gap-2 justify-end' : 'flex flex-row items-center gap-2'}>
                        {item.name !== name && (
                            <Stack direction="row" spacing={2}>
@@ -317,7 +320,7 @@ export const Chatting = () => {
                            }
                        </div>
                    </div>
-               ))}
+               ))} */}
            </div>
 
            {/* 메시지 입력 부분 */}
@@ -375,9 +378,19 @@ export const Chatting = () => {
          }
          </div>
          }
-      </div>
-     </div>
-           
+      </div> 
+     </div> 
+     
+     <div className="flex flex-row gap-2 justify-end mt-16">
+    {isSubmit ==true ?
+     <div className="max-w-2/3 break-words font-['600'] bg-primary-logo text-white rounded-3xl rounded-tr-md p-2 px-4" style={messageStyle}>
+     {msg}
+ </div>:
+ <div></div>
+    }
+    <div className="font-['600'] text-primary-gray text-xxs flex items-end "></div>
+</div>
+     
            {/* 메시지 입력 부분 */}
            <div className="max-w-[413px] flex w-full justify-center items-center ml-2">
                <div className="flex justify-center items-center" style={{ position: 'fixed', bottom: 0, width: '100%', height: inputHeight, padding: '10px' }}>
