@@ -1,54 +1,80 @@
-# Capstone-2023-2
+## 캡스톤 디자인1 2023-2 - 룸메이트 매칭 서비스[ANIROOMIE]
+![image 351](https://github.com/Capstone-2023-2/.github/assets/81398185/c785e12e-9e39-4021-a9d2-20d5d1020ea1)
 
+<br>
+<br>
 
-## Rules 🤝
+## 🏠OUR PROJECT
 
-**All Rules are [here](./Rules.md).** Check it out carefully :)
+기숙사에서 룸메이트와의 생활은 전반적인 학교생활에 영향을 끼칩니다. 
 
+그러나 기존의 기숙사에서 룸메이트 매칭을 위해 조사하는 것은 흡연여부, 외국인 학생 선호도뿐입니다.
 
-# Getting Started with Create React App
+따라서 많은 학생들이 자신과 생활패턴이 맞는 학생들을 구하기 위해,
+에브리타임에 직접 글을 올리고 원하는 친구와 룸메이트를 신청하는 번거로움이 있습니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이러한 번거로움을 덜고, 조금 더 수월하게 룸메이트를 구할 수 있게 하고자 `룸메이트 추천 서비스` `Aniroomi`를 탄생시켰습니다! 🥳
 
-## Available Scripts
+<br>
+<br>
 
-In the project directory, you can run:
+## 🚀 Distribution
+http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/
 
-### `npm start`
+<br>
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 👥TEAM MEMBER
+<table>
+    <tr align="center">
+        <td style="min-width: 150px;">
+            <a href="https://github.com/causyj">
+              <b>손유진</b>
+            </a>
+        </td>
+        <td style="min-width: 150px;">
+            <a href="https://github.com/sumsum07">
+              <b>배수민</b>
+            </a>
+        </td>
+        <td style="min-width: 150px;">
+            <a href="https://github.com/DooHongKm">
+              <b>김두홍</b>
+            </a> 
+        </td>
+    </tr>
+    <tr align="center">
+        <td>
+            FE 
+        </td>
+        <td>
+            BE
+        </td>
+        <td>
+            AI
+        </td>
+    </tr>
+</table>
+<br/><br/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br>
+<br>
 
-### `npm test`
+## 🎖️ Stacks 
+### Front-End
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white?"> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Back-End
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"> <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=for-the-badge&logo=IntelliJ IDEA&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/elastic-005571?style=for-the-badge&logo=elastic&logoColor=white"> 
 
-### `npm run build`
+### AI
+<img src="https://img.shields.io/badge/fastapi-009688?style=for-the-badge&logo=fastapi&logoColor=white?"> 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Environment
+ <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"> <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white">
+ 
+<br>
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🤝 RULES
+### All Rules are [here](./Rules.md).
