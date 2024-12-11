@@ -28,7 +28,7 @@ http://aniroomi-env.eba-rj7upyms.ap-northeast-2.elasticbeanstalk.com/
 <table>
     <tr align="center">
         <td style="min-width: 150px;">
-            <a href="https://github.com/causyj">
+            <a href="https://github.com/yugenius2013">
               <b>손유진</b>
             </a>
         </td>
